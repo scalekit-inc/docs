@@ -34,28 +34,22 @@ Use the [generatePortalLink](/api-reference#tag/customer-portal/put/api/v1/organ
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-
 // generate admin portal link by sending organization id as a parameter
 const link = await sc.organization.generatePortalLink('org_1233222');
 
 // link.location is the Admin Portal url
 ```
-
  </TabItem>
-<!--<TabItem value="py" label="Python">
+<TabItem value="golang" label="Go">
 
-```python
-# write python code here
+```go showLineNumbers
+// generate admin portal link by sending organization id as a parameter
+link, _ := sc.Organization().GeneratePortalLink(ctx, "org_1233222")
+
+// link.location is the Admin Portal url
 ```
 
 </TabItem>
-<TabItem value="golang" label="Go">
-
-```go
-// write go code here
-```
-
-</TabItem> -->
 </Tabs>
 
 Note:

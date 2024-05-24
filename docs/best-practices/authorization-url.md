@@ -26,37 +26,51 @@ You can use our SDK to generate this authorization URL.
 
 ```javascript showLineNumbers
 // init client
-const scalekit = new Scalekit(
+const sc = new Scalekit(
   SCALEKIT_ENVIRONMENT_URL,
   SCALEKIT_CLIENT_ID,
   SCALEKIT_CLIENT_SECRET
 );
 
-const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-        loginHint: "user@example.com",
-        //connectionId: "conn_1223231234124",
-        //domain: "example.com",
-        organizationId: "org_123235245"
-      })
+const authorizationURL = sc.getAuthorizationUrl(
+  redirectUri, 
+  {
+    state: "state", //optional
+    loginHint: "user@example.com", //optional
+    connectionId: "conn_1223231234124", //optional
+    domain: "example.com", //optional
+    organizationId: "org_123235245" //optional
+  }
+)
 
 // next step is to redirect the user to this authorizationURL
-```
-
-</TabItem>
-<!-- <TabItem value="py" label="Python">
-
-```python
-# write python code here
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
 ```go
-// write go code here
-```
+// init client
+sc := scalekit.NewScalekit(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
 
-</TabItem> -->
+url, _ := sc.GetAuthorizationUrl(
+  redirectUrl,
+  scalekit.AuthorizationUrlOptions{
+    State: "state", //optional
+    LoginHint: "user@example.com", //optional
+    ConnectionId: "conn_1223231234124", //optional
+    Domain: "example.com", //optional
+    OrganizationId: "org_12442", //optional
+  }
+)
+
+// next step is to redirect the user to this authorizationURL
+```
+</TabItem>
 </Tabs>
 
 ## Possible Authorization URL Parameters
