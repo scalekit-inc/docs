@@ -59,9 +59,9 @@ Set up your API credentials, found on your Scalekit dashboard, as environment va
 - **Client ID**: A unique, alpha-numeric string that your application will use for all communications with Scalekit.
 - **Client Secret**: Randomly generated secret that is used to authenticate your APIs. For security purposes, this is generated only when you request using the Scalekit Dashboard. See [here](/docs/best-practices/manage-client-secrets.md) to learn best practices on how to manage Client Secret.
 
-Now, go to your Scalekit Dashboard, choose the "Development" environment and select “API Config” to access these configuration details. 
+Now, go to your Scalekit Dashboard, choose the "Development" environment and select “API Config” to access these configuration details.
 
-We recommend you to store these credentials as environment variables (in your .env file). 
+We recommend you to store these credentials as environment variables (in your .env file).
 
 ```jsx title=".env"
 SCALEKIT_ENVIRONMENT_URL="<https://yoursaas-dev.scalekit.com>"
@@ -89,7 +89,7 @@ After a successful user authentication, Scalekit provides a temporary code value
 
 - **<SimpleCode>domain</SimpleCode>**: If your application enforces SSO for all users that belong to a particular email domain, this attribute can be useful to detect the appropriate SSO connection. Example: <SimpleCode>google.com or yourcustomerdomain.com</SimpleCode>
 
-3. **client_id:** Client ID uniquely identifies your application and environment and hence it is mandatory. 
+3. **client_id:** Client ID uniquely identifies your application and environment and hence it is mandatory.
 
 :::tip
 our SDK automatically fills in the required parameters while constructing the authorizationURL as shown below.
@@ -98,6 +98,9 @@ our SDK automatically fills in the required parameters while constructing the au
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
+// import Scalekit
+import { Scalekit, User } from "@scalekit-sdk/node";
+
 // init client
 const scalekit = new Scalekit(
   SCALEKIT_ENVIRONMENT_URL,
@@ -174,7 +177,7 @@ const res = await sc.authenticateWithCode({
   redirectUri: redirectUri
 });
 
-// res.user has the authenticated user's details 
+// res.user has the authenticated user's details
 const userEmail = res.user.email;
 
 
