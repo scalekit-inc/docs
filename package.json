@@ -17,6 +17,7 @@
   "dependencies": {
     "@docsearch/js": "^3.6.0",
     "@docusaurus/core": "^3.4.0",
+    "@docusaurus/plugin-client-redirects": "^3.4.0",
     "@docusaurus/preset-classic": "^3.4.0",
     "@floating-ui/react": "^0.26.19",
     "@mdx-js/react": "^3.0.0",
