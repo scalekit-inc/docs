@@ -1,10 +1,8 @@
 .sdkList {
   width: 800px;
-  padding: var(--spacingsradii25) 0 0 0;
-  gap: 0;
+  padding: 10px 0 0 0;
   border: 0 0 1px 0;
   justify-content: space-between;
-  opacity: 1; /* Changed from 0 to 1 */
 }
 
 .sdkItem {
@@ -41,7 +39,6 @@
   align-items: center;
   text-decoration: none;
   color: #fff;
-
   padding: 8px;
   border-radius: 4px;
   justify-content: space-between;
@@ -92,6 +89,7 @@
   text-align: left;
 }
 
-.link:hover {
+.githubLink:hover,
+.sampleAppLink:hover {
   text-decoration: none;
 }
