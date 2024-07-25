@@ -30,7 +30,8 @@ const sdkItems = [
     title: 'Java',
     icon: <JavaIcon />,
     repoLink: 'https://github.com/scalekit-inc/scalekit-sdk-java',
-    sampleAppLink: 'https://github.com/scalekit-inc/scalekit-sdk-java',
+    sampleAppLink:
+      'https://github.com/scalekit-inc/scalekit-spring-boot-example',
   },
 ];
 
