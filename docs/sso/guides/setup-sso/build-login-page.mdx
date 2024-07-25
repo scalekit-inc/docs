@@ -1,29 +1,45 @@
-
 # Add SSO to your Login Page
+
 <Subtitle>Login Page UX strategies to implement Single Sign-on</Subtitle>
 
 Using our [quickstart guide](/sso/quickstart), you may already have implemented Single Sign-on(SSO) between your application and your customer's Identity Provider. In this article, we'll explore different UX strategies to incorporate SSO into your application's login page.
 
 Assuming your users can log in via email and password or through social providers like Google and GitHub, you can adopt one of the following three strategies to implement SSO on your login page:
 
-<figure className="width-50">![Simple Login Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/simple_login_page.png)<figcaption> Example with Password and Social auth methods</figcaption></figure>
+<figure className="width-50">
+  ![Simple Login
+  Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/simple_login_page.png)
+  <figcaption> Example with Password and Social auth methods</figcaption>
+</figure>
 
 ## Strategy 1: Identifier-driven Single Sign-on
+
 In this strategy, you first collect the user's identifier - the most popular identifier is the email address. Based on the email address, you determine whether to navigate the user to SSO login experience or password-based authentication. The organization can be discovered using either -
 i) the domain of the user’s email address (or)
 ii) organization identifier shared by the user.
 
-
-<figure>![Identifier first Login Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/identifier_first_login.png)<figcaption>Identifier-driven login. Example: Sign in to Google account</figcaption></figure>
+<figure>
+  ![Identifier first Login
+  Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/identifier_first_login.png)
+  <figcaption>
+    Identifier-driven login. Example: Sign in to Google account
+  </figcaption>
+</figure>
 
 The benefit with this approach is that users don't have to choose the authentication method, thus reducing their cognitive load and making the experience smoother.
 This is especially useful when users initially log in with passwords, and their admin later mandates SSO. Users don't need to change their behavior; your application can handle it. Popular products like [Google](https://accounts.google.com), [Microsoft](https://login.microsoftonline.com), [AWS](https://console.aws.amazon.com/console/) use this strategy in their login pages.
 
-
 ## Strategy 2: Login with Single Sign-on Button
+
 In this strategy, you add a "Login with SSO" button on your login page, prompting users to choose this option explicitly. The advantage is that it presents all available authentication options, allowing users to decide how they want to log in.
 
-<figure className="width-50">![Explicit option for Login with SSO](@site/docs/sso/assets/guides/setup-sso/build-login-page/sso_button_login.png)<figcaption>Display SSO and other authentication options. Example Cal.com</figcaption></figure>
+<figure className="width-50">
+  ![Explicit option for Login with
+  SSO](@site/docs/sso/assets/guides/setup-sso/build-login-page/sso_button_login.png)
+  <figcaption>
+    Display SSO and other authentication options. Example Cal.com
+  </figcaption>
+</figure>
 
 If a user tries to log in with a password, but their admin mandates SSO, you would force SSO-based authentication instead of showing an error message. Popular products like [Cal.com](https://app.cal.com/auth/login), [Notion](https://www.notion.so/login) use this strategy in their login pages.
 
@@ -32,11 +48,13 @@ In either of the above strategies, if a user chooses an authentication method (l
 :::
 
 ## Strategy 3: Tenant specific Login Page
+
 In this strategy, instead of a single login page at https:<span></span>//app.yoursaas.com/login, you serve different login pages for each tenant. For example, https://<span></span>tenant1.yoursaas.com/login, https://<span></span>tenant2.yoursaas.com/login. Depending on the tenant URL, you would show only the respective authentication methods applicable to that tenant, thus optimizing the user experience further.
 
 Popular products like [Zendesk](https://www.zendesk.com/in/login/), [Slack](https://scalekit.slack.com/) use this strategy in their login pages. However, the big drawback with this approach is that users need to remember their tenant URL to access the login page.
 
 ## Initiating Single Sign-on from your login page
+
 Once you've chosen a UX strategy for your application’s login, lets move to the login implementation of SSO through Scalekit. Regardless of the strategy you implemented, you can construct the `authorization_url` using Scalekit SDK and redirect the user to this URL.
 
 Refer to the code samples below:
@@ -45,7 +63,7 @@ Refer to the code samples below:
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-import { Scalekit } from "@scalekit-sdk/node";
+import { Scalekit } from '@scalekit-sdk/node';
 
 // initialize the SDK client
 const scalekit = new Scalekit(
@@ -56,13 +74,13 @@ const scalekit = new Scalekit(
 
 // Option 1: Authorization URL with the organization ID
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-  organizationId: "org_12442",
+  organizationId: 'org_12442',
   state: state, // optional
 });
 
 // Option 2: Authorization URL with login hint
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-  loginHint: "user@example.com",
+  loginHint: 'user@example.com',
 });
 
 // TODO: redirect the user to this authorizationURL
@@ -126,6 +144,41 @@ func main() {
     options,
   )
   // next step is to redirect the user to this authorizationURL
+}
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+
+import com.scalekit.ScalekitClient;
+import com.scalekit.internal.http.AuthenticationOptions;
+import com.scalekit.internal.http.AuthenticationResponse;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+import com.scalekit.internal.http.IdTokenClaims;
+
+@PostMapping( path = "/login")
+public ResponseEntity<Map<String, String>> loginHandler(@RequestBody LoginRequest body) {
+    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+    if (body.getConnectionId() != null) {
+        options.setConnectionId(body.getConnectionId());
+    }
+    if (body.getOrganizationId() != null) {
+        options.setOrganizationId(body.getOrganizationId());
+    }
+    if (body.getEmail() != null) {
+        options.setLoginHint(body.getEmail());
+    }
+    try {
+        String url = scalekit.authentication().getAuthorizationUrl(redirectUrl, options).toString();
+        System.out.println(url);
+        return ResponseEntity.ok(Collections.singletonMap("url", url));
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
+    }
 }
 ```
 

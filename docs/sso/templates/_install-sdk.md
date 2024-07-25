@@ -20,4 +20,16 @@ go get https://www.github.com/scalekit-inc/go-sdk
 ```
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+```xml
+<!-- Include the following in your `pom.xml` (Maven) -->
+<dependency>
+  <groupId>com.scalekit</groupId>
+  <artifactId>scalekit-sdk-java</artifactId>
+  <version>0.1</version>
+</dependency>
+```
+
+</TabItem>
 </Tabs>

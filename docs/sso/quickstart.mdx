@@ -73,11 +73,11 @@ To start login with Single Sign-On (SSO), your app must redirect users to the Sc
 
 Construct the Authorization URL using the following query parameters:
 
-| Parameter | Details |     |     |     |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- | --- | --- |
-| <SimpleCode className="text--semibold">redirect_uri</SimpleCode> | URI endpoint on your server to complete user login via SSO. <br />Example: <SimpleCode>https:<span></span>//your-saas-app.com/auth/callback</SimpleCode> After the user is logged into the social provider, Scalekit redirects the user to this URI with one time authorization `code`. In the later section, we will explain how to use this unique `code` to fetch user details |     |     |     |
-| <SimpleCode className="text--semibold">client_id</SimpleCode>    | Your app's unique Scalekit identifier which is mandatory for all requests. This uniquely identifies both your app and the environment (staging, prod).   |     |     |     |
-| Any one of the SSO connection identifiers <br />- <SimpleCode>organization_id</SimpleCode><br />- <SimpleCode>connection_id</SimpleCode><br />- <SimpleCode>login_hint</SimpleCode><br />- <SimpleCode>domain</SimpleCode>                      | <SimpleCode className="text--semibold">organization_id</SimpleCode>: Informs Scalekit which organization's Single Sign-on to use to authenticate the user with. For e.g., `org_124234234`<br />Note: If there are multiple active SSO connections configured for an organization, we will pick the first SSO connection to authenticate the user with. <br /><br /><SimpleCode className="text--semibold">connection_id</SimpleCode>: Informs Scalekit which specific Single Sign-on connection to use to authenticate the user with 's Single Sign-on to use. For e.g., `conn_124234234` <br /><br /><SimpleCode className="text--semibold">domain</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured with the domain. For e.g., `acmecorp.com`<br /><br /><SimpleCode className="text--semibold">login_hint</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured for that domain portion of the email address. For e.g., `john@acmecorp.com` <br /> |     |     |     |
+| Parameter                                                                                                                                                                                                                  | Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |     |     |     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- |
+| <SimpleCode className="text--semibold">redirect_uri</SimpleCode>                                                                                                                                                           | URI endpoint on your server to complete user login via SSO. <br />Example: <SimpleCode>https:<span></span>//your-saas-app.com/auth/callback</SimpleCode> After the user is logged into the social provider, Scalekit redirects the user to this URI with one time authorization `code`. In the later section, we will explain how to use this unique `code` to fetch user details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |     |     |     |
+| <SimpleCode className="text--semibold">client_id</SimpleCode>                                                                                                                                                              | Your app's unique Scalekit identifier which is mandatory for all requests. This uniquely identifies both your app and the environment (staging, prod).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |     |     |     |
+| Any one of the SSO connection identifiers <br />- <SimpleCode>organization_id</SimpleCode><br />- <SimpleCode>connection_id</SimpleCode><br />- <SimpleCode>login_hint</SimpleCode><br />- <SimpleCode>domain</SimpleCode> | <SimpleCode className="text--semibold">organization_id</SimpleCode>: Informs Scalekit which organization's Single Sign-on to use to authenticate the user with. For e.g., `org_124234234`<br />Note: If there are multiple active SSO connections configured for an organization, we will pick the first SSO connection to authenticate the user with. <br /><br /><SimpleCode className="text--semibold">connection_id</SimpleCode>: Informs Scalekit which specific Single Sign-on connection to use to authenticate the user with 's Single Sign-on to use. For e.g., `conn_124234234` <br /><br /><SimpleCode className="text--semibold">domain</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured with the domain. For e.g., `acmecorp.com`<br /><br /><SimpleCode className="text--semibold">login_hint</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured for that domain portion of the email address. For e.g., `john@acmecorp.com` <br /> |     |     |     |
 
 ```sh title="Example Authorization URL"
 https://auth.scalekit.com/authorize?
@@ -190,6 +190,42 @@ func main() {
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+
+import com.scalekit.ScalekitClient;
+import com.scalekit.internal.http.AuthenticationOptions;
+import com.scalekit.internal.http.AuthenticationResponse;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+import com.scalekit.internal.http.IdTokenClaims;
+
+@PostMapping( path = "/login")
+public ResponseEntity<Map<String, String>> loginHandler(@RequestBody LoginRequest body) {
+    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+    if (body.getConnectionId() != null) {
+        options.setConnectionId(body.getConnectionId());
+    }
+    if (body.getOrganizationId() != null) {
+        options.setOrganizationId(body.getOrganizationId());
+    }
+    if (body.getEmail() != null) {
+        options.setLoginHint(body.getEmail());
+    }
+    try {
+        String url = scalekit.authentication().getAuthorizationUrl(redirectUrl, options).toString();
+        System.out.println(url);
+        return ResponseEntity.ok(Collections.singletonMap("url", url));
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
+    }
+}
+```
+
+</TabItem>
+
 </Tabs>
 
 Finally, handle the callback at your <SimpleCode>redirect_uri</SimpleCode> to complete the Authentication. Understand user authorization procedure through a NextJS example for [adding SSO to the Login Page](/sso/guides/setup-sso/build-login-page)
