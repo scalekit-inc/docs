@@ -7,7 +7,6 @@
         <Endpoints tag="Admin Portal" />
     </div>
 </div>
-
-<APIEndpoint tag="Admin Portal" method="get" endpoint="/api/v1/organizations/{id}/portal_links" />
+<!--APIEndpoint tag="Admin Portal" method="get" endpoint="/api/v1/organizations/{id}/portal_links" /-->
 <APIEndpoint tag="Admin Portal" method="put" endpoint="/api/v1/organizations/{id}/portal_links" />
-<APIEndpoint tag="Admin Portal" method="delete" endpoint="/api/v1/organizations/{id}/portal_links" />
+<APIEndpoint tag="Admin Portal" method="delete" endpoint="/api/v1/organizations/{id}/portal_links/{link_id}" />

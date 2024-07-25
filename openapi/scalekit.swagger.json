@@ -10,7 +10,7 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "# Introduction\nScalekit API is modeled around the [REST](https://en.wikipedia.org/wiki/REST) architecture style. That means, our API has predictable resource-oriented URLs, accepts form-encoded request bodies and produces JSON formatted responses, uses standard HTTP verbs and error codes.\n\n## Getting Started\nIf you are just getting started, you can also refer to our [Quick Start Guide](/single-sign-on/quickstart-sso).\n\nApart from REST APIs, we have published SDKs in some of the popular languages as shown below. You can use these SDKs and integrate with Scalekit much faster.\n\n- [NodeJS](https://github.com/scalekit-inc/scalekit-sdk-node)\n- [Go Lang](https://github.com/scalekit-inc/scalekit-sdk-go)\n\nSome additional instructions around using our APIs\n\n- API Endpoint Host must use the `Environment URL` of the environment you are targeting.\n- API requests without appropriate authentication headers will fail with 401 status code.\n\nRead below to understand more about how to authenticate the API calls and how to handle errors appropriately.\n\n\n# Authentication\nScalekit API uses [OAuth2 Client Credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials) based authentication. You can view and manage the necessary information from your `API Config` section in the Scalekit Dashboard.\n\nYou will need the following information to authenticate with Scalekit APIs\n- Client ID\n- Client Secret\n- Environment URL\n\nYou can obtain a secure token by making `POST` call to the `https://{ENV_URL}/oauth/token` endpoint and sending client_id and client_secret as part of the request body.\n\n```shell\n$ curl https://{ENV_URL}/oauth/token \\\n  -X POST \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  -d 'client_id={client_id}' \\\n  -d 'client_secret={client_secret}' \\\n  -d 'grant_type=client_credentials'\\\n```\n\nUpon successful processing, you will receive the access token as part of the JSON response as shown in example below:\n```json\n{\n  \"access_token\": \"DCRD10-e7c5c8139165228a82e442445fe01c16\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 1799\n}\n```\nThe `access_token` is the OAuth access token you need to use for all subsequent API calls to Scalekit.\n\nTo make a request to one of our APIs, you need to include the access token in the Authorization header of the request as Bearer 'access_token' like the following example shows:\n```shell\n$ curl --request GET \"https://{ENV_URL}/api/v1/organizations\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Authorization: Bearer {access_token}\"\n```\n\nPlease make sure that you keep your Client Secrets safely. Do not share your client secret in publicly accessible areas such as GitHub, client-side code, etc. Refer to [this guide](/security/client-secrets) to understand some of the best practices around keeping client secrets secure.\n\nOur SDKs will automatically handle the API authentication and error handling to make the job of using our APIs much easier for you.\n\n# Error Handling\nAs mentioned earlier, Scalekit APIs return appropriate HTTP Status Codes along with the detailed error messages in case of invalid usage of APIs.\n\nIn general:\n- `200 or 201`: API request is successful\n- `400`: The request was unacceptable, often due to missing a required parameter.\n- `401`: Invalid Authentication Headers found in the request.\n- `404`: Resource not found\n- `429`: Too many requests hit the API too quickly. Retry the request after a cool-off period.\n- `500 or 501 or 504`: Something went wrong at our end. However rare they are, we automatically log these requests for proactive support and fixing the underlying issue.\n\nAlong with HTTP Status Codes, we also respond with detailed error messages. An example error message for a 401 error is shown below.\n\n```json\n{\n    \"code\": 16,\n    \"message\": \"Token empty\",\n    \"details\":\n    [\n        {\n            \"@type\": \"type.googleapis.com/scalekit.v1.errdetails.ErrorInfo\",\n            \"error_code\": \"UNAUTHENTICATED\"\n        }\n    ]\n}\n```\n\nWe strongly recommend you to handle errors gracefully while writing code using our SDKs.\n",
+    "description": "# Introduction\nScalekit API is modeled around the [REST](https://en.wikipedia.org/wiki/REST) architecture style. That means, our API has predictable resource-oriented URLs, accepts form-encoded request bodies and produces JSON formatted responses, uses standard HTTP verbs and error codes.\n\n## Getting Started\nIf you are just getting started, you can also refer to our [Quick Start Guide](/single-sign-on/quickstart-sso).\n\nApart from REST APIs, we have published SDKs in some of the popular languages as shown below. You can use these SDKs and integrate with Scalekit much faster.\n\n- [NodeJS](https://github.com/scalekit-inc/scalekit-sdk-node)\n- [Go Lang](https://github.com/scalekit-inc/scalekit-sdk-go)\n\nSome additional instructions around using our APIs\n\n- API Endpoint Host must use the `Environment URL` of the environment you are targeting.\n- API requests without appropriate authentication headers will fail with 401 status code.\n\nRead below to understand more about how to authenticate the API calls and how to handle errors appropriately.\n\n\n# API Authentication\nScalekit API uses [OAuth2 Client Credentials](https://www.oauth.com/oauth2-servers/access-tokens/client-credentials) based authentication. You can view and manage the necessary information from your `API Config` section in the Scalekit Dashboard.\n\nYou will need the following information to authenticate with Scalekit APIs\n- Client ID\n- Client Secret\n- Environment URL\n\nYou can obtain a secure token by making `POST` call to the `https://{ENV_URL}/oauth/token` endpoint and sending client_id and client_secret as part of the request body.\n\n```shell\n$ curl https://{ENV_URL}/oauth/token \\\n  -X POST \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  -d 'client_id={client_id}' \\\n  -d 'client_secret={client_secret}' \\\n  -d 'grant_type=client_credentials'\\\n```\n\nUpon successful processing, you will receive the access token as part of the JSON response as shown in example below:\n```json\n{\n  \"access_token\": \"DCRD10-e7c5c8139165228a82e442445fe01c16\",\n  \"token_type\": \"bearer\",\n  \"expires_in\": 1799\n}\n```\nThe `access_token` is the OAuth access token you need to use for all subsequent API calls to Scalekit.\n\nTo make a request to one of our APIs, you need to include the access token in the Authorization header of the request as Bearer 'access_token' like the following example shows:\n```shell\n$ curl --request GET \"https://{ENV_URL}/api/v1/organizations\" \\\n-H \"Content-Type: application/json\" \\\n-H \"Authorization: Bearer {access_token}\"\n```\n\nPlease make sure that you keep your Client Secrets safely. Do not share your client secret in publicly accessible areas such as GitHub, client-side code, etc. Refer to [this guide](/security/client-secrets) to understand some of the best practices around keeping client secrets secure.\n\nOur SDKs will automatically handle the API authentication and error handling to make the job of using our APIs much easier for you.\n\n# Error Handling\nAs mentioned earlier, Scalekit APIs return appropriate HTTP Status Codes along with the detailed error messages in case of invalid usage of APIs.\n\nIn general:\n- `200 or 201`: API request is successful\n- `400`: The request was unacceptable, often due to missing a required parameter.\n- `401`: Invalid Authentication Headers found in the request.\n- `404`: Resource not found\n- `429`: Too many requests hit the API too quickly. Retry the request after a cool-off period.\n- `500 or 501 or 504`: Something went wrong at our end. However rare they are, we automatically log these requests for proactive support and fixing the underlying issue.\n\nAlong with HTTP Status Codes, we also respond with detailed error messages. An example error message for a 401 error is shown below.\n\n```json\n{\n    \"code\": 16,\n    \"message\": \"Token empty\",\n    \"details\":\n    [\n        {\n            \"@type\": \"type.googleapis.com/scalekit.v1.errdetails.ErrorInfo\",\n            \"error_code\": \"UNAUTHENTICATED\"\n        }\n    ]\n}\n```\n\nWe strongly recommend you to handle errors gracefully while writing code using our SDKs.\n",
     "title": "Scalekit APIs",
     "contact": {
       "name": "Scalekit",
@@ -52,14 +52,8 @@
         "parameters": [
           {
             "type": "string",
-            "description": "Organization ID for the Connection. Either Organization Id or Organization's External Id needs to be provided",
+            "description": "Organization ID for the Connection",
             "name": "organization_id",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "Organization's External ID. Either Organization Id or Organization's External Id needs to be provided",
-            "name": "external_id",
             "in": "query"
           },
           {
@@ -79,6 +73,87 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/connectionsListConnectionsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connections/{connection_id}": {
+      "get": {
+        "description": "Get  Connection details",
+        "tags": [
+          "Connection"
+        ],
+        "summary": "Get Connection",
+        "operationId": "ConnectionService_GetEnvironmentConnection",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Connection ID. Unique ID for the connection",
+            "name": "connection_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/connectionsGetConnectionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connections/{connection_id}:disable": {
+      "patch": {
+        "description": "Disable a SSO Connection",
+        "tags": [
+          "Connection"
+        ],
+        "summary": "Disable a Connection",
+        "operationId": "ConnectionService_DisableEnvironmentConnection",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Connection ID. Unique ID for the connection",
+            "name": "connection_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/connectionsToggleConnectionResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/connections/{connection_id}:enable": {
+      "patch": {
+        "description": "Enable a SSO Connection",
+        "tags": [
+          "Connection"
+        ],
+        "summary": "Enable a Connection",
+        "operationId": "ConnectionService_EnableEnvironmentConnection",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Connection ID. Unique ID for the connection",
+            "name": "connection_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/connectionsToggleConnectionResponse"
             }
           }
         }
@@ -245,31 +320,6 @@
       }
     },
     "/api/v1/organizations/{id}/portal_links": {
-      "get": {
-        "description": "Returns the Admin portal link if it exists. Use Generate Portal link to create and fetch a link",
-        "tags": [
-          "Admin Portal"
-        ],
-        "summary": "Get Portal link",
-        "operationId": "OrganizationService_GetPortalLinks",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Organization ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/organizationsGetPortalLinksResponse"
-            }
-          }
-        }
-      },
       "put": {
         "description": "Generates a Admin Portal link. The Admin Portal will be used by the IT Admins to create and manage the SSO connection in their Org. The link generated via API will be valid for 1 week.",
         "tags": [
@@ -294,19 +344,28 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/v1/organizations/{id}/portal_links/{link_id}": {
       "delete": {
         "description": "Revokes and deletes an Admin portal link.",
         "tags": [
           "Admin Portal"
         ],
         "summary": "Delete Admin Portal link",
-        "operationId": "OrganizationService_DeletePortalLink",
+        "operationId": "OrganizationService_DeletePortalLinkByID",
         "parameters": [
           {
             "type": "string",
             "description": "Organization ID",
             "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "Link ID",
+            "name": "link_id",
             "in": "path",
             "required": true
           }
@@ -330,7 +389,7 @@
         "parameters": [
           {
             "type": "string",
-            "description": "Organization ID for the Connection. Either Organization Id or Organization's External Id needs to be provided",
+            "description": "Organization ID for the Connection.",
             "name": "organization_id",
             "in": "path",
             "required": true
@@ -341,12 +400,6 @@
             "name": "id",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "string",
-            "description": "Organization's External ID. Either Organization Id or Organization's External Id needs to be provided",
-            "name": "external_id",
-            "in": "query"
           }
         ],
         "responses": {
@@ -365,12 +418,12 @@
         "tags": [
           "Connection"
         ],
-        "summary": "Disable a Connection",
+        "summary": "Disable a Connection for an Organization",
         "operationId": "ConnectionService_DisableConnection",
         "parameters": [
           {
             "type": "string",
-            "description": "Organization ID for the Connection. Either Organization Id or Organization's External Id needs to be provided",
+            "description": "Organization ID for the Connection.",
             "name": "organization_id",
             "in": "path",
             "required": true
@@ -381,12 +434,6 @@
             "name": "id",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "string",
-            "description": "Organization's External ID. Either Organization Id or Organization's External Id needs to be provided",
-            "name": "external_id",
-            "in": "query"
           }
         ],
         "responses": {
@@ -405,12 +452,12 @@
         "tags": [
           "Connection"
         ],
-        "summary": "Enable a Connection",
+        "summary": "Enable a Connection for an Organization",
         "operationId": "ConnectionService_EnableConnection",
         "parameters": [
           {
             "type": "string",
-            "description": "Organization ID for the Connection. Either Organization Id or Organization's External Id needs to be provided",
+            "description": "Organization ID for the Connection.",
             "name": "organization_id",
             "in": "path",
             "required": true
@@ -421,12 +468,6 @@
             "name": "id",
             "in": "path",
             "required": true
-          },
-          {
-            "type": "string",
-            "description": "Organization's External ID. Either Organization Id or Organization's External Id needs to be provided",
-            "name": "external_id",
-            "in": "query"
           }
         ],
         "responses": {
@@ -439,9 +480,65 @@
         }
       }
     },
+    "/api/v1/organizations:search": {
+      "get": {
+        "description": "List all Organizations in the Environment with given query. The query can be any one of name, organizationID or externalID, if more than one organization matches the query string multiple results are returned. The response contains page_token that can be used to access the next page of results.",
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Search Organizations",
+        "operationId": "OrganizationService_SearchOrganization",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "query to search for. The search is case insensitive. minimum length should be 3",
+            "name": "query",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "format": "int64",
+            "description": "Number of results to be returned. Max supported page_size is 30",
+            "name": "page_size",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "page_token",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/organizationsSearchOrganizationsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/providers": {
+      "get": {
+        "description": "Get a list of Connection Providers",
+        "tags": [
+          "Connection"
+        ],
+        "summary": "Get Connection Providers",
+        "operationId": "ConnectionService_GetProviders",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/connectionsGetProvidersResponse"
+            }
+          }
+        }
+      }
+    },
     "/oauth/authorize": {
       "get": {
-        "description": "Authorization URL initiates the Login flow with Scalekit.\n\nScalekit expects atleast one of the following parameters to be present. The parameters are used to determine the SSO connection used to Login in the user. \n\n`domain` - Email domain of the user. Domain should be mapped to an Organization. The SSO connection from the org would be used to login to the app. \n`connection_id` - ID of the SSO connection. If the Connection's status is `active`, the user will be redirected to the SSO Connection's identity provider configured \n`organization_id` -  ID of Organization. The user will be redirected to the SSO connection's identity provider configured for that organization.",
+        "description": "Authorization URL initiates the Login flow with Scalekit.\n\nScalekit expects atleast one of the following parameters to be present. The parameters are used to determine the SSO connection used to Login in the user. \n\n`domain` - Email domain of the user. Domain should be mapped to an Organization. The SSO connection from the org would be used to login to the app. \u003cbr/\u003e\n`connection_id` - ID of the SSO connection. If the Connection's status is `active`, the user will be redirected to the SSO Connection's identity provider configured. \u003cbr/\u003e \n`organization_id` -  ID of Organization. The user will be redirected to the SSO connection's identity provider configured for that organization. \u003cbr/\u003e\n`provider` -  ID of SSO Provider, Incase of Social Logins . e.g `google` \u003cbr/\u003e",
         "tags": [
           "Authentication"
         ],
@@ -488,6 +585,13 @@
             "in": "query"
           },
           {
+            "type": "string",
+            "example": "github",
+            "description": "Key for the Social SSO Provider. This is common to all Organizations. e.g. `google`, `github`, `linkedin`, `gitlab`, `microsoft`, `salesforce`",
+            "name": "provider",
+            "in": "query"
+          },
+          {
             "enum": [
               "code"
             ],
@@ -500,7 +604,7 @@
           },
           {
             "type": "string",
-            "example": "code",
+            "example": "openid email profile",
             "description": "Value must be `openid email profile`",
             "name": "scope",
             "in": "query",
@@ -573,7 +677,7 @@
           },
           {
             "type": "string",
-            "description": "The redirect URI where this code was received. This will used to validate the code to make the code was infact generated for this redirect_uri",
+            "description": "The redirect URI where this code was received. This will used to validate the code to make the code was infact generated for this redirect_uri.",
             "name": "redirect_uri",
             "in": "body",
             "required": true
@@ -596,8 +700,7 @@
             "type": "string",
             "description": "Grant Type must be `authorization_code`.",
             "name": "grant_type",
-            "in": "body",
-            "required": true
+            "in": "body"
           },
           {
             "type": "string",
@@ -662,6 +765,14 @@
           "type": "string",
           "example": "conn_2123312131125533"
         },
+        "key_id": {
+          "description": "Key ID",
+          "type": "string"
+        },
+        "oauth_config": {
+          "description": "OAuth Configuration if ConnectionType == OAUTH",
+          "$ref": "#/definitions/connectionsOAuthConnectionConfig"
+        },
         "oidc_config": {
           "description": "OIDC Configuration if ConnectionType == OIDC",
           "$ref": "#/definitions/connectionsOIDCConnectionConfig"
@@ -708,7 +819,12 @@
         "ONELOGIN",
         "PING_IDENTITY",
         "JUMPCLOUD",
-        "CUSTOM"
+        "CUSTOM",
+        "GITHUB",
+        "GITLAB",
+        "LINKEDIN",
+        "SALESFORCE",
+        "MICROSOFT"
       ]
     },
     "connectionsConnectionStatus": {
@@ -724,7 +840,8 @@
       "enum": [
         "OIDC",
         "SAML",
-        "PASSWORD"
+        "PASSWORD",
+        "OAUTH"
       ]
     },
     "connectionsGetConnectionResponse": {
@@ -732,6 +849,18 @@
       "properties": {
         "connection": {
           "$ref": "#/definitions/connectionsConnection"
+        }
+      }
+    },
+    "connectionsGetProvidersResponse": {
+      "type": "object",
+      "properties": {
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/connectionsProvider"
+          }
         }
       }
     },
@@ -823,6 +952,57 @@
         "PERSISTENT"
       ]
     },
+    "connectionsOAuthConnectionConfig": {
+      "type": "object",
+      "properties": {
+        "authorize_uri": {
+          "description": "Authorize URI",
+          "type": "string",
+          "example": "https://youridp.com/service/oauth/authorize"
+        },
+        "client_id": {
+          "description": "Client ID",
+          "type": "string",
+          "example": "oauth_client_id"
+        },
+        "client_secret": {
+          "description": "Client Secret",
+          "type": "string",
+          "example": "oauth_client_secret"
+        },
+        "pkce_enabled": {
+          "description": "PKCE Enabled",
+          "type": "boolean",
+          "example": true
+        },
+        "redirect_uri": {
+          "description": "Redirect URI",
+          "type": "string",
+          "example": "https://yourapp.com/service/oauth/redirect"
+        },
+        "scopes": {
+          "description": "OIDC Scopes",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": [
+            "openid",
+            "profile"
+          ]
+        },
+        "token_uri": {
+          "description": "Token URI",
+          "type": "string",
+          "example": "https://youridp.com/service/oauth/token"
+        },
+        "user_info_uri": {
+          "description": "User Info URI",
+          "type": "string",
+          "example": "https://youridp.com/service/oauth/userinfo"
+        }
+      }
+    },
     "connectionsOIDCConnectionConfig": {
       "type": "object",
       "properties": {
@@ -903,6 +1083,26 @@
         "address",
         "phone"
       ]
+    },
+    "connectionsProvider": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "Provider Description",
+          "type": "string",
+          "example": "Sign In With Google"
+        },
+        "display_name": {
+          "description": "Provider Display Name",
+          "type": "string",
+          "example": "Google"
+        },
+        "key_id": {
+          "description": "Provider Key ID",
+          "type": "string",
+          "example": "google"
+        }
+      }
     },
     "connectionsRequestBinding": {
       "type": "string",
@@ -1087,19 +1287,6 @@
         }
       }
     },
-    "organizationsGetPortalLinksResponse": {
-      "type": "object",
-      "properties": {
-        "links": {
-          "description": "Admin Portal Links",
-          "type": "array",
-          "items": {
-            "type": "object",
-            "$ref": "#/definitions/organizationsLink"
-          }
-        }
-      }
-    },
     "organizationsLink": {
       "type": "object",
       "properties": {
@@ -1192,6 +1379,25 @@
         }
       }
     },
+    "organizationsSearchOrganizationsResponse": {
+      "type": "object",
+      "properties": {
+        "next_page_token": {
+          "type": "string"
+        },
+        "organizations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/organizationsOrganization"
+          }
+        },
+        "total_size": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "organizationsUpdateOrganizationResponse": {
       "type": "object",
       "properties": {
@@ -1256,6 +1462,9 @@
     }
   ],
   "tags": [
+    {
+      "name": "Single Sign-On"
+    },
     {
       "description": "Organization represents a customer or a tenant of your product. This is the top level entity and all the resources are mapped to this Organization object. Each organization will be uniquely identified by `organization_id`. You can use this service to create and manage Enterprise SSO Connections for an organization.\n\n**Attributes**\n\n| Attribute Name | Attribute Description |\n|---|---|\n| `id`\u003cbr\u003e_string_ | Unique ID of an Organization. This attribute is required for all API operations to be performed against this organization.  |\n| `display_name`\u003cbr\u003e_string_ | Name of the Organization |\n| `create_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was created in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: `2011-10-05T14:48:00.000Z` |\n| `update_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was last updated in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: \u003cbr\u003e`2021-10-05T14:48:00.000Z` |\n| `external_id`\u003cbr\u003e_string_ | Unique ID of this organization according to your system. You can store your unique ID for this organization in Scalekit's system and later use this to fetch Organization and Connection details. This is helpful if you don't want to persist Scalekit's Unique Identifiers in your database. |\n| `metadata`\u003cbr\u003e_object_ | JSON representation of any additional organization information that you want to store in Scalekit's system. Example: `{\"key\":\"value\"}` |\n| `region_code`\u003cbr\u003e_string_ | Represents the Data Center region in which this organization's data is stored. Currently, it always returns `US` |",
       "name": "Organization"
