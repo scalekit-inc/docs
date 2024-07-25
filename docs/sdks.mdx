@@ -6,72 +6,11 @@ displayed_sidebar: homeSidebar
 # SDKs
 
 <Subtitle>
-  Learn about our official libraries and SDKs to easily integrate with Scalekit
-  APIs
+  Learn about our official libraries and SDKs to easily integrate with Scalekit APIs
 </Subtitle>
 
-import CardList from '@site/src/components/CardList/CardList';
-import Card from '@site/src/components/Card/Card';
-import { FaJava } from 'react-icons/fa6';
-import { FaPython } from 'react-icons/fa6';
-import { FaGolang } from 'react-icons/fa6';
-import { FaNodeJs } from 'react-icons/fa6';
-import { FaGithub } from 'react-icons/fa6';
-import { FaCode } from 'react-icons/fa6';
+import SDKList from '@site/src/components/SDKList/SDKList';
 
-Scalekit offers official API libraries for different programming languages, which are regularly updated for breaking and non-breaking API changes. These client libraries help you implement authentication with Scalekit safely, securely and easily.
+Scalekit offers official API libraries for different programming languages, which are regularly updated for breaking and non-breaking API changes. These libraries help you implement authentication with Scalekit safely, securely and easily.
 
-<CardList size="medium">
-  <Card
-    href="https://github.com/scalekit-inc/scalekit-sdk-node"
-    title="Node JS"
-    icon={<FaNodeJs />}
-    disableCardClick={true}
-  >
-    <Link href="https://github.com/scalekit-inc/scalekit-sdk-node">
-      <FaGithub /> GitHub Repo
-    </Link>
-    <Link href="https://github.com/scalekit-inc/scalekit-express-example">
-      <FaCode /> Sample App
-    </Link>
-  </Card>
-  <Card
-    href="https://github.com/scalekit-inc/scalekit-sdk-go"
-    title="Golang"
-    icon={<FaGolang />}
-    disableCardClick={true}
-  >
-    <Link href="https://github.com/scalekit-inc/scalekit-sdk-go">
-      <FaGithub /> GitHub Repo
-    </Link>
-    <Link href="https://github.com/scalekit-inc/scalekit-go-example">
-      <FaCode /> Sample App
-    </Link>
-  </Card>
-  <Card
-    href="https://github.com/scalekit-inc/scalekit-sdk-python"
-    title="Python"
-    icon={<FaPython />}
-    disableCardClick={true}
-  >
-    <Link href="https://github.com/scalekit-inc/scalekit-sdk-python">
-      <FaGithub /> GitHub Repo
-    </Link>
-    <Link href="https://github.com/scalekit-inc/scalekit-fastapi-example">
-      <FaCode /> Sample App
-    </Link>
-  </Card>
-  <Card
-    href="https://github.com/scalekit-inc/scalekit-sdk-java"
-    title="Java"
-    icon={<FaJava />}
-    disableCardClick={true}
-  >
-    <Link href="https://github.com/scalekit-inc/scalekit-sdk-java">
-      <FaGithub /> GitHub Repo
-    </Link>
-    <Link href="https://github.com/scalekit-inc/scalekit-sdk-java">
-      <FaCode /> Sample App
-    </Link>
-  </Card>
-</CardList>
+<SDKList />

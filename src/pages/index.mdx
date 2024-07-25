@@ -6,17 +6,16 @@ pagination_next: null
 description: Learn how to implement  authentication capabilities through our quick start guides, SDKs and code samples
 ---
 
-import CardList from "@site/src/components/CardList/CardList";
-import Card from "@site/src/components/Card/Card";
-import CardWithArrow from "@site/src/components/Card/CardWithArrow";
-import ActionCard from "@site/src/components/ActionCard/ActionCard";
-import Hero from "@site/src/components/Hero/Hero";
-import ProductList from "@site/src/components/ProductList/ProductList";
-import { IoHelpBuoyOutline, IoHelpCircleOutline } from "react-icons/io5";
-import { VscDebugStart } from "react-icons/vsc";
-
-import { FaArrowRight } from "react-icons/fa6";
-
+import CardList from '@site/src/components/CardList/CardList';
+import Card from '@site/src/components/Card/Card';
+import SDKList from '@site/src/components/SDKList/SDKList';
+import CardWithArrow from '@site/src/components/Card/CardWithArrow';
+import ActionCard from '@site/src/components/ActionCard/ActionCard';
+import Hero from '@site/src/components/Hero/Hero';
+import ProductList from '@site/src/components/ProductList/ProductList';
+import { IoHelpBuoyOutline, IoHelpCircleOutline } from 'react-icons/io5';
+import { VscDebugStart } from 'react-icons/vsc';
+import { FaArrowRight } from 'react-icons/fa6';
 
 <div className="homepage">
 <div className="row hero">
@@ -35,6 +34,7 @@ import { FaArrowRight } from "react-icons/fa6";
 # Single Sign-on <span className="badge badge--success">GUIDES</span>
 
 Implement SSO with our easy to follow quick start guides.
+
 </div>
 <div className="col col--7">
 <ProductList
@@ -81,7 +81,13 @@ items={[{
 </div>
 </div>
 
-<div className="footerLink"><IoHelpBuoyOutline /> Need help? <a href="mailto:support@scalekit.com">Contact Support</a></div>
-<div className="footerLink"><IoHelpCircleOutline /> Questions? <a href="mailto:hi@scalekit.com">Contact Us</a></div>
+<div className="footerLink">
+  <IoHelpBuoyOutline /> Need help?{' '}
+  <a href="mailto:support@scalekit.com">Contact Support</a>
+</div>
+<div className="footerLink">
+  <IoHelpCircleOutline /> Questions?{' '}
+  <a href="mailto:hi@scalekit.com">Contact Us</a>
+</div>
 
 </div>
