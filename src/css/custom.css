@@ -927,10 +927,11 @@ svg {
 }
 
 .simple_code {
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
   background: none;
   border: none;
   white-space: nowrap;
+  vertical-align: baseline;
 }
 
 [data-tooltip] {
@@ -1170,6 +1171,7 @@ svg {
 .ApiReference-Parameter .attr .key {
   font-family: var(--ifm-font-family-monospace);
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .ApiReference-Parameter .attr .required {
