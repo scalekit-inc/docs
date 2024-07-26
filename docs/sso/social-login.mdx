@@ -153,6 +153,8 @@ func main() {
 
 ```java showLineNumbers
 package com.scalekit;
+
+import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 
 public class Main {
@@ -285,27 +287,34 @@ func main() {
 
 ```java
  @GetMapping("/callback")
-    public String callbackHandler(@RequestParam(required = false) String code,
-                                        @RequestParam(required = false, name = "error_description") String errorDescription,
-                                        HttpServletResponse response) throws IOException {
-        if (errorDescription != null) {
-            response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
-            return null;
-        }
-        if (code == null || code.isEmpty()) {
-            response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
-            return null;
-        }
-        try {
-            AuthenticationResponse res = scalekit.authentication().authenticateWithCode(code, redirectUrl, new AuthenticationOptions());
-            String userEmail = res.getIdTokenClaims().getEmail();
-            System.out.println(userEmail);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        return null;
-        }
+public String callbackHandler(
+    @RequestParam(required = false) String code,
+    @RequestParam(required = false, name = "error_description")
+    String errorDescription,
+    HttpServletResponse response) throws IOException {
+    if (errorDescription != null) {
+        response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
         return null;
     }
+    if (code == null || code.isEmpty()) {
+        response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
+        return null;
+    }
+    try {
+        AuthenticationResponse res = scalekit.authentication()
+          .authenticateWithCode(
+             code,
+             redirectUrl,
+             new AuthenticationOptions()
+          );
+        String userEmail = res.getIdTokenClaims().getEmail();
+        System.out.println(userEmail);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        return null;
+    }
+    return null;
+}
 ```
 
 </TabItem>

@@ -16,7 +16,7 @@ curl --request GET \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-import { ScalekitClient } from "@scalekit-sdk/node";
+import { ScalekitClient } from '@scalekit-sdk/node';
 
 // scalekit client takes care of authentication behind the scenes.
 const scalekit = new ScalekitClient(
@@ -26,21 +26,21 @@ const scalekit = new ScalekitClient(
 );
 
 // Authorization URL with organization ID parameter and optional state parameter
- const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-   organizationId: 'org_12442',
-   state: state
- })
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
+  organizationId: 'org_12442',
+  state: state,
+});
 
- // Authorization URL with optional login hint parameter
- const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-   loginHint: 'user@example.com',
-   organizationId: 'org_12442'
- })
+// Authorization URL with optional login hint parameter
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
+  loginHint: 'user@example.com',
+  organizationId: 'org_12442',
+});
 
 // Authorization URL with connection ID parameter
- const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-   connectionId: 'conn_1242242',
- })
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
+  connectionId: 'conn_1242242',
+});
 ```
 
 </TabItem>
@@ -51,8 +51,8 @@ const scalekit = new ScalekitClient(
 from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
 
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>, 
-  <SCALEKIT_CLIENT_ID>, 
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
   <SCALEKIT_CLIENT_SECRET>
 )
 
@@ -67,12 +67,12 @@ options.connection_id = 'conn_1242242'
 # If you would like to authenticate the user via organization_id
 options.organization_id = 'org_12442'
 
-# If you would like to authenticate the user via their email address 
+# If you would like to authenticate the user via their email address
 # Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
 options.login_hint = '<user@example.com>'
 
 authorization_url = scalekit_client.get_authorization_url(
-  redirect_uri=<redirect_uri>, 
+  redirect_uri=<redirect_uri>,
   options=options
 )
 
@@ -124,6 +124,42 @@ func main() {
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+
+package com.scalekit;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ScalekitClient scalekitClient = new ScalekitClient(
+                "SCALEKIT_ENVIRONMENT_URL",
+                "SCALEKIT_CLIENT_ID",
+                "SCALEKIT_CLIENT_SECRET"
+              );
+
+        AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+        // Option 1: Authorization URL with the organization ID
+        options.setOrganizationId("org_13388706786312310");
+        // Option 2: Authorization URL with the connection ID
+        options.setConnectionId("con_13388706786312310");
+        // Option 3: Authorization URL with login hint
+        options.setLoginHint("<user@example.com>");
+        try {
+            String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

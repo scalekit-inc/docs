@@ -21,9 +21,7 @@ ii) organization identifier shared by the user.
 <figure>
   ![Identifier first Login
   Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/identifier_first_login.png)
-  <figcaption>
-    Identifier-driven login. Example: Sign in to Google account
-  </figcaption>
+  <figcaption>Identifier-driven login. Example: Sign in to Google account</figcaption>
 </figure>
 
 The benefit with this approach is that users don't have to choose the authentication method, thus reducing their cognitive load and making the experience smoother.
@@ -36,9 +34,7 @@ In this strategy, you add a "Login with SSO" button on your login page, promptin
 <figure className="width-50">
   ![Explicit option for Login with
   SSO](@site/docs/sso/assets/guides/setup-sso/build-login-page/sso_button_login.png)
-  <figcaption>
-    Display SSO and other authentication options. Example Cal.com
-  </figcaption>
+  <figcaption>Display SSO and other authentication options. Example Cal.com</figcaption>
 </figure>
 
 If a user tries to log in with a password, but their admin mandates SSO, you would force SSO-based authentication instead of showing an error message. Popular products like [Cal.com](https://app.cal.com/auth/login), [Notion](https://www.notion.so/login) use this strategy in their login pages.
@@ -152,15 +148,16 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-
 import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthenticationOptions;
 import com.scalekit.internal.http.AuthenticationResponse;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 import com.scalekit.internal.http.IdTokenClaims;
 
-@PostMapping( path = "/login")
-public ResponseEntity<Map<String, String>> loginHandler(@RequestBody LoginRequest body) {
+@PostMapping(path = "/login")
+public ResponseEntity < Map < String, String >> loginHandler(
+  @RequestBody LoginRequest body
+  ) {
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (body.getConnectionId() != null) {
         options.setConnectionId(body.getConnectionId());
@@ -171,13 +168,16 @@ public ResponseEntity<Map<String, String>> loginHandler(@RequestBody LoginReques
     if (body.getEmail() != null) {
         options.setLoginHint(body.getEmail());
     }
+
     try {
-        String url = scalekit.authentication().getAuthorizationUrl(redirectUrl, options).toString();
+        String url = scalekit.authentication()
+          .getAuthorizationUrl(redirectUrl, options).toString();
         System.out.println(url);
         return ResponseEntity.ok(Collections.singletonMap("url", url));
     } catch (Exception e) {
         System.out.println(e.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.singletonMap("error", e.getMessage()));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+          .body(Collections.singletonMap("error", e.getMessage()));
     }
 }
 ```

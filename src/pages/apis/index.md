@@ -1,12 +1,12 @@
 ---
 hide_table_of_contents: true
-title: "API Reference"
-
+title: 'API Reference'
 ---
-import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
-import ConnectionTag from './_connection.md';
-import AdminPortalTag from './_adminPortal.md';
-import OrganizationTag from './_organization.md';
+
+import InstallSDK from '@site/docs/sso/templates/\_install-sdk.md';
+import ConnectionTag from './\_connection.md';
+import AdminPortalTag from './\_adminPortal.md';
+import OrganizationTag from './\_organization.md';
 import SidebarWrapper from '@site/src/components/SidebarWrapper';
 
 import SidebarItems from '@site/src/components/SidebarItems';
@@ -81,6 +81,7 @@ You will need the following information to authenticate with Scalekit APIs
 - Environment URL
 
 You can obtain a secure token by making `POST` call to the `https://{ENV_URL}/oauth/token` endpoint and sending client_id and client_secret as part of the request body.
+
 </div>
 <div className="col col--6">
 <CodeWithHeader title="API Authentication">
@@ -102,7 +103,6 @@ $ curl https://{ENV_URL}/oauth/token \
 ```js showLineNumbers
 import {Scalekit} from "@scalekit-sdk/node";
 
-// scalekit client takes care of authentication behind the scenes.
 const scalekit = new Scalekit(
   <SCALEKIT_ENVIRONMENT_URL>,
   <SCALEKIT_CLIENT_ID>,
@@ -142,6 +142,26 @@ func main() {
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+package com.scalekit;
+
+import com.scalekit.ScalekitClient;
+
+public class Main {
+  public static void main(String[] args) {
+
+  ScalekitClient scalekitClient = new ScalekitClient(
+      "SCALEKIT_ENVIRONMENT_URL",
+      "SCALEKIT_CLIENT_ID",
+      "SCALEKIT_CLIENT_SECRET"
+    );
+  }
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">
@@ -169,6 +189,7 @@ To make a request to one of our APIs, you need to include the access token in th
 Please make sure that you keep your Client Secrets safely. Do not share your client secret in publicly accessible areas such as GitHub, client-side code, etc.
 
 Our SDKs will automatically handle the API authentication and error handling to make the job of using our APIs much easier for you.
+
 </div>
 <div className="col col--6">
 <CodeWithHeader title="Using Bearer Token">
@@ -191,17 +212,18 @@ $ curl --request GET "https://{ENV_URL}/api/v1/organizations" \
 As mentioned earlier, Scalekit APIs return appropriate HTTP Status Codes along with the detailed error messages in case of invalid usage of APIs.
 
 You can see the list of different HTTP Status Codes and the error message format in the right pane. We strongly recommend you to handle errors gracefully while writing code using our SDKs.
+
 </div>
 <div className="col col--6">
 <CodeWithHeader title="Error Codes">
 
-| HTTP Status | Description |
-| - | - |
-| 200 or 201 | API request is successful |
-| 400 | The request was unacceptable, often due to missing a required parameter. |
-| 401 | Invalid Authentication Headers found in the request. |
-| 404 | Resource not found |
-| 429 | Too many requests hit the API too quickly. Retry the request after a cool-off period. |
+| HTTP Status       | Description                                                                                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| 200 or 201        | API request is successful                                                                                                                      |
+| 400               | The request was unacceptable, often due to missing a required parameter.                                                                       |
+| 401               | Invalid Authentication Headers found in the request.                                                                                           |
+| 404               | Resource not found                                                                                                                             |
+| 429               | Too many requests hit the API too quickly. Retry the request after a cool-off period.                                                          |
 | 500 or 501 or 504 | Something went wrong at our end. These are usually a very rare occurrence. We automatically log these requests for alert our on-call engineers |
 
 </CodeWithHeader>
@@ -230,21 +252,27 @@ You can see the list of different HTTP Status Codes and the error message format
         When you need one of your customers to login via Enterprise SSO, you can redirect them to Scalekit's Authorization URL with necessary details about the organization or the SSO connection. Scalekit will seamleslly deal with integrating with any Identity Provider and exchanges user information via SAML or OIDC or OAuth2.
 
 More details about the Single Sign-on flow is described <Link href="/sso/quickstart" target="_blank">here</Link>
-    </div>
-    <div className="col col--6">
-        <Endpoints tag="Authentication" />
-    </div>
+
+</div>
+<div className="col col--6">
+<Endpoints tag="Authentication" />
+</div>
+
 </div>
 
 <APIEndpoint method="get" endpoint="/oauth/authorize" tag="Authentication" />
 <APIEndpoint method="post" endpoint="/oauth/token" tag="Authentication" />
 
 <!-- Organization Tag -->
+
 <OrganizationTag></OrganizationTag>
 
 <!-- Admin Portal Tag -->
+
 <AdminPortalTag></AdminPortalTag>
+
 <!-- Connections Tag -->
+
 <ConnectionTag></ConnectionTag>
 
 </div>
