@@ -96,14 +96,48 @@ func main() {
     SCALEKIT_CLIENT_SECRET
   )
 
-  options := scalekit.AuthorizationUrlOptions{}
+  options := scalekit.AuthorizationUrlOptions{
+    OrganizationId: "org_12345",
+    LoginHint: "user@example.com",
+  }
+
+  authorizationURL := sc.GetAuthorizationUrl(
+    redirectUrl,
+    options,
+  )
+
 ```
 
 </TabItem>
 <TabItem value="java" label="Java">
 
 ```java
-// workin progress
+package com.scalekit;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ScalekitClient scalekitClient = new ScalekitClient(
+          "SCALEKIT_ENVIRONMENT_URL",
+          "SCALEKIT_CLIENT_ID",
+          "SCALEKIT_CLIENT_SECRET"
+        );
+
+        AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+
+        options.setConnectionId("con_13388706786312310");
+        options.setOrganizationId("org_13388706786312310");
+        options.setLoginHint("user@example.com");
+
+        try {
+            String url = scalekitClient.authentication()
+            .getAuthorizationUrl(redirectUrl, options).toString();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
 ```
 
 </TabItem>

@@ -1,9 +1,10 @@
-
-import InstallSDK from "@site/docs/sso/templates/_install-sdk.md";
+import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 
 # Admin Portal
 
-<Subtitle>Empower your customers to configure and manage SSO connections by themselves</Subtitle>
+<Subtitle>
+  Empower your customers to configure and manage SSO connections by themselves
+</Subtitle>
 
 The Admin Portal is a self-service interface designed to empower your customers' IT admins to configure SSO independently, thereby reducing the overhead on your engineering and support teams. Fully hosted and managed by Scalekit, the admin portal simplifies the SSO setup process with comprehensive IdP-specific documentation, ensuring a fast and secure integration with just a few lines of code.
 
@@ -31,7 +32,7 @@ Use the Generate Portal Link API to generate an Admin Portal link that is unique
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-const link = await sc.organization.generatePortalLink("org_1233222");
+const link = await sc.organization.generatePortalLink('org_1233222');
 
 // link.location is the Admin Portal url
 ```
@@ -39,33 +40,34 @@ const link = await sc.organization.generatePortalLink("org_1233222");
  </TabItem>
  <TabItem value="py" label="Python">
 
- ```python showLineNumbers
- # generate admin portal link by sending organization id as a parameter
- link = sc.organization.generate_portal_link('org_1233222')
+```python showLineNumbers
+# generate admin portal link by sending organization id as a parameter
+link = sc.organization.generate_portal_link('org_1233222')
 
- # link['location'] is the Admin Portal url
+# link['location'] is the Admin Portal url
 
- ```
+```
 
  </TabItem>
  <TabItem value="golang" label="Go">
 
- ```go showLineNumbers
- // generate admin portal link by sending organization id as a parameter
- link, err := sc.Organization.GeneratePortalLink(
-   ctx,
-   "org_1233222",
- )
+```go showLineNumbers
+// generate admin portal link by sending organization id as a parameter
+link, err := sc.Organization.GeneratePortalLink(
+  ctx,
+  "org_1233222",
+)
 
- // link.Location is the Admin Portal url
- ```
+// link.Location is the Admin Portal url
+```
 
  </TabItem>
 
  <TabItem value="java" label="Java">
 
 ```java
-// workin progress
+// generate admin portal link by sending organization id as a parameter
+Link response = client.organizations().generatePortalLink("org_12345");
 ```
 
 </TabItem>
