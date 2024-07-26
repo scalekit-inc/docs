@@ -213,7 +213,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      additionalLanguages: ['bash'],
+      additionalLanguages: ['bash', 'java', 'groovy'],
     },
     // footer: {
     //   copyright: `Copyright © ${new Date().getFullYear()} Scalekit Inc.`,

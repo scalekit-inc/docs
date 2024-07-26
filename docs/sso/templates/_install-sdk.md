@@ -22,8 +22,12 @@ go get https://www.github.com/scalekit-inc/go-sdk
 </TabItem>
 <TabItem value="java" label="Java">
 
+```groovy
+/* Gradle users - add the following to your dependencies in build file */
+implementation "com.scalekit:scalekit-sdk-java:1.0.0"
+```
 ```xml
-<!-- Include the following in your `pom.xml` (Maven) -->
+<!-- Maven users - add the following to your `pom.xml` (Maven) -->
 <dependency>
   <groupId>com.scalekit</groupId>
   <artifactId>scalekit-sdk-java</artifactId>

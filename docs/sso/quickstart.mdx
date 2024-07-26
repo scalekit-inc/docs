@@ -194,14 +194,17 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-
 import com.scalekit.ScalekitClient;
-import com.scalekit.internal.http.AuthenticationOptions;
-import com.scalekit.internal.http.AuthenticationResponse;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
-import com.scalekit.internal.http.IdTokenClaims;
 
-@PostMapping( path = "/login")
+public class ScalekitExample {
+    public static void main(String[] args) {
+      // initialize the SDK client
+        client = new ScalekitClient("env_url", "client_id","client_secret");
+        }
+}
+
+@PostMapping(path = "/login")
 public ResponseEntity<Map<String, String>> loginHandler(@RequestBody LoginRequest body) {
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (body.getConnectionId() != null) {
@@ -353,4 +356,51 @@ func main() {
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java
+import com.scalekit.ScalekitClient;
+import com.scalekit.internal.http.AuthenticationOptions;
+import com.scalekit.internal.http.AuthenticationResponse;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+import com.scalekit.internal.http.IdTokenClaims;
+
+    @GetMapping("/callback")
+    public RedirectView callbackHandler(@RequestParam(required = false) String code,
+                                        @RequestParam(required = false, name = "error_description") String errorDescription,
+                                        HttpServletResponse response) throws IOException {
+        if (errorDescription != null) {
+            response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
+            return null;
+        }
+        if (code == null || code.isEmpty()) {
+            response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
+            return null;
+        }
+        try {
+            AuthenticationResponse res = scalekit.authentication().authenticateWithCode(code, redirectUrl, new AuthenticationOptions());
+            String[] uidParts = res.getIdTokenClaims().getId().split(";");
+            String uid = uidParts[uidParts.length - 1];
+            userStore.addUser(uid, res.getIdTokenClaims());
+
+            Cookie cookie = new Cookie("uid", uid);
+            cookie.setPath("/");
+            cookie.setHttpOnly(false);
+            cookie.setMaxAge(60 * 60 * 24 * 365);
+            cookie.setSecure(false);
+            response.addCookie(cookie);
+
+            System.out.println("Redirecting to profile");
+            return new RedirectView(uiUrl);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            response.sendError(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+            return null;
+        }
+    }
+```
+
+</TabItem>
+
 </Tabs>
