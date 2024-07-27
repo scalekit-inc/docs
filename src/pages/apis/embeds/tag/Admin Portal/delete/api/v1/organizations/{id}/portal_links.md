@@ -1,5 +1,5 @@
+<CodeWithHeader method="delete" endpoint="/api/v1/organizations/{id}/portal_links/{link_id}">
 
-<CodeWithHeader method="delete" endpoint="/api/v1/organizations/{id}/portal_links">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
 
@@ -19,11 +19,7 @@ const sc = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-await sc.organization.deletePortalLink(
-  organizationId,
-  linkId
-)
-
+await sc.organization.deletePortalLink(organizationId, linkId);
 ```
 
 </TabItem>
@@ -46,21 +42,29 @@ sc.organization.delete_portal_link(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  err := sc.Organization.DeletePortalLink(
-    ctx,
-    organizationId,
-    linkId
-  )
-  ```
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
+
+err := sc.Organization.DeletePortalLink(
+  ctx,
+  organizationId,
+  linkId
+)
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java
+// Hang in there. Coming soon! (Vroom! Vroom!)
+```
 
 </TabItem>
 </Tabs>
@@ -68,7 +72,8 @@ sc.organization.delete_portal_link(
 <CodeWithHeader title="Response">
 
 ```js
-{}
+{
+}
 ```
 
 </CodeWithHeader>

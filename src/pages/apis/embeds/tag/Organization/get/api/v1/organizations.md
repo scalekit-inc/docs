@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="get" endpoint="/api/v1/organizations">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -20,9 +19,8 @@ const sc = new ScalekitClient(
 );
 
 const organizations = await sc.organization.listOrganization({
-  pageSize: 10
-})
-
+  pageSize: 10,
+});
 ```
 
 </TabItem>
@@ -46,24 +44,43 @@ organizations = sc.organization.list_organizations(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  organizations, err := sc.Organization.ListOrganizations(
-    ctx,
-    &scalekit.ListOrganizationOptions{
-      PageSize: 10,
-    }
-  )
-  ```
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
+
+organizations, err := sc.Organization.ListOrganizations(
+  ctx,
+  &scalekit.ListOrganizationOptions{
+    PageSize: 10,
+  }
+)
+```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+  ScalekitClient scalekitClient =
+    new ScalekitClient(
+      "ENVIRONMENT_URL",
+      "CLIENT_ID",
+      "CLIENT_SECRET"
+    );
+  ListOrganizationsResponse organizations
+    =
+    scalekitClient
+    .organizations()
+    .listOrganizations(10, "");
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

@@ -47,7 +47,7 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 scalekit_client = ScalekitClient(<SCALEKIT_ENVIRONMENT_URL>, <SCALEKIT_CLIENT_ID>, <SCALEKIT_CLIENT_SECRET>)
 
-# Handle the oauth redirect_url 
+# Handle the oauth redirect_url
 # fetch code and error_description from request parameters.
 code = request.args.get('code')
 error = request.args.get('error')
@@ -99,6 +99,73 @@ func main() {
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+package com.scalekit;
+import com.scalekit.ScalekitClient;
+import com.scalekit.internal.http
+  .AuthorizationUrlOptions;
+public class Main {
+  public static void main(
+String[] args) {
+    // scalekit client takes care of authentication behind the scenes.
+    ScalekitClient scalekitClient =
+      new ScalekitClient(
+        "SCALEKIT_ENVIRONMENT_URL",
+        "SCALEKIT_CLIENT_ID",
+        "SCALEKIT_CLIENT_SECRET"
+      );
+  }
+  // Handle the oauth redirect
+  @GetMapping("/callback")
+  public String callbackHandler(
+      @RequestParam(required =
+      false) String code,
+      @RequestParam(required = false,
+        name = "error_description"
+        ) String errorDescription,
+      HttpServletResponse response
+      ) throws IOException {
+      if (errorDescription != null) {
+        response.sendError(HttpStatus
+          .BAD_REQUEST.value(),
+          errorDescription);
+        return null;
+      }
+      if (code == null || code
+      .isEmpty()) {
+        response.sendError(HttpStatus
+          .BAD_REQUEST.value(),
+          "code not found");
+        return null;
+      }
+      try {
+        // fetch user details by exchanding the code received in the request params
+        AuthenticationResponse res =
+          scalekit.authentication()
+          .authenticateWithCode(
+            code,
+            redirectUrl,
+            new AuthenticationOptions()
+          );
+        String userEmail = res
+          .getIdTokenClaims()
+        .getEmail();
+        System.out.println(userEmail);
+      } catch (Exception e) {
+        System.out.println(e
+        .getMessage());
+        return null;
+      }
+      return null;
+    }
+```
+
+</TabItem>
+
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

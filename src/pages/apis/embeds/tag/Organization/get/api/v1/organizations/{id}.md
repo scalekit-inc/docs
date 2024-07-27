@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="get" endpoint="/api/v1/organizations/{id}">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -19,9 +18,7 @@ const sc = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-const organization = await sc.organization.getOrganization(
-  organization_id
-)
+const organization = await sc.organization.getOrganization(organization_id);
 ```
 
 </TabItem>
@@ -42,21 +39,38 @@ organization = sc.organization.get_organization(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  organization, err := sc.Organization.GetOrganization(
-    ctx,
-    organizationId
-  )
-  ```
-  
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
+
+organization, err := sc.Organization.GetOrganization(
+  ctx,
+  organizationId
+)
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+ScalekitClient scalekitClient =
+  new ScalekitClient(
+    "ENVIRONMENT_URL",
+    "CLIENT_ID",
+    "CLIENT_SECRET");
+
+Organization organization =
+  scalekitClient.organizations()
+  .getById(
+    createdOrganization.getId());
+```
+
 </TabItem>
 </Tabs>
 </CodeWithHeader>

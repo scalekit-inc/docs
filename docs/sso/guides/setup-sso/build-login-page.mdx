@@ -156,30 +156,28 @@ import com.scalekit.internal.http.IdTokenClaims;
 
 @PostMapping(path = "/login")
 public ResponseEntity < Map < String, String >> loginHandler(
-  @RequestBody LoginRequest body
+    @RequestBody LoginRequest body
   ) {
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (body.getConnectionId() != null) {
-        options.setConnectionId(body.getConnectionId());
+      options.setConnectionId(body.getConnectionId());
     }
     if (body.getOrganizationId() != null) {
-        options.setOrganizationId(body.getOrganizationId());
+      options.setOrganizationId(body.getOrganizationId());
     }
     if (body.getEmail() != null) {
-        options.setLoginHint(body.getEmail());
+      options.setLoginHint(body.getEmail());
     }
-
     try {
-        String url = scalekit.authentication()
-          .getAuthorizationUrl(redirectUrl, options).toString();
-        System.out.println(url);
-        return ResponseEntity.ok(Collections.singletonMap("url", url));
+      String url = scalekit.authentication()
+        .getAuthorizationUrl(redirectUrl, options).toString();
+      System.out.println(url);
+      return ResponseEntity.ok(Collections.singletonMap("url", url));
     } catch (Exception e) {
-        System.out.println(e.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-          .body(Collections.singletonMap("error", e.getMessage()));
+      System.out.println(e.getMessage());
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .body(Collections.singletonMap("error", e.getMessage()));
     }
-}
 ```
 
 </TabItem>

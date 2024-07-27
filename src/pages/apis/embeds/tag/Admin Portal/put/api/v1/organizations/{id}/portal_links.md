@@ -44,7 +44,7 @@ link = sc.organization.generate_portal_link(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
+
   ```go showLineNumbers
   // scalekit client takes care of authentication behind the scenes.
   sc := scalekit.NewScalekitClient(
@@ -59,6 +59,18 @@ link = sc.organization.generate_portal_link(
   )
 
   ```
+
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET");
+Link response = scalekitClient.organizations().generatePortalLink(
+  organizationId);
+```
 
 </TabItem>
 </Tabs>

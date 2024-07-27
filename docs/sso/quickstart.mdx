@@ -197,29 +197,27 @@ func main() {
 package com.scalekit;
 import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
-
 public class Main {
-    public static void main(String[] args) {
-
-        ScalekitClient scalekitClient = new ScalekitClient(
-                "SCALEKIT_ENVIRONMENT_URL",
-                "SCALEKIT_CLIENT_ID",
-                "SCALEKIT_CLIENT_SECRET"
-              );
-
-        AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-        // Option 1: Authorization URL with the organization ID
-        options.setOrganizationId("org_13388706786312310");
-        // Option 2: Authorization URL with the connection ID
-        options.setConnectionId("con_13388706786312310");
-        // Option 3: Authorization URL with login hint
-        options.setLoginHint("<user@example.com>");
-        try {
-            String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  public static void main(String[] args) {
+    ScalekitClient scalekitClient = new ScalekitClient(
+      "SCALEKIT_ENVIRONMENT_URL",
+      "SCALEKIT_CLIENT_ID",
+      "SCALEKIT_CLIENT_SECRET"
+    );
+    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+    // Option 1: Authorization URL with the organization ID
+    options.setOrganizationId("org_13388706786312310");
+    // Option 2: Authorization URL with the connection ID
+    options.setConnectionId("con_13388706786312310");
+    // Option 3: Authorization URL with login hint
+    options.setLoginHint("<user@example.com>");
+    try {
+      String url = scalekitClient.authentication().getAuthorizationUrl(
+        redirectUrl, options).toString();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
     }
+  }
 }
 ```
 
@@ -358,32 +356,32 @@ func main() {
 ```java
 @GetMapping("/callback")
 public String callbackHandler(
-    @RequestParam(required = false) String code,
-    @RequestParam(required = false, name = "error_description")
-    String errorDescription,
-    HttpServletResponse response) throws IOException {
-    if (errorDescription != null) {
-        response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
-        return null;
-    }
-    if (code == null || code.isEmpty()) {
-        response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
-        return null;
-    }
-    try {
-        AuthenticationResponse res = scalekit.authentication()
-          .authenticateWithCode(
-             code,
-             redirectUrl,
-             new AuthenticationOptions()
-          );
-        String userEmail = res.getIdTokenClaims().getEmail();
-        System.out.println(userEmail);
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-        return null;
-    }
+  @RequestParam(required = false) String code,
+  @RequestParam(required = false, name =
+  "error_description") String errorDescription,
+  HttpServletResponse response) throws IOException {
+  if (errorDescription != null) {
+    response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
     return null;
+  }
+  if (code == null || code.isEmpty()) {
+    response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
+    return null;
+  }
+  try {
+    AuthenticationResponse res = scalekit.authentication()
+      .authenticateWithCode(
+        code,
+        redirectUrl,
+        new AuthenticationOptions()
+      );
+    String userEmail = res.getIdTokenClaims().getEmail();
+    System.out.println(userEmail);
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+    return null;
+  }
+  return null;
 }
 ```
 

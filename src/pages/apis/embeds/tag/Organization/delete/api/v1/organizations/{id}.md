@@ -55,6 +55,19 @@ err := sc.Organization.DeleteOrganization(
 ```
 
 </TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET");
+scalekitClient.organizations().deleteById(organizationId);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

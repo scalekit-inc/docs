@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="post" endpoint="/api/v1/organizations">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -27,10 +26,9 @@ const sc = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-const organization = await sc.organization.createOrganization(
-  name, 
-  {externalId: "externalId"}
-)
+const organization = await sc.organization.createOrganization(name, {
+  externalId: 'externalId',
+});
 ```
 
 </TabItem>
@@ -46,30 +44,50 @@ sc = ScalekitClient(
 options = CreateOrganizationOptions()
 options.external_id = "externalId"
 organization = sc.organization.create_organization(
-  name, 
+  name,
   options=options
 )
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  organization, err := sc.Organization.CreateOrganization(
-    ctx,
-    name,
-    scalekit.CreateOrganizationOptions{
-      ExternalID: "externalId",
-    },
-  )
-  ```
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
+
+organization, err := sc.Organization.CreateOrganization(
+  ctx,
+  name,
+  scalekit.CreateOrganizationOptions{
+    ExternalID: "externalId",
+  },
+)
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+ScalekitClient scalekitClient =
+  new ScalekitClient(
+    "ENVIRONMENT_URL",
+    "CLIENT_ID",
+    "CLIENT_SECRET"
+  );
+CreateOrganization createOrganization =
+  CreateOrganization.newBuilder()
+  .setDisplayName("Test Org")
+  .build();
+Organization createdOrganization =
+  scalekitClient.organizations()
+  .create(createOrganization);
+```
 
 </TabItem>
 </Tabs>

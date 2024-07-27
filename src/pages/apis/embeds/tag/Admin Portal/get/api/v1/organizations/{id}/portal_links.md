@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="get" endpoint="/api/v1/organizations/{id}/portal_links">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -19,10 +18,7 @@ const sc = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-const links = sc.organization.getPortalLinks(
-  organization_id
-)
-
+const links = sc.organization.getPortalLinks(organization_id);
 ```
 
 </TabItem>
@@ -44,21 +40,34 @@ links = sc.organization.get_portal_links(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  links, err := sc.Organization.GetPortalLinks(
-    ctx,
-    organizationId
-  )
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
 
-  ```
+links, err := sc.Organization.GetPortalLinks(
+  ctx,
+  organizationId
+)
+
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET");
+Link response = scalekitClient.organizations().generatePortalLink(
+  organizationId);
+```
 
 </TabItem>
 </Tabs>

@@ -130,32 +130,41 @@ func main() {
 ```java showLineNumbers
 
 package com.scalekit;
-import com.scalekit.internal.http.AuthorizationUrlOptions;
-
+import com.scalekit.ScalekitClient;
+import com.scalekit.internal.http
+  .AuthorizationUrlOptions;
 public class Main {
-    public static void main(String[] args) {
-
-        ScalekitClient scalekitClient = new ScalekitClient(
-                "SCALEKIT_ENVIRONMENT_URL",
-                "SCALEKIT_CLIENT_ID",
-                "SCALEKIT_CLIENT_SECRET"
-              );
-
-        AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-        // Option 1: Authorization URL with the organization ID
-        options.setOrganizationId("org_13388706786312310");
-        // Option 2: Authorization URL with the connection ID
-        options.setConnectionId("con_13388706786312310");
-        // Option 3: Authorization URL with login hint
-        options.setLoginHint("<user@example.com>");
-        try {
-            String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+  public static void main(
+String[] args) {
+    ScalekitClient scalekitClient =
+      new ScalekitClient(
+        "SCALEKIT_ENVIRONMENT_URL",
+        "SCALEKIT_CLIENT_ID",
+        "SCALEKIT_CLIENT_SECRET"
+      );
+    AuthorizationUrlOptions options =
+      new AuthorizationUrlOptions();
+    // Option 1: Authorization URL with the organization ID
+    options.setOrganizationId(
+      "org_13388706786312310");
+    // Option 2: Authorization URL with the connection ID
+    options.setConnectionId(
+      "con_13388706786312310");
+    // Option 3: Authorization URL with login hint
+    options.setLoginHint(
+      "<user@example.com>");
+    try {
+      String url = scalekitClient
+        .authentication()
+        .getAuthorizationUrl(
+          redirectUrl, options)
+        .toString();
+    } catch (Exception e) {
+      System.out.println(e
+      .getMessage());
     }
+  }
 }
-
 ```
 
 </TabItem>
