@@ -72,8 +72,7 @@ err := sc.Organization.DeletePortalLink(
 <CodeWithHeader title="Response">
 
 ```js
-{
-}
+{}
 ```
 
 </CodeWithHeader>

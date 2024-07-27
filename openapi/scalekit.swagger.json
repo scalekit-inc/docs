@@ -380,7 +380,7 @@
     },
     "/api/v1/organizations/{organization_id}/connections/{id}": {
       "get": {
-        "description": "Get  Connection details",
+        "description": "Get Connection details",
         "tags": [
           "Connection"
         ],
