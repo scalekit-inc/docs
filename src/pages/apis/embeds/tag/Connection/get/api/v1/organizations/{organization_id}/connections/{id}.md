@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="get" endpoint="/api/v1/organizations/{organization_id}/connections/{id}">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -21,9 +20,8 @@ const sc = new ScalekitClient(
 
 const connection = await sc.connection.getConnection(
   organizationId,
-  connectionId,
-)
-
+  connectionId
+);
 ```
 
 </TabItem>
@@ -46,22 +44,35 @@ connection = sc.connection.get_connection(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  connection, err := sc.Connection.GetConnection(
-    ctx,
-    organizationId,
-    connectionId,
-  )
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
 
-  ```
+connection, err := sc.Connection.GetConnection(
+  ctx,
+  organizationId,
+  connectionId,
+)
+
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET");
+Connection connection = client.connections().getConnectionById(
+  connectionId, organizationId);
+```
 
 </TabItem>
 </Tabs>
@@ -86,9 +97,9 @@ connection = sc.connection.get_connection(
     "idp_sso_url": "https://youridp.com/sso/saml",
   }
   "attribute_mapping":{
-    "email": "email", 
-    "family_name": "lastName", 
-    "given_name": "firstName", 
+    "email": "email",
+    "family_name": "lastName",
+    "given_name": "firstName",
     "sub": "nameid",
   }
   "create_time": "2024-01-05T14:48:00.000Z",

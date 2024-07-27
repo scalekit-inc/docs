@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="patch" endpoint="/api/v1/organizations/{organization_id}/connections/{id}:disable">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -19,11 +18,7 @@ const sc = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-await sc.connection.disableConnection(
-  organizationId,
-  connectionId, 
-)
-
+await sc.connection.disableConnection(organizationId, connectionId);
 ```
 
 </TabItem>
@@ -45,23 +40,37 @@ sc.connection.disable_connection(
 
 </TabItem>
 <TabItem value="golang" label="Go">
-  
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
 
-  err := sc.Connection.DisableConnection(
-    ctx,
-    organizationId,
-    connectionId,
-  )
-  ```
+```go showLineNumbers
+// scalekit client takes care of authentication behind the scenes.
+sc := scalekit.NewScalekitClient(
+  SCALEKIT_ENVIRONMENT_URL,
+  SCALEKIT_CLIENT_ID,
+  SCALEKIT_CLIENT_SECRET
+)
+
+err := sc.Connection.DisableConnection(
+  ctx,
+  organizationId,
+  connectionId,
+)
+```
 
 </TabItem>
+<TabItem value="java" label="Java">
+
+```java
+
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET");
+ToggleConnectionResponse response = client.connections()
+  .disableConnection(connectionId, organizationId);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">
