@@ -4,10 +4,11 @@
   cursor: help;
 }
 .tooltip {
-  width: 400px;
   background-color: #444;
+  max-width: 400px;
+  line-height: 1.5em;
   color: white;
   font-size: 90%;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 8px;
+  border-radius: 8px;
 }
