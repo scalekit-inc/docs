@@ -59,7 +59,7 @@ err := sc.Connection.DisableConnection(
 </TabItem>
 <TabItem value="java" label="Java">
 
-```java
+```java showLineNumbers
 
 ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",

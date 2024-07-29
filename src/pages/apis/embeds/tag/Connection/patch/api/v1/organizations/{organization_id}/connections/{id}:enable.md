@@ -60,7 +60,7 @@ err := sc.Connection.EnableConnection(
 
 <TabItem value="java" label="Java">
 
-```java
+```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
