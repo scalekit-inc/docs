@@ -53,7 +53,6 @@ connections, err := sc.Connection.ListConnections(
   ctx,
   organizationId
 )
-
 ```
 
 </TabItem>

@@ -22,7 +22,6 @@ const sc = new ScalekitClient(
 const link = await sc.organization.generatePortalLink(
   organization_id
 )
-
 ```
 
 </TabItem>
@@ -39,7 +38,6 @@ sc = ScalekitClient(
 link = sc.organization.generate_portal_link(
   organization_id
 )
-
 ```
 
 </TabItem>
@@ -57,7 +55,6 @@ link = sc.organization.generate_portal_link(
     ctx,
     organizationId
   )
-
   ```
 
 </TabItem>

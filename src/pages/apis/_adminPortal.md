@@ -4,7 +4,11 @@
     <div className="col col--6">
     </div>
     <div className="col col--6">
-        <Endpoints tag="Admin Portal" />
+        <Endpoints tag="Admin Portal"
+            excludeEndpoints={[
+                { method: "delete", label: "/api/v1/organizations/{id}/portal_links/{link_id}" }
+            ]}
+         />
     </div>
 </div>
 <!-- <APIEndpoint tag="Admin Portal" method="get" endpoint="/api/v1/organizations/{id}/portal_links" /> -->

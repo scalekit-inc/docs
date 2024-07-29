@@ -82,7 +82,7 @@ authorization_url = scalekit_client.get_authorization_url(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go
+```go showLineNumbers
 import (
   "github.com/scalekit/scalekit-sdk-go"
 )
@@ -128,11 +128,11 @@ func main() {
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-
 package com.scalekit;
+
 import com.scalekit.ScalekitClient;
-import com.scalekit.internal.http
-  .AuthorizationUrlOptions;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
+
 public class Main {
   public static void main(
 String[] args) {

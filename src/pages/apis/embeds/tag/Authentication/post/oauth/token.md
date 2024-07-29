@@ -70,7 +70,6 @@ user_email = result.user.email
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-
 import (
   "github.com/scalekit/scalekit-sdk-go"
 )
@@ -95,7 +94,6 @@ func main() {
     <redirectUri>
   )
 }
-
 ```
 
 </TabItem>
@@ -105,66 +103,58 @@ func main() {
 ```java showLineNumbers
 package com.scalekit;
 import com.scalekit.ScalekitClient;
-import com.scalekit.internal.http
-  .AuthorizationUrlOptions;
+import com.scalekit.internal.http.AuthorizationUrlOptions;
 public class Main {
-  public static void main(
-String[] args) {
-    // scalekit client takes care of authentication behind the scenes.
+  public static void main(String[] args) {
+    // scalekit client takes care of
+    // authentication behind the scenes.
     ScalekitClient scalekitClient =
-      new ScalekitClient(
-        "SCALEKIT_ENVIRONMENT_URL",
-        "SCALEKIT_CLIENT_ID",
-        "SCALEKIT_CLIENT_SECRET"
-      );
+        new ScalekitClient(
+            "SCALEKIT_ENVIRONMENT_URL",
+            "SCALEKIT_CLIENT_ID",
+            "SCALEKIT_CLIENT_SECRET");
   }
   // Handle the oauth redirect
   @GetMapping("/callback")
   public String callbackHandler(
-      @RequestParam(required =
-      false) String code,
+      @RequestParam(required = false) String code,
       @RequestParam(required = false,
-        name = "error_description"
-        ) String errorDescription,
-      HttpServletResponse response
-      ) throws IOException {
-      if (errorDescription != null) {
-        response.sendError(HttpStatus
-          .BAD_REQUEST.value(),
+          name = "error_description")
+      String errorDescription,
+      HttpServletResponse response)
+      throws IOException {
+    if (errorDescription != null) {
+      response.sendError(
+          HttpStatus.BAD_REQUEST.value(),
           errorDescription);
-        return null;
-      }
-      if (code == null || code
-      .isEmpty()) {
-        response.sendError(HttpStatus
-          .BAD_REQUEST.value(),
-          "code not found");
-        return null;
-      }
-      try {
-        // fetch user details by exchanding the code received in the request params
-        AuthenticationResponse res =
-          scalekit.authentication()
-          .authenticateWithCode(
-            code,
-            redirectUrl,
-            new AuthenticationOptions()
-          );
-        String userEmail = res
-          .getIdTokenClaims()
-        .getEmail();
-        System.out.println(userEmail);
-      } catch (Exception e) {
-        System.out.println(e
-        .getMessage());
-        return null;
-      }
       return null;
     }
+    if (code == null || code.isEmpty()) {
+      response.sendError(
+          HttpStatus.BAD_REQUEST.value(),
+          "code not found");
+      return null;
+    }
+    try {
+      // fetch user details by exchanding the code
+      // received in the request params
+      AuthenticationResponse res =
+          scalekit.authentication()
+              .authenticateWithCode(code,
+                  redirectUrl,
+                  new AuthenticationOptions());
+      String userEmail =
+          res.getIdTokenClaims().getEmail();
+      System.out.println(userEmail);
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+      return null;
+    }
+    return null;
+  }
 ```
 
 </TabItem>
-
 
 </Tabs>
 </CodeWithHeader>

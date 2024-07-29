@@ -39,7 +39,6 @@ connection = sc.connection.get_connection(
   organization_id,
   connection_id,
 )
-
 ```
 
 </TabItem>
@@ -58,7 +57,6 @@ connection, err := sc.Connection.GetConnection(
   organizationId,
   connectionId,
 )
-
 ```
 
 </TabItem>

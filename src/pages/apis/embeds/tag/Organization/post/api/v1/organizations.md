@@ -74,18 +74,15 @@ organization, err := sc.Organization.CreateOrganization(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ScalekitClient scalekitClient =
-  new ScalekitClient(
-    "ENVIRONMENT_URL",
-    "CLIENT_ID",
-    "CLIENT_SECRET"
-  );
-CreateOrganization createOrganization =
-  CreateOrganization.newBuilder()
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET"
+);
+CreateOrganization createOrganization = CreateOrganization.newBuilder()
   .setDisplayName("Test Org")
   .build();
-Organization createdOrganization =
-  scalekitClient.organizations()
+Organization createdOrganization = scalekitClient.organizations()
   .create(createOrganization);
 ```
 

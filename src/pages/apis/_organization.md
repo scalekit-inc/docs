@@ -5,8 +5,14 @@
 Organization represents a customer or a tenant of your application. Use this to create enterprise Single Sign-on connections or Admin Portal links for your customers.
     </div>
     <div className="col col--6">
-        <Endpoints tag="Organization" />
+        <Endpoints
+          tag="Organization"
+          excludeEndpoints={[
+            { method: "get", label: "/api/v1/organizations:search" },
+          ]}
+        />
     </div>
+
 </div>
 
 <IntersectingHeader id="tag/Organization/object" title="The Organization Object" subheading="true" classList="ApiCategoryList"/>

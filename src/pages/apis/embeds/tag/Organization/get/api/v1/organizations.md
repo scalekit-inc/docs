@@ -66,15 +66,12 @@ organizations, err := sc.Organization.ListOrganizations(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-  ScalekitClient scalekitClient =
-    new ScalekitClient(
-      "ENVIRONMENT_URL",
-      "CLIENT_ID",
-      "CLIENT_SECRET"
-    );
-  ListOrganizationsResponse organizations
-    =
-    scalekitClient
+  ScalekitClient scalekitClient = new ScalekitClient(
+    "ENVIRONMENT_URL",
+    "CLIENT_ID",
+    "CLIENT_SECRET"
+  );
+  ListOrganizationsResponse organizations = scalekitClient
     .organizations()
     .listOrganizations(10, "");
 ```

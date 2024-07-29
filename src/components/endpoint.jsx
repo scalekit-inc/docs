@@ -29,7 +29,7 @@ function Endpoint({ href, method, label }) {
   );
 }
 
-export default function Endpoints({ tag }) {
+export default function Endpoints({ tag, excludeEndpoints = [] }) {
   return (
     <div className="scalar-card scalar-card-sticky">
       <div className="scalar-card-content scalar-card--muted scalar-card-header">
@@ -42,14 +42,23 @@ export default function Endpoints({ tag }) {
       </div>
       <div className="scalar-card-content scalar-card--muted custom-scroll">
         <div className="endpoints">
-          {getEndPoints(tag).map((endpoint) => (
-            <Endpoint
-              key={endpoint.href}
-              href={endpoint.href}
-              method={endpoint.method}
-              label={endpoint.label}
-            />
-          ))}
+          {getEndPoints(tag)
+            .filter(
+              (endpoint) =>
+                !excludeEndpoints.some(
+                  (exclude) =>
+                    exclude.method === endpoint.method &&
+                    exclude.label === endpoint.label
+                )
+            )
+            .map((endpoint) => (
+              <Endpoint
+                key={endpoint.href}
+                href={endpoint.href}
+                method={endpoint.method}
+                label={endpoint.label}
+              />
+            ))}
         </div>
       </div>
     </div>
