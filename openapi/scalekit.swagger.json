@@ -78,87 +78,6 @@
         }
       }
     },
-    "/api/v1/connections/{connection_id}": {
-      "get": {
-        "description": "Get  Connection details",
-        "tags": [
-          "Connection"
-        ],
-        "summary": "Get Connection",
-        "operationId": "ConnectionService_GetEnvironmentConnection",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Connection ID. Unique ID for the connection",
-            "name": "connection_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/connectionsGetConnectionResponse"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/connections/{connection_id}:disable": {
-      "patch": {
-        "description": "Disable a SSO Connection",
-        "tags": [
-          "Connection"
-        ],
-        "summary": "Disable a Connection",
-        "operationId": "ConnectionService_DisableEnvironmentConnection",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Connection ID. Unique ID for the connection",
-            "name": "connection_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/connectionsToggleConnectionResponse"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/connections/{connection_id}:enable": {
-      "patch": {
-        "description": "Enable a SSO Connection",
-        "tags": [
-          "Connection"
-        ],
-        "summary": "Enable a Connection",
-        "operationId": "ConnectionService_EnableEnvironmentConnection",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Connection ID. Unique ID for the connection",
-            "name": "connection_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": "#/definitions/connectionsToggleConnectionResponse"
-            }
-          }
-        }
-      }
-    },
     "/api/v1/organizations": {
       "get": {
         "description": "List all Organizations in the Environment. The results are paginated. The response contains page_token that can be used to access the next page of results.",
@@ -342,38 +261,6 @@
             "schema": {
               "$ref": "#/definitions/organizationsGeneratePortalLinkResponse"
             }
-          }
-        }
-      }
-    },
-    "/api/v1/organizations/{id}/portal_links/{link_id}": {
-      "delete": {
-        "description": "Revokes and deletes an Admin portal link.",
-        "tags": [
-          "Admin Portal"
-        ],
-        "summary": "Delete Admin Portal link",
-        "operationId": "OrganizationService_DeletePortalLinkByID",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Organization ID",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Link ID",
-            "name": "link_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {}
           }
         }
       }
