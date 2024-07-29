@@ -20,19 +20,15 @@ import EnableConnection from '@site/src/pages/apis/embeds/tag/Connection/patch/a
 const data = require('../../openapi/scalekit.swagger.json');
 const endpointData = {
   summary: (endpoint, method) => {
-    console.log('Endpoint:', endpoint, 'Method:', method);
-    console.log('Available paths:', Object.keys(data['paths']));
     if (data['paths'][endpoint]) {
-      console.log('Available methods for endpoint:', Object.keys(data['paths'][endpoint]));
       if (data['paths'][endpoint][method]) {
         return data['paths'][endpoint][method].summary;
       }
     }
-    console.log('Data not found for:', endpoint, method);
+
     return 'Summary not available';
   },
   description: (endpoint, method) => {
-    console.log('Endpoint:', endpoint, 'Method:', method);
     if (data['paths'][endpoint]) {
       if (data['paths'][endpoint][method]) {
         return data['paths'][endpoint][method].description;
@@ -48,7 +44,6 @@ const endpointData = {
 };
 
 export function APIEndpoint({ endpoint, method, tag }) {
-  console.log('endpointData', endpointData.summary(endpoint, method));
   return (
     <>
       <IntersectingHeader
