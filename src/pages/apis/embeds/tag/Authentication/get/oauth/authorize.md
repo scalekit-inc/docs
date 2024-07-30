@@ -138,26 +138,25 @@ String[] args) {
         "SCALEKIT_CLIENT_ID",
         "SCALEKIT_CLIENT_SECRET"
       );
-    AuthorizationUrlOptions options =
-      new AuthorizationUrlOptions();
-    // Option 1: Authorization URL with the organization ID
-    options.setOrganizationId(
-      "org_13388706786312310");
-    // Option 2: Authorization URL with the connection ID
-    options.setConnectionId(
-      "con_13388706786312310");
-    // Option 3: Authorization URL with login hint
-    options.setLoginHint(
-      "<user@example.com>");
+    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+    // use one of the strategies below to determine how to log the user in.
+      
+      // If you would like to authenticate the user via organization_id
+    options.setOrganizationId("org_13388706786312310");
+
+      // If you would like to authenticate the user via connection_id
+    options.setConnectionId("con_13388706786312310");
+    
+      // If you would like to authenticate the user via their email address
+      // Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
+    options.setLoginHint("<user@example.com>");
     try {
-      String url = scalekitClient
-        .authentication()
-        .getAuthorizationUrl(
-          redirectUrl, options)
+      String url = scalekitClient.authentication()
+        .getAuthorizationUrl(redirectUrl, options)
         .toString();
+        // redirect the user to the authorization url
     } catch (Exception e) {
-      System.out.println(e
-      .getMessage());
+      // handle errors
     }
   }
 }

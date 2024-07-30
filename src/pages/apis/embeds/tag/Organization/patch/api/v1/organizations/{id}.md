@@ -80,13 +80,11 @@ ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
   "CLIENT_SECRET");
-Organization updatedOrganizationById = scalekitClient.organizations()
-  .updateById(
-    organizationId,
-    UpdateOrganization.newBuilder()
-    .setDisplayName("Updated name")
-    .build()
-  );
+
+UpdateOrganization updateOrganization = UpdateOrganization.newBuilder()
+        .setDisplayName("Updated Organization Name")
+        .build();
+Organization updatedOrganizationById = scalekitClient.organizations().updateById(organizationId, updateOrganization);
 ```
 
 </TabItem>

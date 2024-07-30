@@ -172,9 +172,47 @@ userEmail := result.User.Email
 
 // Next step is to create a session for this user and allow access to your application resources
 ```
-
 </TabItem>
+<TabItem value="java" label="java">
 
+```java showLineNumbers
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    "SCALEKIT_ENVIRONMENT_URL",
+    "SCALEKIT_CLIENT_ID",
+    "SCALEKIT_CLIENT_SECRET"
+);
+
+String code = request.getParameter("code");
+String error = request.getParameter("error");
+String errorDescription = request.getParameter("error_description");
+String idpInitiatedLogin = request.getParameter("idp_initiated_sso");
+String connectionID = request.getParameter("connection_id");
+String relayState = request.getParameter("relay_state");
+
+if (error != null && !error.isEmpty()) {
+    // handle errors
+    return;
+}
+
+if (idpInitiatedLogin != null && idpInitiatedLogin.equals("success")) {
+    // handle idp initiated login
+    String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
+    // next step is to redirect the user to this authorizationURL
+    return;
+}
+
+    // if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
+try {
+    AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
+    // res.getIdTokenClaims() has the authenticated user's details
+    String userEmail = res.getIdTokenClaims().getEmail();
+    // create a session and redirect the user to your dashboard
+} catch (Exception e) {
+    // handle errors
+}
+```
+</TabItem>
 </Tabs>
 
 ## Advantages

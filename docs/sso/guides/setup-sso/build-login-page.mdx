@@ -155,9 +155,7 @@ import com.scalekit.internal.http.AuthorizationUrlOptions;
 import com.scalekit.internal.http.IdTokenClaims;
 
 @PostMapping(path = "/login")
-public ResponseEntity <Map<String,String>> loginHandler(
-    @RequestBody LoginRequest body
-  ) {
+public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginRequest body ) {
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (body.getConnectionId() != null) {
       options.setConnectionId(body.getConnectionId());
@@ -169,12 +167,9 @@ public ResponseEntity <Map<String,String>> loginHandler(
       options.setLoginHint(body.getEmail());
     }
     try {
-      String url = scalekit.authentication()
-        .getAuthorizationUrl(redirectUrl, options).toString();
-
+      String url = scalekit.authentication().getAuthorizationUrl(redirectUrl, options).toString();
       return ResponseEntity.ok(Collections.singletonMap("url", url));
     } catch (Exception e) {
-
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
         .body(Collections.singletonMap("error", e.getMessage()));
     }

@@ -65,8 +65,7 @@ ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
   "CLIENT_SECRET");
-Link response = scalekitClient.organizations().generatePortalLink(
-  organizationId);
+Link response = scalekitClient.organizations().generatePortalLink(organizationId);
 ```
 
 </TabItem>
