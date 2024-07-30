@@ -94,7 +94,7 @@ Next, construct your Authorization URL with these parameters and redirect users 
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-import { ScalekitClient } from "@scalekit-sdk/node";
+import { ScalekitClient } from '@scalekit-sdk/node';
 // init client
 const scalekit = new ScalekitClient(
   SCALEKIT_ENVIRONMENT_URL,
@@ -102,23 +102,23 @@ const scalekit = new ScalekitClient(
   SCALEKIT_CLIENT_SECRET
 );
 
-const options = {}
+const options = {};
 // use one of the three strategies below to determine how to log the user in.
 
 // If you would like to authenticate the user via organization_id
-options.organizationId = 'org_12442'
+options.organizationId = 'org_12442';
 
 // If you would like to authenticate the user via connection_id
-options.connectionId = 'conn_1242242'
+options.connectionId = 'conn_1242242';
 
 // If you would like to authenticate the user via provider
-options.provider = 'google'
+options.provider = 'google';
 
 // If you would like to authenticate the user via their email address
 // Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
-options.loginHint = '<user@example.com>'
+options.loginHint = '<user@example.com>';
 
-const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options)
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 
 // TODO: redirect the user to this authorizationURL
 ```
@@ -249,7 +249,7 @@ Here's how to turn that <SimpleCode>code</SimpleCode> into user data:
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-import { ScalekitClient } from "@scalekit-sdk/node";
+import { ScalekitClient } from '@scalekit-sdk/node';
 // init client
 const scalekit = new ScalekitClient(
   SCALEKIT_ENVIRONMENT_URL,
@@ -280,10 +280,7 @@ if (idp_initiated_sso && idp_initiated_sso === 'success') {
   // Next:Redirect the user to this authorizationURL
 }
 
-const res = await scalekit.authenticateWithCode(
-  code,
-  redirectUri
-);
+const res = await scalekit.authenticateWithCode(code, redirectUri);
 
 // res.user has the authenticated user's details
 const userEmail = res.user.email;
@@ -372,41 +369,41 @@ userEmail := res.User.Email
 <TabItem value="java" label="Java">
 
 ```java
-    ScalekitClient scalekitClient = new ScalekitClient(
-            "SCALEKIT_ENVIRONMENT_URL",
-            "SCALEKIT_CLIENT_ID",
-            "SCALEKIT_CLIENT_SECRET"
-    );
+ScalekitClient scalekitClient = new ScalekitClient(
+        "SCALEKIT_ENVIRONMENT_URL",
+        "SCALEKIT_CLIENT_ID",
+        "SCALEKIT_CLIENT_SECRET"
+);
 
-    String code = request.getParameter("code");
-    String error = request.getParameter("error");
-    String errorDescription = request.getParameter("error_description");
-    String idpInitiatedSso = request.getParameter("idp_initiated_sso");
-    String connectionID = request.getParameter("connection_id");
-    String relayState = request.getParameter("relay_state");
+String code = request.getParameter("code");
+String error = request.getParameter("error");
+String errorDescription = request.getParameter("error_description");
+String idpInitiatedSso = request.getParameter("idp_initiated_sso");
+String connectionID = request.getParameter("connection_id");
+String relayState = request.getParameter("relay_state");
 
-    if (error != null && !error.isEmpty()) {
-        // handle errors
-        return;
-    }
+if (error != null && !error.isEmpty()) {
+    // handle errors
+    return;
+}
 
-    if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
-        // handle idp initiated login
-        String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
-        // next step is to redirect the user to this authorizationURL
-        return;
-    }
+if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
+    // handle idp initiated login
+    String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
+    // next step is to redirect the user to this authorizationURL
+    return;
+}
 
-    // if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
-    try {
-        AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
-        // res.getUser() has the authenticated user's details
-        String userEmail = res.getIdTokenClaims().getEmail();
+// if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
+try {
+    AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
+    // res.getUser() has the authenticated user's details
+    String userEmail = res.getIdTokenClaims().getEmail();
 
-        // create a session and redirect the user to your dashboard
-    } catch (Exception e) {
-        // handle errors
-    }
+    // create a session and redirect the user to your dashboard
+} catch (Exception e) {
+    // handle errors
+}
 ```
 
 </TabItem>

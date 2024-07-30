@@ -104,6 +104,7 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
 ```python showLineNumbers
 from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
 
+# Initialize the SDK client
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
   <SCALEKIT_CLIENT_ID>,
@@ -118,6 +119,8 @@ authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
   options=options
 )
+
+# TODO: redirect the user to this authorizationURL
 ```
 
 </TabItem>
@@ -143,7 +146,7 @@ func main() {
     redirectUrl,
     options,
   )
-  // next step is to redirect the user to this authorizationURL
+  // Next step is to redirect the user to this authorization URL
 }
 ```
 
@@ -153,6 +156,7 @@ func main() {
 ```java showLineNumbers
 package com.scalekit;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
+
 public class Main {
     public static void main(String[] args) {
         ScalekitClient scalekitClient = new ScalekitClient(
@@ -194,13 +198,7 @@ if (error) {
   // handle errors
 }
 
-// If you passed state as part of authorize flow, check if the same value is returned to you.
-// We recommend this additional state check validation to prevent CSRF vulnerabilities.
-
-const res = await scalekit.authenticateWithCode(
-  code,
-  redirectUri,
-);
+const res = await scalekit.authenticateWithCode(code, redirectUri);
 
 // res.user has the authenticated user's details
 const userEmail = res.user.email;
@@ -212,12 +210,6 @@ const userEmail = res.user.email;
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
-
-scalekit_client = ScalekitClient(<SCALEKIT_ENVIRONMENT_URL>, <SCALEKIT_CLIENT_ID>, <SCALEKIT_CLIENT_SECRET>)
-
-# Handle the oauth redirect_url
-# fetch code and error_description from request parameters.
 code = request.args.get('code')
 error = request.args.get('error')
 error_description = request.args.get('error_description')
@@ -229,29 +221,17 @@ result = scalekit_client.authenticate_with_code(
   code,
   <redirect_uri>
 )
+
 # result.user has the authenticated user's details
 user_email = result.user.email
 
-# create a session and redirect the user to your dashboard
+# Next step: create a session for this user and allow access
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-
-import (
-  "github.com/scalekit/scalekit-sdk-go"
-)
-
-sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
-)
-
-// Handle the oauth redirect_url
-// fetch code and error_description from request parameters.
 code := r.URL.Query().Get("code")
 error := r.URL.Query().Get("error")
 errorDescription := r.URL.Query().Get("error_description")
@@ -260,8 +240,6 @@ if error != "" {
   // handle errors and exit
 }
 
-
-// if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
 res, err := sc.AuthenticateWithCode(code, redirectUrl)
 if err != nil {
   // handle errors and exit
@@ -270,7 +248,7 @@ if err != nil {
 // res.User has the authenticated user's details
 userEmail := res.User.Email
 
-// create a session and redirect the user to your dashboard
+// Next step: create a session for this user and allow access
 ```
 
 </TabItem>
@@ -299,6 +277,8 @@ try {
 } catch (Exception e) {
     // handle errors
 }
+
+// Next step: create a session for this user and allow access
 ```
 
 </TabItem>
