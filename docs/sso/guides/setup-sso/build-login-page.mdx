@@ -157,12 +157,19 @@ import com.scalekit.internal.http.IdTokenClaims;
 @PostMapping(path = "/login")
 public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginRequest body ) {
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-    if (body.getConnectionId() != null) {
-      options.setConnectionId(body.getConnectionId());
-    }
+
+    // Option 1: Authorization URL with the organization ID
     if (body.getOrganizationId() != null) {
       options.setOrganizationId(body.getOrganizationId());
     }
+
+    // Option 2: Authorization URL with the connection ID
+    if (body.getConnectionId() != null) {
+      options.setConnectionId(body.getConnectionId());
+    }
+
+    // Option 3: Authorization URL with Login Hint
+    // User's email domain detects the correct enterprise SSO connection.
     if (body.getEmail() != null) {
       options.setLoginHint(body.getEmail());
     }
@@ -174,6 +181,8 @@ public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginReque
         .body(Collections.singletonMap("error", e.getMessage()));
     }
 }
+
+// TODO: Redirect the user to this authorizationURL
 ```
 
 </TabItem>
