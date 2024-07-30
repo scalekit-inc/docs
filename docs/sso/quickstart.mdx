@@ -347,7 +347,7 @@ if error != "" {
 
   if idpInitiatedSso != "" && idpInitiatedSso == "success" {
     // handle idp initiated login
-    authorizationURL := sc.GetAuthorizationUrl(redirectUrl, {
+    authorizationURL := scalekitClient.GetAuthorizationUrl(redirectUrl, {
       ConnectionId: connectionID,
       RelayState: relayState,
     })
@@ -371,35 +371,41 @@ userEmail := res.User.Email
 <TabItem value="java" label="Java">
 
 ```java
-@GetMapping("/callback")
-public String callbackHandler(
-  @RequestParam(required = false) String code,
-  @RequestParam(required = false, name =
-  "error_description") String errorDescription,
-  HttpServletResponse response) throws IOException {
-  if (errorDescription != null) {
-    response.sendError(HttpStatus.BAD_REQUEST.value(), errorDescription);
-    return null;
-  }
-  if (code == null || code.isEmpty()) {
-    response.sendError(HttpStatus.BAD_REQUEST.value(), "code not found");
-    return null;
-  }
-  try {
-    AuthenticationResponse res = scalekit.authentication()
-      .authenticateWithCode(
-        code,
-        redirectUrl,
-        new AuthenticationOptions()
-      );
-    String userEmail = res.getIdTokenClaims().getEmail();
-    System.out.println(userEmail);
-  } catch (Exception e) {
-    System.out.println(e.getMessage());
-    return null;
-  }
-  return null;
-}
+    ScalekitClient scalekitClient = new ScalekitClient(
+            "SCALEKIT_ENVIRONMENT_URL",
+            "SCALEKIT_CLIENT_ID",
+            "SCALEKIT_CLIENT_SECRET"
+    );
+
+    String code = request.getParameter("code");
+    String error = request.getParameter("error");
+    String errorDescription = request.getParameter("error_description");
+    String idpInitiatedSso = request.getParameter("idp_initiated_sso");
+    String connectionID = request.getParameter("connection_id");
+    String relayState = request.getParameter("relay_state");
+
+    if (error != null && !error.isEmpty()) {
+        // handle errors
+        return;
+    }
+
+    if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
+        // handle idp initiated login
+        String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
+        // next step is to redirect the user to this authorizationURL
+        return;
+    }
+
+    // if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
+    try {
+        AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
+        // res.getUser() has the authenticated user's details
+        String userEmail = res.getIdTokenClaims().getEmail();
+
+        // create a session and redirect the user to your dashboard
+    } catch (Exception e) {
+        // handle errors
+    }
 ```
 
 </TabItem>
