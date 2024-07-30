@@ -48,9 +48,9 @@ Secure your Scalekit API communication by setting up environment variables. You'
 Never hardcode secrets in your app. Use environment variables instead. Here's how to set them in a `.env` file:
 
 ```jsx title=".env"
-SCALEKIT_ENVIRONMENT_URL = '<COPY_ENV_URL_SCALEKIT_DASHBOARD>';
-SCALEKIT_CLIENT_ID = '<COPY_CLIENT_ID_SCALEKIT_DASHBOARD>';
-SCALEKIT_CLIENT_SECRET = '<COPY_SECRET_SCALEKIT_DASHBOARD>';
+SCALEKIT_ENVIRONMENT_URL = 'https://b2b-app-dev.scalekit.com';
+SCALEKIT_CLIENT_ID = '<CLIENT_ID_FROM_SCALEKIT_DASHBOARD>';
+SCALEKIT_CLIENT_SECRET = '<SECRET_FROM_SCALEKIT_DASHBOARD>';
 ```
 
 Now you're ready to start integrating social connections into your app! Next, we'll cover how to use the SDK to authenticate users.
@@ -83,7 +83,7 @@ Next, construct your Authorization URL with these parameters and redirect users 
 ```javascript showLineNumbers
 import { Scalekit } from '@scalekit-sdk/node';
 
-// initialize the SDK client
+// Initialize the SDK client
 const scalekit = new Scalekit(
   SCALEKIT_ENVIRONMENT_URL,
   SCALEKIT_CLIENT_ID,
@@ -124,7 +124,6 @@ authorization_url = scalekit_client.get_authorization_url(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-
 import (
   "github.com/scalekit/scalekit-sdk-go"
 )
@@ -136,7 +135,7 @@ func main() {
     SCALEKIT_CLIENT_SECRET
   )
 
-  options := scalekit.AuthorizationUrlOptions{}
+  options := sc.AuthorizationUrlOptions{}
   // Pass the Social Login Provider details while constructing the authorization URL.
   options.Provider = "microsoft"
 
@@ -232,7 +231,7 @@ if error:
     raise Exception(error_description)
 
 result = scalekit_client.authenticate_with_code(
-  code, 
+  code,
   <redirect_uri>
 )
 # result.user has the authenticated user's details

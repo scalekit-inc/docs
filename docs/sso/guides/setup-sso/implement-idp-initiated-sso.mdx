@@ -80,15 +80,14 @@ if (idp_initiated_sso && idp_initiated_sso === 'success') {
   // handle idp initiated login
   const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
     connectionId: connection_id,
-    ...(relay_state && { state: relay_state }), // optionally pass relay state as state parameter
+    ...(relay_state && { state: relay_state }), // Oass relay state
   });
 
-  // next step is to redirect the user to this authorizationURL
+  // Next step is to redirect the user to this authorizationURL
 }
 
-// check if state received is same as what was sent as part of authorization-url
+// Check: if state received is same as what was sent as part of authorization-url
 
-// if there are no errors and if this is not an IdP initiated SSO, then authenticate with the code
 const res = await sc.authenticateWithCode(
   code,
   <redirectUri>
@@ -104,14 +103,6 @@ const userEmail = res.user.email;
 <TabItem value="python" label="Python">
 
 ```python showLineNumbers
-from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
-
-scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 code = request.args.get('code')
 error = request.args.get('error')
 error_description = request.args.get('error_description')
@@ -143,19 +134,9 @@ user_email = result.user.email
 ```
 
 </TabItem>
-<TabItem value="golang" label="Golang">
+<TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-import (
-  "github.com/scalekit/scalekit-sdk-go"
-)
-
-scalekitClient := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 code := r.URL.Query().Get("code")
 error := r.URL.Query().Get("error")
 errorDescription := r.URL.Query().Get("error_description")
@@ -170,7 +151,7 @@ if error != "" {
 // check if this is an idp initiated login
 if idpInitiatedSSO != "" && idpInitiatedSSO == "success" {
   // handle idp initiated login
-  authorizationURLOptions := scalekit.AuthorizationURLOptions{
+  authorizationURLOptions := scalekitClient.AuthorizationURLOptions{
     ConnectionID: connectionID,
     State: relayState,
   }
@@ -189,8 +170,9 @@ if err != nil {
 // result.User has the authenticated user's details
 userEmail := result.User.Email
 
-// next step is to create a session for this user and allow access to your application resources
+// Next step is to create a session for this user and allow access to your application resources
 ```
+
 </TabItem>
 
 </Tabs>
