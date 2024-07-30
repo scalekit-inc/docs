@@ -257,25 +257,25 @@ userEmail := res.User.Email
 
 ```java
 ScalekitClient scalekitClient = new ScalekitClient(
-"SCALEKIT_ENVIRONMENT_URL",
-"SCALEKIT_CLIENT_ID",
-"SCALEKIT_CLIENT_SECRET"
+  "SCALEKIT_ENVIRONMENT_URL",
+  "SCALEKIT_CLIENT_ID",
+  "SCALEKIT_CLIENT_SECRET"
 );
 
 String code = request.getParameter("code");
 String error = request.getParameter("error");
 String errorDescription = request.getParameter("error_description");
 if (error != null && !error.isEmpty()) {
-    // handle errors
-    return;
+  // handle errors
+  return;
 }
 try {
-    AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
-    // res.getIdTokenClaims() has the authenticated user's details
-    String userEmail = res.getIdTokenClaims().getEmail();
+  AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
+  // res.getIdTokenClaims() has the authenticated user's details
+  String userEmail = res.getIdTokenClaims().getEmail();
 
 } catch (Exception e) {
-    // handle errors
+  // handle errors
 }
 
 // Next step: create a session for this user and allow access
