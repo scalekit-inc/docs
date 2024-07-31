@@ -52,8 +52,8 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 options = AuthorizationUrlOptions()

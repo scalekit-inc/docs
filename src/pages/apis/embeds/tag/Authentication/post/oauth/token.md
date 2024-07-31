@@ -47,8 +47,8 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 # Handle oauth redirect_url, fetch code and error_description from request params

@@ -27,8 +27,8 @@ const link = await sc.organization.generatePortalLink(organization_id);
 
 sc = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 link = sc.organization.generate_portal_link(
@@ -42,8 +42,8 @@ link = sc.organization.generate_portal_link(
 ```go showLineNumbers
 sc := scalekit.NewScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 link, err := sc.Organization.GeneratePortalLink(

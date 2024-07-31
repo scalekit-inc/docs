@@ -105,8 +105,8 @@ import {Scalekit} from "@scalekit-sdk/node";
 
 const scalekit = new Scalekit(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 ```
 
@@ -118,8 +118,8 @@ from scalekit import ScalekitClient
 
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <<SCALEKIT_CLIENT_ID>>,
-  <<SCALEKIT_CLIENT_SECRET>>
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 ```
 
@@ -134,7 +134,7 @@ import (
 func main() {
   scalekitClient := scalekit.NewClient(
     <SCALEKIT_ENVIRONMENT_URL>,
-    <<SCALEKIT_CLIENT_ID>>,
+    <SCALEKIT_CLIENT_ID>,
     <<SCALEKIT_CLIENT_SECRET>
   )
 }
