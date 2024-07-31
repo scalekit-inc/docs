@@ -80,10 +80,10 @@ if (idp_initiated_sso && idp_initiated_sso === 'success') {
   // handle idp initiated login
   const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
     connectionId: connection_id,
-    ...(relay_state && { state: relay_state }), // Oass relay state
+    ...(relay_state && { state: relay_state }), // Pass relay state
   });
 
-  // Next step is to redirect the user to this authorizationURL
+  // Next step is to redirect the user to this authorization URL
 }
 
 // Check: if state received is same as what was sent as part of authorization-url
