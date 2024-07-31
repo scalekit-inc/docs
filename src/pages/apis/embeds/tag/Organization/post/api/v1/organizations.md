@@ -19,11 +19,10 @@ curl --location 'https://$ENV_URL/api/v1/organizations' \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const organization = await sc.organization.createOrganization(name, {
@@ -35,11 +34,11 @@ const organization = await sc.organization.createOrganization(name, {
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
+
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 options = CreateOrganizationOptions()
 options.external_id = "externalId"
@@ -53,11 +52,10 @@ organization = sc.organization.create_organization(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 organization, err := sc.Organization.CreateOrganization(
@@ -79,9 +77,11 @@ ScalekitClient scalekitClient = new ScalekitClient(
   "CLIENT_ID",
   "CLIENT_SECRET"
 );
+
 CreateOrganization createOrganization = CreateOrganization.newBuilder()
   .setDisplayName("Test Org")
   .build();
+
 Organization createdOrganization = scalekitClient.organizations()
   .create(createOrganization);
 ```

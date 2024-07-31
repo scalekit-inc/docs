@@ -63,9 +63,9 @@ import { Scalekit } from '@scalekit-sdk/node';
 
 // Initialize the SDK client
 const scalekit = new Scalekit(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 options = {};
@@ -90,8 +90,8 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  <<SCALEKIT_CLIENT_ID>>,
+  <<SCALEKIT_CLIENT_SECRET>>
 )
 
 options = AuthorizationUrlOptions()
@@ -121,9 +121,9 @@ import (
 func main() {
   // Initialize the SDK client
   sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
+    <SCALEKIT_ENVIRONMENT_URL>,
+    <SCALEKIT_CLIENT_ID>,
+    <SCALEKIT_CLIENT_SECRET>
   )
 
   options := sc.AuthorizationUrlOptions{}
@@ -163,12 +163,7 @@ public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginReque
       options.setOrganizationId(body.getOrganizationId());
     }
 
-    // Option 2: Authorization URL with the connection ID
-    if (body.getConnectionId() != null) {
-      options.setConnectionId(body.getConnectionId());
-    }
-
-    // Option 3: Authorization URL with Login Hint
+    // Option 2: Authorization URL with Login Hint
     // User's email domain detects the correct enterprise SSO connection.
     if (body.getEmail() != null) {
       options.setLoginHint(body.getEmail());

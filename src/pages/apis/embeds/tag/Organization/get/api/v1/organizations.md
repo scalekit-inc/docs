@@ -11,11 +11,10 @@ curl --request GET \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const organizations = await sc.organization.listOrganization({
@@ -27,12 +26,12 @@ const organizations = await sc.organization.listOrganization({
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
+
 options = ListOrganizationOptions()
 options.page_size = 10
 
@@ -46,11 +45,10 @@ organizations = sc.organization.list_organizations(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 organizations, err := sc.Organization.ListOrganizations(
@@ -66,14 +64,15 @@ organizations, err := sc.Organization.ListOrganizations(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-  ScalekitClient scalekitClient = new ScalekitClient(
-    "ENVIRONMENT_URL",
-    "CLIENT_ID",
-    "CLIENT_SECRET"
-  );
-  ListOrganizationsResponse organizations = scalekitClient
-    .organizations()
-    .listOrganizations(10, "");
+ScalekitClient scalekitClient = new ScalekitClient(
+  "ENVIRONMENT_URL",
+  "CLIENT_ID",
+  "CLIENT_SECRET"
+);
+
+ListOrganizationsResponse organizations = scalekitClient
+  .organizations()
+  .listOrganizations(10, "");
 ```
 
 </TabItem>

@@ -11,11 +11,10 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{organiza
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 await sc.connection.disableConnection(organizationId, connectionId);
@@ -25,11 +24,11 @@ await sc.connection.disableConnection(organizationId, connectionId);
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
+
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 sc.connection.disable_connection(
@@ -42,11 +41,10 @@ sc.connection.disable_connection(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 err := sc.Connection.DisableConnection(
@@ -60,11 +58,12 @@ err := sc.Connection.DisableConnection(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-
 ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
-  "CLIENT_SECRET");
+  "CLIENT_SECRET"
+);
+
 ToggleConnectionResponse response = client.connections()
   .disableConnection(connectionId, organizationId);
 ```

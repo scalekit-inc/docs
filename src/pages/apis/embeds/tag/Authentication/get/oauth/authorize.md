@@ -13,37 +13,33 @@ curl --request GET \
 ```
 
 </TabItem>
+
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
+```javascript showLineNumbers
 import { ScalekitClient } from '@scalekit-sdk/node';
 
-// scalekit client takes care of authentication behind the scenes.
+// Initialize the SDK client
 const scalekit = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const options = {};
-// use one of the below strategies below to determine how to log the user in.
 
-// If you would like to authenticate the user via connection_id
-options.connectionId = 'conn_1242242';
-
-// If you would like to authenticate the user via organization_id
+// Option 1: Authorization URL with the organization ID
 options.organizationId = 'org_12442';
 
-// If you would like to authenticate the user via their email address
-// Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
+// Option 2: Authorization URL with login hint
+options.connectionId = 'conn_1242242';
+
+// Option 3: Authorization URL with login hint
 options.loginHint = '<user@example.com>';
 
-// Authorization URL with connection ID parameter
-const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-  connectionId: 'conn_1242242',
-});
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 
-// redirect the user to the authorization url
+// TODO: Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -53,35 +49,35 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
 ```python showLineNumbers
 from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
 
+# Initialize the SDK client
 scalekit_client = ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  <<SCALEKIT_CLIENT_ID>>,
+  <<SCALEKIT_CLIENT_SECRET>>
 )
 
-
 options = AuthorizationUrlOptions()
-# use one of the below strategies below to determine how to log the user in.
 
-# If you would like to authenticate the user via connection_id
-options.connection_id = 'conn_1242242'
 
-# If you would like to authenticate the user via organization_id
+# Option 1: Authorization URL with the organization ID
 options.organization_id = 'org_12442'
 
-# If you would like to authenticate the user via their email address
-# Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
+# Option 2: Authorization URL with login hint
 options.login_hint = '<user@example.com>'
+
+# Option 3: Authorization URL with the connection ID
+options.connection_id = 'conn_1242242'
 
 authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
   options=options
 )
 
-# redirect the user to the authorization url
+# TODO: Redirect the user to this authorizationURL
 ```
 
 </TabItem>
+
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
@@ -90,33 +86,34 @@ import (
 )
 
 func main() {
+  // Initialize the SDK client
   sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
+    <SCALEKIT_ENVIRONMENT_URL>,
+    <SCALEKIT_CLIENT_ID>,
+    <SCALEKIT_CLIENT_SECRET>
   )
 
   options := scalekit.AuthorizationUrlOptions{}
-  // use one of the strategies below to determine how to log the user in.
+  // use one of the three strategies below to determine how to log the user in.
 
-  // If you would like to authenticate the user via connection_id
-  options.ConnectionId = "conn_1242242"
-
-  // If you would like to authenticate the user via organization_id
+  // Option 1: Authorization URL with the organization ID
   options.OrganizationId = "org_12442"
 
-  // If you would like to authenticate the user via their email address
-  // Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
+  // Option 2: Authorization URL with the connection ID
+  options.ConnectionId = "conn_1242242"
+
+  // Option 3: Authorization URL with Login Hint
+  // User's email domain detects the correct enterprise SSO connection.
   options.LoginHint = "<user@example.com>"
 
   authorizationURL := sc.GetAuthorizationUrl(
     redirectUrl,
     options,
   )
-
-  // redirect the user to the authorization url
+  // next step is to redirect the user to this authorizationURL
 }
 
+// TODO: Redirect the user to this authorizationURL
 ```
 
 </TabItem>
@@ -125,41 +122,35 @@ func main() {
 
 ```java showLineNumbers
 package com.scalekit;
-
 import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 
 public class Main {
-  public static void main(
-String[] args) {
-    ScalekitClient scalekitClient =
-      new ScalekitClient(
-        "SCALEKIT_ENVIRONMENT_URL",
-        "SCALEKIT_CLIENT_ID",
-        "SCALEKIT_CLIENT_SECRET"
-      );
+  public static void main(String[] args) {
+    // Initialize the SDK client
+    ScalekitClient scalekitClient = new ScalekitClient(
+      "<SCALEKIT_ENVIRONMENT_URL>",
+      "<SCALEKIT_CLIENT_ID>",
+      "<SCALEKIT_CLIENT_SECRET>"
+    );
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-    // use one of the strategies below to determine how to log the user in.
-      
-      // If you would like to authenticate the user via organization_id
+    // Option 1: Authorization URL with the organization ID
     options.setOrganizationId("org_13388706786312310");
-
-      // If you would like to authenticate the user via connection_id
+    // Option 2: Authorization URL with the connection ID
     options.setConnectionId("con_13388706786312310");
-    
-      // If you would like to authenticate the user via their email address
-      // Domain portion of the user's email address is used to detect the appropriate enterprise SSO connection
+    // Option 3: Authorization URL with Login Hint
+    // User's email domain detects the correct enterprise SSO connection.
     options.setLoginHint("<user@example.com>");
     try {
-      String url = scalekitClient.authentication()
-        .getAuthorizationUrl(redirectUrl, options)
-        .toString();
-        // redirect the user to the authorization url
+      String url = scalekitClient.authentication().getAuthorizationUrl(
+        redirectUrl, options).toString();
     } catch (Exception e) {
-      // handle errors
+      System.out.println(e.getMessage());
     }
   }
 }
+
+// TODO: Redirect the user to this authorizationURL
 ```
 
 </TabItem>

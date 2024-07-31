@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="patch" endpoint="/api/v1/organizations">
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
@@ -20,28 +19,26 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{id}' \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const organization = await sc.organization.updateOrganization(organization_id, {
-  displayName: "displayName",
-  externalId: "externalId"
-})
+  displayName: 'displayName',
+  externalId: 'externalId',
+});
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 organization = sc.organization.update_organization(organization_id, {
@@ -53,23 +50,22 @@ organization = sc.organization.update_organization(organization_id, {
 </TabItem>
 <TabItem value="golang" label="Go">
 
-  ```go showLineNumbers
-  // scalekit client takes care of authentication behind the scenes.
-  sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
-  )
+```go showLineNumbers
+sc := scalekit.NewScalekitClient(
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
+)
 
-  organization, err := sc.Organization.UpdateOrganization(
-    ctx,
-    organizationId,
-    &scalekit.UpdateOrganization{
-      DisplayName: "displayName",
-      ExternalId: "externalId",
-    },
-  )
-  ```
+organization, err := sc.Organization.UpdateOrganization(
+  ctx,
+  organizationId,
+  &scalekit.UpdateOrganization{
+    DisplayName: "displayName",
+    ExternalId: "externalId",
+  },
+)
+```
 
 </TabItem>
 
@@ -79,11 +75,13 @@ organization = sc.organization.update_organization(organization_id, {
 ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
-  "CLIENT_SECRET");
+  "CLIENT_SECRET"
+);
 
 UpdateOrganization updateOrganization = UpdateOrganization.newBuilder()
         .setDisplayName("Updated Organization Name")
         .build();
+
 Organization updatedOrganizationById = scalekitClient.organizations().updateById(organizationId, updateOrganization);
 ```
 

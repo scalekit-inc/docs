@@ -52,9 +52,9 @@ https://b2b-app.scalekit.dev/oauth/authorize?
 import { ScalekitClient } from "@scalekit-sdk/node";
 
 const scalekit = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const options = {
@@ -63,7 +63,7 @@ const options = {
 }
 
 const authorizationURL = scalekit.getAuthorizationUrl(
-  redirectUri, 
+  redirectUri,
   options
 );
 ```
@@ -76,9 +76,9 @@ const authorizationURL = scalekit.getAuthorizationUrl(
 from scalekit import ScalekitClient, AuthorizationUrlOptions
 
 scalekit = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 options = AuthorizationUrlOptions(
@@ -87,7 +87,7 @@ options = AuthorizationUrlOptions(
 )
 
 authorization_url = scalekit.get_authorization_url(
-  redirect_uri, 
+  redirect_uri,
   options
 )
 
@@ -104,9 +104,9 @@ import (
 
 func main() {
   sc := scalekit.NewScalekitClient(
-    SCALEKIT_ENVIRONMENT_URL,
-    SCALEKIT_CLIENT_ID,
-    SCALEKIT_CLIENT_SECRET
+    <SCALEKIT_ENVIRONMENT_URL>,
+    <SCALEKIT_CLIENT_ID>,
+    <SCALEKIT_CLIENT_SECRET>
   )
 
   options := scalekit.AuthorizationUrlOptions{
@@ -133,9 +133,9 @@ import com.scalekit.internal.http.AuthorizationUrlOptions;
 public class Main {
   public static void main(String[] args) {
     ScalekitClient scalekitClient = new ScalekitClient(
-      "SCALEKIT_ENVIRONMENT_URL",
-      "SCALEKIT_CLIENT_ID",
-      "SCALEKIT_CLIENT_SECRET"
+      "<SCALEKIT_ENVIRONMENT_URL>",
+      "<SCALEKIT_CLIENT_ID>",
+      "<SCALEKIT_CLIENT_SECRET>"
     );
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     // Option 1: Authorization URL with the organization ID

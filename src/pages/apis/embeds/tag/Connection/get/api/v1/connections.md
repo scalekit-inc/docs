@@ -11,11 +11,10 @@ curl --request GET \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
 const connections = await sc.connection.listConnections(organizationId);
@@ -25,11 +24,10 @@ const connections = await sc.connection.listConnections(organizationId);
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 connections = sc.connection.list_connections(
@@ -42,11 +40,10 @@ connections = sc.connection.list_connections(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 connections, err := sc.Connection.ListConnections(
@@ -61,12 +58,12 @@ connections, err := sc.Connection.ListConnections(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-  "ENVIRONMENT_URL",
-  "CLIENT_ID",
-  "CLIENT_SECRET");
+  "<ENVIRONMENT_URL>",
+  "<CLIENT_ID>",
+  "<CLIENT_SECRET>"
+);
 
-ListConnectionsResponse response = scalekitClient.connections()
-  .listConnectionsByOrganization(organizationId);
+ListConnectionsResponse response = scalekitClient.connections().listConnectionsByOrganization(organizationId);
 ```
 
 </TabItem>

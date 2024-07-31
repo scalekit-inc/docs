@@ -1,4 +1,3 @@
-
 <CodeWithHeader method="delete" endpoint="/api/v1/organizations">
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="curl" label="cURL">
@@ -12,26 +11,23 @@ curl --location --request DELETE 'https://$ENV_URL/api/v1/organizations/{id}' \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 const sc = new ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 );
 
-await sc.organization.deleteOrganization(organizationId)
-
+await sc.organization.deleteOrganization(organizationId);
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-# scalekit client takes care of authentication behind the scenes.
 sc = ScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 sc.organization.delete_organization(organization_id)
@@ -41,11 +37,10 @@ sc.organization.delete_organization(organization_id)
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-// scalekit client takes care of authentication behind the scenes.
 sc := scalekit.NewScalekitClient(
-  SCALEKIT_ENVIRONMENT_URL,
-  SCALEKIT_CLIENT_ID,
-  SCALEKIT_CLIENT_SECRET
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
 )
 
 err := sc.Organization.DeleteOrganization(
@@ -62,7 +57,9 @@ err := sc.Organization.DeleteOrganization(
 ScalekitClient scalekitClient = new ScalekitClient(
   "ENVIRONMENT_URL",
   "CLIENT_ID",
-  "CLIENT_SECRET");
+  "CLIENT_SECRET"
+);
+
 scalekitClient.organizations().deleteById(organizationId);
 ```
 
@@ -72,7 +69,7 @@ scalekitClient.organizations().deleteById(organizationId);
 </CodeWithHeader>
 <CodeWithHeader title="Response">
 
-```js
+```json
 {}
 ```
 

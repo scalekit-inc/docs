@@ -34,7 +34,7 @@ Use the Generate Portal Link API to generate an Admin Portal link that is unique
 ```javascript showLineNumbers
 const link = await sc.organization.generatePortalLink('org_1233222');
 
-// link.location is the Admin Portal url
+// link.location is the Admin Portal URL
 ```
 
  </TabItem>
@@ -44,7 +44,7 @@ const link = await sc.organization.generatePortalLink('org_1233222');
 # generate admin portal link by sending organization id as a parameter
 link = sc.organization.generate_portal_link('org_1233222')
 
-# link['location'] is the Admin Portal url
+# link['location'] is the Admin Portal URL
 ```
 
  </TabItem>
@@ -57,7 +57,7 @@ link, err := sc.Organization.GeneratePortalLink(
   "<org_1233222>",
 )
 
-// link.Location is the Admin Portal url
+// link.Location is the Admin Portal URL
 ```
 
  </TabItem>
@@ -67,6 +67,8 @@ link, err := sc.Organization.GeneratePortalLink(
 ```java
 // generate admin portal link by sending organization id as a parameter
 Link response = client.organizations().generatePortalLink("org_12345");
+
+// response.getLocation() has the Admin Portal URL
 ```
 
 </TabItem>
