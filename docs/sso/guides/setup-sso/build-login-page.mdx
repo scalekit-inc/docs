@@ -71,10 +71,10 @@ const scalekit = new Scalekit(
 options = {};
 
 // Option 1: Authorization URL with the organization ID
-options.organization_id = 'org_12442';
+options.organization_id = 'org_15421144869927830';
 
 // Option 2: Authorization URL with login hint
-options.login_hint = '<user@example.com>';
+options.login_hint = 'user@example.com';
 
 authorizationURL = scalekit.getAuthorizationUrl(redirect_uri, options);
 
@@ -97,10 +97,10 @@ scalekit_client = ScalekitClient(
 options = AuthorizationUrlOptions()
 
 # Option 1: Authorization URL with the organization ID
-options.organization_id = "<org_12442>"
+options.organization_id = "<org_15421144869927830>"
 
 # Option 2: Authorization URL with login hint
-options.login_hint = "<user@example.com>"
+options.login_hint = "user@example.com"
 
 authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
@@ -129,10 +129,10 @@ func main() {
   options := sc.AuthorizationUrlOptions{}
 
   // Option 1: Authorization URL with the organization ID
-  options.OrganizationId = "<org_12442>"
+  options.OrganizationId = "<org_15421144869927830>"
 
   // Option 2: Authorization URL with login hint
-  options.LoginHint = "<user@example.com>"
+  options.LoginHint = "user@example.com"
 
   authorizationURL := sc.GetAuthorizationUrl(
     redirectUrl,

@@ -29,13 +29,13 @@ const scalekit = new ScalekitClient(
 const options = {};
 
 // Option 1: Authorization URL with the organization ID
-options.organizationId = 'org_12442';
+options.organizationId = 'org_15421144869927830';
 
 // Option 2: Authorization URL with login hint
-options.connectionId = 'conn_1242242';
+options.connectionId = 'conn_15696105471768821';
 
 // Option 3: Authorization URL with login hint
-options.loginHint = '<user@example.com>';
+options.loginHint = 'user@example.com';
 
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 
@@ -60,13 +60,13 @@ options = AuthorizationUrlOptions()
 
 
 # Option 1: Authorization URL with the organization ID
-options.organization_id = 'org_12442'
+options.organization_id = 'org_15421144869927830'
 
 # Option 2: Authorization URL with login hint
-options.login_hint = '<user@example.com>'
+options.login_hint = 'user@example.com'
 
 # Option 3: Authorization URL with the connection ID
-options.connection_id = 'conn_1242242'
+options.connection_id = 'conn_15696105471768821'
 
 authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
@@ -97,14 +97,14 @@ func main() {
   // use one of the three strategies below to determine how to log the user in.
 
   // Option 1: Authorization URL with the organization ID
-  options.OrganizationId = "org_12442"
+  options.OrganizationId = "org_15421144869927830"
 
   // Option 2: Authorization URL with the connection ID
-  options.ConnectionId = "conn_1242242"
+  options.ConnectionId = "conn_15696105471768821"
 
   // Option 3: Authorization URL with Login Hint
   // User's email domain detects the correct enterprise SSO connection.
-  options.LoginHint = "<user@example.com>"
+  options.LoginHint = "user@example.com"
 
   authorizationURL := sc.GetAuthorizationUrl(
     redirectUrl,
@@ -140,7 +140,7 @@ public class Main {
     options.setConnectionId("con_13388706786312310");
     // Option 3: Authorization URL with Login Hint
     // User's email domain detects the correct enterprise SSO connection.
-    options.setLoginHint("<user@example.com>");
+    options.setLoginHint("user@example.com");
     try {
       String url = scalekitClient.authentication().getAuthorizationUrl(
         redirectUrl, options).toString();
