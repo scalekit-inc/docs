@@ -97,9 +97,9 @@ Next, construct your Authorization URL with these parameters and redirect users 
 import { ScalekitClient } from '@scalekit-sdk/node';
 // Initialize the SDK client
 const scalekit = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 );
 
 const options = {};
@@ -126,9 +126,9 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 )
 
 options = AuthorizationUrlOptions()
@@ -148,7 +148,7 @@ authorization_url = scalekit_client.get_authorization_url(
   options=options
 )
 
-# TODO: Redirect the user to this authorizationURL
+# Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -161,14 +161,14 @@ import (
 
 func main() {
   // Initialize the SDK client
-  sc := scalekit.NewScalekitClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <SCALEKIT_CLIENT_SECRET>
+  scalekitClient := scalekit.NewScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 
-  options := scalekit.AuthorizationUrlOptions{}
-  // use one of the three strategies below to determine how to log the user in.
+  options := scalekitClient.AuthorizationUrlOptions{}
+
 
   // Option 1: Authorization URL with the organization ID
   options.OrganizationId = "org_15421144869927830"
@@ -180,14 +180,14 @@ func main() {
   // User's email domain detects the correct enterprise SSO connection.
   options.LoginHint = "user@example.com"
 
-  authorizationURL := sc.GetAuthorizationUrl(
+  authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
     options,
   )
-  // next step is to redirect the user to this authorizationURL
+   // Next step is to redirect the user to this authorization URL
 }
 
-// TODO: Redirect the user to this authorizationURL
+// Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -224,7 +224,7 @@ public class Main {
   }
 }
 
-// TODO: Redirect the user to this authorizationURL
+// Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -259,7 +259,7 @@ if (error) {
 
 // Check: if it is an idp initiated login
 if (idp_initiated_sso && idp_initiated_sso === 'success') {
-  const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
+  const authorizationURL = scalekitClient.getAuthorizationUrl(redirectUri, {
     connectionId: connection_id,
     ...(relay_state && { state: relay_state }), // pass relay state
   });
@@ -361,7 +361,7 @@ if (error != null && !error.isEmpty()) {
 // Check: if it is an idp initiated login
 if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
     String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
-    // next step is to redirect the user to this authorizationURL
+     // Next step is to redirect the user to this authorization URL
     return;
 }
 

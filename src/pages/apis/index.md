@@ -104,9 +104,9 @@ $ curl https://{ENV_URL}/oauth/token \
 import {Scalekit} from "@scalekit-sdk/node";
 
 const scalekit = new Scalekit(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 );
 ```
 
@@ -117,9 +117,9 @@ const scalekit = new Scalekit(
 from scalekit import ScalekitClient
 
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 )
 ```
 
@@ -133,9 +133,9 @@ import (
 
 func main() {
   scalekitClient := scalekit.NewClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <<SCALEKIT_CLIENT_SECRET>
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 }
 ```

@@ -21,9 +21,9 @@ import { ScalekitClient } from '@scalekit-sdk/node';
 
 // Initialize the SDK client
 const scalekit = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 );
 
 const options = {};
@@ -51,9 +51,9 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 )
 
 options = AuthorizationUrlOptions()
@@ -73,7 +73,7 @@ authorization_url = scalekit_client.get_authorization_url(
   options=options
 )
 
-# TODO: Redirect the user to this authorizationURL
+# Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -88,13 +88,12 @@ import (
 func main() {
   // Initialize the SDK client
   sc := scalekit.NewScalekitClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <SCALEKIT_CLIENT_SECRET>
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 
   options := scalekit.AuthorizationUrlOptions{}
-  // use one of the three strategies below to determine how to log the user in.
 
   // Option 1: Authorization URL with the organization ID
   options.OrganizationId = "org_15421144869927830"
@@ -110,10 +109,10 @@ func main() {
     redirectUrl,
     options,
   )
-  // next step is to redirect the user to this authorizationURL
+   // Next step is to redirect the user to this authorization URL
 }
 
-// TODO: Redirect the user to this authorizationURL
+// Redirect the user to this authorizationURL
 ```
 
 </TabItem>
@@ -150,7 +149,7 @@ public class Main {
   }
 }
 
-// TODO: Redirect the user to this authorizationURL
+// Redirect the user to this authorizationURL
 ```
 
 </TabItem>

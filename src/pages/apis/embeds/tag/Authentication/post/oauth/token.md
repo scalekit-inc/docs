@@ -66,7 +66,7 @@ result = scalekit_client.authenticate_with_code(
 # result.user has the authenticated user's details
 user_email = result.user.email
 
-# TODO: Create a session and redirect the user to your dashboard
+# Create a session and redirect the user to your dashboard
 ```
 
 </TabItem>

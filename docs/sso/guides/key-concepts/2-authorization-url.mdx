@@ -49,23 +49,20 @@ https://b2b-app.scalekit.dev/oauth/authorize?
 <TabItem value="node" label="Node.js">
 
 ```javascript
-import { ScalekitClient } from "@scalekit-sdk/node";
+import { ScalekitClient } from '@scalekit-sdk/node';
 
 const scalekit = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 );
 
 const options = {
   loginHint: 'user@example.com',
   organizationId: 'org_123235245',
-}
+};
 
-const authorizationURL = scalekit.getAuthorizationUrl(
-  redirectUri,
-  options
-);
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, options);
 ```
 
 </TabItem>
@@ -76,9 +73,9 @@ const authorizationURL = scalekit.getAuthorizationUrl(
 from scalekit import ScalekitClient, AuthorizationUrlOptions
 
 scalekit = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 )
 
 options = AuthorizationUrlOptions(
@@ -103,18 +100,18 @@ import (
 )
 
 func main() {
-  sc := scalekit.NewScalekitClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <SCALEKIT_CLIENT_SECRET>
+  scalekitClient := scalekit.NewScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 
-  options := scalekit.AuthorizationUrlOptions{
+  options := scalekitClient.AuthorizationUrlOptions{
     OrganizationId: "org_12345",
     LoginHint: "user@example.com",
   }
 
-  authorizationURL := sc.GetAuthorizationUrl(
+  authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
     options,
   )

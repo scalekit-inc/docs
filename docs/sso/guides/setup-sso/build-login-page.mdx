@@ -63,9 +63,9 @@ import { Scalekit } from '@scalekit-sdk/node';
 
 // Initialize the SDK client
 const scalekit = new Scalekit(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 );
 
 options = {};
@@ -89,15 +89,15 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 )
 
 options = AuthorizationUrlOptions()
 
 # Option 1: Authorization URL with the organization ID
-options.organization_id = "<org_15421144869927830>"
+options.organization_id = "org_15421144869927830"
 
 # Option 2: Authorization URL with login hint
 options.login_hint = "user@example.com"
@@ -120,21 +120,21 @@ import (
 
 func main() {
   // Initialize the SDK client
-  sc := scalekit.NewScalekitClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <SCALEKIT_CLIENT_SECRET>
+  scalekitClient := scalekit.NewScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 
   options := sc.AuthorizationUrlOptions{}
 
   // Option 1: Authorization URL with the organization ID
-  options.OrganizationId = "<org_15421144869927830>"
+  options.OrganizationId = "org_15421144869927830"
 
   // Option 2: Authorization URL with login hint
   options.LoginHint = "user@example.com"
 
-  authorizationURL := sc.GetAuthorizationUrl(
+  authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
     options,
   )
@@ -177,7 +177,7 @@ public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginReque
     }
 }
 
-// TODO: Redirect the user to this authorizationURL
+// Redirect the user to this authorization URL
 ```
 
 </TabItem>

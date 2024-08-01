@@ -85,9 +85,9 @@ import { Scalekit } from '@scalekit-sdk/node';
 
 // Initialize the SDK client
 const scalekit = new Scalekit(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 );
 
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
@@ -95,7 +95,7 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
   state: state, // optional
 });
 
-// TODO: redirect the user to this authorizationURL
+// Redirect the user to this authorizationURL
 ```
 
 </TabItem>
@@ -106,9 +106,9 @@ from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthentication
 
 # Initialize the SDK client
 scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
 )
 
 options = AuthorizationUrlOptions()
@@ -120,7 +120,7 @@ authorization_url = scalekit_client.get_authorization_url(
   options=options
 )
 
-# TODO: redirect the user to this authorizationURL
+# Redirect the user to this authorization URL
 ```
 
 </TabItem>
@@ -132,17 +132,17 @@ import (
 )
 
 func main() {
-  sc := scalekit.NewScalekitClient(
-    <SCALEKIT_ENVIRONMENT_URL>,
-    <SCALEKIT_CLIENT_ID>,
-    <SCALEKIT_CLIENT_SECRET>
+  scalekitClient := scalekit.NewScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
   )
 
-  options := sc.AuthorizationUrlOptions{}
+  options := scalekitClient.AuthorizationUrlOptions{}
   // Pass the Social Login Provider details while constructing the authorization URL.
   options.Provider = "microsoft"
 
-  authorizationURL := sc.GetAuthorizationUrl(
+  authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
     options,
   )

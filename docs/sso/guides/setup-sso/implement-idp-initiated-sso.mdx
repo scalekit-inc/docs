@@ -159,7 +159,7 @@ if idpInitiatedSSO != "" && idpInitiatedSSO == "success" {
     redirectURI,
     authorizationURLOptions,
   )
-  // next step is to redirect the user to this authorizationURL
+   // Next step is to redirect the user to this authorization URL
 }
 
 result, err := scalekitClient.AuthenticateWithCode(code, redirectURI)
@@ -172,6 +172,7 @@ userEmail := result.User.Email
 
 // Next step is to create a session for this user and allow access to your application resources
 ```
+
 </TabItem>
 <TabItem value="java" label="Java">
 
@@ -192,7 +193,7 @@ if (error != null && !error.isEmpty()) {
 // Check: if it is an idp initiated login
 if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
     String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
-    // next step is to redirect the user to this authorizationURL
+     // Next step is to redirect the user to this authorization URL
     return;
 }
 
@@ -205,6 +206,7 @@ try {
     // Handle errors
 }
 ```
+
 </TabItem>
 </Tabs>
 
