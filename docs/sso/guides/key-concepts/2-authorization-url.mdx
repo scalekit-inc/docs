@@ -54,7 +54,7 @@ import { ScalekitClient } from '@scalekit-sdk/node';
 const scalekit = new ScalekitClient(
   '<SCALEKIT_ENVIRONMENT_URL>',
   '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
+  '<SCALEKIT_CLIENT_SECRET>',
 );
 
 const options = {
@@ -62,7 +62,10 @@ const options = {
   organizationId: 'org_123235245',
 };
 
-const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, options);
+const authorizationURL = scalekit.getAuthorizationUrl(
+  redirectUri,
+  options,
+);
 ```
 
 </TabItem>
@@ -124,10 +127,12 @@ func main() {
 
 ```java
 package com.scalekit;
+
 import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 
 public class Main {
+
   public static void main(String[] args) {
     ScalekitClient scalekitClient = new ScalekitClient(
       "<SCALEKIT_ENVIRONMENT_URL>",
@@ -143,13 +148,16 @@ public class Main {
     options.setLoginHint("user@example.com");
 
     try {
-      String url = scalekitClient.authentication()
-        .getAuthorizationUrl(redirectUrl, options).toString();
+      String url = scalekitClient
+        .authentication()
+        .getAuthorizationUrl(redirectUrl, options)
+        .toString();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 }
+
 ```
 
 </TabItem>

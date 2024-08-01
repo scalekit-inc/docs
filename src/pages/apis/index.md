@@ -101,12 +101,12 @@ $ curl https://{ENV_URL}/oauth/token \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-import {Scalekit} from "@scalekit-sdk/node";
+import { Scalekit } from '@scalekit-sdk/node';
 
 const scalekit = new Scalekit(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>',
 );
 ```
 

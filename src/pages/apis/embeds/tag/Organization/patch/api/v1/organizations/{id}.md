@@ -73,16 +73,20 @@ organization, err := sc.Organization.UpdateOrganization(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-  "ENVIRONMENT_URL",
-  "CLIENT_ID",
-  "CLIENT_SECRET"
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 );
 
-UpdateOrganization updateOrganization = UpdateOrganization.newBuilder()
-        .setDisplayName("Updated Organization Name")
-        .build();
+UpdateOrganization updateOrganization =
+  UpdateOrganization.newBuilder()
+    .setDisplayName("Updated Organization Name")
+    .build();
 
-Organization updatedOrganizationById = scalekitClient.organizations().updateById(organizationId, updateOrganization);
+Organization updatedOrganizationById = scalekitClient
+  .organizations()
+  .updateById(organizationId, updateOrganization);
+
 ```
 
 </TabItem>

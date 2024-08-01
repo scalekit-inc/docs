@@ -60,13 +60,15 @@ err := sc.Connection.EnableConnection(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-  "ENVIRONMENT_URL",
-  "CLIENT_ID",
-  "CLIENT_SECRET"
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 );
 
-ToggleConnectionResponse response = client.connections()
+ToggleConnectionResponse response = client
+  .connections()
   .enableConnection(connectionId, organizationId);
+
 ```
 
 </TabItem>

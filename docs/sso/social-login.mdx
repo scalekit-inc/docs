@@ -3,7 +3,8 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 # Getting Started with Social Connections
 
 <Subtitle>
-  Enable OAuth login to your application with Google, Microsoft, GitHub, etc.
+  Enable OAuth login to your application with Google, Microsoft,
+  GitHub, etc.
 </Subtitle>
 
 Single Sign-On (SSO) enhances B2B SaaS application security and user experience by enabling secure authentication through an organization's Identity Provider (IdP). Some organizations use social identity providers like Google, Microsoft, GitHub, Salesforce etc.
@@ -87,7 +88,7 @@ import { Scalekit } from '@scalekit-sdk/node';
 const scalekit = new Scalekit(
   '<SCALEKIT_ENVIRONMENT_URL>',
   '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
+  '<SCALEKIT_CLIENT_SECRET>',
 );
 
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
@@ -155,25 +156,31 @@ func main() {
 
 ```java showLineNumbers
 package com.scalekit;
+
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 
 public class Main {
+
   public static void main(String[] args) {
     ScalekitClient scalekitClient = new ScalekitClient(
       "<SCALEKIT_ENVIRONMENT_URL>",
       "<SCALEKIT_CLIENT_ID>",
       "<SCALEKIT_CLIENT_SECRET>"
-      );
+    );
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     options.setProvider("microsoft");
     try {
-        // Pass the Social Login Provider details while constructing the authorization URL.
-      String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
+      // Pass the Social Login Provider details while constructing the authorization URL.
+      String url = scalekitClient
+        .authentication()
+        .getAuthorizationUrl(redirectUrl, options)
+        .toString();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 }
+
 ```
 
 </TabItem>

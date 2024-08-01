@@ -57,12 +57,15 @@ link, err := sc.Organization.GeneratePortalLink(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-  "ENVIRONMENT_URL",
-  "CLIENT_ID",
-  "CLIENT_SECRET"
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
 );
 
-Link response = scalekitClient.organizations().generatePortalLink(organizationId);
+Link response = scalekitClient
+  .organizations()
+  .generatePortalLink(organizationId);
+
 ```
 
 </TabItem>

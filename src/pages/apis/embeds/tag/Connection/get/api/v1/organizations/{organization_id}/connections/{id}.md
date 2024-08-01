@@ -63,11 +63,15 @@ connection, err := sc.Connection.GetConnection(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-  "ENVIRONMENT_URL",
-  "CLIENT_ID",
-  "CLIENT_SECRET");
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
+);
 
-Connection connection = client.connections().getConnectionById(connectionId, organizationId);
+Connection connection = client
+  .connections()
+  .getConnectionById(connectionId, organizationId);
+
 ```
 
 </TabItem>

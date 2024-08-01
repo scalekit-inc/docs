@@ -1,6 +1,8 @@
 # Add SSO to your Login Page
 
-<Subtitle>Login Page UX strategies to implement Single Sign-on</Subtitle>
+<Subtitle>
+  Login Page UX strategies to implement Single Sign-on
+</Subtitle>
 
 Using our [quickstart guide](/sso/quickstart), you may already have implemented Single Sign-on(SSO) between your application and your customer's Identity Provider. In this article, we'll explore different UX strategies to incorporate SSO into your application's login page.
 
@@ -9,7 +11,10 @@ Assuming your users can log in via email and password or through social provider
 <figure className="width-50">
   ![Simple Login
   Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/simple_login_page.png)
-  <figcaption> Example with Password and Social auth methods</figcaption>
+  <figcaption>
+    {' '}
+    Example with Password and Social auth methods
+  </figcaption>
 </figure>
 
 ## Strategy 1: Identifier-driven Single Sign-on
@@ -21,7 +26,9 @@ ii) organization identifier shared by the user.
 <figure>
   ![Identifier first Login
   Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/identifier_first_login.png)
-  <figcaption>Identifier-driven login. Example: Sign in to Google account</figcaption>
+  <figcaption>
+    Identifier-driven login. Example: Sign in to Google account
+  </figcaption>
 </figure>
 
 The benefit with this approach is that users don't have to choose the authentication method, thus reducing their cognitive load and making the experience smoother.
@@ -34,7 +41,9 @@ In this strategy, you add a "Login with SSO" button on your login page, promptin
 <figure className="width-50">
   ![Explicit option for Login with
   SSO](@site/docs/sso/assets/guides/setup-sso/build-login-page/sso_button_login.png)
-  <figcaption>Display SSO and other authentication options. Example Cal.com</figcaption>
+  <figcaption>
+    Display SSO and other authentication options. Example Cal.com
+  </figcaption>
 </figure>
 
 If a user tries to log in with a password, but their admin mandates SSO, you would force SSO-based authentication instead of showing an error message. Popular products like [Cal.com](https://app.cal.com/auth/login), [Notion](https://www.notion.so/login) use this strategy in their login pages.
@@ -65,7 +74,7 @@ import { Scalekit } from '@scalekit-sdk/node';
 const scalekit = new Scalekit(
   '<SCALEKIT_ENVIRONMENT_URL>',
   '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
+  '<SCALEKIT_CLIENT_SECRET>',
 );
 
 options = {};
@@ -76,7 +85,10 @@ options.organization_id = 'org_15421144869927830';
 // Option 2: Authorization URL with login hint
 options.login_hint = 'user@example.com';
 
-authorizationURL = scalekit.getAuthorizationUrl(redirect_uri, options);
+authorizationURL = scalekit.getAuthorizationUrl(
+  redirect_uri,
+  options,
+);
 
 // Next step is to redirect the user to this authorization URL
 ```
@@ -155,29 +167,35 @@ import com.scalekit.internal.http.AuthorizationUrlOptions;
 import com.scalekit.internal.http.IdTokenClaims;
 
 @PostMapping(path = "/login")
-public ResponseEntity <Map<String,String>> loginHandler( @RequestBody LoginRequest body ) {
-    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+public ResponseEntity<Map<String, String>> loginHandler(
+  @RequestBody LoginRequest body
+) {
+  AuthorizationUrlOptions options = new AuthorizationUrlOptions();
 
-    // Option 1: Authorization URL with the organization ID
-    if (body.getOrganizationId() != null) {
-      options.setOrganizationId(body.getOrganizationId());
-    }
+  // Option 1: Authorization URL with the organization ID
+  if (body.getOrganizationId() != null) {
+    options.setOrganizationId(body.getOrganizationId());
+  }
 
-    // Option 2: Authorization URL with Login Hint
-    // User's email domain detects the correct enterprise SSO connection.
-    if (body.getEmail() != null) {
-      options.setLoginHint(body.getEmail());
-    }
-    try {
-      String url = scalekit.authentication().getAuthorizationUrl(redirectUrl, options).toString();
-      return ResponseEntity.ok(Collections.singletonMap("url", url));
-    } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(Collections.singletonMap("error", e.getMessage()));
-    }
+  // Option 2: Authorization URL with Login Hint
+  // User's email domain detects the correct enterprise SSO connection.
+  if (body.getEmail() != null) {
+    options.setLoginHint(body.getEmail());
+  }
+  try {
+    String url = scalekit
+      .authentication()
+      .getAuthorizationUrl(redirectUrl, options)
+      .toString();
+    return ResponseEntity.ok(Collections.singletonMap("url", url));
+  } catch (Exception e) {
+    return ResponseEntity.status(
+      HttpStatus.INTERNAL_SERVER_ERROR
+    ).body(Collections.singletonMap("error", e.getMessage()));
+  }
 }
-
 // Redirect the user to this authorization URL
+
 ```
 
 </TabItem>

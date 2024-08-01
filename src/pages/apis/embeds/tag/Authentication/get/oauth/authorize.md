@@ -23,7 +23,7 @@ import { ScalekitClient } from '@scalekit-sdk/node';
 const scalekit = new ScalekitClient(
   '<SCALEKIT_ENVIRONMENT_URL>',
   '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
+  '<SCALEKIT_CLIENT_SECRET>',
 );
 
 const options = {};
@@ -37,7 +37,10 @@ options.connectionId = 'conn_15696105471768821';
 // Option 3: Authorization URL with login hint
 options.loginHint = 'user@example.com';
 
-const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
+const authorizationURL = scalekit.getAuthorizationUrl(
+  redirectUrl,
+  options,
+);
 
 // TODO: Redirect the user to this authorization URL
 ```
@@ -121,10 +124,12 @@ func main() {
 
 ```java showLineNumbers
 package com.scalekit;
+
 import com.scalekit.ScalekitClient;
 import com.scalekit.internal.http.AuthorizationUrlOptions;
 
 public class Main {
+
   public static void main(String[] args) {
     // Initialize the SDK client
     ScalekitClient scalekitClient = new ScalekitClient(
@@ -141,15 +146,17 @@ public class Main {
     // User's email domain detects the correct enterprise SSO connection.
     options.setLoginHint("user@example.com");
     try {
-      String url = scalekitClient.authentication().getAuthorizationUrl(
-        redirectUrl, options).toString();
+      String url = scalekitClient
+        .authentication()
+        .getAuthorizationUrl(redirectUrl, options)
+        .toString();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 }
-
 // Redirect the user to this authorizationURL
+
 ```
 
 </TabItem>

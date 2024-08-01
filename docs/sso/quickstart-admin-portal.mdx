@@ -3,7 +3,8 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 # Admin Portal
 
 <Subtitle>
-  Empower your customers to configure and manage SSO connections by themselves
+  Empower your customers to configure and manage SSO connections by
+  themselves
 </Subtitle>
 
 The Admin Portal is a self-service interface designed to empower your customers' IT admins to configure SSO independently, thereby reducing the overhead on your engineering and support teams. Fully hosted and managed by Scalekit, the admin portal simplifies the SSO setup process with comprehensive IdP-specific documentation, ensuring a fast and secure integration with just a few lines of code.
@@ -66,9 +67,11 @@ link, err := sc.Organization.GeneratePortalLink(
 
 ```java
 // generate admin portal link by sending organization id as a parameter
-Link response = client.organizations().generatePortalLink("org_12345");
-
+Link response = client
+  .organizations()
+  .generatePortalLink("org_12345");
 // response.getLocation() has the Admin Portal URL
+
 ```
 
 </TabItem>

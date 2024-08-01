@@ -63,8 +63,10 @@ ScalekitClient scalekitClient = new ScalekitClient(
   "<CLIENT_SECRET>"
 );
 
-ListConnectionsResponse response = scalekitClient.connections()
-.listConnectionsByOrganization(organizationId);
+ListConnectionsResponse response = scalekitClient
+  .connections()
+  .listConnectionsByOrganization(organizationId);
+
 ```
 
 </TabItem>

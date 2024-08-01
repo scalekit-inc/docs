@@ -57,14 +57,15 @@ organization, err := sc.Organization.GetOrganization(
 
 ```java showLineNumbers
 ScalekitClient scalekitClient = new ScalekitClient(
-    "ENVIRONMENT_URL",
-    "CLIENT_ID",
-    "CLIENT_SECRET"
-  );
+  "<SCALEKIT_ENVIRONMENT_URL>",
+  "<SCALEKIT_CLIENT_ID>",
+  "<SCALEKIT_CLIENT_SECRET>"
+);
 
 Organization organization = scalekitClient
-    .organizations()
-    .getById(organizationId);
+  .organizations()
+  .getById(organizationId);
+
 ```
 
 </TabItem>

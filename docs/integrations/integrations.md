@@ -60,4 +60,5 @@ url="/integrations/oidc"></CardTileWithImage>
 title="Firebase"
 description="Integrate Scalekit in your Firebase Project"
 url="/integrations/firebase"></CardTileWithImage>
+
 </section>

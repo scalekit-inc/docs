@@ -47,7 +47,9 @@ To support it securely, convert the incoming IdP-initiated request to an SP-init
 <figure>
   ![Scalekit's recommended workflow for IdP initiated
   SSO](/img/idp_initiated_sso_with_scalekit.png)
-  <figcaption>Scalekit's recommended workflow for IdP initiated SSO</figcaption>
+  <figcaption>
+    Scalekit's recommended workflow for IdP initiated SSO
+  </figcaption>
 </figure>
 
 1. When Scalekit receives an IdP-initiated SSO request from one of your customers, it pings your configured default <SimpleCode>redirect_uri</SimpleCode> with the <SimpleCode>connection_id</SimpleCode> as a request parameter:

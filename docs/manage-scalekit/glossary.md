@@ -5,6 +5,7 @@ pagination_prev: null
 ---
 
 # Glossary
+
 <Subtitle>Understanding Key Terms for Implementation with Scalekit's APIs</Subtitle>
 
 <GlossaryListing />
