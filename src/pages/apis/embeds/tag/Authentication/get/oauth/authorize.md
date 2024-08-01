@@ -41,8 +41,6 @@ const authorizationURL = scalekit.getAuthorizationUrl(
   redirectUrl,
   options,
 );
-
-// TODO: Redirect the user to this authorization URL
 ```
 
 </TabItem>
