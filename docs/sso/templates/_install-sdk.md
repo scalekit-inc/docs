@@ -28,7 +28,7 @@ implementation "com.scalekit:scalekit-sdk-java:1.0.0"
 ```
 
 ```xml
-<!-- Maven users - add the following to your `pom.xml` (Maven) -->
+<!-- Maven users - add the following to your `pom.xml` -->
 <dependency>
     <groupId>com.scalekit</groupId>
     <artifactId>scalekit-sdk-java</artifactId>
