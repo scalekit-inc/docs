@@ -81,12 +81,15 @@ Construct the Authorization URL using the following query parameters:
 | <SimpleCode className="text--semibold">client_id</SimpleCode>                                                                                                                                                              | Your app's unique Scalekit identifier which is mandatory for all requests. This uniquely identifies both your app and the environment (staging, prod).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |     |     |     |
 | Any one of the SSO connection identifiers <br /><SimpleCode>- organization_id</SimpleCode><br /><SimpleCode>- connection_id</SimpleCode><br /><SimpleCode>- login_hint</SimpleCode><br /><SimpleCode>- domain</SimpleCode> | <SimpleCode className="text--semibold">organization_id</SimpleCode>: Informs Scalekit which organization's Single Sign-on to use to authenticate the user with. For e.g., `org_124234234`<br />Note: If there are multiple active SSO connections configured for an organization, we will pick the first SSO connection to authenticate the user with. <br /><br /><SimpleCode className="text--semibold">connection_id</SimpleCode>: Informs Scalekit which specific Single Sign-on connection to use to authenticate the user with 's Single Sign-on to use. For e.g., `conn_124234234` <br /><br /><SimpleCode className="text--semibold">domain</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured with the domain. For e.g., `acmecorp.com`<br /><br /><SimpleCode className="text--semibold">login_hint</SimpleCode>: Informs Scalekit which Single Sign-on connection to use that is configured for that domain portion of the email address. For e.g., `john@acmecorp.com` <br /> |     |     |     |
 
-```sh title="Example Authorization URL"
+<CodeWithHeader title="Example Authorization URL">
+
+```sh
 https://auth.scalekit.com/authorize?
-  client_id=skc_122056050118122349527&
-  redirect_uri=https://yourapp.com/auth/callback&
-  organization_id=org_12434341
+client_id=skc_122056050118122349527&
+redirect_uri=https://yourapp.com/auth/callback&
+organization_id=org_12434341
 ```
+</CodeWithHeader>
 
 See our [Authorization URL Parameters Guide](/sso/guides/key-concepts/authorization-url) for a full list of accepted parameters.
 

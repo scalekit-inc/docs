@@ -48,11 +48,15 @@ Secure your Scalekit API communication by setting up environment variables. You'
 
 Never hardcode secrets in your app. Use environment variables instead. Here's how to set them in a `.env` file:
 
-```jsx title=".env"
+<CodeWithHeader title=".env">
+
+```jsx
 SCALEKIT_ENVIRONMENT_URL = 'https://b2b-app-dev.scalekit.com';
 SCALEKIT_CLIENT_ID = '<CLIENT_ID_FROM_SCALEKIT_DASHBOARD>';
 SCALEKIT_CLIENT_SECRET = '<SECRET_FROM_SCALEKIT_DASHBOARD>';
 ```
+
+</CodeWithHeader>
 
 Now you're ready to start integrating social connections into your app! Next, we'll cover how to use the SDK to authenticate users.
 
@@ -67,17 +71,20 @@ Construct the Authorization URL using the following query parameters:
 | <SimpleCode className="text--semibold">client_id</SimpleCode> | Your app's unique Scalekit identifier which is mandatory for all requests. This uniquely identifies both your app and the environment (staging, prod). | | | |
 | <SimpleCode className="text--semibold">provider</SimpleCode> | Informs Scalekit which Social Provider to use. You can use <SimpleCode>provider</SimpleCode> as the request parameter with value being the unique code of the provider. For e.g., `microsoft`. <br />Currently, we support the following providers: `google`, `microsoft`, `github`, `gitlab`, `linkedin`, `salesforce` | | | |
 
-```sh title="Example Authorization URL"
-https://auth.scalekit.com/authorize?
-  client_id=skc_122056050118122349527&
-  redirect_uri=https://yourapp.com/auth/callback&
-  provider=microsoft
+<CodeWithHeader title="Example Authorization URL">
+
+```sh https://auth.scalekit.com/authorize?
+client_id=skc_122056050118122349527&
+redirect_uri=https://yourapp.com/auth/callback& provider=microsoft
 ```
+
+</CodeWithHeader>
 
 See our [Authorization URL Parameters Guide](/sso/guides/key-concepts/authorization-url) for a full list of accepted parameters.
 
 Next, construct your Authorization URL with these parameters and redirect users to this URL when they try to log in.
 
+<CodeWithHeader >
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
@@ -185,6 +192,7 @@ public class Main {
 
 </TabItem>
 </Tabs>
+</CodeWithHeader>
 
 Finally, handle the callback at your <SimpleCode>redirect_uri</SimpleCode> to complete the Authentication.
 
