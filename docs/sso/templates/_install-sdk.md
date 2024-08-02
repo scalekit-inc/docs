@@ -1,4 +1,4 @@
-<CodeWithHeader title="SDK installation instructions">
+<CodeWithHeader title="Setup SDK">
 
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">

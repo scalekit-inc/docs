@@ -49,9 +49,8 @@ Read below to understand more about how to authenticate the API calls and how to
 
 Refer to our <Link href="/sso/quickstart" target="_blank">Quick Start Guide</Link>
 <br />
-<CodeWithHeader title="Client Libraries">
+
 <InstallSDK />
-</CodeWithHeader>
 
 <CodeWithHeader title="API Server Endpoint">
 
