@@ -1,3 +1,5 @@
+<CodeWithHeader title="SDK installation instructions">
+
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
@@ -38,3 +40,4 @@ implementation "com.scalekit:scalekit-sdk-java:1.0.0"
 
 </TabItem>
 </Tabs>
+</CodeWithHeader>

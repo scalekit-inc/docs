@@ -1133,6 +1133,10 @@ svg {
   margin-bottom: 0 !important;
 }
 
+.scalar-card-content .tabs {
+  border-radius: 0px;
+}
+
 .scalar-card-content p {
   font-size: smaller;
   padding: 12px;
