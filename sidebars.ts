@@ -26,7 +26,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Test SSO with Okta',
+      label: 'Test SSO',
       id: 'sso/guides/test-your-integration/using-okta',
     },
     {
