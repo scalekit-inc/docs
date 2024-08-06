@@ -1,0 +1,30 @@
+---
+description: Verify SSO Connection using Scalekit's Test Identity Provider
+title: Test SSO
+displayed_sidebar: homeSidebar
+toc_min_heading_level: 2
+---
+
+# Test SSO
+
+<Subtitle>
+  Verify SSO Connection using Scalekit's Test Identity Provider
+</Subtitle>
+
+Using our [Quickstart guide](@docs/sso/quickstart), you would have integrated Scalekit and implemented the SSO authentication in your sandbox environment. Now, it's time to test your SSO integration for all possible customer scenarios.
+
+To enable Single Sign-On (SSO) in your application, you must configure it to authenticate users through their organization's Identity Provider (IdP), such as Okta or Microsoft Entra ID. As a developer, you will need to perform some setup steps typically handled by an IT administrator, including registering your app with the IdP and configuring the necessary endpoints and credentials.
+
+Scalekit simplifies SSO testing for developers by providing two key components:
+
+- A "Test Organization" that allows you to simulate signing into your application as a user with email domains "@example.com" or "@example.org" (e.g., yoga_guru@example.org).
+- A "Test IdP" that implements the OpenID Connect (OIDC) protocol and sends the necessary user profile details to your application.
+
+## Scenario 1: Service Provider (SP) Initiated SSO
+
+User initiates SSO from your app.
+
+We want to validate:
+
+- Scalekit redirects the user to the appropriate identity provider based on the Authorization URL.
+- Your application can retrieve the user details by exchanging the `code` you received in the above step.
