@@ -52,53 +52,57 @@ To support it securely, convert the incoming IdP-initiated request to an SP-init
   </figcaption>
 </figure>
 
-1. When Scalekit receives an IdP-initiated SSO request from one of your customers, it pings your configured default <SimpleCode>redirect_uri</SimpleCode> with the <SimpleCode>connection_id</SimpleCode> as a request parameter:
+1. When Scalekit receives an IdP-initiated SSO request from one of your customers, it pings your configured default <SimpleCode>redirect_uri</SimpleCode> with the <SimpleCode>idp_initiated_login</SimpleCode> as a request parameter with an encoded JWT token.
+
+<CodeWithHeader>
 
 ```sh
-https://default_redirect_uri?idp_initiated_sso=success&connection_id=conn_12442
+https://b2b-app.dev/default-redirect-uri?idp_initiated_login=<encoded_jwt_token>
 ```
 
-2. In your redirect URI handler, check for the <SimpleCode>idp_initiated_sso</SimpleCode> parameter. If it's present and set to "success", construct a new authorization URL using the <SimpleCode>connection_id</SimpleCode>:
+</CodeWithHeader>
+
+2. Get <SimpleCode>organization_id</SimpleCode> or <SimpleCode>connection_id</SimpleCode> to construct a Authorization URL by decoding the JWT token. Here is an example information on decoded JWT Token:
+
+<CodeWithHeader>
+
+```js
+{
+  "organization_id": "org_225336910XXXX588",
+  "connection_id": "conn_22533XXXXX575236",
+  "login_hint": "name@example.com",
+  "exp": 1723042087,
+  "nbf": 1723041787,
+  "iat": 1723041787,
+  "iss": "https://b2b-app.dev"
+}
+```
+
+</CodeWithHeader>
+
+3. Constructing a new Authorization URL using decoded JWT token and redirecting the users to continue SP initiated SSO.
 
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript showLineNumbers
-const {
-  code,
-  error,
-  error_description,
-  idp_initiated_sso,
-  connection_id,
-  relay_state,
-} = req.query;
+// 1. Default redirect URI is callback with JWT
+const { code, error, idp_initiated_login } = req.query;
 
-if (error) {
-  // Handle errors
+let options = {};
+
+// 2. Decode the JWT
+if (idp_initiated_login) {
+  const decodedJWT = jwt.decode(idp_initiated_login);
+  options['organizationId'] = decodedJWT.organization_id;
 }
 
-// check if this is an idp initiated login
-if (idp_initiated_sso && idp_initiated_sso === 'success') {
-  // handle idp initiated login
-  const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-    connectionId: connection_id,
-    ...(relay_state && { state: relay_state }), // Pass relay state
-  });
+// 3. enerate Authorization URL
+const authorizationUrl = scalekit.getAuthorizationUrl(redirectURI, {
+  ...options,
+});
 
-  // Next step is to redirect the user to this authorization URL
-}
-
-// Check: if state received is same as what was sent as part of authorization-url
-
-const res = await sc.authenticateWithCode(
-  code,
-  <redirectUri>
-);
-
-// res.user has the authenticated user's details
-const userEmail = res.user.email;
-
-// next step is to create a session for this user and allow access to your application resources
+// 4. Continue SP-initiated IdP with Auth URL and code exchange for profile.
 ```
 
 </TabItem>
@@ -211,6 +215,23 @@ try {
 
 </TabItem>
 </Tabs>
+
+**Users signed up before Aug 1, 2024**
+
+The <SimpleCode>redirect_uri</SimpleCode> is callback with all the information (now shown in JWT) sent as query parameters. Additionally, It also adds the JWT of same information with <SimpleCode>idp_initated_login</SimpleCode> parameter.
+
+<CodeWithHeader>
+
+```sh
+http://b2b-app.com/callback?
+  connection_id=conn_225338xxxx8575236&
+  id=req_31835XXX7352721&
+  idp_initiated_login=<jwt_token>&
+  idp_initiated_sso=success&
+  organization_id=org_225336910XXXX588
+```
+
+</CodeWithHeader>
 
 ## Advantages
 
