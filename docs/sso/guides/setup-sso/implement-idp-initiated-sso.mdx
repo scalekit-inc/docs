@@ -223,27 +223,11 @@ In case of error, the redirect URI will receive a callback containing the error 
 
 ```sh
 https://b2b-app.com/callback?error=invalid_audience
-&error_description=assertion+Conditions+AudienceRestriction+does+not+contain+"https://skcorps6e59e470000405-dev.scalekit.cloud/sso/v1/saml/conn_31061156911121158"
+&error_description=assertion+Conditions+AudienceRestriction+does+not+contain+"https://b2b-app.com/sso/v1/saml/conn_3106XXXXX158"
 ```
 
 </CodeWithHeader>
 
-**Users signed up before Aug 1, 2024**
-
-The registered redirect URI (default) will receive a callback containing the information (now presented in a JWT) as query parameters. Furthermore, it includes the JWT of the same information with the <SimpleCode>idp_initiated_login</SimpleCode> parameter.
-
-<CodeWithHeader>
-
-```sh
-https://b2b-app.com/callback?
-  connection_id=conn_225338xxxx8575236&
-  id=req_31835XXX7352721&
-  idp_initiated_login=<jwt_token>&
-  idp_initiated_sso=success&
-  organization_id=org_225336910XXXX588
-```
-
-</CodeWithHeader>
 
 ## Advantages
 
