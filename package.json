@@ -37,6 +37,8 @@
     "@docusaurus/module-type-aliases": "^3.4.0",
     "@docusaurus/tsconfig": "^3.4.0",
     "@docusaurus/types": "^3.3.2",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-java": "^2.6.4",
     "typescript": "~5.2.2"
   },
   "browserslist": {
