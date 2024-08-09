@@ -27,7 +27,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'Test SSO',
-      id: 'sso/guides/test-your-integration/using-okta',
+      id: 'sso/test-sso',
     },
     {
       type: 'doc',
@@ -95,6 +95,11 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       label: 'Customize User Attributes',
       id: 'sso/guides/setup-sso/customize-user-attributes',
+    },
+      {
+      type: 'doc',
+      label: 'Test SSO with Okta',
+      id: 'sso/guides/test-your-integration/using-okta',
     },
     // {
     //   type: "doc",
