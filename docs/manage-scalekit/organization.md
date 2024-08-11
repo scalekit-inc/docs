@@ -1,5 +1,6 @@
 ---
 slug: /manage-scalekit/organization-old
+draft: true
 ---
 
 # Organizations
