@@ -94,27 +94,28 @@ const { code, error_description, idp_initiated_login } = req.query;
     return res.status(400).json({ message: error_description });
   }
 
-let options = {};
-
 // 2. Decode the JWT
 if (idp_initiated_login) {
-    const {
+
+  const {
     connection_id,
     organization_id,
     login_hint,
     relay_state
   } = await scalekit.getIdpInitiatedLoginClaims(idp_initiated_login);
 
+  let options = {};
+  // Either ONE of the following properties
+    options["connectionId"] = connection_id
+    options["organizationId"] = organization_id
+    options["loginHint"] = login_hint
+
     // 3. Generate Authorization URL
     const url = scalekit.getAuthorizationUrl(
-      process.env.AUTH_REDIRECT_URI!,
-      {
-	      // Either ONE of the following properties
-        connectionId: connection_id,
-        organizationId: organization_id,
-        loginHint: login_hint,
-      }
+      <redirect_uri>,
+      options
     )
+
     return res.redirect(url);
   }
 ```
