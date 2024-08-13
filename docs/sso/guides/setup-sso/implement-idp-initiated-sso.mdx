@@ -123,28 +123,33 @@ if (idp_initiated_login) {
 <TabItem value="python" label="Python">
 
 ```python showLineNumbers
+# 1. Default redirect URL is callback with JWT
 code = request.args.get('code')
-error = request.args.get('error')
 error_description = request.args.get('error_description')
-idp_initiated_sso = request.args.get('idp_initiated_sso')
-connection_id = request.args.get('connection_id')
-relay_state = request.args.get('relay_state')
+idp_initiated_login = request.args.get('idp_initiated_login')
+options = AuthorizationUrlOptions()
 
-if error:
-  # Handle errors
 
-# check if this is an idp initiated login
-if idp_initiated_sso and idp_initiated_sso == 'success':
-  # Handle IdP initiated Login
-  authorization_url_options = AuthorizationUrlOptions(
-    connection_id=connection_id,
-    state=relay_state
-  )
-  authorization_url = scalekit_client.get_authorization_url(
-    redirect_uri,
-    authorization_url_options
-  )
-  # next step is to redirect the user to this authorization_url
+if error_description:
+    # Handle Error
+
+# 2. Decode the JWT
+if idp_initiated_login:
+    claims = await scalekit.get_idp_initiated_login_claims(idp_initiated_login)
+    connection_id = claims.get('connection_id', None)
+    organization_id = claims.get('organization_id', None)
+    login_hint = claims.get('login_hint', None)
+    relay_state = claims.get('relay_state', None)
+    options.connection_id=connection_id
+    options.state=relay_state
+
+    # 3. Generate Authorization URL
+    authorization_url = scalekit_client.get_authorization_url(
+      redirect_uri=redirect_uri,
+      options=options
+    )
+
+    return redirect(url)
 ```
 
 </TabItem>
