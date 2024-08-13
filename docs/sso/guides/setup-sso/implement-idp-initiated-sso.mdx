@@ -94,6 +94,7 @@ const { code, error_description, idp_initiated_login } = req.query;
     return res.status(400).json({ message: error_description });
   }
 
+
 // 2. Decode the JWT
 if (idp_initiated_login) {
 
@@ -115,7 +116,6 @@ if (idp_initiated_login) {
       <redirect_uri>,
       options
     )
-
     return res.redirect(url);
   }
 ```

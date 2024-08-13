@@ -29,11 +29,11 @@ You'll now notice "Employee Number" in the list of user attributes. Scalekit is 
   attribute](@site/docs/sso/assets/guides/setup-sso/customize-user-attributes/2-see-attribute-scalekit.png)
 </figure>
 
-## Setup IdP Attribute Relay
+## Setup IdP Attributes
 
-Now, we'll set up an Identity Provider to transmit these details. For the purposes of this guide, we'll use Okta as IdP to relay the `employee_number` to Scalekit. However, similar functionality can be achieved using any other IdP.
+Now, we'll set up an Identity Provider to send these details. For the purposes of this guide, we'll use Okta as IdP to send the <SimpleCode>employee_number</SimpleCode> to Scalekit. However, similar functionality can be achieved using any other IdP.
 
-Note that in this specific Okta instance, the "Employee Number" is a default attribute that hasn't been utilized yet. Before we proceed forward, it's important to modify the profile’s "employee_number" attribute with any desired number for this example (For example, `1729`). For a detailed guide on how to achieve this, consult [Okta’s dedicated help article on updating profile attributes](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-edit-user-attributes.htm#:~:text=Click%20the%20Profile%20tab).
+Note that in this specific Okta instance, the "Employee Number" is a default attribute that hasn't been utilized yet. Before we proceed forward, it's important to modify the profile's "employee_number" attribute with any desired number for this example (For example, `1729`). For a detailed guide on how to achieve this, consult [Okta’s dedicated help article on updating profile attributes](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-edit-user-attributes.htm#:~:text=Click%20the%20Profile%20tab).
 
 Alternatively, you can [add a new custom attribute in the Okta Profile Editor](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-add-custom-user-attributes.htm#:~:text=In%20the%20Admin%20Console%20%2C%20go%20to%20Directory%20Profile%20Editor).
 
