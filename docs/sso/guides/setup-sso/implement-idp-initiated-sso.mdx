@@ -145,7 +145,7 @@ if idp_initiated_login:
     options.state=relay_state
 
     # 3. Generate Authorization URL
-    authorization_url = scalekit_client.get_authorization_url(
+    authorization_url = scalekit.get_authorization_url(
       redirect_uri=redirect_uri,
       options=options
     )
@@ -221,12 +221,10 @@ public RedirectView callbackHandler(
     // Either ONE of the following
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (idpInitiatedLoginClaims.getConnectionID() != null) {
-      options.setConnectionId(
-          idpInitiatedLoginClaims.getConnectionID());
+      options.setConnectionId(idpInitiatedLoginClaims.getConnectionID());
     }
     if (idpInitiatedLoginClaims.getOrganizationID() != null) {
-      options.setOrganizationId(
-          idpInitiatedLoginClaims.getOrganizationID());
+      options.setOrganizationId(idpInitiatedLoginClaims.getOrganizationID());
     }
     if (idpInitiatedLoginClaims.getLoginHint() != null) {
       options.setLoginHint(idpInitiatedLoginClaims.getLoginHint());
@@ -248,10 +246,8 @@ In case of error, the redirect URI will receive a callback containing the error 
 
 <CodeWithHeader>
 
-```sh
-https://b2b-app.com/callback
-	?error=<error_category>
-	&error_description=<details>
+```url
+https://b2b-app.com/callback?error=<error_category>&error_description=<details>
 ```
 
 </CodeWithHeader>

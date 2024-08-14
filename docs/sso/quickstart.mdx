@@ -135,7 +135,7 @@ const authorizationURL = scalekit.getAuthorizationUrl(
 from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
 
 # Initialize the SDK client
-scalekit_client = ScalekitClient(
+scalekit = ScalekitClient(
   '<SCALEKIT_ENVIRONMENT_URL>',
   '<SCALEKIT_CLIENT_ID>',
   '<SCALEKIT_CLIENT_SECRET>'
@@ -262,7 +262,7 @@ const {
   code,
   error,
   error_description,
-  idp_initiated_sso,
+  idp_initiated_login,
   connection_id,
   relay_state,
 } = req.query;
@@ -281,7 +281,7 @@ if (idp_initiated_login) {
   } = await scalekit.getIdpInitiatedLoginClaims(idp_initiated_login);
 
   // Generate Authorization URL
-  const authorizationURL = scalekitClient.getAuthorizationUrl(
+  const authorizationURL = scalekit.getAuthorizationUrl(
     redirectUri,
     {
       connectionId: connection_id,
@@ -310,7 +310,7 @@ const userEmail = res.user.email;
 code = request.args.get('code')
 error = request.args.get('error')
 error_description = request.args.get('error_description')
-idp_initiated_sso = request.args.get('idp_initiated_sso')
+idp_initiated_login = request.args.get('idp_initiated_login')
 connection_id = request.args.get('connection_id')
 relay_state = request.args.get('relay_state')
 
@@ -327,13 +327,13 @@ if idp_initiated_login:
     options.state=relay_state
 
     # Generate Authorization URL
-    authorization_url = scalekit_client.get_authorization_url(
+    authorization_url = scalekit.get_authorization_url(
       redirect_uri=redirect_uri,
       options=options
     )
     # Next:redirect the user to this authorizationURL
 
-result = scalekit_client.authenticate_with_code(code, <redirect_uri>)
+result = scalekit.authenticate_with_code(code, <redirect_uri>)
 
 # result.user has the authenticated user's details
 user_email = result.user.email
@@ -417,8 +417,7 @@ if (error != null && !error.isEmpty()) {
 // Check: if it is an idp initiated login
   if (idpInitiatedLoginToken != null) {
     IdpInitiatedLoginClaims idpInitiatedLoginClaims =
-        scalekit.authentication().getIdpInitiatedLoginClaims(
-            idpInitiatedLoginToken);
+        scalekit.authentication().getIdpInitiatedLoginClaims(idpInitiatedLoginToken);
     if (idpInitiatedLoginClaims == null) {
       response.sendError(HttpStatus.BAD_REQUEST.value(),
           "Invalid idp_initiated_login token");
@@ -427,8 +426,7 @@ if (error != null && !error.isEmpty()) {
     // Either ONE of ConnectionId or OrganizationId or LoginHint
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
     if (idpInitiatedLoginClaims.getConnectionID() != null) {
-      options.setConnectionId(
-          idpInitiatedLoginClaims.getConnectionID());
+      options.setConnectionId(idpInitiatedLoginClaims.getConnectionID());
     }
 
     // Generate Authorization URL
@@ -438,7 +436,7 @@ if (error != null && !error.isEmpty()) {
     response.sendRedirect(url);
 
 try {
-    AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
+    AuthenticationResponse res = scalekit.authentication().authenticateWithCode(code, redirectUrl);
     String userEmail = res.getIdTokenClaims().getEmail();
 
     // Next step: create a session for this user and allow access
