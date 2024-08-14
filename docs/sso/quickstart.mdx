@@ -272,7 +272,15 @@ if (error) {
 }
 
 // Check: if it is an idp initiated login
-if (idp_initiated_sso && idp_initiated_sso === 'success') {
+if (idp_initiated_login) {
+  const {
+    connection_id,
+    organization_id,
+    login_hint,
+    relay_state
+  } = await scalekit.getIdpInitiatedLoginClaims(idp_initiated_login);
+
+  // Generate Authorization URL
   const authorizationURL = scalekitClient.getAuthorizationUrl(
     redirectUri,
     {
@@ -283,7 +291,7 @@ if (idp_initiated_sso && idp_initiated_sso === 'success') {
     },
   );
 
-  // Next:Redirect the user to this authorizationURL
+  // Next:Redirect the user to this authorization URL
 }
 
 const res = await scalekit.authenticateWithCode(code, redirectUri);
@@ -308,11 +316,21 @@ relay_state = request.args.get('relay_state')
 
 if error:
     raise Exception(error_description)
-if idp_initiated_sso and idp_initiated_sso == 'success':
-    authorization_url = scalekit_client.get_authorization_url(redirect_uri, {
-        'connection_id': connection_id,
-        'relay_state': relay_state
-    })
+
+if idp_initiated_login:
+    claims = await scalekit.get_idp_initiated_login_claims(idp_initiated_login)
+    connection_id = claims.get('connection_id', None)
+    organization_id = claims.get('organization_id', None)
+    login_hint = claims.get('login_hint', None)
+    relay_state = claims.get('relay_state', None)
+    options.connection_id=connection_id
+    options.state=relay_state
+
+    # Generate Authorization URL
+    authorization_url = scalekit_client.get_authorization_url(
+      redirect_uri=redirect_uri,
+      options=options
+    )
     # Next:redirect the user to this authorizationURL
 
 result = scalekit_client.authenticate_with_code(code, <redirect_uri>)
@@ -328,35 +346,54 @@ user_email = result.user.email
 
 ```go showLineNumbers
 // Handle oauth redirect_url, fetch code and error_description from request params
-code := r.URL.Query().Get("code")
-error := r.URL.Query().Get("error")
-errorDescription := r.URL.Query().Get("error_description")
-idpInitiatedSso := r.URL.Query().Get("idp_initiated_sso")
-connectionID := r.URL.Query().Get("connection_id")
-relayState := r.URL.Query().Get("relay_state")
+code: = r.URL.Query().Get("code")
+error: = r.URL.Query().Get("error")
+errorDescription: = r.URL.Query().Get("error_description")
+idpInitiatedLogin: = r.URL.Query().Get("idp_initiated_login")
+connectionID: = r.URL.Query().Get("connection_id")
+relayState: = r.URL.Query().Get("relay_state")
 
 if error != "" {
   // Handle errors
 }
 
-  if idpInitiatedSso != "" && idpInitiatedSso == "success" {
-    // Handle idp initiated login
-  authorizationURL := scalekitClient.GetAuthorizationUrl(redirectUrl, {
-    ConnectionId: connectionID,
-    RelayState: relayState,
-  })
-    // Next step is to redirect the user to this authorizationURL
+// Check: if it is an idp initiated login
+if idpInitiatedLogin: = r.URL.Query().Get("idp_initiated_login");
+idpInitiatedLogin != "" {
+  claims, err: = a.scalekit.GetIdpInitiatedLoginClaims(idpInitiatedLogin)
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+
+  // Generate Authorization URL
+  options: = scalekit.AuthorizationUrlOptions {
+    // Either ONE of the following properties
+    ConnectionId: claims.ConnectionID,
+    OrganizationId: claims.OrganizationID,
+    LoginHint: claims.LoginHint,
+  }
+  authUrl, err: = a.scalekit.GetAuthorizationUrl(<redirectUrl>,options)
+
+  if err != nil {
+    http.Error(w, err.Error(), http.StatusInternalServerError)
+    return
+  }
+  http.Redirect(w, r, authUrl.String(), http.StatusFound)
 }
 
-res, err := scalekitClient.AuthenticateWithCode(code, redirectUrl)
+
+
+res, err: = a.scalekit.AuthenticateWithCode(code,<redirectUrl>)
+
 if err != nil {
   // Handle errors
 }
 
 // res.User has the authenticated user's details
-userEmail := res.User.Email
+userEmail: = res.User.Email
 
-// create a session and redirect the user to your dashboard
+// Next step: create a session for this user and allow access
 ```
 
 </TabItem>
@@ -368,7 +405,7 @@ userEmail := res.User.Email
 String code = request.getParameter("code");
 String error = request.getParameter("error");
 String errorDescription = request.getParameter("error_description");
-String idpInitiatedSso = request.getParameter("idp_initiated_sso");
+String idpInitiatedLogin = request.getParameter("idp_initiated_login");
 String connectionID = request.getParameter("connection_id");
 String relayState = request.getParameter("relay_state");
 
@@ -378,11 +415,27 @@ if (error != null && !error.isEmpty()) {
 }
 
 // Check: if it is an idp initiated login
-if (idpInitiatedSso != null && idpInitiatedSso.equals("success")) {
-    String authorizationURL = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, connectionID, relayState);
-     // Next step is to redirect the user to this authorization URL
-    return;
-}
+  if (idpInitiatedLoginToken != null) {
+    IdpInitiatedLoginClaims idpInitiatedLoginClaims =
+        scalekit.authentication().getIdpInitiatedLoginClaims(
+            idpInitiatedLoginToken);
+    if (idpInitiatedLoginClaims == null) {
+      response.sendError(HttpStatus.BAD_REQUEST.value(),
+          "Invalid idp_initiated_login token");
+      return null;
+    }
+    // Either ONE of ConnectionId or OrganizationId or LoginHint
+    AuthorizationUrlOptions options = new AuthorizationUrlOptions();
+    if (idpInitiatedLoginClaims.getConnectionID() != null) {
+      options.setConnectionId(
+          idpInitiatedLoginClaims.getConnectionID());
+    }
+
+    // Generate Authorization URL
+    String url = scalekit.authentication()
+                     .getAuthorizationUrl(redirectUrl, options)
+                     .toString();
+    response.sendRedirect(url);
 
 try {
     AuthenticationResponse res = scalekitClient.authentication().authenticateWithCode(code, redirectUrl);
