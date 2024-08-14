@@ -54,13 +54,13 @@ In either of the above strategies, if a user chooses an authentication method (l
 
 ## Strategy 3: Tenant specific Login Page
 
-In this strategy, instead of a single login page at https:<span></span>//app.yoursaas.com/login, you serve different login pages for each tenant. For example, https://<span></span>tenant1.yoursaas.com/login, https://<span></span>tenant2.yoursaas.com/login. Depending on the tenant URL, you would show only the respective authentication methods applicable to that tenant, thus optimizing the user experience further.
+In this strategy, instead of a single login page at <SimpleCode>https:<span></span>//app.yoursaas.com/login</SimpleCode>, you serve different login pages for each tenant. For example, <SimpleCode>https://<span></span>tenant1.yoursaas.com/login</SimpleCode>, <SimpleCode>https://<span></span>tenant2.yoursaas.com/login</SimpleCode>. Depending on the tenant URL, you would show only the respective authentication methods applicable to that tenant, thus optimizing the user experience further.
 
 Popular products like [Zendesk](https://www.zendesk.com/in/login/), [Slack](https://scalekit.slack.com/) use this strategy in their login pages. However, the big drawback with this approach is that users need to remember their tenant URL to access the login page.
 
 ## Initiating Single Sign-on from your login page
 
-Once you've chosen a UX strategy for your application’s login, lets move to the login implementation of SSO through Scalekit. Regardless of the strategy you implemented, you can construct the `authorization_url` using Scalekit SDK and redirect the user to this URL.
+Once you've chosen a UX strategy for your application's login, lets move to the login implementation of SSO through Scalekit. Regardless of the strategy you implemented, you can construct the <SimpleCode>authorization_url</SimpleCode> using Scalekit SDK and redirect the user to this URL.
 
 Refer to the code samples below:
 
