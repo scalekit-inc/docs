@@ -29,7 +29,7 @@ const scalekit = new ScalekitClient(
 const options = {};
 
 // Option 1: Authorization URL with the organization ID
-options.organizationId = 'org_15421144869927830';
+options["organizationId"] = 'org_15421144869927830';
 
 // Option 2: Authorization URL with login hint
 options.connectionId = 'conn_15696105471768821';
