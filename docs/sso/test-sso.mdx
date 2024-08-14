@@ -49,9 +49,10 @@ To test this scenario, generate authorization URL using the organization ID of t
   </figcaption>
 </figure>
 
-Here is a code snippet that demonstrates generating an Authorization URL using an Organization ID, as outlined in Step 2 of the sequence diagram.
+Here is a code snippet that demonstrates generating an Authorization URL using an Organization ID, as outlined in Step 2 of the sequence diagram. See the Authorization URL [documentation](/sso/guides/key-concepts/authorization-url) for more details.
 
-<CodeWithHeader title="Nodejs">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
 
 ```js
 const options = {};
@@ -65,7 +66,52 @@ const authorizationURL = scalekit.getAuthorizationUrl(
 
 res.redirect(authorizationUrl);
 ```
-</CodeWithHeader>
+</TabItem>
+
+<TabItem value="python" label="Python">
+
+```py
+options = {"organizationId": 'org_32656XXXXXX0438'}
+
+# Generate Authorization URL
+authorization_url = scalekit.get_authorization_url(
+    redirect_url,
+    options,
+)
+
+redirect(authorization_url)
+```
+</TabItem>
+
+<TabItem value="go" label="Go">
+
+```go
+options.organizationId = "org_32656XXXXXX0438"
+
+// Generate Authorization URL
+authorizationURL := scalekitClient.GetAuthorizationUrl(
+  redirectUrl,
+  options,
+)
+
+// Redirect the user to the Authorization URL
+```
+</TabItem>
+<TabItem value="java" label="Java">
+
+```java
+options.setOrganizationId("org_32656XXXXXX0438");
+
+// Generate Authorization Url
+String url = scalekitClient
+        .authentication()
+        .getAuthorizationUrl(redirectUrl, options)
+        .toString();
+
+// Redirect the user to the Authorization URL
+```
+</TabItem>
+</Tabs>
 
 The user will be redirected to the Identity Provider (IdP) Simulator, where they can select a scenario to simulate as a user. Select "User Login via SSO" to view a form. This form is used to simulate the Identity Provider (IdP) passing the relevant details that correspond to a user signing into your application.
 
@@ -85,7 +131,9 @@ Enter the user details simulating an user signing into your application via SSO.
   </figcaption>
 </figure>
 
-
+:::tip
+ To receive Custom Attributes from the IdP Simulator, ensure they are registered in Scalekit Workspace by navigating to Development > Single Sign-On > Custom Attributes.
+ :::
 
 ## Scenario 2: User initiates SSO from IdP
 
@@ -107,26 +155,7 @@ To test this scenario, generate the Authorization URL using the Test Organizatio
   </figcaption>
 </figure>
 
-Implement a condition in your callback handler to identify whether the callback from Scalekit is IdP-initiated or not to handle this scenario.
-
-<CodeWithHeader title="Nodejs">
-
-```js
-// 1. Default redirect URL is callback with JWT
-const { code, error_description, idp_initiated_login } = req.query;
-
-if (idp_initiated_login) {
-    const {
-    connection_id,
-    organization_id,
-    login_hint,
-    relay_state
-  } = await scalekit.getIdpInitiatedLoginClaims(idp_initiated_login);
-
-    // 3. Generate and redirect the user to Authorization URL
-  }
-```
-</CodeWithHeader>
+Implement a condition in your callback handler to identify whether the callback from Scalekit is IdP-initiated or not to handle this scenario. Learn more about [implementing IdP initiated SSO](sso/guides/setup-sso/implement-idp-initiated-sso).
 
 <figure>
   ![IdP initiated SSO](@site/docs/sso/assets/single-sign-on/testing-sso/with-idp-simulator/3.2.png)
@@ -136,8 +165,6 @@ if (idp_initiated_login) {
 </figure>
 
 If the callback is IdP-initiated, retrieve the necessary details, such as <SimpleCode>connection_id</SimpleCode> or <SimpleCode>organization_id</SimpleCode>, from Scalekit to construct an Authorization URL. This step effectively converts an IdP-initiated SSO into an SP-initiated SSO.
-
-Learn more about [implementing IdP initiated SSO](sso/guides/setup-sso/implement-idp-initiated-sso).
 
 :::note
 - For simulation purposes in the IdP simulator, you can select and simulate IdP-initiated SSO to test your application. In an ideal scenario, users would choose your app from their IdP and begin the sign-in process into your app.
