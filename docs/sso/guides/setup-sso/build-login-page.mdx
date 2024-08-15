@@ -12,7 +12,6 @@ Assuming your users can log in via email and password or through social provider
   ![Simple Login
   Page](@site/docs/sso/assets/guides/setup-sso/build-login-page/simple_login_page.png)
   <figcaption>
-    {' '}
     Example with Password and Social auth methods
   </figcaption>
 </figure>
@@ -54,7 +53,7 @@ In either of the above strategies, if a user chooses an authentication method (l
 
 ## Strategy 3: Tenant specific Login Page
 
-In this strategy, instead of a single login page at <SimpleCode>https:<span></span>//app.yoursaas.com/login</SimpleCode>, you serve different login pages for each tenant. For example, <SimpleCode>https://<span></span>tenant1.yoursaas.com/login</SimpleCode>, <SimpleCode>https://<span></span>tenant2.yoursaas.com/login</SimpleCode>. Depending on the tenant URL, you would show only the respective authentication methods applicable to that tenant, thus optimizing the user experience further.
+In this strategy, instead of a single login page at <SimpleCode>https:<span></span>//app.b2b-app.com/login</SimpleCode>, you serve different login pages for each tenant. For example, <SimpleCode>https://<span></span>customer1.b2b-app.com/login</SimpleCode>, <SimpleCode>https://<span></span>customer2.b2b-app.com/login</SimpleCode>. Depending on the tenant URL, you would show only the respective authentication methods applicable to that tenant, thus optimizing the user experience further.
 
 Popular products like [Zendesk](https://www.zendesk.com/in/login/), [Slack](https://scalekit.slack.com/) use this strategy in their login pages. However, the big drawback with this approach is that users need to remember their tenant URL to access the login page.
 
@@ -80,10 +79,10 @@ const scalekit = new Scalekit(
 options = {};
 
 // Option 1: Authorization URL with the organization ID
-options.organization_id = 'org_15421144869927830';
+options['organizationId'] = 'org_15421144869927830';
 
 // Option 2: Authorization URL with login hint
-options.login_hint = 'user@example.com';
+options['loginHint'] = 'user@example.com';
 
 authorizationURL = scalekit.getAuthorizationUrl(
   redirect_uri,
