@@ -2,6 +2,9 @@
 hide_table_of_contents: true
 pagination_next: null
 displayed_sidebar: integrationsSidebar
+title: "Integrations Overview"
+description: "Discover how to integrate Scalekit with various identity providers and authentication systems to enhance security and user experience."
+keywords: ["Integrations", "Scalekit", "Identity Providers", "Auth Systems", "Security", "User Experience"]
 ---
 
 # Integrations Overview
