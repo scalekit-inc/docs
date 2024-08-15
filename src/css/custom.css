@@ -1386,3 +1386,10 @@ h1 .badge {
   padding: 10px;
   display: inline-block;
 }
+
+/* Adjusts the size of the slide-in menu when the screen width is less than 990px */
+@media screen and (max-width: 990px) {
+  .navbar-sidebar {
+    max-width: 35%;
+  }
+}
