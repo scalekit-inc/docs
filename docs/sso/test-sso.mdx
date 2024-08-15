@@ -13,8 +13,6 @@ toc_min_heading_level: 2
 
 Using our [Quickstart guide](@docs/sso/quickstart), you would have integrated Scalekit and implemented the SSO authentication in your sandbox environment. Now, it's time to test your SSO integration for all possible customer scenarios.
 
-To enable Single Sign-On (SSO) in your application, you must configure it to authenticate users through their organization's Identity Provider (IdP), such as Okta or Microsoft Entra ID. As a developer, you will need to perform some setup steps typically handled by an IT administrator, including registering your app with the IdP and configuring the necessary endpoints and credentials.
-
 Scalekit simplifies SSO testing for developers by providing two key components:
 
 - A *Test Organisation* that you can use to test singing into your app as a user with email domains <SimpleCode>@example.com</SimpleCode> or <SimpleCode>@example.org</SimpleCode>. For example, user\@example.org
@@ -122,7 +120,7 @@ The user will be redirected to the Identity Provider (IdP) Simulator, where they
   </figcaption>
 </figure>
 
-Enter the user details simulating an user signing into your application via SSO. You will see the JSON form of user details in the UI, indicating that your simulation was successful.
+Enter the user details simulating an user signing into your application via SSO. Your app will receive the <SimpleCode>idToken</SimpleCode> indicating that your simulation was successful. The following are a details encoded in the <SimpleCode>idToken</SimpleCode>.
 
 <figure>
   ![IdP Simulator](@site/docs/sso/assets/single-sign-on/testing-sso/with-idp-simulator/2.2.png)
@@ -167,7 +165,7 @@ Implement a condition in your callback handler to identify whether the callback 
 If the callback is IdP-initiated, retrieve the necessary details, such as <SimpleCode>connection_id</SimpleCode> or <SimpleCode>organization_id</SimpleCode>, from Scalekit to construct an Authorization URL. This step effectively converts an IdP-initiated SSO into an SP-initiated SSO.
 
 :::note
-- For simulation purposes in the IdP simulator, you can select and simulate IdP-initiated SSO to test your application. In an ideal scenario, users would choose your app from their IdP and begin the sign-in process into your app.
+- For simulation purposes in the IdP simulator, you can select and simulate IdP-initiated SSO to test your application. In an ideal scenario, users would choose your app from their Identity Provider and begin the sign-in process into your app.
 - The IdP simulator uses the default redirect URL as the callback URL when a user initiates SSO from the IdP. Ensure the correct default redirect URL is configured in the Scalekit dashboard.
 :::
 
