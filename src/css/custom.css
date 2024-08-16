@@ -528,6 +528,13 @@ p {
     max-width: fit-content !important;
     min-width: 75%;
   }
+
+  .page_right_hint{
+    position: absolute;
+    top: 150px;
+    right: 50px;
+    max-width: 300px;
+  }
 }
 @media (pointer: fine) {
   .thin-scrollbar {
