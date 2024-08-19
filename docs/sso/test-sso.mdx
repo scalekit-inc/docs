@@ -8,7 +8,7 @@ title: Test Single Sign-on integration
   Validate your SSO Integration using Scalekit's Identity Provider Simulator
 </Subtitle>
 
-After implementing Single Sign-on using our [Quickstart guide](@docs/sso/quickstart), now it's time to validate your integration for all possible scenarios. To make your integration testing easy and also comprehensive, we have already setup your development environment with the two key components:
+After implementing Single Sign-on using our [Quickstart guide](/sso/quickstart), now it's time to validate your integration for all possible scenarios. To make your integration testing easy and also comprehensive, we have already setup your development environment with the two key components:
 
 - *Identity Provider Simulator:* We built an Identity Provider simulator to help you test for all possible Single Sign-on scenarios eliminating the need for you to use the likes of Okta, Microsoft Entra ID etc. This is provided at no cost to help you get familiar with enterprise Single Sign-on scenarios.
 - *Test Organization:* As part of your development environment, we have created a test organization with an SSO connection setup with our IdP Simulator so that you can test your integration for all possible scenarios. To help with your testing efforts, we also added <SimpleCode>@example.com</SimpleCode> or <SimpleCode>@example.org</SimpleCode> domains as part of this organization.
@@ -155,7 +155,7 @@ To test this scenario, generate the Authorization URL using the Test Organizatio
   </figcaption>
 </figure>
 
-Implement a condition in your callback handler to identify whether the callback from Scalekit is IdP-initiated or not to handle this scenario. Learn more about [implementing IdP initiated SSO](sso/guides/setup-sso/implement-idp-initiated-sso).
+Implement a condition in your callback handler to identify whether the callback from Scalekit is IdP-initiated or not to handle this scenario. Learn more about [implementing IdP initiated SSO](/sso/guides/setup-sso/implement-idp-initiated-sso).
 
 <figure>
   ![IdP initiated SSO](@site/docs/sso/assets/single-sign-on/testing-sso/with-idp-simulator/3.2.png)
