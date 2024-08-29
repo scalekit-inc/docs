@@ -1,20 +1,38 @@
-import React from "react";
-import Link from "@docusaurus/Link";
+import React from 'react';
+import Link from '@docusaurus/Link';
 
-export function SimpleCode({ children, className = "" }) {
-  return <code className={className + " simple_code"}>{children}</code>;
+export function SimpleCode({ children, className = '' }) {
+  return (
+    <code className={className + ' simple_code'}>{children}</code>
+  );
 }
 
-export function CardTileWithImage({ url, imageSrc, title, description }) {
+export function CardTileWithImage({
+  url,
+  imageSrc,
+  title,
+  description,
+  comingSoon,
+}) {
   return (
     <article className="col col--4 margin-bottom--lg">
-      <Link className="card padding--lg cardContainer" href={url}>
-        <h3>
-          <img alt={title} src={imageSrc}></img>
-          <p>{title}</p>
-        </h3>
-        <p>{description}</p>
-      </Link>
+      {comingSoon ? (
+        <div className="card padding--lg cardContainer">
+          <h3>
+            <img alt={title} src={imageSrc}></img>
+            <p>{title}</p>
+          </h3>
+          <span>Coming Soon</span>
+        </div>
+      ) : (
+        <Link className="card padding--lg cardContainer" href={url}>
+          <h3>
+            <img alt={title} src={imageSrc}></img>
+            <p>{title}</p>
+          </h3>
+          <p>{description}</p>
+        </Link>
+      )}
     </article>
   );
 }

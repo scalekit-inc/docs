@@ -234,17 +234,14 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'Overview',
+      className:
+        'text--uppercase text--light sidenav-category-heading',
       id: 'integrations/integrations',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
-      defaultStyle: true,
-    },
-    {
-      type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Identity Provider Guides</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Identity Providers</span>",
       defaultStyle: true,
     },
     {
@@ -285,7 +282,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Integration with Auth System</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Auth Systems</span>",
       defaultStyle: true,
     },
     {
@@ -297,6 +294,32 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       label: 'Firebase',
       id: 'integrations/firebase',
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Directory Providers</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'doc',
+      label: 'Okta',
+      id: 'integrations/okta-scim',
+    },
+    {
+      type: 'doc',
+      label: 'Azure AD',
+      id: 'integrations/azure-scim',
+    },
+    {
+      type: 'doc',
+      label: 'JumpCloud',
+      id: 'integrations/jumpcloud-scim',
+    },
+    {
+      type: 'doc',
+      label: 'OneLogin',
+      id: 'integrations/onelogin-scim',
     },
   ],
   guidesSidebar: [

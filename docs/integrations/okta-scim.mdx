@@ -1,0 +1,87 @@
+---
+displayed_sidebar: integrationsSidebar
+---
+
+# Okta Directory
+
+<Subtitle>Allow user list to sync with your apps</Subtitle>
+
+## Overview
+
+This guide is designed to help administrators seamlessly sync their Okta Directory with an application they want to onboard to their organization. By integrating your application with Okta, you can automate user management tasks and ensure that access rights are consistently up-to-date.
+
+This registration sets up the following:
+
+1. **Endpoint**: This is the URL where Okta will send requests to the app you are onboarding. It acts as a communication point between Okta and your application.
+2. **Bearer Token**: This token is used by Okta to authenticate its requests to the endpoint. It ensures that the requests are secure and authorized.
+
+By setting up these components, you enable seamless synchronization between your application and the Okta directory.
+
+## Create an Endpoint and API Token in Your App
+
+Open the Admin Portal from the app and select the "Directory Sync" tab. A list of Directory Providers will be displayed. Choose "Okta" as your Directory Provider. If the Admin Portal is not accessible from the app, request a link from the app owner.
+
+:::note
+💡 If the "Directory Sync" tab is not visible, it typically indicates that the feature is not enabled for your organization. Contact the app owner to enable it via the Scalekit Dashboard by navigating to Organizations > Your Organization > Enable Directory Sync.
+:::
+
+After selecting "Okta," click "Configure." This action will generate an Endpoint URL and Bearer token for your organization, allowing the app to listen to events and maintain synchronization with your organization.
+
+## Add a New Application in Okta
+
+Log in to the Okta admin dashboard and navigate to "Applications" in the main menu.
+
+If you haven't previously created a SCIM application in Okta, select "Browse App Catalog." Otherwise, choose it from your existing list of applications.
+
+In the Okta Application dashboard, search for "SCIM 2.0 Test App (OAuth Bearer Token)" and select the corresponding result. (ℹ️ [What is SCIM ?](https://example.org))
+
+Click "Add Integration" on the subsequent page.
+
+Provide a descriptive name for the app, then proceed by clicking "Next."
+
+The default configuration is typically sufficient for most applications. However, if your directory requires additional settings, such as Attribute Statements, configure these on the Sign-On Options page. Complete the application creation process by clicking "Done."
+
+## Enable Sending and Receiving Events in Provisioning Settings
+
+In your application's Enterprise Okta admin panel, navigate to the "Provisioning" tab and select "Configure API Integration."
+
+Enable API Integration by checking the corresponding box. Copy the Endpoint URL and Bearer
+
+Token from your Admin Portal and paste them into the SCIM 2.0 Base URL field and OAuth Bearer Token field, respectively.
+
+Verify the configuration by clicking "Test API Credentials," then save the settings.
+
+Upon successful configuration, the Provisioning tab will display a new set of options. These options will be utilized to complete the provisioning process for your application.
+
+## Choose User and Group Attributes to Send to Your App
+
+In the "To App" navigation section, enable the following options:
+
+- Create Users
+- Update User Attributes
+- Deactivate Users
+
+After enabling these options, click "Save" to apply the changes.These settings allow Okta to perform user provisioning actions in your application, including creating new user accounts, updating existing user information, and deactivating user accounts when necessary.
+
+## User and Group Assignment
+
+To assign users to the SAML Application:
+
+1. Navigate to the "Assignments" tab.
+2. From the "Assign" dropdown, select "Assign to People."
+3. Choose the users you want to provision and click "Assign."
+4. A form will open for each user. Review and populate the user's metadata fields.
+5. Scroll to the bottom and click "Save and Go Back."
+6. Repeat this process for all users, then select "Done."
+
+To push groups and sync group membership:
+
+1. Navigate to the "Push Groups" tab.
+2. From the "Push Groups" dropdown, select "Find groups by name."
+3. Search for and select the group you want to push.
+4. Ensure the "Push Immediately" box is checked.
+5. Click "Save."
+
+Note: Okta recommends using separate groups for push groups and group assignments to ensure accurate membership reflection. Without this separation, manual group pushes may be required for membership changes.
+
+After completing these steps, verify that the users and groups are successfully synced in the Administrator Portal.
