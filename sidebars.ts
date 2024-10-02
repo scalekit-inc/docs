@@ -66,11 +66,11 @@ const sidebars: SidebarsConfig = {
       label: 'Add SSO to your Login Page',
       id: 'sso/guides/setup-sso/build-login-page',
     },
-    {
-      type: 'doc',
-      label: 'Fetch User Attributes from IdP',
-      id: 'sso/guides/setup-sso/handle-user-profile',
-    },
+    // {
+    //   type: 'doc',
+    //   label: 'Fetch User Attributes from IdP',
+    //   id: 'sso/guides/setup-sso/handle-user-profile',
+    // },
     // {
     //   type: "doc",
     //   label: "Handle Raw Attributes from IdP",
