@@ -1,0 +1,83 @@
+---
+title: ''
+unlisted: true
+description: "Learn how to automate user provisioning and deprovisioning with Scalekit's SCIM APIs. This guide covers setting up webhooks to receive realtime events from directory providers and using REST APIs to fetch user and group data on-demand."
+keywords:
+  [
+    'SCIM',
+    'User Provisioning',
+    'Deprovisioning',
+    'Webhooks',
+    'REST APIs',
+  ]
+---
+
+import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
+
+## 1. Environment Setup
+
+### a. Install the Scalekit SDK
+
+Scalekit offers language-specific SDKs for fast SSO integration. Use the installation instructions below for your technology stack.
+
+<InstallSDK />
+
+### b. Get API Credentials
+
+Click on "API Config" to view your credentials — Environment URL, Client ID, and Client Secret.
+
+Store your credentials in a `.env` file:
+
+<CodeWithHeader title=".env">
+
+```jsx
+SCALEKIT_ENVIRONMENT_URL = 'https://hero-saas-dev.scalekit.com';
+SCALEKIT_CLIENT_ID = '<CLIENT_ID_FROM_SCALEKIT_DASHBOARD>';
+SCALEKIT_CLIENT_SECRET = '<SECRET_FROM_SCALEKIT_DASHBOARD>';
+```
+
+</CodeWithHeader>
+
+## 2. Handle Users and Groups
+
+### a. Via API
+
+Refer to the [API reference](/apis) and retrieve users and groups associated with a directory
+
+<CodeWithHeader title="List Users in a Directory">
+
+```javascript
+const userlist = await scalekit.directory.getUsers(
+'organization_id': 'org_0123456789'
+);
+
+console.log(`First user in the list: ${userList[0].name}`);
+```
+
+</CodeWithHeader>
+
+<CodeWithHeader title="List Users in a Group">
+
+```javascript
+const groupList = await scalekit.directory.listGroups(
+'organization_id': 'org_0123456789'
+);
+
+console.log(`First Group in the list: ${groupList[0].name}`);
+```
+
+</CodeWithHeader>
+
+### b. Via Webhooks
+
+To receive realtime events from directory providers, create a webhook endpoint from the **Webhooks** Tab.
+
+When the endpoint receives an HTTP POST request with event data from Scalekit, your app can use it to perform the necessary business logic — for example, creating a user account.
+
+Refer to the [API reference](/apis#tag/Webhooks) for the list of all available event types.
+
+## That's it!
+
+You've successfully automated user provisioning and deprovisioning with SCIM into your application!
+
+See the more detailed guides in [Scalekit Docs](https://docs.scalekit.com)
