@@ -2,9 +2,17 @@
 hide_table_of_contents: true
 pagination_next: null
 displayed_sidebar: integrationsSidebar
-title: "Integrations Overview"
-description: "Discover how to integrate Scalekit with various identity providers and authentication systems to enhance security and user experience."
-keywords: ["Integrations", "Scalekit", "Identity Providers", "Auth Systems", "Security", "User Experience"]
+title: 'Integrations Overview'
+description: 'Discover how to integrate Scalekit with various identity providers and authentication systems to enhance security and user experience.'
+keywords:
+  [
+    'Integrations',
+    'Scalekit',
+    'Identity Providers',
+    'Auth Systems',
+    'Security',
+    'User Experience',
+  ]
 ---
 
 # Integrations Overview
@@ -63,5 +71,43 @@ url="/integrations/oidc"></CardTileWithImage>
 title="Firebase"
 description="Integrate Scalekit in your Firebase Project"
 url="/integrations/firebase"></CardTileWithImage>
+
+</section>
+
+## Social Connectors
+
+Add social connectors to your app to allow users to sign in with their social accounts.
+
+<section class="row">
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=17949&format=png&color=000000"
+title="Google"
+description="Add Google Sign-in to your app"
+url="/integrations/social-connections/google"></CardTileWithImage>
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=xuvGCOXi8Wyg&format=png&color=000000"
+title="LinkedIn"
+description="Add LinkedIn Sign-in to your app"
+url="/integrations/social-connections/linkedin"></CardTileWithImage>
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=38804&format=png&color=000000"
+title="Salesforce"
+description="Add Salesforce Sign-in"
+url="/integrations/social-connections/salesforce"></CardTileWithImage>
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=AZOZNnY73haj&format=png&color=000000"
+title="GitHub"
+description="Add GitHub Sign-in to your app"
+url="/integrations/social-connections/github"></CardTileWithImage>
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=22989&format=png&color=000000"
+title="Microsoft"
+description="Add Microsoft Sign-in to your app"
+url="/integrations/social-connections/microsoft"></CardTileWithImage>
+
+<CardTileWithImage imageSrc="https://img.icons8.com/?size=100&id=34886&format=png&color=000000"
+title="GitLab"
+description="Add GitLab Sign-in to your app"
+url="/integrations/social-connections/gitlab"></CardTileWithImage>
 
 </section>
