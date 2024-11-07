@@ -798,6 +798,10 @@ html[data-inside-iframe='true'] article {
   padding: 0;
 }
 
+h2[id='1-environment-setup'] {
+  margin-top: 0px;
+}
+
 html {
   scroll-behavior: smooth;
 }
