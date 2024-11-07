@@ -802,6 +802,10 @@ h2[id='1-environment-setup'] {
   margin-top: 0px;
 }
 
+/* div[id="tabs:cl-6:content-getting-started"] {
+  margin-top: 0px;
+} */
+
 html {
   scroll-behavior: smooth;
 }
