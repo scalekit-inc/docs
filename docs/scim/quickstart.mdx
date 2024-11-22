@@ -42,7 +42,7 @@ Before you begin, ensure that your organization has a directory set up in Scalek
 Before diving in, ensure you have:
 
 1. A Scalekit account
-2. An organization with a configured directory in Scalekit (or use the default _Test Organization_)
+2. An organization with a configured directory
 3. Access to the Scalekit Dashboard
 
 #### Setting Up the SDK
@@ -65,7 +65,7 @@ npm install @scalekit-sdk/node
 
 ```groovy
 /* Gradle users - add the following to your dependencies in build file */
-implementation "com.scalekit:scalekit-sdk-java:1.0.1"
+implementation "com.scalekit:scalekit-sdk-java:1.0.2"
 ```
 
 ```xml
@@ -73,7 +73,7 @@ implementation "com.scalekit:scalekit-sdk-java:1.0.1"
 <dependency>
     <groupId>com.scalekit</groupId>
     <artifactId>scalekit-sdk-java</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -120,7 +120,7 @@ const scalekit = new ScalekitClient(
 );
 
 const { organizations } = await scalekit.organization.listOrganization({
-  pageSize: 10,
+  pageSize: 5,
 });
 
 console.log(`Name of the a organization: ${organizations[0].display_name}`);
@@ -183,12 +183,7 @@ ScalekitClient scalekitClient = new ScalekitClient(
   "<SCALEKIT_CLIENT_SECRET>"
 );
 
-CreateOrganization createOrganization = CreateOrganization.newBuilder()
-  .setDisplayName("Test organization")
-  .build();
-
-Organization organization = scalekitClient.organizations().create(createOrganization);
-
+ListOrganizationsResponse organizations = scalekitClient.organizations().listOrganizations(5, "");
 ```
 
 </TabItem>
@@ -241,8 +236,11 @@ directory, err := sc.Directory().GetDirectory(ctx, organizationId, directoryId)
 <TabItem value="java" label="Java">
 
 ```java
-Directory directory = scalekitClient.directories().getDirectory(directoryId, organizationId);
+// Get Directory using Organization ID and Directory ID
+Directory directory = scalekitClient.directories().getDirectory("<directoryId>", "<organizationId>");
 
+// Get Directory using Organization ID
+Directory directory = scalekitClient.directories().getPrimaryDirectoryByOrganizationId("<organizationId>");
 ```
 
 </TabItem>
@@ -258,7 +256,7 @@ Fetch users within a specific directory:
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-const { users } = await scalekit.directory.listDirectoryUsers('<directory_id>');
+const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>', '<directory_id>');
 //  users[0].email has the email of the first user in the directory
 ```
 
@@ -324,7 +322,7 @@ Retrieve groups within a directory:
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-const { groups } = await scalekit.directory.listDirectoryGroups('<directory_id>');
+const { groups } = await scalekit.directory.listDirectoryGroups('<organization_id>', '<directory_id>');
 ```
 
 </TabItem>
@@ -383,6 +381,8 @@ capabilities.
 
 To receive realtime events from directory providers, create a webhook endpoint and register it in
 the Scalekit dashboard.
+
+<CodeWithHeader title="Create a Webhook Endpoint">
 
 <Tabs groupId="tech-stack" queryString>
 
@@ -465,6 +465,7 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 
 </TabItem>
 </Tabs>
+</CodeWithHeader>
 
 {/* prettier-ignore */}
 In this example, the endpoint URL is <SimpleCode>https://<span></span>www<span></span>.hero-saas.<span></span>app/api/webhook/user-access</SimpleCode>
@@ -484,6 +485,8 @@ directory providers.
 
 Refer to the [API reference](/apis#tag/Webhooks) for the list of all available event types and
 [setting up webhooks](scim/webhooks.mdx) to explore testing webhooks with test endpoints.
+
+
 
 ### Receive Event Payloads
 

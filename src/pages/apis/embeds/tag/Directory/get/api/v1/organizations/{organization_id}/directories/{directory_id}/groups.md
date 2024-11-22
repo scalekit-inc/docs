@@ -11,13 +11,13 @@ curl --location 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<organi
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-const sc = new ScalekitClient(
+const scalekit = new ScalekitClient(
   <SCALEKIT_ENVIRONMENT_URL>,
   <SCALEKIT_CLIENT_ID>,
   <SCALEKIT_CLIENT_SECRET>
 );
 
-const { groups } = await scalekit.directory.listDirectoryGroups(directoryId);
+const { groups } = await scalekit.directory.listDirectoryGroups('<organization_id>', '<directory_id>');
 ```
 
 </TabItem>
