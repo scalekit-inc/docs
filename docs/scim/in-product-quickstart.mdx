@@ -19,7 +19,36 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 
 Scalekit offers language-specific SDKs for fast SSO integration. Use the installation instructions below for your technology stack.
 
-<InstallSDK />
+<CodeWithHeader title="Setup SDK">
+
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```bash
+npm install @scalekit-sdk/node
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```groovy
+/* Gradle users - add the following to your dependencies in build file */
+implementation "com.scalekit:scalekit-sdk-java:1.0.2"
+```
+
+```xml
+<!-- Maven users - add the following to your `pom.xml` -->
+<dependency>
+    <groupId>com.scalekit</groupId>
+    <artifactId>scalekit-sdk-java</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
 
 ### b. Get API Credentials
 
@@ -29,8 +58,8 @@ Store your credentials in a `.env` file:
 
 <CodeWithHeader title=".env">
 
-```jsx
-SCALEKIT_ENVIRONMENT_URL = 'https://hero-saas-dev.scalekit.com';
+```shell
+SCALEKIT_ENVIRONMENT_URL = 'https://your-app-dev.scalekit.com';
 SCALEKIT_CLIENT_ID = '<CLIENT_ID_FROM_SCALEKIT_DASHBOARD>';
 SCALEKIT_CLIENT_SECRET = '<SECRET_FROM_SCALEKIT_DASHBOARD>';
 ```
@@ -44,27 +73,111 @@ SCALEKIT_CLIENT_SECRET = '<SECRET_FROM_SCALEKIT_DASHBOARD>';
 Refer to the <a href="/apis" target="_blank" rel="noopener noreferrer">API reference</a> and retrieve users and groups associated with a directory
 
 <CodeWithHeader title="List Users in a Directory">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
 
 ```javascript
-const userlist = await scalekit.directory.getUsers(
-'organization_id': 'org_0123456789'
-);
-
-console.log(`First user in the list: ${userList[0].name}`);
+const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>', '<directory_id>');
+//  users[0].email has the email of the first user in the directory
 ```
 
+</TabItem>
+
+{/* <TabItem value="python" label="Python">
+
+```python
+
+directory_users = scalekit_client.directory.list_directory_users(
+  directory_id='<directory_id>', organization_id='<organization_id>'
+)
+print(f'directory users: {str(directory_users)}')
+
+```
+
+</TabItem> */}
+
+{/* <TabItem value="go" label="Go">
+
+```go
+
+options := &ListDirectoryUsersOptions{
+		PageSize: 10,
+		PageToken: "",
+}
+directoryUsers,err := sc.Directory().ListDirectoryUsers(ctx, organizationId, directoryId, options)
+
+```
+
+</TabItem> */}
+
+<TabItem value="java" label="Java">
+
+```java
+var options = ListDirectoryResourceOptions.builder()
+  .pageSize(10)
+  .pageToken("")
+  .includeDetail(true)
+  .build();
+
+ListDirectoryUsersResponse usersResponse = scalekitClient
+  .directories()
+  .listDirectoryUsers(directory.getId(), organizationId, options);
+
+```
+
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 
-<CodeWithHeader title="List Users in a Group">
+<CodeWithHeader title="List Groups in a Directory">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
 
 ```javascript
-const groupList = await scalekit.directory.listGroups(
-'organization_id': 'org_0123456789'
-);
-
-console.log(`First Group in the list: ${groupList[0].name}`);
+const { groups } = await scalekit.directory.listDirectoryGroups('<organization_id>', '<directory_id>');
 ```
 
+</TabItem>
+
+{/* <TabItem value="python" label="Python">
+
+```python
+directory_groups = scalekit_client.directory.list_directory_groups(
+  directory_id='<directory_id>', organization_id='<organization_id>'
+)
+```
+
+</TabItem> */}
+
+{/* <TabItem value="go" label="Go">
+
+```go
+options := &ListDirectoryGroupsOptions{
+		PageSize: 10,
+		PageToken:"",
+	}
+
+directoryGroups, err := sc.Directory().ListDirectoryGroups(ctx, organizationId, directoryId, options)
+```
+
+</TabItem> */}
+
+<TabItem value="java" label="Java">
+
+```java
+var options = ListDirectoryResourceOptions.builder()
+  .pageSize(10)
+  .pageToken("")
+  .includeDetail(true)
+  .build();
+
+ListDirectoryGroupsResponse groupsResponse = scalekitClient
+  .directories()
+  .listDirectoryGroups(directory.getId(), organizationId, options);
+```
+
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 
 ### b. Via Webhooks

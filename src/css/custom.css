@@ -845,9 +845,13 @@ ul.table-of-contents.table-of-contents__left-border:before {
 .navbar {
   padding: 0 var(--ifm-navbar-padding-horizontal);
   height: 64px;
-  display: flex ;
+
+}
+#__docusaurus > nav {
+  display: flex !important;
   align-items: center;
 }
+
 
 .navbar:has(.navbar__secondary) {
   display: block;
