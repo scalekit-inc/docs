@@ -843,14 +843,15 @@ ul.table-of-contents.table-of-contents__left-border:before {
 }
 
 .navbar {
-  padding: 0 var(--ifm-navbar-padding-horizontal);
+  /* padding: 0 var(--ifm-navbar-padding-horizontal); */
   height: 64px;
 
 }
-#__docusaurus > nav {
-  display: flex !important;
+
+/* #__docusaurus > nav {
+  display: flex;
   align-items: center;
-}
+} */
 
 
 .navbar:has(.navbar__secondary) {
