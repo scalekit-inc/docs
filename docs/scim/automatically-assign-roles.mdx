@@ -112,6 +112,32 @@ app.post('/api/webhook/role-assignment', async (req, res) => {
 
 </TabItem>
 
+<TabItem value="python" label="Python">
+
+```python
+from fastapi import FastAPI, Request
+
+app = FastAPI()
+
+@app.post("/webhook")
+async def api_webhook(request: Request):
+
+    body = await request.body()
+		user_roles = json.loads(body.decode())['data']['roles']
+		user_email = json.loads(body.decode())['data']['email']
+
+		print("User Roles:" + str(roles))
+		print("User email:" + str(email))
+
+		# business logic to assign role
+		await assign_role(roles[0], email)
+
+    response = JSONResponse(status_code=201, content='')
+    return response
+```
+
+</TabItem>
+
 <TabItem value="java" label="Java">
 
 ```java

@@ -80,6 +80,14 @@ npm install @scalekit-sdk/node
 
 </TabItem>
 
+<TabItem value="python" label="Python">
+
+```bash
+pip install scalekit-sdk-python
+```
+
+</TabItem>
+
 <TabItem value="java" label="Java">
 
 ```groovy
@@ -147,7 +155,7 @@ console.log(`Name of the a organization: ${organizations[0].display_name}`);
 
 </TabItem>
 
-{/*
+
 
 <TabItem value="python" label="Python">
 
@@ -168,7 +176,7 @@ print(f'Organisation details: {org_list[0]}')
 
 </TabItem>
 
-*/}
+
 
 {/*
 
@@ -231,7 +239,7 @@ const { directory } =
 
 </TabItem>
 
-{/* <TabItem value="python" label="Python">
+<TabItem value="python" label="Python">
 
 ```python
 directory = scalekit_client.directory.get_directory(
@@ -239,7 +247,7 @@ directory = scalekit_client.directory.get_directory(
 )
 ```
 
-</TabItem> */}
+</TabItem>
 
 {/* <TabItem value="go" label="Go">
 
@@ -281,7 +289,7 @@ const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>
 
 </TabItem>
 
-{/* <TabItem value="python" label="Python">
+<TabItem value="python" label="Python">
 
 ```python
 
@@ -292,7 +300,7 @@ print(f'directory users: {str(directory_users)}')
 
 ```
 
-</TabItem> */}
+</TabItem>
 
 {/* <TabItem value="go" label="Go">
 
@@ -346,7 +354,7 @@ const { groups } = await scalekit.directory.listDirectoryGroups('<organization_i
 
 </TabItem>
 
-{/* <TabItem value="python" label="Python">
+<TabItem value="python" label="Python">
 
 ```python
 directory_groups = scalekit_client.directory.list_directory_groups(
@@ -354,7 +362,7 @@ directory_groups = scalekit_client.directory.list_directory_groups(
 )
 ```
 
-</TabItem> */}
+</TabItem>
 
 {/* <TabItem value="go" label="Go">
 
@@ -433,7 +441,7 @@ app.post('/api/webhook/user-access', async (req, res) => {
 
 </TabItem>
 
-{/* <TabItem value="python" label="Python">
+<TabItem value="python" label="Python">
 
 ```python
 
@@ -451,10 +459,15 @@ async def api_webhook(request: Request):
             secret='<secret>', headers=headers, payload=json.dumps(body).encode('utf-8')
         )
     )
+    # business logic to create user account
+    await create_user_account(email, name);
+
+		response = JSONResponse(status_code=201, content='')
+    return response
 
 ```
 
-</TabItem> */}
+</TabItem>
 
 <TabItem value="java" label="Java">
 
