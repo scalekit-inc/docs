@@ -92,9 +92,7 @@ async function generatePortalLink(orgID) {
 <TabItem value="python" label="Python">
 
 ```python
-portal_link = (scalekit_client
-                .organization
-                .generate_portal_link('<organization_id>'))
+portal_link = scalekit_client.organization.generate_portal_link('<organization_id>')
 ```
 
 </TabItem>
