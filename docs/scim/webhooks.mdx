@@ -74,27 +74,32 @@ app.post('/webhook', async (req, res) => {
 
 </TabItem>
 
-{/* <TabItem label="Python" value="Python">
+<TabItem label="Python" value="Python">
 
 ```python
-from svix.webhooks import Webhook
+from fastapi import FastAPI, Request
 
-secret = "<WEBHOOK_SIGNING_SECRET>"
+app = FastAPI()
 
-# These were all sent from the server
-headers = {
-  "svix-id": "msg_p5jXN8AQM9LWM0D4loKWxJek",
-  "svix-timestamp": "1614265330",
-  "svix-signature": "v1,g0hM9SsE+OTPJTGt/tmIKtSyZlE3uFJELVlNIOLJ1OE=",
-}
-payload = '{"event": "directory_payload"}'
+@app.post("/webhook")
+async def api_webhook(request: Request):
+    body = await request.body()
+    headers = {
+        'webhook-id': request.headers.get('webhook-id'),
+        'webhook-signature': request.headers.get('webhook-signature'),
+        'webhook-timestamp': request.headers.get('webhook-timestamp')
+    }
+    print(
+        scalekit.verify_webhook_payload(
+            secret='<secret>', headers=headers, payload=body
+        )
+    )
 
-wh = Webhook(secret)
-# Throws on error, returns the verified content on success
-payload = wh.verify(payload, headers)
+		response = JSONResponse(status_code=201, content='')
+    return response
 ```
 
-</TabItem> */}
+</TabItem>
 
 {/* <TabItem label="Go" value="Go">
 
@@ -182,31 +187,28 @@ async function createUserAccount(email, name) {
 
 </TabItem>
 
-{/* <TabItem label="Python" value="Python">
+<TabItem label="Python" value="Python">
 
 ```python
-from flask import Flask, request, jsonify
+from fastapi import FastAPI, Request
 
-app = Flask(__name__)
+app = FastAPI()
 
-@app.route('/webhook', methods=['POST'])
-def handle_post():
-    event = request.json
+@app.post("/webhook")
+async def api_webhook(request: Request):
+    body = await request.body()
+    event_type = json.loads(body.decode())['type']
 
-    if event['type'] == "scalekit.dir.user.create":
-        email = event['data']['email']
-        name = event['data']['name']
-        create_user_account(email, name)
-
-    return jsonify(status=201), 201
-
-def create_user_account(email, name):
-    # Implement your user creation logic
-    pass
-
+    match event_type:
+	    case 'scalekit.dir.user.crete':
+	        print('create')
+	    case 'scalekit.dir.user.update':
+	        print('update')
+	    case _:
+	        print('No matching event found')
 ```
 
-</TabItem> */}
+</TabItem>
 
 {/* <TabItem label="" value="Go">
 

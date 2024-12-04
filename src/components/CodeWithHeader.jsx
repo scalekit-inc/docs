@@ -7,9 +7,7 @@ export default function CodeWithHeader({ children, ...props }) {
             <div className="scalar-card-header-slot scalar-card-header-title">
               {props.method ? (
                 <>
-                  <span className={'method ' + props.method}>
-                    {props.method}
-                  </span>
+                  <span className={'method ' + props.method}>{props.method}</span>
                   <span className="endpoint">{props.endpoint}</span>
                 </>
               ) : (
