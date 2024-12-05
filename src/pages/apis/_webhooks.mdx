@@ -251,12 +251,183 @@ import { Endpoint } from '@site/src/components/endpoint';
 <div className="row section">
     <div className="col col--6">
        This webhook is triggered when a directory sync is disabled.
+
+       <ul className="ApiReference-Parameters">
+
+<li className="ApiReference-Parameter header">Event Object Attributes</li>
+
+
+
+<Parameter
+  attrKey="spec_version"
+  type="string"
+  description="Version of the event specification format."
+/>
+
+
+
+<Parameter attrKey="id" type="string" description="Unique identifier for the specific event." />
+
+
+
+<Parameter
+  attrKey="type"
+  type="string"
+  description="Type of event that occurred. Indicates the specific action or state change."
+/>
+
+
+
+<Parameter
+  attrKey="occurred_at"
+  type="string"
+  description="Timestamp of when the event was generated, in ISO 8601 format."
+/>
+
+
+
+<Parameter
+  attrKey="environment_id"
+  type="string"
+  description="Unique identifier of the environment where the event occurred."
+/>
+
+
+
+<Parameter
+  attrKey="organization_id"
+  type="string"
+  description="Unique identifier of the organization associated with the event."
+/>
+
+
+<Parameter attrKey="object" type="string" description="Type of object the event is related to." />
+
+
+<Parameter
+  attrKey="directory_type"
+  type="enum"
+  description="Type of directory protocol used for synchronization."
+>
+  <details>
+    <summary>Possible values</summary>
+    <Parameter attrKey="SCIM" />
+  </details>
+</Parameter>
+
+
+
+<Parameter
+  attrKey="enabled"
+  type="boolean"
+  description="Indicates whether the directory synchronization is currently enabled or disabled."
+/>
+
+
+<Parameter
+  attrKey="id"
+  type="string"
+  description="Unique identifier for the directory connection."
+/>
+
+
+
+<Parameter
+  attrKey="last_sync_at"
+  type="string"
+  description="Timestamp of the most recent directory synchronization in ISO 8601 format."
+/>
+
+
+
+<Parameter
+  attrKey="organization_id"
+  type="string"
+  description="Unique identifier of the organization associated with this directory."
+/>
+
+
+
+<Parameter
+  attrKey="provider"
+  type="enum"
+  description="Identity provider for the directory connection."
+>
+  <details>
+    <summary>Possible values</summary>
+    <Parameter attrKey="OKTA" />
+  </details>
+</Parameter>
+
+  <Parameter
+    attrKey="settings"
+    type="object"
+    description="Configuration settings for the directory connection.">
+    <details>
+      <summary>Settings Attributes</summary>
+      <ul className="ApiReference-Parameters">
+        <Parameter
+          attrKey="custom_attributes"
+          type="null"
+          description="Custom attribute mappings. Currently set to null."
+        />
+
+        <Parameter
+          attrKey="role_assignment"
+          type="object"
+          description="Role assignment configuration. Currently an empty object."
+        />
+      </ul>
+    </details>
+
+  </Parameter>
+
+<Parameter
+  attrKey="status"
+  type="enum"
+  description="Current status of the directory synchronization process."
+>
+  <details>
+    <summary>Possible values</summary>
+    <Parameter attrKey="IN_PROGRESS" />
+  </details>
+</Parameter>
+
+<Parameter
+  attrKey="updated_at"
+  type="string"
+  description="Timestamp of the most recent update to the directory connection in ISO 8601 format."
+/>
+
+</ul>
+
     </div>
     <div className='col col--6'>
-          <CodeWithHeader title="scalekit.dir.group.delete">
+          <CodeWithHeader title="scalekit.dir.sync.disable">
           <JsonViewer src={{
-                "message":"Engineering in Progress"
-              }} />
+
+            "spec_version": "1",
+            "id": "evt_49180589181370731",
+            "type": "scalekit.dir.sync.disable",
+            "occurred_at": "2024-12-05T06:45:15.481614Z",
+            "environment_id": "env_27758032200925221",
+            "organization_id": "org_41857058932261385",
+            "object": "Directory",
+            "data": {
+              "directory_type": "SCIM",
+              "enabled": false,
+              "id": "dir_41857070105887249",
+              "last_sync_at": "2024-12-04T10:29:16.02316Z",
+              "organization_id": "org_41857058932261385",
+              "provider": "OKTA",
+              "settings": {
+                "custom_attributes": null,
+                "role_assignment": {}
+              },
+              "status": "IN_PROGRESS",
+              "updated_at": "2024-12-05T06:45:15.470706388Z"
+            }
+          }} />
 
           </CodeWithHeader>
       </div>
@@ -272,7 +443,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
             <Parameter attrKey="organization_id" type="string" description="Unique ID of the Organization to which this directory user belongs." />
             <Parameter attrKey="dp_id" type="string" description="Unique ID of the User in the Directory Provider (IdP) system." />
-            <Parameter attrKey="preferrred_username" type="string" description="Preferred username of the directory user." />
+            <Parameter attrKey="preferred_username" type="string" description="Preferred username of the directory user." />
             <Parameter attrKey="email" type="string" description="Email of the directory user." />
             <Parameter attrKey="active" type="boolean" description="Indicates if the directory user is active." />
             <Parameter attrKey="name" type="string" description="Fully formatted name of the directory user." />
@@ -320,7 +491,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             "id": "diruser_12312312312312",
             "organization_id": "org_12312312312312",
             "dp_id": "<scim_external_id>",
-            "preferrred_username": "<idp_user_name>",
+            "preferred_username": "<idp_user_name>",
             "email": "john.doe@example.com",
             "active": true,
             "name": "John Doe",
@@ -372,7 +543,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
             <Parameter attrKey="organization_id" type="string" description="Unique ID of the Organization to which this directory user belongs." />
             <Parameter attrKey="dp_id" type="string" description="Unique ID of the User in the Directory Provider (IdP) system." />
-            <Parameter attrKey="preferrred_username" type="string" description="Preferred username of the directory user." />
+            <Parameter attrKey="preferred_username" type="string" description="Preferred username of the directory user." />
             <Parameter attrKey="email" type="string" description="Email of the directory user." />
             <Parameter attrKey="active" type="boolean" description="Indicates if the directory user is active." />
             <Parameter attrKey="name" type="string" description="Fully formatted name of the directory user." />
@@ -422,7 +593,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             "id": "diruser_12312312312312",
             "organization_id": "org_12312312312312",
             "dp_id": "<scim_external_id>",
-            "preferrred_username": "<idp_user_name>",
+            "preferred_username": "<idp_user_name>",
             "email": "john.doe@example.com",
             "active": true,
             "name": "John Doe",
