@@ -1,4 +1,3 @@
-
 ---
 title: 'Webhook Implementation Guide: Best Practices for SCIM Integration'
 description: 'Learn best practices for implementing webhooks in your SCIM integration. Covers security measures, event handling, signature verification, and performance optimization techniques for real-time directory updates.'
@@ -95,7 +94,7 @@ async def api_webhook(request: Request):
         )
     )
 
-		response = JSONResponse(status_code=201, content='')
+  response = JSONResponse(status_code=201, content='')
     return response
 ```
 
@@ -200,12 +199,12 @@ async def api_webhook(request: Request):
     event_type = json.loads(body.decode())['type']
 
     match event_type:
-	    case 'scalekit.dir.user.crete':
-	        print('create')
-	    case 'scalekit.dir.user.update':
-	        print('update')
-	    case _:
-	        print('No matching event found')
+     case 'scalekit.dir.user.crete':
+         print('create')
+     case 'scalekit.dir.user.update':
+         print('update')
+     case _:
+         print('No matching event found')
 ```
 
 </TabItem>
