@@ -243,7 +243,7 @@ const { directory } =
 
 ```python
 directory = scalekit_client.directory.get_directory(
-  directory_id='<directory_id>', organization_id='<organization_id>'
+  organization_id='<organization_id>', directory_id='<directory_id>'
 )
 ```
 
@@ -293,7 +293,7 @@ const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>
 
 ```python
 directory_users = scalekit_client.directory.list_directory_users(
-  directory_id='<directory_id>', organization_id='<organization_id>'
+  organization_id='<organization_id>', directory_id='<directory_id>'
 )
 ```
 
