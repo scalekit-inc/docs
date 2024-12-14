@@ -11,13 +11,7 @@ curl --request GET \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
-const organizations = await sc.organization.listOrganization({
+const organizations = await scalekit.organization.listOrganization({
   pageSize: 10,
 });
 ```
@@ -26,12 +20,6 @@ const organizations = await sc.organization.listOrganization({
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 options = ListOrganizationOptions()
 options.page_size = 10
 
@@ -45,12 +33,6 @@ organizations = sc.organization.list_organizations(
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 organizations, err := sc.Organization.ListOrganizations(
   ctx,
   &scalekit.ListOrganizationOptions{
@@ -64,14 +46,7 @@ organizations, err := sc.Organization.ListOrganizations(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 ListOrganizationsResponse organizations = scalekitClient.organizations().listOrganizations(10, "");
-
 ```
 
 </TabItem>

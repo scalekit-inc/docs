@@ -10,44 +10,26 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{organiza
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
+```js
+await scalekit.directory.disableDirectory(
+  '<organization_id>',
+  '<directory_id>'
 );
-
-await scalekit.directory.disableDirectory('<organization_id>', '<directory_id>');
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-from scalekit import ScalekitClient
-
-# Initialize the SDK client
-scalekit_client = ScalekitClient(
-  '<SCALEKIT_ENVIRONMENT_URL>',
-  '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
-)
-
+```python
 directory_response = scalekit_client.directory.disable_directory(
   directory_id='<directory_id>', organization_id='<organization_id>'
 )
-print(f'Disable Directory Response: {str(directory_response)}')
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
+```go
 disable,err := sc.Directory().DisableDirectory(ctx, organizationId, directoryId)
 ```
 
@@ -55,19 +37,10 @@ disable,err := sc.Directory().DisableDirectory(ctx, organizationId, directoryId)
 
 <TabItem value="java" label="Java">
 
-```java showLineNumbers
-import com.scalekit.ScalekitClient;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
+```java
 ToggleDirectoryResponse disableResponse = scalekitClient
   .directories()
   .disableDirectory(directoryId, organizationId);
-
 ```
 
 </TabItem>

@@ -10,28 +10,14 @@ curl --location 'https://$ENV_URL/api/v1/organizations/{organizations_id}/direct
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 await scalekit.directory.listDirectories('<organization_id>');
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-from scalekit import ScalekitClient
-
-scalekit_client = ScalekitClient(
-  '<SCALEKIT_ENVIRONMENT_URL>',
-  '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
-)
-
+```python
 directories_list = scalekit_client.directory.list_directories(
 	organization_id='<organization_id>'
 )
@@ -40,14 +26,7 @@ directories_list = scalekit_client.directory.list_directories(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 directories,err := sc.Directory().ListDirectories(ctx, organizationId)
 ```
 
@@ -55,17 +34,8 @@ directories,err := sc.Directory().ListDirectories(ctx, organizationId)
 
 <TabItem value="java" label="Java">
 
-```java showLineNumbers
-import com.scalekit.ScalekitClient;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
+```java
 ListDirectoriesResponse response = scalekitClient.directories().listDirectories(organizationId);
-
 ```
 
 </TabItem>

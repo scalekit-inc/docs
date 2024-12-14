@@ -10,39 +10,21 @@ curl --location --request DELETE 'https://$ENV_URL/api/v1/organizations/{id}' \
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 await sc.organization.deleteOrganization(organizationId);
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```python
 sc.organization.delete_organization(organization_id)
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 err := sc.Organization.DeleteOrganization(
   ctx,
   organizationId

@@ -24,13 +24,7 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{organiza
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 const settings = {
   features: [{
     name: 'sso',
@@ -49,16 +43,7 @@ await sc.organization.updateOrganizationSettings('<organization_id>', settings);
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-from scalekit import ScalekitClient
-
-# Initialize the SDK client
-scalekit_client = ScalekitClient(
-  '<SCALEKIT_ENVIRONMENT_URL>',
-  '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
-)
-
+```python
 settings = [
         {
             "name": "sso",
@@ -78,13 +63,7 @@ scalekit_client.organization.update_organization_settings(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 settings := OrganizationSettings{
 		Features: []Feature{
 			{
@@ -106,16 +85,6 @@ organization,err := sc.Organization().UpdateOrganizationSettings(ctx, organizati
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-import com.scalekit.ScalekitClient;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
-
-
  OrganizationSettingsFeature featureSSO = OrganizationSettingsFeature.newBuilder()
                 .setName("sso")
                 .setEnabled(true)
