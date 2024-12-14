@@ -13,13 +13,7 @@ curl --location 'https://$ENV_URL/api/v1/organizations/{organization_id}/connect
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 const connection = await sc.connection.getConnection(
   organizationId,
   connectionId
@@ -29,14 +23,7 @@ const connection = await sc.connection.getConnection(
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```python
 connection = sc.connection.get_connection(
   organization_id,
   connection_id,
@@ -46,13 +33,7 @@ connection = sc.connection.get_connection(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 connection, err := sc.Connection.GetConnection(
   ctx,
   organizationId,
@@ -64,15 +45,8 @@ connection, err := sc.Connection.GetConnection(
 
 <TabItem value="java" label="Java">
 
-```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
+```java
 Connection connection = client.connections().getConnectionById(connectionId, organizationId);
-
 ```
 
 </TabItem>

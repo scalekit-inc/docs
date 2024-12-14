@@ -12,12 +12,6 @@ curl --location --request DELETE 'https://$ENV_URL/api/v1/organizations/{id}/por
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
 await sc.organization.deletePortalLink(organizationId, linkId);
 ```
 
@@ -25,30 +19,16 @@ await sc.organization.deletePortalLink(organizationId, linkId);
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 sc.organization.delete_portal_link(
   organization_id,
   link_id
 )
-
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 err := sc.Organization.DeletePortalLink(
   ctx,
   organizationId,
