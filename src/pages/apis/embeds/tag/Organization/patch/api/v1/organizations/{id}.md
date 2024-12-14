@@ -18,13 +18,7 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{id}' \
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 const organization = await sc.organization.updateOrganization(organization_id, {
   displayName: 'displayName',
   externalId: 'externalId',
@@ -34,13 +28,7 @@ const organization = await sc.organization.updateOrganization(organization_id, {
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```python
 organization = sc.organization.update_organization(organization_id, {
   display_name: "display_name",
   external_id: "external_id"
@@ -50,13 +38,7 @@ organization = sc.organization.update_organization(organization_id, {
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 organization, err := sc.Organization.UpdateOrganization(
   ctx,
   organizationId,
@@ -72,18 +54,11 @@ organization, err := sc.Organization.UpdateOrganization(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 UpdateOrganization updateOrganization = UpdateOrganization.newBuilder()
   .setDisplayName("Updated Organization Name")
   .build();
 
 Organization updatedOrganizationById = scalekitClient.organizations().updateById(organizationId, updateOrganization);
-
 ```
 
 </TabItem>

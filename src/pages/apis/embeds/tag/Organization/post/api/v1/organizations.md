@@ -18,13 +18,7 @@ curl --location 'https://$ENV_URL/api/v1/organizations' \
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 const organization = await sc.organization.createOrganization(name, {
   externalId: 'externalId',
 });
@@ -33,13 +27,7 @@ const organization = await sc.organization.createOrganization(name, {
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
+```python
 options = CreateOrganizationOptions()
 options.external_id = "externalId"
 organization = sc.organization.create_organization(
@@ -51,13 +39,7 @@ organization = sc.organization.create_organization(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 organization, err := sc.Organization.CreateOrganization(
   ctx,
   name,
@@ -71,17 +53,10 @@ organization, err := sc.Organization.CreateOrganization(
 
 <TabItem value="java" label="Java">
 
-```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
+```java
 CreateOrganization createOrganization = CreateOrganization.newBuilder().setDisplayName("Test Org").build();
 
 Organization createdOrganization = scalekitClient.organizations().create(createOrganization);
-
 ```
 
 </TabItem>

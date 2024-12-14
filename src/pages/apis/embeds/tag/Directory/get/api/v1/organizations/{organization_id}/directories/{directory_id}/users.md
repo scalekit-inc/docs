@@ -10,13 +10,7 @@ curl --location 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<organi
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-const scalekit = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>', '<directory_id>');
 ```
 
@@ -24,15 +18,6 @@ const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-from scalekit import ScalekitClient
-
-# Initialize the SDK client
-scalekit_client = ScalekitClient(
-  '<SCALEKIT_ENVIRONMENT_URL>',
-  '<SCALEKIT_CLIENT_ID>',
-  '<SCALEKIT_CLIENT_SECRET>'
-)
-
 directory_users = scalekit_client.directory.list_directory_users(
   directory_id='<directory_id>', organization_id='<organization_id>'
 )
@@ -41,13 +26,7 @@ directory_users = scalekit_client.directory.list_directory_users(
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-)
-
+```go
 options := &ListDirectoryUsersOptions{
 		PageSize: 10,
 		PageToken: "",
@@ -60,14 +39,6 @@ directoryUsers,err := sc.Directory().ListDirectoryUsers(ctx, organizationId, dir
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-import com.scalekit.ScalekitClient;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 var options = ListDirectoryResourceOptions.builder()
   .pageSize(10)
   .pageToken("")
@@ -77,7 +48,6 @@ var options = ListDirectoryResourceOptions.builder()
 ListDirectoryUsersResponse usersResponse = scalekitClient
   .directories()
   .listDirectoryUsers(directory.getId(), organizationId, options);
-
 ```
 
 </TabItem>

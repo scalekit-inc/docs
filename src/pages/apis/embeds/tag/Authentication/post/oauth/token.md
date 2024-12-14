@@ -2,7 +2,7 @@
 <Tabs groupId="tech-stack" querystring>
 <TabItem value="curl" label="cURL">
 
-```bash showLineNumbers
+```bash
 curl --request POST \
   --url 'https://$env_url/oauth/token
   ?code=jhasd72
@@ -15,15 +15,7 @@ curl --request POST \
 </TabItem>
 <TabItem value="nodejs" label="Node.js">
 
-```js showLineNumbers
-import { ScalekitClient } from "@scalekit-sdk/node";
-
-const scalekit = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
+```js
 // Handle the oauth redirect
 const { code, error, error_description } = req.query;
 if (error) {
@@ -34,7 +26,7 @@ if (error) {
 // Fetch user details by exchanding the code received in the request params
 const { user } = await scalekit.authenticateWithCode(
   code,
-  <redirectUri>
+  "<redirectUri>"
 );
 
 ```
@@ -42,15 +34,7 @@ const { user } = await scalekit.authenticateWithCode(
 </TabItem>
 <TabItem value="py" label="Python">
 
-```python showLineNumbers
-from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
-
-scalekit_client = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```python
 # Handle oauth redirect_url, fetch code and error_description from request params
 code = request.args.get('code')
 error = request.args.get('error')
@@ -61,7 +45,7 @@ if error:
 
 result = scalekit_client.authenticate_with_code(
   code,
-  <redirect_uri>
+  "<redirect_uri>"
 )
 # result.user has the authenticated user's details
 user_email = result.user.email
@@ -72,16 +56,7 @@ user_email = result.user.email
 </TabItem>
 <TabItem value="golang" label="Go">
 
-```go showLineNumbers
-import (
-  "github.com/scalekit/scalekit-sdk-go"
-)
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
+```go
 // Handle the oauth redirect
 code := r.URL.Query().Get("code")
 err := r.URL.Query().Get("error")
@@ -103,13 +78,7 @@ userEmail := user.Email
 
 <TabItem value="java" label="Java">
 
-```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
+```java
 String code = request.getParameter("code");
 String error = request.getParameter("error");
 String errorDescription = request.getParameter("error_description");

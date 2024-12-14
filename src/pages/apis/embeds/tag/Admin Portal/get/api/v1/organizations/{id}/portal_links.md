@@ -11,12 +11,6 @@ curl --location 'https://$ENV_URL/api/v1/organizations/{id}/portal_links' \
 <TabItem value="nodejs" label="Node.js">
 
 ```js showLineNumbers
-const sc = new ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-);
-
 const links = sc.organization.getPortalLinks(organization_id);
 ```
 
@@ -24,34 +18,19 @@ const links = sc.organization.getPortalLinks(organization_id);
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-
-sc = ScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 links = sc.organization.get_portal_links(
   organization_id
 )
-
 ```
 
 </TabItem>
 <TabItem value="golang" label="Go">
 
 ```go showLineNumbers
-sc := scalekit.NewScalekitClient(
-  <SCALEKIT_ENVIRONMENT_URL>,
-  <SCALEKIT_CLIENT_ID>,
-  <SCALEKIT_CLIENT_SECRET>
-)
-
 links, err := sc.Organization.GetPortalLinks(
   ctx,
   organizationId
 )
-
 ```
 
 </TabItem>
@@ -59,14 +38,7 @@ links, err := sc.Organization.GetPortalLinks(
 <TabItem value="java" label="Java">
 
 ```java
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 Link response = scalekitClient.organizations().generatePortalLink(organizationId);
-
 ```
 
 </TabItem>
