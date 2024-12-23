@@ -22,16 +22,12 @@ keywords:
 
 import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 
-## 1. Environment Setup
-
-### a. Install the Scalekit SDK
+## 1. Setup Scalekit SDK
 
 Scalekit offers language-specific SDKs for fast SSO integration. Use the installation instructions
 below for your technology stack.
 
 <InstallSDK />
-
-### b. Get API Credentials
 
 Click on "API Config" to view your credentials — Environment URL, Client ID, and Client Secret.
 
@@ -47,10 +43,15 @@ SCALEKIT_CLIENT_SECRET = '<YOUR_CLIENT_SECRET>';
 
 </CodeWithHeader>
 
+:::tip
+
+Download the [sample app](https://github.com/scalekit-inc/sso-express-example) used in this guide.
+
+:::
+
 ## 2. Create a login URL for Single Sign-On
 
-Generate a login URL for enterprise users to initiate single sign-on
-
+Use the <SimpleCode>getAuthorizationUrl</SimpleCode> method to generate a login URL for enterprise users. Provide your app's callback endpoint as the redirect URL and the user's email address as option. This method returns the authorization URL.
 <CodeWithHeader>
 
 <Tabs groupId="tech-stack" queryString>
@@ -155,14 +156,9 @@ After successful login, your app receives an authorization code, which can be ex
 
 ## 3. Prepare the manage user payload
 
-### a. Register Redirect URL
+### a. Handle User Payload
 
-Go to API Config tab, and register a redirect URL. Scalekit will use this URL to redirect users
-after authentication with users' identity provider.
-
-### b. Handle User Payload
-
-Get ready to facilitate successful sign-in, Scalekit sends a unique code to your Redirect URL.
+Get ready to facilitate successful sign-in, Scalekit sends a unique code to your callback handler.
 Exchange this server-side for access to user’s profile details
 
 <CodeWithHeader>
@@ -291,14 +287,15 @@ The <SimpleCode>idToken</SimpleCode> is a JWT containing user profile informatio
 
 :::
 
+### b. Register Redirect URL
 
+Navigate to the API Config tab and register your callback handler's endpoint URL as the redirect URL. ScaleKit will use this URL to redirect users after authentication with their identity provider.
 
+Once configured, initiate the process by redirecting users to the authorization URL. After authentication, the user's profile details will be sent to your callback handler.
 
 # Congratulations!
 
 You've successfully integrated SSO into your application!
-
-[Try the sample app](https://github.com/scalekit-inc/sso-express-example)
 
 Now, consider enabling users to authenticate directly
 <a href="/sso/guides/setup-sso/implement-idp-initiated-sso" target="_blank" rel="noopener noreferrer">through
