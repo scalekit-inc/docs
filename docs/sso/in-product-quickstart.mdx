@@ -177,10 +177,10 @@ if (error) {
   // Handle errors
 }
 
-const res = await scalekit.authenticateWithCode(code, redirectUri);
+const result = await scalekit.authenticateWithCode(code, redirectUri);
 
-// res.user has the authenticated user's details
-const userEmail = res.user.email;
+// result.user has the authenticated user's details
+const userEmail = result.user.email;
 
 // Next step: create a session for this user and allow access
 return res.redirect('/me/profile');
@@ -198,7 +198,7 @@ error_description = request.args.get('error_description')
 if error:
     raise Exception(error_description)
 
-result = scalekit.authenticate_with_code(code, <redirect_uri>)
+result = scalekit.authenticate_with_code(code, "<redirect_uri>")
 
 # result.user has the authenticated user's details
 user_email = result.user.email
@@ -219,14 +219,14 @@ if error != "" {
   // Handle errors
 }
 
-res, err: = a.scalekit.AuthenticateWithCode(code,<redirectUrl>)
+result, err: = a.scalekit.AuthenticateWithCode(code,<redirectUrl>)
 
 if err != nil {
   // Handle errors
 }
 
-// res.User has the authenticated user's details
-userEmail: = res.User.Email
+// result.User has the authenticated user's details
+userEmail: = result.User.Email
 
 // Next step: create a session for this user and allow access
 ```
@@ -247,8 +247,8 @@ if (error != null && !error.isEmpty()) {
 }
 
 try {
-    AuthenticationResponse res = scalekit.authentication().authenticateWithCode(code, redirectUrl);
-    String userEmail = res.getIdTokenClaims().getEmail();
+    AuthenticationResponse result = scalekit.authentication().authenticateWithCode(code, redirectUrl);
+    String userEmail = result.getIdTokenClaims().getEmail();
 
     // Next step: create a session for this user and allow access
 } catch (Exception e) {
@@ -263,7 +263,34 @@ try {
 
 Your app is now ready to handle user payloads post-authentication.
 
-Let's generate the authorization URL for the user to initiate login via SSO.
+The <SimpleCode>result</SimpleCode> object
+
+<CodeWithHeader title="Result Object">
+
+<JsonViewer
+src={{
+  user: {
+    email: "john.doe@example.com",
+    familyName: "Doe",
+    givenName: "John",
+    username: "john.doe@example.com",
+    id: "conn_326735950921X7829;cc4aaef2-b395-4b40-81ae-b8183c1006e1"
+  },
+  idToken: "<USER_PROFILE_JWT>", // JWT containing user profile information
+  accessToken: "<API_CALL_JWT>", // Token for API calls
+  expiresIn: 899
+}}
+/>
+
+
+</CodeWithHeader>
+
+:::tip
+
+The <SimpleCode>idToken</SimpleCode> is a JWT containing user profile information, while the <SimpleCode>accessToken</SimpleCode> is used for API calls.
+
+:::
+
 
 
 
