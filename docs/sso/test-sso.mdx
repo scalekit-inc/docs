@@ -57,6 +57,7 @@ Here is a code snippet that demonstrates generating an Authorization URL using a
 of the sequence diagram. See the Authorization URL [documentation](/sso/guides/key-concepts/authorization-url) for more
 details.
 
+<CodeWithHeader title="Generate an Authorization URL using an Organization ID">
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
@@ -119,7 +120,7 @@ String url = scalekitClient
 
 </TabItem>
 </Tabs>
-
+</CodeWithHeader>
 The user will be redirected to the Identity Provider (IdP) Simulator, where they can select a scenario to simulate as a
 user. Select "User Login via SSO" to view a form. This form is used to simulate the Identity Provider (IdP) passing the
 relevant details that correspond to a user signing into your application.
@@ -129,10 +130,7 @@ relevant details that correspond to a user signing into your application.
   <figcaption>User Login via SSO</figcaption>
 </figure>
 
-Enter the user details simulating an user signing into your application via SSO. Your app will receive the
-
-<SimpleCode>idToken</SimpleCode> indicating that your simulation was successful. The following are a details encoded in the
-<SimpleCode>idToken</SimpleCode>.
+Enter the user details simulating an user signing into your application via SSO. Your app will receive the <SimpleCode>idToken</SimpleCode> indicating that your simulation was successful. The following are a details encoded in the <SimpleCode>idToken</SimpleCode>.
 
 <figure className="limited-width">
   ![IdP Simulator](@site/docs/sso/assets/single-sign-on/testing-sso/with-idp-simulator/2.2.png)
@@ -199,7 +197,7 @@ converts an IdP-initiated SSO into an SP-initiated SSO.
 
 Users may encounter errors in less-than-ideal scenarios. Your app should be equipped to handle these situations to meet
 user expectations. To simulate and manage errors, after redirecting to the Authorization URL, select the "Error"
-scenario and proceed
+scenario and proceed.
 
 <figure>
   ![Error Scenario](@site/docs/sso/assets/single-sign-on/testing-sso/with-idp-simulator/4.0.png)
@@ -210,18 +208,3 @@ scenario and proceed
 
 After validating all scenarios, you are ready to go live. Visit our [Launch Checklist](/sso/launch-checklist) guide
 before you start onboarding real customers in your production environment.
-
-```ts twoslash
-interface Todo {
-  title: string;
-}
-// ---cut---
-const todo: Readonly<Todo> = {
-  title: 'Delete inactive users'.toUpperCase(),
-};
-//    ^?
-
-todo.title = 'Hello';
-Number.parseInt('123', 10);
-//      ^?
-```
