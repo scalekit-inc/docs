@@ -179,8 +179,6 @@ public String webhook(
 
 ```go showLineNumbers
 mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
-    webhookSecret := os.Getenv("SCALEKIT_WEBHOOK_SECRET")
-
     // Read request body
     bodyBytes, err := io.ReadAll(r.Body)
     if err != nil {
