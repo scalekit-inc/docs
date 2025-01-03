@@ -93,7 +93,8 @@ to your app, based on the role information configured in the Scalekit Dashboard.
 
 ```javascript showLineNumbers
 // Webhook endpoint
-app.post('/api/webhook/role-assignment', async (req, res) => {
+app.post('/webhook', async (req, res) => {
+  // Extract event data
   const event = req.body;
   const { email, name, roles } = event.data;
   console.log('Admin added user to Viewer Group -> Scalekit informs Your App\n');
@@ -106,7 +107,9 @@ app.post('/api/webhook/role-assignment', async (req, res) => {
   await assignRole(roleName, email);
   console.log('App updated access for user:', email);
 
-  res.status(201).json({ message: 'Role assigned' });
+  res.status(201).json({
+    message: 'Role assigned'
+  });
 });
 ```
 
@@ -114,48 +117,97 @@ app.post('/api/webhook/role-assignment', async (req, res) => {
 
 <TabItem value="python" label="Python">
 
-```python
+```python showLineNumbers
 from fastapi import FastAPI, Request
 
 app = FastAPI()
 
 @app.post("/webhook")
 async def api_webhook(request: Request):
-
+    # Parse request body
     body = await request.body()
-		user_roles = json.loads(body.decode())['data']['roles']
-		user_email = json.loads(body.decode())['data']['email']
+    payload = json.loads(body.decode())
 
-		print("User Roles:" + str(roles))
-		print("User email:" + str(email))
+    # Extract user data
+    user_roles = payload['data']['roles']
+    user_email = payload['data']['email']
 
-		# business logic to assign role
-		await assign_role(roles[0], email)
+    print("User Roles:", str(roles))
+    print("User email:", str(email))
 
-    response = JSONResponse(status_code=201, content='')
-    return response
+    # Business logic to assign role
+    await assign_role(roles[0], email)
+
+    return JSONResponse(
+        status_code=201,
+        content=''
+    )
 ```
 
 </TabItem>
 
 <TabItem value="java" label="Java">
 
-```java
+```java showLineNumbers
 @PostMapping("/webhook")
-public String webhook(@RequestBody String body, @RequestHeader Map<String, String> headers) {
-  ObjectMapper mapper = new ObjectMapper();
-  try {
-    JsonNode node = mapper.readTree(body);
-    JsonNode roles = node.get("data").get("roles");
-    String email = node.get("data").get("email").asText();
-    System.out.println(roles);
-    System.out.println(email);
-    //Add role to user
-  } catch (IOException e) {
-    return "error";
-  }
-  return "ok";
+public String webhook(
+    @RequestBody String body,
+    @RequestHeader Map<String, String> headers
+) {
+    ObjectMapper mapper = new ObjectMapper();
+
+    try {
+        JsonNode node = mapper.readTree(body);
+        JsonNode roles = node.get("data").get("roles");
+        String email = node.get("data").get("email").asText();
+
+        System.out.println(roles);
+        System.out.println(email);
+        // Add role to user
+
+    } catch (IOException e) {
+        return "error";
+    }
+
+    return "ok";
 }
+```
+
+</TabItem>
+
+<TabItem value="go" label="Go">
+
+```go showLineNumbers
+mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
+    webhookSecret := os.Getenv("SCALEKIT_WEBHOOK_SECRET")
+
+    // Read request body
+    bodyBytes, err := io.ReadAll(r.Body)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    // Parse webhook payload
+    var body struct {
+        Data map[string]interface{} `json:"data"`
+    }
+
+    err = json.Unmarshal(bodyBytes, &body)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    // Extract user data
+    roles := body.Data["roles"]
+    email := body.Data["email"]
+
+    fmt.Println("Roles: ", roles)
+    fmt.Println("Email: ", email)
+
+    w.WriteHeader(http.StatusOK)
+})
 ```
 
 </TabItem>

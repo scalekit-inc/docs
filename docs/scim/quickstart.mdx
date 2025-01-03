@@ -378,7 +378,7 @@ the Scalekit dashboard.
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-app.post('/api/webhook/user-access', async (req, res) => {
+app.post('/webhook', async (req, res) => {
   // Parse the JSON body of the request
   const event = req.body;
   const { email, name } = event.data;
@@ -456,6 +456,34 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 ```
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+
+```go
+webhookSecret := os.Getenv("SCALEKIT_WEBHOOK_SECRET")
+mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	headers := map[string]string{
+		"webhook-id":        r.Header.Get("webhook-id"),
+		"webhook-signature": r.Header.Get("webhook-signature"),
+		"webhook-timestamp": r.Header.Get("webhook-timestamp"),
+	}
+	_, err = sc.VerifyWebhookPayload(webhookSecret, headers, body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+})
+
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 
