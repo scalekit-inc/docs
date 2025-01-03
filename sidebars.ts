@@ -328,7 +328,7 @@ const sidebars: SidebarsConfig = {
     // {
     //   type: 'doc',
     //   label: 'JumpCloud',
-    //   id: 'integrations/jumpcloud-scim',
+    //   id: 'integrations/scim-connections/jumpcloud',
     // },
     {
       type: 'doc',
