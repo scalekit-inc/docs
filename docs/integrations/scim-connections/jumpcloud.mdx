@@ -82,7 +82,8 @@ to listen to events and maintain synchronization with your organization.
 ## Configure Provisioning Settings
 
 Click on "Configure Application" and proceed to configure the application settings. This opens a
-modal with "Identity Management" selected.
+modal with "Identity Management" selected. Enter the Endpoint URL and Bearer Token provided by
+Scalekit.
 
 <figure>
   ![Configure Application
@@ -90,32 +91,50 @@ modal with "Identity Management" selected.
   <figcaption>Configuring application settings in JumpCloud.</figcaption>
 </figure>
 
-## Enable Sending and Receiving Events in Provisioning Settings
+"Test Connection" will send the user details to Scalekit (hence your app).
 
-In your JumpCloud admin panel, navigate to the relevant settings that allow Scalekit to send and
-receive events. This includes copying any necessary Endpoint URLs and Bearer Tokens from Scalekit
-into JumpCloud.
+:::tip
+
+Explore the logs in Scalekit Dashboard > Organizations > Customer > Events. This will help you
+troubleshoot any issues with the connection or inspect the connection for better understanding.
+
+:::
+
+## Group Management
+
+Jumpcloud verifies if Scalekit supports groups, "Group Management" section appears. JumpCloud uses
+groups as the primary way provision users to your application.
 
 <figure>
-  ![Provisioning Settings](@site/docs/integrations/assets/custom-scim-32x32.png)
+  ![Provisioning
+  Settings](@site/docs/scim/assets/integrations/jumpcloud-scim/7-group-management.png)
   <figcaption>Enabling provisioning settings in JumpCloud.</figcaption>
 </figure>
+
+Click "Activate" and then "Save".
 
 ## User and Group Assignment
 
 To assign users to the newly integrated application:
 
-1. Navigate to the "User Groups" section
-2. Click on "+" to add users or groups as needed
-3. Ensure that all necessary metadata fields are populated correctly
-
 <figure>
-  ![User Assignment](@site/docs/integrations/assets/custom-scim-32x32.png)
+  ![User Assignment](@site/docs/scim/assets/integrations/jumpcloud-scim/8-group-assigned.png)
   <figcaption>Assigning users to the application in JumpCloud.</figcaption>
 </figure>
 
-:::tip Make sure to organize your users into groups for easier management and assignment of
-permissions. :::
+1. Go to "SSO Applications" and select the application you created. This opens an Modal. Select the
+   User Group and click on "Save".
+2. Click on the "User Groups" tab and select the apps you want to assign to this group of users.
+3. If you don't have groups you can create one from "User Groups" tab. In this example, we have
+   created a group called "YourApp Users" and assigned the "Provisioning via Scalekit" app to it.
+4. Click on "Save Group" to save the changes.
+5. Now try adding a user to the group. If you don't have users, you can create one from "Users" tab.
+
+:::tip
+
+Make sure to organize your users into groups for easier management and assignment of permissions.
+
+:::
 
 ## Verification
 
@@ -123,6 +142,6 @@ After completing these steps, verify that users and groups are successfully sync
 and JumpCloud. Check for any errors or issues in the connection logs.
 
 <figure>
-  ![Verification Process](@site/docs/integrations/assets/custom-scim-32x32.png)
-  <figcaption>Verifying user synchronization between platforms.</figcaption>
+  ![Verification Process](@site/docs/scim/assets/integrations/jumpcloud-scim/9-synced-user.png)
+  <figcaption>Synced user log in Scalekit Dashboard.</figcaption>
 </figure>
