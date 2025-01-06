@@ -69,45 +69,7 @@ Before diving in, ensure you have:
 Scalekit offers language-specific SDKs for fast SSO integration. Use the installation instructions
 below for your technology stack:
 
-<CodeWithHeader title="Setup SDK">
-
-<Tabs groupId="tech-stack" queryString>
-<TabItem value="nodejs" label="Node.js">
-
-```bash
-npm install @scalekit-sdk/node
-```
-
-</TabItem>
-
-<TabItem value="python" label="Python">
-
-```bash
-pip install scalekit-sdk-python
-```
-
-</TabItem>
-
-<TabItem value="java" label="Java">
-
-```groovy
-/* Gradle users - add the following to your dependencies in build file */
-implementation "com.scalekit:scalekit-sdk-java:1.0.3"
-```
-
-```xml
-<!-- Maven users - add the following to your `pom.xml` -->
-<dependency>
-    <groupId>com.scalekit</groupId>
-    <artifactId>scalekit-sdk-java</artifactId>
-    <version>1.0.3</version>
-</dependency>
-```
-
-</TabItem>
-</Tabs>
-</CodeWithHeader>
-
+<InstallSDK />
 
 Navigate to the API Config tab in the Scalekit Dashboard to obtain your credentials. Store your
 credentials securely in a <SimpleCode>.env</SimpleCode> file:
@@ -176,10 +138,6 @@ print(f'Organisation details: {org_list[0]}')
 
 </TabItem>
 
-
-
-{/*
-
 <TabItem value="go" label="Go" >
 
 ```go
@@ -197,7 +155,6 @@ organization, err := sc.Organization.GetOrganization(
 
 </TabItem>
 
-\*/}
 
 <TabItem value="java" label="Java">
 
@@ -242,23 +199,30 @@ const { directory } =
 <TabItem value="python" label="Python">
 
 ```python
+# Get Directory using Organization ID and Directory ID
 directory = scalekit_client.directory.get_directory(
   organization_id='<organization_id>', directory_id='<directory_id>'
+)
+
+# Get Directory using Organization ID
+primary_directory = scalekit_client.directory.get_primary_directory_by_organization_id(
+  organization_id='<organization_id>'
 )
 ```
 
 </TabItem>
 
-{/* <TabItem value="go" label="Go">
+ <TabItem value="go" label="Go">
 
 ```go
-
-
+// Get Directory using Organization ID and Directory ID
 directory, err := sc.Directory().GetDirectory(ctx, organizationId, directoryId)
 
+// Get Directory using Organization ID
+directory, err := sc.Directory().GetPrimaryDirectoryByOrganizationId(ctx, organizationId)
 ```
 
-</TabItem> */}
+</TabItem>
 
 <TabItem value="java" label="Java">
 
@@ -299,19 +263,18 @@ directory_users = scalekit_client.directory.list_directory_users(
 
 </TabItem>
 
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
-
 options := &ListDirectoryUsersOptions{
 		PageSize: 10,
 		PageToken: "",
 }
-directoryUsers,err := sc.Directory().ListDirectoryUsers(ctx, organizationId, directoryId, options)
 
+directoryUsers,err := sc.Directory().ListDirectoryUsers(ctx, organizationId, directoryId, options)
 ```
 
-</TabItem> */}
+</TabItem>
 
 <TabItem value="java" label="Java">
 
@@ -325,7 +288,6 @@ var options = ListDirectoryResourceOptions.builder()
 ListDirectoryUsersResponse usersResponse = scalekitClient
   .directories()
   .listDirectoryUsers(directory.getId(), organizationId, options);
-
 ```
 
 </TabItem>
@@ -346,7 +308,10 @@ Retrieve groups within a directory:
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-const { groups } = await scalekit.directory.listDirectoryGroups('<organization_id>', '<directory_id>');
+const { groups } = await scalekit.directory.listDirectoryGroups(
+  '<organization_id>',
+  '<directory_id>',
+);
 ```
 
 </TabItem>
@@ -361,7 +326,7 @@ directory_groups = scalekit_client.directory.list_directory_groups(
 
 </TabItem>
 
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
 options := &ListDirectoryGroupsOptions{
@@ -372,7 +337,7 @@ options := &ListDirectoryGroupsOptions{
 directoryGroups, err := sc.Directory().ListDirectoryGroups(ctx, organizationId, directoryId, options)
 ```
 
-</TabItem> */}
+</TabItem>
 
 <TabItem value="java" label="Java">
 
@@ -413,7 +378,7 @@ the Scalekit dashboard.
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-app.post('/api/webhook/user-access', async (req, res) => {
+app.post('/webhook', async (req, res) => {
   // Parse the JSON body of the request
   const event = req.body;
   const { email, name } = event.data;
@@ -491,6 +456,34 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 ```
 
 </TabItem>
+
+<TabItem value="go" label="Go">
+
+```go
+webhookSecret := os.Getenv("SCALEKIT_WEBHOOK_SECRET")
+mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	headers := map[string]string{
+		"webhook-id":        r.Header.Get("webhook-id"),
+		"webhook-signature": r.Header.Get("webhook-signature"),
+		"webhook-timestamp": r.Header.Get("webhook-timestamp"),
+	}
+	_, err = sc.VerifyWebhookPayload(webhookSecret, headers, body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusUnauthorized)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+})
+
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 
