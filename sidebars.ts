@@ -325,11 +325,11 @@ const sidebars: SidebarsConfig = {
       label: 'Azure AD',
       id: 'integrations/azure-scim',
     },
-    // {
-    //   type: 'doc',
-    //   label: 'JumpCloud',
-    //   id: 'integrations/jumpcloud-scim',
-    // },
+    {
+      type: 'doc',
+      label: 'JumpCloud',
+      id: 'integrations/scim-connections/jumpcloud',
+    },
     {
       type: 'doc',
       label: 'OneLogin',
