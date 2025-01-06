@@ -145,3 +145,11 @@ and JumpCloud. Check for any errors or issues in the connection logs.
   ![Verification Process](@site/docs/scim/assets/integrations/jumpcloud-scim/9-synced-user.png)
   <figcaption>Synced user log in Scalekit Dashboard.</figcaption>
 </figure>
+
+:::note
+
+When an group is dis-associated from an app in JumpCloud ("Provisioning via Scalekit" app),
+JumpCloud sends an group update event to Scalekit that unassigns all the group users to your app.
+However, the group association is not removed in Scalekit automatically.
+
+:::
