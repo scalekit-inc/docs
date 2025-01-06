@@ -9,9 +9,8 @@ displayed_sidebar: integrationsSidebar
 ## Overview
 
 This guide is designed to assist <TermTip jargon="administrator"/>s in integrating JumpCloud with
-the Scalekit platform using <TermTip jargon="SCIM"/> (System for Cross-domain Identity Management)
-provisioning. By following these steps, you can automate user management tasks and ensure that
-access rights are consistently updated.
+the Scalekit platform using <TermTip jargon="SCIM"/> provisioning. By following these steps, you can
+automate user management tasks and ensure that access rights are consistently updated.
 
 This registration sets up the following:
 
@@ -24,46 +23,70 @@ By setting up these components, you enable seamless synchronization between Jump
 
 ## Create an Endpoint and API Token
 
-Open the <TermTip jargon="Admin Portal"/> and navigate to "SCIM Provisioning." Click on "Edit" to
-configure your settings.
+Open the <TermTip jargon="Admin Portal" /> from the app being onboarded and select the "SCIM
+Provisioning" tab. A list of Directory Providers will be displayed. Choose "JumpCloud" as your
+Directory Provider. If the Admin Portal is not accessible from the app, request instructions from
+the app owner.
 
 <figure>
-  ![SCIM Provisioning Setup](@site/docs/integrations/assets/custom-scim-32x32.png)
-  <figcaption>Setting up SCIM Provisioning in Scalekit.</figcaption>
+  ![SCIM Provisioning
+  Setup](@site/docs/scim/assets/integrations/jumpcloud-scim/1-select-jumpcloud.png)
+  <figcaption>Selecting JumpCloud as the Directory Provider in Scalekit.</figcaption>
 </figure>
+
+<figure>
+  ![SCIM Provisioning Setup](@site/docs/scim/assets/integrations/jumpcloud-scim/1-2-scimconfigs.png)
+  <figcaption>
+    JumpCloud directory sync setup: Endpoint URL and one-time visible bearer token provided.
+  </figcaption>
+</figure>
+
+This action will generate an Endpoint URL and Bearer token for your organization, allowing the app
+to listen to events and maintain synchronization with your organization.
 
 ## Add a New Application in JumpCloud
 
-1. Go to the JumpCloud Admin Portal and click on "+ Add New Application."
+1. Go to the JumpCloud Admin Portal > SSO Applications and click on "+ Add New Application."
 
 <figure>
-  ![Add New Application](@site/docs/integrations/assets/custom-scim-32x32.png)
+  ![Add New Application](@site/docs/scim/assets/integrations/jumpcloud-scim/2-add-new-app.png)
   <figcaption>Adding a new application in JumpCloud.</figcaption>
 </figure>
 
-2. In the JumpCloud Admin Portal, select the application you want to integrate with Scalekit. You
-   may need to search for it if it's not immediately visible.
+2. Create a custom application by trying to do an non-existent application search.
 
 <figure>
-  ![Application Selection](@site/docs/integrations/assets/custom-scim-32x32.png)
-  <figcaption>Selecting an application for integration.</figcaption>
+  ![Application
+  Selection](@site/docs/scim/assets/integrations/jumpcloud-scim/3-custom-integration.png)
+  <figcaption>Creating a custom integration in JumpCloud</figcaption>
 </figure>
 
-3. Click "Next" and choose the features you would like to enable, such as Single Sign-On (SSO) or
-   user import options.
+3. Click "Next" and choose the features you would like to enable. Since your application wants to
+   provision new users and user updates from JumpCloud, select "Export users to this app (Identity
+   Management)"
 
 <figure>
-  ![Feature Selection](@site/docs/integrations/assets/custom-scim-32x32.png)
-  <figcaption>Selecting features for the application.</figcaption>
+  ![Feature Selection](@site/docs/scim/assets/integrations/jumpcloud-scim/4-export-users.png)
+  <figcaption>Enable JumpCloud to notify your app of user changes</figcaption>
 </figure>
 
-## Configure Application Settings
-
-After selecting your features, proceed to configure the application settings. You may need to enter
-specific configuration details such as service provider settings.
+4. Finally, enter the general info such as display name (this example uses "Provisioning via
+   Scalekit") and click "Save Application"
 
 <figure>
-  ![Configure Application Settings](@site/docs/integrations/assets/custom-scim-32x32.png)
+  ![Successful
+  addition](@site/docs/scim/assets/integrations/jumpcloud-scim/5-success-app-creation.png)
+  <figcaption>Successfully added the application in JumpCloud</figcaption>
+</figure>
+
+## Configure Provisioning Settings
+
+Click on "Configure Application" and proceed to configure the application settings. This opens a
+modal with "Identity Management" selected.
+
+<figure>
+  ![Configure Application
+  Settings](@site/docs/scim/assets/integrations/jumpcloud-scim/6-scim-config-page.png)
   <figcaption>Configuring application settings in JumpCloud.</figcaption>
 </figure>
 

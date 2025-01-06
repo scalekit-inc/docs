@@ -8,32 +8,43 @@ displayed_sidebar: integrationsSidebar
 
 ## Overview
 
-This guide helps administrators sync their EntraID directory with an application they want to onboard to their organization. Integrating your application with Entra ID automates user management tasks and ensures access rights stay up-to-date.
+This guide helps administrators sync their EntraID directory with an application they want to
+onboard to their organization. Integrating your application with Entra ID automates user management
+tasks and ensures access rights stay up-to-date.
 
 This registration sets up the following:
 
-1. **Endpoint**: This is the URL where EntraID sends requests to the onboarded app, acting as a communication point between them.
-2. **Bearer Token**: Used by EntraID to authenticate its requests to the endpoint, ensuring security and authorization.
+1. **Endpoint**: This is the URL where EntraID sends requests to the onboarded app, acting as a
+   communication point between them.
+2. **Bearer Token**: Used by EntraID to authenticate its requests to the endpoint, ensuring security
+   and authorization.
 
 These components enable seamless synchronization between your application and the EntraID directory.
 
 ## Create an Endpoint and API Token
 
-Open the <TermTip jargon="Admin Portal" /> from the app being onboarded. Select the "Directory Sync" tab to display a list of Directory Providers. Choose "Entra ID" as your Directory Provider. If the Admin Portal is not accessible from the app, request instructions from the app owner.
+Open the <TermTip jargon="Admin Portal" /> from the app being onboarded. Select the "Directory Sync"
+tab to display a list of Directory Providers. Choose "Entra ID" as your Directory Provider. If the
+Admin Portal is not accessible from the app, request instructions from the app owner.
 
 <figure>
   ![Azure SCIM](@site/docs/scim/assets/integrations/entra-id-scim/00.png)
-  <figcaption>Setting up Directory Sync in the admin portal of an app being onboarded: Entra ID selected as the provider, awaiting configuration.</figcaption>
+  <figcaption>
+    Setting up Directory Sync in the admin portal of an app being onboarded: Entra ID selected as
+    the provider, awaiting configuration.
+  </figcaption>
 </figure>
-
 
 :::note
 
-If the "Directory Sync" tab is not visible, the feature may not be enabled for your organization. Contact the app owner to enable it via the Scalekit Dashboard: Organizations > Your Organization > Enable Directory Sync.
+If the "SCIM Provisioning" tab is not visible, the feature may not be enabled for your organization.
+Contact the app owner to enable it via the Scalekit Dashboard: Organizations > Your Organization >
+Enable Directory Sync.
 
 :::
 
-Click "Configure" after selecting "EntraID" to generate an Endpoint URL and Bearer token for your organization, allowing the app to listen to events and maintain synchronization.
+Click "Configure" after selecting "EntraID" to generate an Endpoint URL and Bearer token for your
+organization, allowing the app to listen to events and maintain synchronization.
 
 <figure>
   ![Azure SCIM](@site/docs/scim/assets/integrations/entra-id-scim/00-2.png)
@@ -65,7 +76,8 @@ Click "+ Create your own application" in the modal that opens on the right.
   <figcaption>Creating a new application in Microsoft Entra ID.</figcaption>
 </figure>
 
-Name the app you want to onboard (e.g., "Hero SaaS") and click "Create", leaving other defaults as-is.
+Name the app you want to onboard (e.g., "Hero SaaS") and click "Create", leaving other defaults
+as-is.
 
 <figure>
   ![Azure SCIM](@site/docs/scim/assets/integrations/entra-id-scim/04.png)
@@ -84,6 +96,7 @@ In the "Hero SaaS" app's overview, select "Manage > Provisioning" from the left 
 Set the Provisioning Mode to "Automatic".
 
 In the Admin Credentials section, set:
+
 - Tenant URL: _Endpoint_
 - Secret Token: _Bearer Token generated previously_
 
@@ -117,14 +130,16 @@ Entra ID is now set up to send events to Hero SaaS when users are added or remov
 
 ## Testing User/Group Provisioning
 
-In the Hero SaaS Application, go to "Provision on demand". Input a user name from your user list and click "Provision".
+In the Hero SaaS Application, go to "Provision on demand". Input a user name from your user list and
+click "Provision".
 
 <figure>
   ![Azure SCIM](@site/docs/scim/assets/integrations/entra-id-scim/020.png)
   <figcaption>Provisioning a user/group on demand.</figcaption>
 </figure>
 
-Once provisioned, the user should appear in the admin portal, showing how many users have access to the Hero SaaS app.
+Once provisioned, the user should appear in the admin portal, showing how many users have access to
+the Hero SaaS app.
 
 <figure>
   ![Azure SCIM](@site/docs/scim/assets/integrations/entra-id-scim/013.png)
@@ -133,6 +148,8 @@ Once provisioned, the user should appear in the admin portal, showing how many u
 
 :::note
 
-Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group". Microsoft docs state it takes about 40 minutes to successfully send these events to the Hero SaaS App.
+Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group".
+Microsoft docs state it takes about 40 minutes to successfully send these events to the Hero SaaS
+App.
 
 :::
