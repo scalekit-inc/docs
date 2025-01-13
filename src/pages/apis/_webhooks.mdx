@@ -10,7 +10,19 @@ import { Endpoint } from '@site/src/components/endpoint';
     <div className="col col--6">
         <CodeWithHeader title="List of Events">
             <div className="endpoints">
-                {/* <Endpoint
+                <Endpoint
+                    key='scalekit.dir.conn.enable'
+                    href='#tag/Webhooks/scalekit.dir.conn.enable'
+                    method='event'
+                    label='scalekit.dir.conn.enable'
+                />
+                <Endpoint
+                    key='scalekit.dir.conn.disable'
+                    href='#tag/Webhooks/scalekit.org.conn.disable'
+                    method='event'
+                    label='scalekit.dir.conn.disable'
+                />
+                <Endpoint
                     key='scalekit.dir.sync.enable'
                     href='#tag/Webhooks/scalekit.dir.sync.enable'
                     method='event'
@@ -21,7 +33,7 @@ import { Endpoint } from '@site/src/components/endpoint';
                     href='#tag/Webhooks/scalekit.dir.sync.disable'
                     method='event'
                     label='scalekit.dir.sync.disable'
-                /> */}
+                />
                 <Endpoint
                     key='scalekit.dir.user.create'
                     href='#tag/Webhooks/scalekit.dir.user.create'
@@ -61,6 +73,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             </div>
         </CodeWithHeader>
     </div>
+
 </div>
 
 <IntersectingHeader id="tag/Webhooks/object" title="Event Object" subheading="true" classList="ApiCategoryList"/>
@@ -98,517 +111,1134 @@ import { Endpoint } from '@site/src/components/endpoint';
     </div>
 </div>
 
-{/* <IntersectingHeader id="tag/Webhooks/scalekit.dir.sync.enable" title="scalekit.dir.sync.enable" subheading="true" classList="ApiCategoryList webhook method"/>
+<IntersectingHeader id="tag/Webhooks/scalekit.org.conn.enable" title="scalekit.org.conn.enable" subheading="true" classList="ApiCategoryList webhook method"/>
 <div className="row section">
     <div className="col col--6">
-        This webhook is triggered when a directory sync is enabled.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="DirectoryType" type="string" description="The type of directory synchronization." />
-            <Parameter attrKey="Enabled" type="boolean" description="Indicates if the directory sync is enabled." />
-            <Parameter attrKey="EnvironmentID" type="string" description="Identifier for the environment." />
-            <Parameter attrKey="ID" type="string" description="Unique identifier for the directory sync configuration." />
-            <Parameter attrKey="LastSyncAt" type="null" description="Timestamp of the last synchronization, null if not yet synced." />
-            <Parameter attrKey="Mappings" type="null" description="Mappings for directory synchronization, null if not specified." />
-            <Parameter attrKey="Name" type="string" description="Name of the directory sync configuration." />
-            <Parameter attrKey="OrganizationID" type="string" description="Identifier for the organization." />
-            <Parameter attrKey="Provider" type="string" description="The provider of the directory." />
-            <Parameter attrKey="Settings" type="null" description="Settings for the directory synchronization, null if not specified." />
-            <Parameter attrKey="Source" type="string" description="Source of the directory synchronization." />
-            <Parameter attrKey="Status" type="string" description="Current status of the directory synchronization process." />
-            <Parameter attrKey="updated_at" type="string" description="Timestamp of when the configuration was last updated." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.sync.enable">
-        <JsonViewer src={{
-          "spec_version": "1",
-          "id": "evt_40649321678373383",
-          "type": "scalekit.dir.sync.enable",
-          "occurred_at": "2024-10-07T10:14:43.793861Z",
-          "environment_id": "env_33245698191261706",
-          "organization_id": "org_40649310706073971",
-          "object": "OBJECT_TYPE_UNSPECIFIED",
-          "data": {
-            "DirectoryType": "SCIM",
-            "Enabled": true,
-            "EnvironmentID": "env_33245698191261706",
-            "ID": "dir_40649321661596167",
-            "LastSyncAt": null,
-            "Mappings": null,
-            "Name": "",
-            "OrganizationID": "org_40649310706073971",
-            "Provider": "MICROSOFT_AD",
-            "Settings": null,
-            "Source": "",
-            "Status": "IN_PROGRESS",
-            "updated_at": "2024-10-07T10:14:43.785152047Z"
-          }
-        }} />
-        </CodeWithHeader>
-    </div>
-</div> */}
+    <ul className="ApiReference-Parameters">
+  <li className="ApiReference-Parameter header">Event Object Attributes</li>
+  <Parameter
+    attrKey="spec_version"
+    type="string"
+    description="Version of the event specification format"
+  />
+  <Parameter attrKey="category" type="string" description="Categorization of the event type" />
+  <Parameter attrKey="type" type="string" description="Specific type of event that occurred" />
+  <Parameter
+    attrKey="occured_at"
+    type="string"
+    description="Timestamp when the event was generated in RFC 3339 format"
+  />
+  <Parameter attrKey="source" type="string" description="Origin of the event" />
+  <Parameter attrKey="object" type="string" description="Type of object the event relates to" />
+  <Parameter attrKey="id" type="string" description="Unique identifier for the specific event" />
+  <Parameter
+    attrKey="data"
+    type="object"
+    description="Detailed information about the event">
+    <details>
+      <summary>Data Attributes</summary>
+      <ul className="ApiReference-Parameters">
+        <Parameter
+          attrKey="id"
+          type="string"
+          description="Unique identifier for the connection"
+        />
 
-{/* <IntersectingHeader id="tag/Webhooks/scalekit.dir.sync.disable" title="scalekit.dir.sync.disable" subheading="true" classList="ApiCategoryList webhook method"/>
-<div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a directory sync is disabled.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="directory_type" type="string" description="Type of directory protocol used for synchronization." />
-            <Parameter attrKey="enabled" type="boolean" description="Indicates whether the directory synchronization is currently enabled or disabled." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the directory connection." />
-            <Parameter attrKey="last_sync_at" type="string" description="Timestamp of the most recent directory synchronization." />
-            <Parameter attrKey="organization_id" type="string" description="Unique identifier of the organization associated with this directory." />
-            <Parameter attrKey="provider" type="string" description="Identity provider for the directory connection." />
-            <Parameter attrKey="settings" type="object" description="Configuration settings for the directory connection.">
-                <details>
-                    <summary>Settings Attributes</summary>
-                    <Parameter attrKey="custom_attributes" type="null" description="Custom attribute mappings. Currently set to null." />
-                    <Parameter attrKey="role_assignment" type="object" description="Role assignment configuration. Currently an empty object." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="status" type="string" description="Current status of the directory synchronization process." />
-            <Parameter attrKey="updated_at" type="string" description="Timestamp of the most recent update to the directory connection." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.sync.disable">
-        <JsonViewer src={{
-          "spec_version": "1",
-          "id": "evt_49180589181370731",
-          "type": "scalekit.dir.sync.disable",
-          "occurred_at": "2024-12-05T06:45:15.481614Z",
-          "environment_id": "env_27758032200925221",
-          "organization_id": "org_41857058932261385",
-          "object": "Directory",
-          "data": {
-            "directory_type": "SCIM",
-            "enabled": false,
-            "id": "dir_41857070105887249",
-            "last_sync_at": "2024-12-04T10:29:16.02316Z",
-            "organization_id": "org_41857058932261385",
-            "provider": "OKTA",
-            "settings": {
-              "custom_attributes": null,
-              "role_assignment": {}
-            },
-            "status": "IN_PROGRESS",
-            "updated_at": "2024-12-05T06:45:15.470706388Z"
-          }
-        }} />
-        </CodeWithHeader>
-    </div>
-</div> */}
+        <Parameter
+          attrKey="provider"
+          type="enum"
+          description="Identity provider for the connection">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="OKTA" />
+          </details>
+        </Parameter>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.user.create" title="scalekit.dir.user.create" subheading="true" classList="ApiCategoryList webhook method"/>
-<div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a new directory user is created.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
-            <Parameter attrKey="organization_id" type="string" description="Unique ID of the Organization to which this directory user belongs." />
-            <Parameter attrKey="dp_id" type="string" description="Unique ID of the User in the Directory Provider (IdP) system." />
-            <Parameter attrKey="preferred_username" type="string" description="Preferred username of the directory user." />
-            <Parameter attrKey="email" type="string" description="Email of the directory user." />
-            <Parameter attrKey="active" type="boolean" description="Indicates if the directory user is active." />
-            <Parameter attrKey="name" type="string" description="Fully formatted name of the directory user." />
-            <Parameter attrKey="roles" type="array" description="Array of roles assigned to the directory user.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="role" type="string" description="Role of the directory user." />
-                    <Parameter attrKey="name" type="string" description="Name of the directory user." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="groups" type="array" description="Array of groups to which the directory user belongs.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="id" type="string" description="ID of the directory group." />
-                    <Parameter attrKey="name" type="string" description="Name of the directory group." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="given_name" type="string" description="Given name of the directory user." />
-            <Parameter attrKey="family_name" type="string" description="Family name of the directory user." />
-            <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
-            <Parameter attrKey="picture" type="string" description="URL of the directory user's profile picture." />
-            <Parameter attrKey="phone_number" type="string" description="Phone number of the directory user." />
-            <Parameter attrKey="address" type="object" description="Address of the directory user.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="postal_code" type="string" description="Postal code of the directory user address." />
-                    <Parameter attrKey="state" type="string" description="State of the directory user address." />
-                    <Parameter attrKey="formatted" type="string" description="Formatted address of the directory user." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="custom_attributes" type="object" description="Custom attributes of the directory user." />
-            <Parameter attrKey="raw_attributes" type="object" description="Raw attributes of the directory user as received from the Directory Provider (IdP)." />
-        </ul>
+        <Parameter
+          attrKey="type"
+          type="enum"
+          description="Type of authentication protocol">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="SAML" />
+            <Parameter attrKey="OIDC" />
+          </details>
+        </Parameter>
+
+        <Parameter
+          attrKey="enabled"
+          type="boolean"
+          description="Indicates whether the connection is currently enabled or disabled"
+        />
+
+        <Parameter
+          attrKey="status"
+          type="enum"
+          description="Current status of the connection">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="COMPLETED" />
+          </details>
+        </Parameter>
+      </ul>
+    </details>
+
+  </Parameter>
+</ul>
     </div>
     <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.user.create">
-        <JsonViewer src={{
-          "spec_version": "1",
-          "category": "dir",
-          "type": "scalekit.dir.user.create",
-          "occured_at": "2024-08-21T10:20:17.072Z",
-          "source": "scalekit",
-          "object": "DirectoryUser",
-          "data": {
-            "id": "diruser_12312312312312",
-            "organization_id": "org_12312312312312",
-            "dp_id": "<scim_external_id>",
-            "preferred_username": "<idp_user_name>",
-            "email": "john.doe@example.com",
-            "active": true,
-            "name": "John Doe",
-            "roles": [
-              {
-                "role_name": "billing_admin"
+        <CodeWithHeader title="scalekit.org.conn.enable">
+          <JsonViewer src={{
+              "spec_version": "1",
+              "category": "conn",
+              "type": "scalekit.org.conn.enable",
+              "occured_at": "2024-08-21T10:20:17.072Z",
+              "source": "scalekit",
+              "object": "Connection",
+              "id" : "evt_12343",
+              "data": {
+                  "id": "conn_54237072013131859",
+                  "provider": "OKTA",
+                  "type": "SAML", // or "OIDC"
+                  "enabled": true,
+                  "status": "COMPLETED",
               }
-            ],
-            "groups": [
-              {
-                "id": "dirgroup_12312312312312",
-                "name": "Group Name"
-              }
-            ],
-            "given_name": "John",
-            "family_name": "Doe",
-            "nickname": "Jhonny boy",
-            "picture": "https://image.com/profile.jpg",
-            "phone_number": "1234567892",
-            "address": {
-              "postal_code": "64112",
-              "state": "Missouri",
-              "formatted": "123, Oxford Lane, Kansas City, Missouri, 64112"
-            },
-            "custom_attributes": {
-              "attribute1": "value1",
-              "attribute2": "value2"
-            },
-            "raw_attributes": {
-              // SCIM payload
-            }
-          }
-        }} />
+          }} />
         </CodeWithHeader>
     </div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.user.update" title="scalekit.dir.user.update" subheading="true" classList='ApiCategoryList webhook method'/>
+<IntersectingHeader id="tag/Webhooks/scalekit.org.conn.disable" title="scalekit.org.conn.disable" subheading="true" classList="ApiCategoryList webhook method"/>
 <div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a directory user is updated. Usually, directory user data is updated in any of the following scenarios:
-        1. User Profile is updated in the Directory Provider (IdP) system.
-        2. User is added to or removed from a group.
-        3. If [GBAC](/scim/automatically-assign-roles) is enabled, User is assigned or removed from a role based on the group membership.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
-            <Parameter attrKey="organization_id" type="string" description="Unique ID of the Organization to which this directory user belongs." />
-            <Parameter attrKey="dp_id" type="string" description="Unique ID of the User in the Directory Provider (IdP) system." />
-            <Parameter attrKey="preferred_username" type="string" description="Preferred username of the directory user." />
-            <Parameter attrKey="email" type="string" description="Email of the directory user." />
-            <Parameter attrKey="active" type="boolean" description="Indicates if the directory user is active." />
-            <Parameter attrKey="name" type="string" description="Fully formatted name of the directory user." />
-            <Parameter attrKey="roles" type="array" description="Array of roles assigned to the directory user.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="role" type="string" description="Role of the directory user." />
-                    <Parameter attrKey="name" type="string" description="Name of the directory user." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="groups" type="array" description="Array of groups to which the directory user belongs.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="id" type="string" description="ID of the directory group." />
-                    <Parameter attrKey="name" type="string" description="Name of the directory group." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="given_name" type="string" description="Given name of the directory user." />
-            <Parameter attrKey="family_name" type="string" description="Family name of the directory user." />
-            <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
-            <Parameter attrKey="picture" type="string" description="URL of the directory user's profile picture." />
-            <Parameter attrKey="phone_number" type="string" description="Phone number of the directory user." />
-            <Parameter attrKey="address" type="object" description="Address of the directory user.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="postal_code" type="string" description="Postal code of the directory user address." />
-                    <Parameter attrKey="state" type="string" description="State of the directory user address." />
-                    <Parameter attrKey="formatted" type="string" description="Formatted address of the directory user." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="custom_attributes" type="object" description="Custom attributes of the directory user." />
-            <Parameter attrKey="raw_attributes" type="object" description="Raw attributes of the directory user as received from the Directory Provider (IdP)." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.user.update">
-        <JsonViewer src={{
-          "spec_version": "1",
-          "category": "dir",
-          "type": "scalekit.dir.user.update",
-          "occured_at": "2024-08-21T10:20:17.072Z",
-          "source": "scalekit",
-          "object": "DirectoryUser",
-          "data": {
-            "id": "diruser_12312312312312",
-            "organization_id": "org_12312312312312",
-            "dp_id": "<scim_external_id>",
-            "preferred_username": "<idp_user_name>",
-            "email": "john.doe@example.com",
-            "active": true,
-            "name": "John Doe",
-            "roles": [
-              {
-                "role_name": "billing_admin"
-              }
-            ],
-            "groups": [
-              {
-                "id": "dirgroup_12312312312312",
-                "name": "Group Name"
-              }
-            ],
-            "given_name": "John",
-            "family_name": "Doe",
-            "nickname": "Jhonny boy",
-            "picture": "https://image.com/profile.jpg",
-            "phone_number": "1234567892",
-            "address": {
-              "postal_code": "64112",
-              "state": "Missouri",
-              "formatted": "123, Oxford Lane, Kansas City, Missouri, 64112"
-            },
-            "custom_attributes": {
-              "attribute1": "value1",
-              "attribute2": "value2"
-            },
-            "raw_attributes": {
-              // SCIM payload
-            }
-          }
-        }} />
-        </CodeWithHeader>
-    </div>
+<div className="col col--6">
+
+<ul className="ApiReference-Parameters">
+  <li className="ApiReference-Parameter header">Event Object Attributes</li>
+
+<Parameter
+  attrKey="spec_version"
+  type="string"
+  description="Version of the event specification format"
+/>
+
+<Parameter attrKey="category" type="string" description="Categorization of the event type" />
+<Parameter attrKey="type" type="string" description="Specific type of event that occurred" />
+<Parameter
+  attrKey="occured_at"
+  type="string"
+  description="Timestamp when the event was generated in RFC 3339 format"
+/>
+<Parameter attrKey="source" type="string" description="Origin of the event" />
+<Parameter attrKey="object" type="string" description="Type of object the event relates to" />
+<Parameter attrKey="id" type="string" description="Unique identifier for the specific event" />
+
+  <Parameter
+    attrKey="data"
+    type="object"
+    description="Detailed information about the event">
+    <details>
+      <summary>Data Attributes</summary>
+      <ul className="ApiReference-Parameters">
+        <Parameter
+          attrKey="id"
+          type="string"
+          description="Unique identifier for the connection"
+        />
+
+        <Parameter
+          attrKey="provider"
+          type="enum"
+          description="Identity provider for the connection">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="OKTA" />
+          </details>
+        </Parameter>
+
+        <Parameter
+          attrKey="type"
+          type="enum"
+          description="Type of authentication protocol">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="SAML" />
+            <Parameter attrKey="OIDC" />
+          </details>
+        </Parameter>
+
+        <Parameter
+          attrKey="enabled"
+          type="boolean"
+          description="Indicates whether the connection is currently enabled or disabled"
+        />
+
+        <Parameter
+          attrKey="status"
+          type="enum"
+          description="Current status of the connection">
+          <details>
+            <summary>Possible values</summary>
+            <Parameter attrKey="COMPLETED" />
+          </details>
+        </Parameter>
+      </ul>
+    </details>
+
+  </Parameter>
+</ul>
+
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.user.delete" title="scalekit.dir.user.delete" subheading="true" classList='ApiCategoryList webhook method'/>
-<div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a directory user is deleted.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
-            <Parameter attrKey="organization_id" type="string" description="Unique ID of the Organization to which this directory user belongs." />
-            <Parameter attrKey="dp_id" type="string" description="Unique ID of the User in the Directory Provider (IdP) system." />
-            <Parameter attrKey="email" type="string" description="Email of the directory user." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.user.delete">
-        <JsonViewer src={{
+<div className="col col--6">
+    <CodeWithHeader title="scalekit.org.conn.disable">
+      <JsonViewer src={{
           "spec_version": "1",
-          "category": "dir",
-          "type": "scalekit.dir.user.delete",
+          "category": "conn",
+          "type": "scalekit.org.conn.disable",
           "occured_at": "2024-08-21T10:20:17.072Z",
           "source": "scalekit",
-          "object": "DirectoryUser",
+          "object": "Connection",
+          "id" : "evt_12343",
           "data": {
-            "id": "diruser_12312312312312",
-            "organization_id": "org_12312312312312",
-            "dp_id": "<scim_external_id>",
-            "email": "john.doe@example.com"
+              "id": "conn_54237072013131859",
+              "provider": "OKTA",
+              "type": "SAML", // or "OIDC"
+              "enabled": true,
+              "status": "COMPLETED",
           }
         }} />
-        </CodeWithHeader>
-    </div>
+    </CodeWithHeader>
+</div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.group.create" title="scalekit.dir.group.create" subheading="true" classList='ApiCategoryList webhook method'/>
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.sync.enable"
+  title="scalekit.dir.sync.enable"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
 <div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a new directory group is created.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="directory_id" type="string" description="Unique identifier for the directory." />
-            <Parameter attrKey="display_name" type="string" description="Display name of the directory group." />
-            <Parameter attrKey="external_id" type="null" description="External identifier for the group, null if not specified." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the directory group." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the group." />
-            <Parameter attrKey="raw_attributes" type="object" description="Raw attributes of the directory group.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="displayName" type="string" description="Display name of the group as received from the directory provider." />
-                    <Parameter attrKey="members" type="null" description="Members of the group, null if not specified or empty." />
-                </details>
-            </Parameter>
-            <Parameter attrKey="environment_id" type="string" description="Identifier for the environment where the event occurred." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-            <Parameter attrKey="object" type="string" description="Type of object the event relates to." />
-            <Parameter attrKey="occurred_at" type="string" description="Timestamp when the event occurred." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the event." />
-            <Parameter attrKey="spec_version" type="string" description="Specification version of the event." />
-            <Parameter attrKey="type" type="string" description="Type of the event, indicating the action that occurred." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.group.create">
-        <JsonViewer src={{
-          "data": {
-            "directory_id": "dir_38610496391217780",
-            "display_name": "Avengers",
-            "external_id": null,
-            "id": "dirgroup_38862741498233423",
-            "organization_id": "org_38609339635728478",
-            "raw_attributes": {
-              "displayName": "Avengers",
-              "members": null
-            }
+  <div className="col col--6">
+    This webhook is triggered when a directory sync is enabled
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter attrKey="id" type="string" description="Unique identifier for event" />
+      <Parameter
+        attrKey="directory_type"
+        type="string"
+        description="The type of directory synchronization"
+      />
+      <Parameter
+        attrKey="enabled"
+        type="boolean"
+        description="Indicates if the directory sync is enabled"
+      />
+      <Parameter
+        attrKey="environment_id"
+        type="string"
+        description="Identifier for the environment"
+      />
+      <Parameter
+        attrKey="data.id"
+        type="string"
+        description="Unique identifier for the directory configuration"
+      />
+      <Parameter
+        attrKey="last_sync_at"
+        type="null"
+        description="Timestamp of the last synchronization, null if not yet synced"
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization"
+      />
+      <Parameter attrKey="provider" type="string" description="The provider of the directory" />
+      <Parameter
+        attrKey="updated_at"
+        type="string"
+        description="Timestamp of when the configuration was last updated"
+      />
+      <Parameter
+        attrKey="occured_at"
+        type="string"
+        description="Timestamp of when the event occurred"
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.sync.enable">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          id: 'evt_53891640779079756',
+          type: 'scalekit.dir.sync.enable',
+          occurred_at: '2025-01-06T18:45:21.057814Z',
+          environment_id: 'env_53814739859406915',
+          organization_id: 'org_53879494091473415',
+          object: 'Directory',
+          data: {
+            directory_type: 'SCIM',
+            enabled: true,
+            id: 'dir_53879621145330183',
+            last_sync_at: '2025-01-06T18:45:03.206676Z',
+            organization_id: 'org_53879494091473415',
+            provider: 'OKTA',
+            updated_at: '2025-01-06T18:45:21.04978184Z',
           },
-          "environment_id": "env_32080745237316098",
-          "id": "evt_38862741515010639",
-          "object": "DirectoryGroup",
-          "occurred_at": "2024-09-25T02:26:39.036398577Z",
-          "organization_id": "org_38609339635728478",
-          "spec_version": "1",
-          "type": "scalekit.dir.group.create"
-        }} />
-        </CodeWithHeader>
-    </div>
+        }}
+      />
+    </CodeWithHeader>
+  </div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.group.update" title="scalekit.dir.group.update" subheading="true" classList='ApiCategoryList webhook method'/>
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.sync.disable"
+  title="scalekit.dir.sync.disable"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
 <div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a directory group is updated.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="directory_id" type="string" description="Unique identifier for the directory." />
-            <Parameter attrKey="display_name" type="string" description="Display name of the directory group." />
-            <Parameter attrKey="external_id" type="null" description="External identifier for the group, null if not specified." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the directory group." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the group." />
-            <Parameter attrKey="raw_attributes" type="object" description="Raw attributes of the directory group.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="displayName" type="string" description="Display name of the group as received from the directory provider." />
-                    <Parameter attrKey="members" type="array" description="Array of members in the group.">
-                        <details>
-                            <summary>Child Attributes</summary>
-                            <Parameter attrKey="display" type="string" description="Display name or email of the group member." />
-                            <Parameter attrKey="value" type="string" description="Unique identifier for the group member." />
-                        </details>
-                    </Parameter>
-                </details>
-            </Parameter>
-            <Parameter attrKey="environment_id" type="string" description="Identifier for the environment where the event occurred." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-            <Parameter attrKey="object" type="string" description="Type of object the event relates to." />
-            <Parameter attrKey="occurred_at" type="string" description="Timestamp when the event occurred." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the event." />
-            <Parameter attrKey="spec_version" type="string" description="Specification version of the event." />
-            <Parameter attrKey="type" type="string" description="Type of the event, indicating the action that occurred." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.group.update">
-        <JsonViewer src={{
-          "data": {
-            "directory_id": "dir_38610496391217780",
-            "display_name": "Avengers",
-            "external_id": null,
-            "id": "dirgroup_38862741498233423",
-            "organization_id": "org_38609339635728478",
-            "raw_attributes": {
-              "displayName": "Avengers",
-              "members": [
-                {
-                  "display": "testuser2@gmail.com",
-                  "value": "diruser_38864946578129487"
-                }
-              ]
-            }
+  <div className="col col--6">
+    This webhook is triggered when a directory sync is disabled.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter
+        attrKey="directory_type"
+        type="string"
+        description="Type of directory protocol used for synchronization"
+      />
+      <Parameter
+        attrKey="enabled"
+        type="boolean"
+        description="Indicates whether the directory synchronization is currently enabled or disabled"
+      />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory connection"
+      />
+      <Parameter
+        attrKey="last_sync_at"
+        type="string"
+        description="Timestamp of the most recent directory synchronization"
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Unique identifier of the organization associated with this directory"
+      />
+      <Parameter
+        attrKey="provider"
+        type="string"
+        description="Identity provider for the directory connection"
+      />
+      <Parameter
+        attrKey="status"
+        type="string"
+        description="Current status of the directory synchronization process"
+      />
+      <Parameter
+        attrKey="updated_at"
+        type="string"
+        description="Timestamp of the most recent update to the directory connection"
+      />
+      <Parameter
+        attrKey="occured_at"
+        type="string"
+        description="Timestamp of when the event occurred"
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.sync.disable">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          id: 'evt_53891640779079756',
+          type: 'scalekit.dir.sync.enable',
+          occurred_at: '2025-01-06T18:45:21.057814Z',
+          environment_id: 'env_53814739859406915',
+          organization_id: 'org_53879494091473415',
+          object: 'Directory',
+          data: {
+            directory_type: 'SCIM',
+            enabled: false,
+            id: 'dir_53879621145330183',
+            last_sync_at: '2025-01-06T18:45:03.206676Z',
+            organization_id: 'org_53879494091473415',
+            provider: 'OKTA',
+            updated_at: '2025-01-06T18:45:21.04978184Z',
           },
-          "environment_id": "env_32080745237316098",
-          "id": "evt_38864948910162368",
-          "object": "DirectoryGroup",
-          "occurred_at": "2024-09-25T02:48:34.745030921Z",
-          "organization_id": "org_38609339635728478",
-          "spec_version": "1",
-          "type": "scalekit.dir.group.update"
-        }} />
-        </CodeWithHeader>
-    </div>
+        }}
+      />
+    </CodeWithHeader>
+  </div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.dir.group.delete" title="scalekit.dir.group.delete" subheading="true" classList='ApiCategoryList webhook method'/>
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.user.create"
+  title="scalekit.dir.user.create"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
 <div className="row section">
-    <div className="col col--6">
-        This webhook is triggered when a directory group is deleted.
-        <ul className="ApiReference-Parameters">
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="directory_id" type="string" description="Unique identifier for the directory." />
-            <Parameter attrKey="display_name" type="string" description="Display name of the directory group." />
-            <Parameter attrKey="dp_id" type="string" description="Unique identifier for the group in the directory provider system." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the directory group." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the group." />
-            <Parameter attrKey="raw_attributes" type="object" description="Raw attributes of the directory group as received from the provider.">
-                <details>
-                    <summary>Child Attributes</summary>
-                    <Parameter attrKey="displayName" type="string" description="Display name of the group as received from the directory provider." />
-                    <Parameter attrKey="externalId" type="string" description="External identifier for the group in the directory provider system." />
-                    <Parameter attrKey="members" type="array" description="Array of members in the group.">
-                        <details>
-                            <summary>Child Attributes</summary>
-                            <Parameter attrKey="value" type="string" description="Unique identifier for the group member." />
-                        </details>
-                    </Parameter>
-                </details>
-            </Parameter>
-            <Parameter attrKey="environment_id" type="string" description="Identifier for the environment where the event occurred." />
-            <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-            <Parameter attrKey="object" type="string" description="Type of object the event relates to." />
-            <Parameter attrKey="occurred_at" type="string" description="Timestamp when the event occurred." />
-            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization associated with the event." />
-            <Parameter attrKey="spec_version" type="string" description="Specification version of the event." />
-            <Parameter attrKey="type" type="string" description="Type of the event, indicating the action that occurred." />
-        </ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="scalekit.dir.group.delete">
-        <JsonViewer src={{
-          "data": {
-            "directory_id": "dir_39802485862301855",
-            "display_name": "Admins",
-            "dp_id": "7c66a173-79c6-4270-ac78-8f35a8121e0a",
-            "id": "dirgroup_40072007005503806",
-            "organization_id": "org_39802449573184223",
-            "raw_attributes": {
-              "displayName": "Admins",
-              "externalId": "7c66a173-79c6-4270-ac78-8f35a8121e0a",
-              "members": [
+  <div className="col col--6">
+    This webhook is triggered when a new directory user is created.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Unique ID of the Organization to which this directory user belongs."
+      />
+      <Parameter
+        attrKey="dp_id"
+        type="string"
+        description="Unique ID of the User in the Directory Provider (IdP) system."
+      />
+      <Parameter
+        attrKey="preferred_username"
+        type="string"
+        description="Preferred username of the directory user."
+      />
+      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+      <Parameter
+        attrKey="active"
+        type="boolean"
+        description="Indicates if the directory user is active."
+      />
+      <Parameter
+        attrKey="name"
+        type="string"
+        description="Fully formatted name of the directory user."
+      />
+      <Parameter
+        attrKey="roles"
+        type="array"
+        description="Array of roles assigned to the directory user."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter attrKey="role" type="string" description="Role of the directory user." />
+          <Parameter attrKey="name" type="string" description="Name of the directory user." />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="groups"
+        type="array"
+        description="Array of groups to which the directory user belongs."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter attrKey="id" type="string" description="ID of the directory group." />
+          <Parameter attrKey="name" type="string" description="Name of the directory group." />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="given_name"
+        type="string"
+        description="Given name of the directory user."
+      />
+      <Parameter
+        attrKey="family_name"
+        type="string"
+        description="Family name of the directory user."
+      />
+      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
+      <Parameter
+        attrKey="picture"
+        type="string"
+        description="URL of the directory user's profile picture."
+      />
+      <Parameter
+        attrKey="phone_number"
+        type="string"
+        description="Phone number of the directory user."
+      />
+      <Parameter attrKey="address" type="object" description="Address of the directory user.">
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter
+            attrKey="postal_code"
+            type="string"
+            description="Postal code of the directory user address."
+          />
+          <Parameter
+            attrKey="state"
+            type="string"
+            description="State of the directory user address."
+          />
+          <Parameter
+            attrKey="formatted"
+            type="string"
+            description="Formatted address of the directory user."
+          />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="custom_attributes"
+        type="object"
+        description="Custom attributes of the directory user."
+      />
+      <Parameter
+        attrKey="raw_attributes"
+        type="object"
+        description="Raw attributes of the directory user as received from the Directory Provider (IdP)."
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.user.create">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          category: 'dir',
+          type: 'scalekit.dir.user.create',
+          occured_at: '2024-08-21T10:20:17.072Z',
+          source: 'scalekit',
+          object: 'DirectoryUser',
+          data: {
+            id: 'diruser_12312312312312',
+            organization_id: 'org_12312312312312',
+            dp_id: '<scim_external_id>',
+            preferred_username: '<idp_user_name>',
+            email: 'john.doe@example.com',
+            active: true,
+            name: 'John Doe',
+            roles: [
+              {
+                role_name: 'billing_admin',
+              },
+            ],
+            groups: [
+              {
+                id: 'dirgroup_12312312312312',
+                name: 'Group Name',
+              },
+            ],
+            given_name: 'John',
+            family_name: 'Doe',
+            nickname: 'Jhonny boy',
+            picture: 'https://image.com/profile.jpg',
+            phone_number: '1234567892',
+            address: {
+              postal_code: '64112',
+              state: 'Missouri',
+              formatted: '123, Oxford Lane, Kansas City, Missouri, 64112',
+            },
+            custom_attributes: {
+              attribute1: 'value1',
+              attribute2: 'value2',
+            },
+            raw_attributes: {
+              // SCIM payload
+            },
+          },
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.user.update"
+  title="scalekit.dir.user.update"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when a directory user is updated. Usually, directory user data is
+    updated in any of the following scenarios: 1. User Profile is updated in the Directory Provider
+    (IdP) system. 2. User is added to or removed from a group. 3. If
+    [GBAC](/scim/automatically-assign-roles) is enabled, User is assigned or removed from a role
+    based on the group membership.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Unique ID of the Organization to which this directory user belongs."
+      />
+      <Parameter
+        attrKey="dp_id"
+        type="string"
+        description="Unique ID of the User in the Directory Provider (IdP) system."
+      />
+      <Parameter
+        attrKey="preferred_username"
+        type="string"
+        description="Preferred username of the directory user."
+      />
+      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+      <Parameter
+        attrKey="active"
+        type="boolean"
+        description="Indicates if the directory user is active."
+      />
+      <Parameter
+        attrKey="name"
+        type="string"
+        description="Fully formatted name of the directory user."
+      />
+      <Parameter
+        attrKey="roles"
+        type="array"
+        description="Array of roles assigned to the directory user."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter attrKey="role" type="string" description="Role of the directory user." />
+          <Parameter attrKey="name" type="string" description="Name of the directory user." />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="groups"
+        type="array"
+        description="Array of groups to which the directory user belongs."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter attrKey="id" type="string" description="ID of the directory group." />
+          <Parameter attrKey="name" type="string" description="Name of the directory group." />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="given_name"
+        type="string"
+        description="Given name of the directory user."
+      />
+      <Parameter
+        attrKey="family_name"
+        type="string"
+        description="Family name of the directory user."
+      />
+      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
+      <Parameter
+        attrKey="picture"
+        type="string"
+        description="URL of the directory user's profile picture."
+      />
+      <Parameter
+        attrKey="phone_number"
+        type="string"
+        description="Phone number of the directory user."
+      />
+      <Parameter attrKey="address" type="object" description="Address of the directory user.">
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter
+            attrKey="postal_code"
+            type="string"
+            description="Postal code of the directory user address."
+          />
+          <Parameter
+            attrKey="state"
+            type="string"
+            description="State of the directory user address."
+          />
+          <Parameter
+            attrKey="formatted"
+            type="string"
+            description="Formatted address of the directory user."
+          />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="custom_attributes"
+        type="object"
+        description="Custom attributes of the directory user."
+      />
+      <Parameter
+        attrKey="raw_attributes"
+        type="object"
+        description="Raw attributes of the directory user as received from the Directory Provider (IdP)."
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.user.update">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          category: 'dir',
+          type: 'scalekit.dir.user.update',
+          occured_at: '2024-08-21T10:20:17.072Z',
+          source: 'scalekit',
+          object: 'DirectoryUser',
+          data: {
+            id: 'diruser_12312312312312',
+            organization_id: 'org_12312312312312',
+            dp_id: '<scim_external_id>',
+            preferred_username: '<idp_user_name>',
+            email: 'john.doe@example.com',
+            active: true,
+            name: 'John Doe',
+            roles: [
+              {
+                role_name: 'billing_admin',
+              },
+            ],
+            groups: [
+              {
+                id: 'dirgroup_12312312312312',
+                name: 'Group Name',
+              },
+            ],
+            given_name: 'John',
+            family_name: 'Doe',
+            nickname: 'Jhonny boy',
+            picture: 'https://image.com/profile.jpg',
+            phone_number: '1234567892',
+            address: {
+              postal_code: '64112',
+              state: 'Missouri',
+              formatted: '123, Oxford Lane, Kansas City, Missouri, 64112',
+            },
+            custom_attributes: {
+              attribute1: 'value1',
+              attribute2: 'value2',
+            },
+            raw_attributes: {
+              // SCIM payload
+            },
+          },
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.user.delete"
+  title="scalekit.dir.user.delete"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when a directory user is deleted.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Unique ID of the Organization to which this directory user belongs."
+      />
+      <Parameter
+        attrKey="dp_id"
+        type="string"
+        description="Unique ID of the User in the Directory Provider (IdP) system."
+      />
+      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.user.delete">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          category: 'dir',
+          type: 'scalekit.dir.user.delete',
+          occured_at: '2024-08-21T10:20:17.072Z',
+          source: 'scalekit',
+          object: 'DirectoryUser',
+          data: {
+            id: 'diruser_12312312312312',
+            organization_id: 'org_12312312312312',
+            dp_id: '<scim_external_id>',
+            email: 'john.doe@example.com',
+          },
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.group.create"
+  title="scalekit.dir.group.create"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when a new directory group is created.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter
+        attrKey="directory_id"
+        type="string"
+        description="Unique identifier for the directory."
+      />
+      <Parameter
+        attrKey="display_name"
+        type="string"
+        description="Display name of the directory group."
+      />
+      <Parameter
+        attrKey="external_id"
+        type="null"
+        description="External identifier for the group, null if not specified."
+      />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory group."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the group."
+      />
+      <Parameter
+        attrKey="raw_attributes"
+        type="object"
+        description="Raw attributes of the directory group."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter
+            attrKey="displayName"
+            type="string"
+            description="Display name of the group as received from the directory provider."
+          />
+          <Parameter
+            attrKey="members"
+            type="null"
+            description="Members of the group, null if not specified or empty."
+          />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="environment_id"
+        type="string"
+        description="Identifier for the environment where the event occurred."
+      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
+      <Parameter
+        attrKey="object"
+        type="string"
+        description="Type of object the event relates to."
+      />
+      <Parameter
+        attrKey="occurred_at"
+        type="string"
+        description="Timestamp when the event occurred."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the event."
+      />
+      <Parameter
+        attrKey="spec_version"
+        type="string"
+        description="Specification version of the event."
+      />
+      <Parameter
+        attrKey="type"
+        type="string"
+        description="Type of the event, indicating the action that occurred."
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.group.create">
+      <JsonViewer
+        src={{
+          data: {
+            directory_id: 'dir_38610496391217780',
+            display_name: 'Avengers',
+            external_id: null,
+            id: 'dirgroup_38862741498233423',
+            organization_id: 'org_38609339635728478',
+            raw_attributes: {
+              displayName: 'Avengers',
+              members: null,
+            },
+          },
+          environment_id: 'env_32080745237316098',
+          id: 'evt_38862741515010639',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-09-25T02:26:39.036398577Z',
+          organization_id: 'org_38609339635728478',
+          spec_version: '1',
+          type: 'scalekit.dir.group.create',
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.group.update"
+  title="scalekit.dir.group.update"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when a directory group is updated.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter
+        attrKey="directory_id"
+        type="string"
+        description="Unique identifier for the directory."
+      />
+      <Parameter
+        attrKey="display_name"
+        type="string"
+        description="Display name of the directory group."
+      />
+      <Parameter
+        attrKey="external_id"
+        type="null"
+        description="External identifier for the group, null if not specified."
+      />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory group."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the group."
+      />
+      <Parameter
+        attrKey="raw_attributes"
+        type="object"
+        description="Raw attributes of the directory group."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter
+            attrKey="displayName"
+            type="string"
+            description="Display name of the group as received from the directory provider."
+          />
+          <Parameter attrKey="members" type="array" description="Array of members in the group.">
+            <details>
+              <summary>Child Attributes</summary>
+              <Parameter
+                attrKey="display"
+                type="string"
+                description="Display name or email of the group member."
+              />
+              <Parameter
+                attrKey="value"
+                type="string"
+                description="Unique identifier for the group member."
+              />
+            </details>
+          </Parameter>
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="environment_id"
+        type="string"
+        description="Identifier for the environment where the event occurred."
+      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
+      <Parameter
+        attrKey="object"
+        type="string"
+        description="Type of object the event relates to."
+      />
+      <Parameter
+        attrKey="occurred_at"
+        type="string"
+        description="Timestamp when the event occurred."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the event."
+      />
+      <Parameter
+        attrKey="spec_version"
+        type="string"
+        description="Specification version of the event."
+      />
+      <Parameter
+        attrKey="type"
+        type="string"
+        description="Type of the event, indicating the action that occurred."
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.group.update">
+      <JsonViewer
+        src={{
+          data: {
+            directory_id: 'dir_38610496391217780',
+            display_name: 'Avengers',
+            external_id: null,
+            id: 'dirgroup_38862741498233423',
+            organization_id: 'org_38609339635728478',
+            raw_attributes: {
+              displayName: 'Avengers',
+              members: [
                 {
-                  "value": "diruser_39805917708943658"
+                  display: 'testuser2@gmail.com',
+                  value: 'diruser_38864946578129487',
+                },
+              ],
+            },
+          },
+          environment_id: 'env_32080745237316098',
+          id: 'evt_38864948910162368',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-09-25T02:48:34.745030921Z',
+          organization_id: 'org_38609339635728478',
+          spec_version: '1',
+          type: 'scalekit.dir.group.update',
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
+<IntersectingHeader
+  id="tag/Webhooks/scalekit.dir.group.delete"
+  title="scalekit.dir.group.delete"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when a directory group is deleted.
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter
+        attrKey="directory_id"
+        type="string"
+        description="Unique identifier for the directory."
+      />
+      <Parameter
+        attrKey="display_name"
+        type="string"
+        description="Display name of the directory group."
+      />
+      <Parameter
+        attrKey="dp_id"
+        type="string"
+        description="Unique identifier for the group in the directory provider system."
+      />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory group."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the group."
+      />
+      <Parameter
+        attrKey="raw_attributes"
+        type="object"
+        description="Raw attributes of the directory group as received from the provider."
+      >
+        <details>
+          <summary>Child Attributes</summary>
+          <Parameter
+            attrKey="displayName"
+            type="string"
+            description="Display name of the group as received from the directory provider."
+          />
+          <Parameter
+            attrKey="externalId"
+            type="string"
+            description="External identifier for the group in the directory provider system."
+          />
+          <Parameter attrKey="members" type="array" description="Array of members in the group.">
+            <details>
+              <summary>Child Attributes</summary>
+              <Parameter
+                attrKey="value"
+                type="string"
+                description="Unique identifier for the group member."
+              />
+            </details>
+          </Parameter>
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="environment_id"
+        type="string"
+        description="Identifier for the environment where the event occurred."
+      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
+      <Parameter
+        attrKey="object"
+        type="string"
+        description="Type of object the event relates to."
+      />
+      <Parameter
+        attrKey="occurred_at"
+        type="string"
+        description="Timestamp when the event occurred."
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Identifier for the organization associated with the event."
+      />
+      <Parameter
+        attrKey="spec_version"
+        type="string"
+        description="Specification version of the event."
+      />
+      <Parameter
+        attrKey="type"
+        type="string"
+        description="Type of the event, indicating the action that occurred."
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="scalekit.dir.group.delete">
+      <JsonViewer
+        src={{
+          data: {
+            directory_id: 'dir_39802485862301855',
+            display_name: 'Admins',
+            dp_id: '7c66a173-79c6-4270-ac78-8f35a8121e0a',
+            id: 'dirgroup_40072007005503806',
+            organization_id: 'org_39802449573184223',
+            raw_attributes: {
+              displayName: 'Admins',
+              externalId: '7c66a173-79c6-4270-ac78-8f35a8121e0a',
+              members: [
+                {
+                  value: 'diruser_39805917708943658',
                 },
                 {
-                  "value": "diruser_39805918430364405"
+                  value: 'diruser_39805918430364405',
                 },
                 {
-                  "value": "diruser_39804927869976735"
-                }
-              ]
-            }
+                  value: 'diruser_39804927869976735',
+                },
+              ],
+            },
           },
-          "environment_id": "env_12205603854221623",
-          "id": "evt_40650399597723966",
-          "object": "DirectoryGroup",
-          "occurred_at": "2024-10-07T10:25:26.289331747Z",
-          "organization_id": "org_39802449573184223",
-          "spec_version": "1",
-          "type": "scalekit.dir.group.delete"
-        }} />
-        </CodeWithHeader>
-    </div>
+          environment_id: 'env_12205603854221623',
+          id: 'evt_40650399597723966',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-10-07T10:25:26.289331747Z',
+          organization_id: 'org_39802449573184223',
+          spec_version: '1',
+          type: 'scalekit.dir.group.delete',
+        }}
+      />
+    </CodeWithHeader>
+  </div>
 </div>
