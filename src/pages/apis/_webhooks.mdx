@@ -82,14 +82,14 @@ import { Endpoint } from '@site/src/components/endpoint';
         Every webhook payload has two key components: Event Metadata and Event Data.
         <ul className="ApiReference-Parameters">
             <li className="ApiReference-Parameter header">Event Metadata</li>
-            <Parameter attrKey="spec_version" type="string" description="Version of the event specification (currently '1')." />
-            <Parameter attrKey="category" type="string" description="Indicates the event category (Example: 'dir' for directory-related events)." />
-            <Parameter attrKey="type" type="string" description="Specifies the exact event type (Example: 'organization.directory.user_created' for user creation)." />
-            <Parameter attrKey="occured_at" type="string" description="Timestamp of when the event occurred." />
-            <Parameter attrKey="source" type="string" description="The origin of the event (always 'scalekit' in this case)." />
-            <Parameter attrKey="object" type="string" description="The type of object affected (Example: 'DirectoryUser')." />
-            <li className="ApiReference-Parameter header">Event Data</li>
-            <Parameter attrKey="data" type="object" description="Contains latest object data after the event." />
+            <Parameter attrKey="spec_version" type="string" description="Version of the event specification (currently '1')" />
+            <Parameter attrKey="id" type="string" description="Unique identifier for the specific event" />
+            <Parameter attrKey="object" type="string" description="The type of object affected (Example: 'DirectoryUser')" />
+            <Parameter attrKey="environment_id" type="string" description="Identifier for the environment" />
+            <Parameter attrKey="occurred_at" type="string" description="Timestamp of when the event occurred" />
+            <Parameter attrKey="organization_id" type="string" description="Identifier for the organization" />
+            <Parameter attrKey="type" type="string" description="Specifies the exact event type (Example: 'organization.directory.user_created' for user creation)" />
+            <Parameter attrKey="data" type="object" description="Contains latest object data after the event" />
         </ul>
     </div>
     <div className="col col--6">
@@ -97,11 +97,12 @@ import { Endpoint } from '@site/src/components/endpoint';
         ```json
         {
           "spec_version": "1",
-          "category": "dir",
-          "type": "organization.directory.user_created",
-          "occured_at": "2024-08-21T10:20:17.072Z",
-          "source": "scalekit",
+          "id": "evt_123456789",
           "object": "DirectoryUser",
+          "environment_id": "env_123456789",
+          "occurred_at": "2024-08-21T10:20:17.072Z",
+          "organization_id": "org_123456789",
+          "type": "organization.directory.user_created",
           "data": {
             // Event Data
           }
@@ -112,207 +113,138 @@ import { Endpoint } from '@site/src/components/endpoint';
 </div>
 
 <IntersectingHeader title="Enterprise SSO" subheading="true" />
-<IntersectingHeader id="tag/Webhooks/organization.sso_enabled" title="SSO Enabled" subheading="true" classList="ApiCategoryList webhook method"/>
+<IntersectingHeader
+  id="tag/Webhooks/organization.sso_enabled"
+  title="SSO Enabled"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
 <div className="row section">
-    <div className="col col--6">
-    This webhook is triggered when a organization connection is enabled
+  <div className="col col--6">
+    This webhook is triggered when an organization connection is enabled
     <ul className="ApiReference-Parameters">
-  <li className="ApiReference-Parameter header">Event Object Attributes</li>
-  <Parameter
-    attrKey="spec_version"
-    type="string"
-    description="Version of the event specification format"
-  />
-  <Parameter attrKey="category" type="string" description="Categorization of the event type" />
-  <Parameter attrKey="type" type="string" description="Specific type of event that occurred" />
-  <Parameter
-    attrKey="occured_at"
-    type="string"
-    description="Timestamp when the event was generated in RFC 3339 format"
-  />
-  <Parameter attrKey="source" type="string" description="Origin of the event" />
-  <Parameter attrKey="object" type="string" description="Type of object the event relates to" />
-  <Parameter attrKey="id" type="string" description="Unique identifier for the specific event" />
-  <Parameter
-    attrKey="data"
-    type="object"
-    description="Detailed information about the event">
-    <details>
-      <summary>Data Attributes</summary>
-      <ul className="ApiReference-Parameters">
-        <Parameter
-          attrKey="id"
-          type="string"
-          description="Unique identifier for the connection"
-        />
-
-        <Parameter
-          attrKey="provider"
-          type="enum"
-          description="Identity provider for the connection">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="OKTA" />
-          </details>
-        </Parameter>
-
-        <Parameter
-          attrKey="type"
-          type="enum"
-          description="Type of authentication protocol">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="SAML" />
-            <Parameter attrKey="OIDC" />
-          </details>
-        </Parameter>
-
-        <Parameter
-          attrKey="enabled"
-          type="boolean"
-          description="Indicates whether the connection is currently enabled or disabled"
-        />
-
-        <Parameter
-          attrKey="status"
-          type="enum"
-          description="Current status of the connection">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="COMPLETED" />
-          </details>
-        </Parameter>
-      </ul>
-    </details>
-
-  </Parameter>
-</ul>
-    </div>
-    <div className="col col--6">
-        <CodeWithHeader title="organization.sso_enabled">
-          <JsonViewer src={{
-              "spec_version": "1",
-              "id": "evt_55135294931862024",
-              "object": "Connection",
-              "environment_id": "env_27758032200925221",
-              "occurred_at": "2025-01-15T08:39:56.694563302Z",
-              "organization_id": "org_30682579501843011",
-              "type": "organization.sso_enabled",
-              "data": {
-                "connection_type": "OIDC",
-                "enabled": true,
-                "id": "conn_30682599886160264",
-                "provider": "OKTA",
-                "organization_id": "org_30682579501843011",
-                "status": "COMPLETED"
-              }
-            }} />
-        </CodeWithHeader>
-    </div>
-</div>
-
-<IntersectingHeader id="tag/Webhooks/organization.sso_disabled" title="SSO Disabled" subheading="true" classList="ApiCategoryList webhook method"/>
-<div className="row section">
-<div className="col col--6">
-This webhook is triggered when a organization connection is disabled
-<ul className="ApiReference-Parameters">
-  <li className="ApiReference-Parameter header">Event Object Attributes</li>
-
-<Parameter
-  attrKey="spec_version"
-  type="string"
-  description="Version of the event specification format"
-/>
-
-<Parameter attrKey="category" type="string" description="Categorization of the event type" />
-<Parameter attrKey="type" type="string" description="Specific type of event that occurred" />
-<Parameter
-  attrKey="occured_at"
-  type="string"
-  description="Timestamp when the event was generated in RFC 3339 format"
-/>
-<Parameter attrKey="source" type="string" description="Origin of the event" />
-<Parameter attrKey="object" type="string" description="Type of object the event relates to" />
-<Parameter attrKey="id" type="string" description="Unique identifier for the specific event" />
-
-  <Parameter
-    attrKey="data"
-    type="object"
-    description="Detailed information about the event">
-    <details>
-      <summary>Data Attributes</summary>
-      <ul className="ApiReference-Parameters">
-        <Parameter
-          attrKey="id"
-          type="string"
-          description="Unique identifier for the connection"
-        />
-
-        <Parameter
-          attrKey="provider"
-          type="enum"
-          description="Identity provider for the connection">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="OKTA" />
-          </details>
-        </Parameter>
-
-        <Parameter
-          attrKey="type"
-          type="enum"
-          description="Type of authentication protocol">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="SAML" />
-            <Parameter attrKey="OIDC" />
-          </details>
-        </Parameter>
-
-        <Parameter
-          attrKey="enabled"
-          type="boolean"
-          description="Indicates whether the connection is currently enabled or disabled"
-        />
-
-        <Parameter
-          attrKey="status"
-          type="enum"
-          description="Current status of the connection">
-          <details>
-            <summary>Possible values</summary>
-            <Parameter attrKey="COMPLETED" />
-          </details>
-        </Parameter>
-      </ul>
-    </details>
-
-  </Parameter>
-</ul>
-
-</div>
-
-<div className="col col--6">
-    <CodeWithHeader title="organization.sso_disabled">
-      <JsonViewer src={{
-          "environment_id": "env_27758032200925221",
-          "id": "evt_55135244717654530",
-          "object": "Connection",
-          "occurred_at": "2025-01-15T08:39:26.764447559Z",
-          "organization_id": "org_30682579501843011",
-          "spec_version": "1",
-          "type": "organization.sso_enabled",
-          "data": {
-            "organization_id": "org_30682579501843011",
-            "connection_type": "OIDC",
-            "enabled": false,
-            "id": "conn_30682599886160264",
-            "provider": "OKTA",
-            "status": "COMPLETED"
+      <li className="ApiReference-Parameter header">Data Attributes</li>
+      <Parameter attrKey="id" type="string" description="Unique identifier for the connection" />
+      <Parameter attrKey="provider" type="enum" description="Identity provider for the connection">
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="OKTA" />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="connection_type"
+        type="enum"
+        description="Type of authentication protocol"
+      >
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="SAML" />
+          <Parameter attrKey="OIDC" />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="enabled"
+        type="boolean"
+        description="Indicates whether the connection is currently enabled or disabled"
+      />
+      <Parameter attrKey="status" type="enum" description="Current status of the connection">
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="COMPLETED" />
+        </details>
+      </Parameter>
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="organization.sso_enabled">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          id: 'evt_55135294931862024',
+          object: 'Connection',
+          environment_id: 'env_27758032200925221',
+          occurred_at: '2025-01-15T08:39:56.694563302Z',
+          organization_id: 'org_30682579501843011',
+          type: 'organization.sso_enabled',
+          data: {
+            connection_type: 'OIDC',
+            enabled: true,
+            id: 'conn_30682599886160264',
+            provider: 'OKTA',
+            organization_id: 'org_30682579501843011',
+            status: 'COMPLETED',
           },
-        }} />
+        }}
+      />
     </CodeWithHeader>
+  </div>
 </div>
+
+<IntersectingHeader
+  id="tag/Webhooks/organization.sso_disabled"
+  title="SSO Disabled"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook is triggered when an organization connection is disabled
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Data Attributes</li>
+      <Parameter attrKey="id" type="string" description="Unique identifier for the connection" />
+      <Parameter attrKey="provider" type="enum" description="Identity provider for the connection">
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="OKTA" />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="connection_type"
+        type="enum"
+        description="Type of authentication protocol"
+      >
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="SAML" />
+          <Parameter attrKey="OIDC" />
+        </details>
+      </Parameter>
+      <Parameter
+        attrKey="enabled"
+        type="boolean"
+        description="Indicates whether the connection is currently enabled or disabled"
+      />
+      <Parameter attrKey="status" type="enum" description="Current status of the connection">
+        <details>
+          <summary>Possible values</summary>
+          <Parameter attrKey="COMPLETED" />
+        </details>
+      </Parameter>
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="organization.sso_disabled">
+      <JsonViewer
+        src={{
+          environment_id: 'env_27758032200925221',
+          id: 'evt_55135244717654530',
+          object: 'Connection',
+          occurred_at: '2025-01-15T08:39:26.764447559Z',
+          organization_id: 'org_30682579501843011',
+          spec_version: '1',
+          type: 'organization.sso_disabled',
+          data: {
+            organization_id: 'org_30682579501843011',
+            connection_type: 'OIDC',
+            enabled: false,
+            id: 'conn_30682599886160264',
+            provider: 'OKTA',
+            status: 'COMPLETED',
+          },
+        }}
+      />
+    </CodeWithHeader>
+  </div>
 </div>
 
 <IntersectingHeader title="SCIM Provisioning" subheading="true" />
@@ -327,7 +259,11 @@ This webhook is triggered when a organization connection is disabled
     This webhook is triggered when a directory sync is enabled
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
-      <Parameter attrKey="id" type="string" description="Unique identifier for event" />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory connection"
+      />
       <Parameter
         attrKey="directory_type"
         type="string"
@@ -342,11 +278,6 @@ This webhook is triggered when a organization connection is disabled
         attrKey="environment_id"
         type="string"
         description="Identifier for the environment"
-      />
-      <Parameter
-        attrKey="data.id"
-        type="string"
-        description="Unique identifier for the directory configuration"
       />
       <Parameter
         attrKey="last_sync_at"
@@ -365,7 +296,7 @@ This webhook is triggered when a organization connection is disabled
         description="Timestamp of when the configuration was last updated"
       />
       <Parameter
-        attrKey="occured_at"
+        attrKey="occurred_at"
         type="string"
         description="Timestamp of when the event occurred"
       />
@@ -448,7 +379,7 @@ This webhook is triggered when a organization connection is disabled
         description="Timestamp of the most recent update to the directory connection"
       />
       <Parameter
-        attrKey="occured_at"
+        attrKey="occurred_at"
         type="string"
         description="Timestamp of when the event occurred"
       />
@@ -487,108 +418,108 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a new directory user is created.
+    This webhook is triggered when a new directory user is created
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
-      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User" />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Unique ID of the Organization to which this directory user belongs."
+        description="Unique ID of the Organization to which this directory user belongs"
       />
       <Parameter
         attrKey="dp_id"
         type="string"
-        description="Unique ID of the User in the Directory Provider (IdP) system."
+        description="Unique ID of the User in the Directory Provider (IdP) system"
       />
       <Parameter
         attrKey="preferred_username"
         type="string"
-        description="Preferred username of the directory user."
+        description="Preferred username of the directory user"
       />
-      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+      <Parameter attrKey="email" type="string" description="Email of the directory user" />
       <Parameter
         attrKey="active"
         type="boolean"
-        description="Indicates if the directory user is active."
+        description="Indicates if the directory user is active"
       />
       <Parameter
         attrKey="name"
         type="string"
-        description="Fully formatted name of the directory user."
+        description="Fully formatted name of the directory user"
       />
       <Parameter
         attrKey="roles"
         type="array"
-        description="Array of roles assigned to the directory user."
+        description="Array of roles assigned to the directory user"
       >
         <details>
           <summary>Child Attributes</summary>
-          <Parameter attrKey="role" type="string" description="Role of the directory user." />
-          <Parameter attrKey="name" type="string" description="Name of the directory user." />
+          <Parameter attrKey="role" type="string" description="Role of the directory user" />
+          <Parameter attrKey="name" type="string" description="Name of the directory user" />
         </details>
       </Parameter>
       <Parameter
         attrKey="groups"
         type="array"
-        description="Array of groups to which the directory user belongs."
+        description="Array of groups to which the directory user belongs"
       >
         <details>
           <summary>Child Attributes</summary>
-          <Parameter attrKey="id" type="string" description="ID of the directory group." />
-          <Parameter attrKey="name" type="string" description="Name of the directory group." />
+          <Parameter attrKey="id" type="string" description="ID of the directory group" />
+          <Parameter attrKey="name" type="string" description="Name of the directory group" />
         </details>
       </Parameter>
       <Parameter
         attrKey="given_name"
         type="string"
-        description="Given name of the directory user."
+        description="Given name of the directory user"
       />
       <Parameter
         attrKey="family_name"
         type="string"
-        description="Family name of the directory user."
+        description="Family name of the directory user"
       />
-      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
+      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user" />
       <Parameter
         attrKey="picture"
         type="string"
-        description="URL of the directory user's profile picture."
+        description="URL of the directory user's profile picture"
       />
       <Parameter
         attrKey="phone_number"
         type="string"
-        description="Phone number of the directory user."
+        description="Phone number of the directory user"
       />
-      <Parameter attrKey="address" type="object" description="Address of the directory user.">
+      <Parameter attrKey="address" type="object" description="Address of the directory user">
         <details>
           <summary>Child Attributes</summary>
           <Parameter
             attrKey="postal_code"
             type="string"
-            description="Postal code of the directory user address."
+            description="Postal code of the directory user address"
           />
           <Parameter
             attrKey="state"
             type="string"
-            description="State of the directory user address."
+            description="State of the directory user address"
           />
           <Parameter
             attrKey="formatted"
             type="string"
-            description="Formatted address of the directory user."
+            description="Formatted address of the directory user"
           />
         </details>
       </Parameter>
       <Parameter
         attrKey="custom_attributes"
         type="object"
-        description="Custom attributes of the directory user."
+        description="Custom attributes of the directory user"
       />
       <Parameter
         attrKey="raw_attributes"
         type="object"
-        description="Raw attributes of the directory user as received from the Directory Provider (IdP)."
+        description="Raw attributes of the directory user as received from the Directory Provider (IdP)"
       />
     </ul>
   </div>
@@ -657,112 +588,108 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a directory user is updated. Usually, directory user data is
-    updated in any of the following scenarios: 1. User Profile is updated in the Directory Provider
-    (IdP) system. 2. User is added to or removed from a group. 3. If
-    [GBAC](/scim/automatically-assign-roles) is enabled, User is assigned or removed from a role
-    based on the group membership.
+    This webhook is triggered when a directory user is updated
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
-      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User" />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Unique ID of the Organization to which this directory user belongs."
+        description="Unique ID of the Organization to which this directory user belongs"
       />
       <Parameter
         attrKey="dp_id"
         type="string"
-        description="Unique ID of the User in the Directory Provider (IdP) system."
+        description="Unique ID of the User in the Directory Provider (IdP) system"
       />
       <Parameter
         attrKey="preferred_username"
         type="string"
-        description="Preferred username of the directory user."
+        description="Preferred username of the directory user"
       />
-      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+      <Parameter attrKey="email" type="string" description="Email of the directory user" />
       <Parameter
         attrKey="active"
         type="boolean"
-        description="Indicates if the directory user is active."
+        description="Indicates if the directory user is active"
       />
       <Parameter
         attrKey="name"
         type="string"
-        description="Fully formatted name of the directory user."
+        description="Fully formatted name of the directory user"
       />
       <Parameter
         attrKey="roles"
         type="array"
-        description="Array of roles assigned to the directory user."
+        description="Array of roles assigned to the directory user"
       >
         <details>
           <summary>Child Attributes</summary>
-          <Parameter attrKey="role" type="string" description="Role of the directory user." />
-          <Parameter attrKey="name" type="string" description="Name of the directory user." />
+          <Parameter attrKey="role" type="string" description="Role of the directory user" />
+          <Parameter attrKey="name" type="string" description="Name of the directory user" />
         </details>
       </Parameter>
       <Parameter
         attrKey="groups"
         type="array"
-        description="Array of groups to which the directory user belongs."
+        description="Array of groups to which the directory user belongs"
       >
         <details>
           <summary>Child Attributes</summary>
-          <Parameter attrKey="id" type="string" description="ID of the directory group." />
-          <Parameter attrKey="name" type="string" description="Name of the directory group." />
+          <Parameter attrKey="id" type="string" description="ID of the directory group" />
+          <Parameter attrKey="name" type="string" description="Name of the directory group" />
         </details>
       </Parameter>
       <Parameter
         attrKey="given_name"
         type="string"
-        description="Given name of the directory user."
+        description="Given name of the directory user"
       />
       <Parameter
         attrKey="family_name"
         type="string"
-        description="Family name of the directory user."
+        description="Family name of the directory user"
       />
-      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user." />
+      <Parameter attrKey="nickname" type="string" description="Nickname of the directory user" />
       <Parameter
         attrKey="picture"
         type="string"
-        description="URL of the directory user's profile picture."
+        description="URL of the directory user's profile picture"
       />
       <Parameter
         attrKey="phone_number"
         type="string"
-        description="Phone number of the directory user."
+        description="Phone number of the directory user"
       />
-      <Parameter attrKey="address" type="object" description="Address of the directory user.">
+      <Parameter attrKey="address" type="object" description="Address of the directory user">
         <details>
           <summary>Child Attributes</summary>
           <Parameter
             attrKey="postal_code"
             type="string"
-            description="Postal code of the directory user address."
+            description="Postal code of the directory user address"
           />
           <Parameter
             attrKey="state"
             type="string"
-            description="State of the directory user address."
+            description="State of the directory user address"
           />
           <Parameter
             attrKey="formatted"
             type="string"
-            description="Formatted address of the directory user."
+            description="Formatted address of the directory user"
           />
         </details>
       </Parameter>
       <Parameter
         attrKey="custom_attributes"
         type="object"
-        description="Custom attributes of the directory user."
+        description="Custom attributes of the directory user"
       />
       <Parameter
         attrKey="raw_attributes"
         type="object"
-        description="Raw attributes of the directory user as received from the Directory Provider (IdP)."
+        description="Raw attributes of the directory user as received from the Directory Provider (IdP)"
       />
     </ul>
   </div>
@@ -826,21 +753,21 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a directory user is deleted.
+    This webhook is triggered when a directory user is deleted
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
-      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User." />
+      <Parameter attrKey="id" type="string" description="Unique ID of the Directory User" />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Unique ID of the Organization to which this directory user belongs."
+        description="Unique ID of the Organization to which this directory user belongs"
       />
       <Parameter
         attrKey="dp_id"
         type="string"
-        description="Unique ID of the User in the Directory Provider (IdP) system."
+        description="Unique ID of the User in the Directory Provider (IdP) system"
       />
-      <Parameter attrKey="email" type="string" description="Email of the directory user." />
+      <Parameter attrKey="email" type="string" description="Email of the directory user" />
     </ul>
   </div>
   <div className="col col--6">
@@ -874,85 +801,68 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a new directory group is created.
+    This webhook is triggered when a new directory group is created
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
       <Parameter
         attrKey="directory_id"
         type="string"
-        description="Unique identifier for the directory."
+        description="Unique identifier for the directory"
       />
       <Parameter
         attrKey="display_name"
         type="string"
-        description="Display name of the directory group."
+        description="Display name of the directory group"
       />
       <Parameter
         attrKey="external_id"
         type="null"
-        description="External identifier for the group, null if not specified."
+        description="External identifier for the group, null if not specified"
       />
       <Parameter
         attrKey="id"
         type="string"
-        description="Unique identifier for the directory group."
+        description="Unique identifier for the directory group"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the group."
+        description="Identifier for the organization associated with the group"
       />
       <Parameter
         attrKey="raw_attributes"
         type="object"
-        description="Raw attributes of the directory group."
-      >
-        <details>
-          <summary>Child Attributes</summary>
-          <Parameter
-            attrKey="displayName"
-            type="string"
-            description="Display name of the group as received from the directory provider."
-          />
-          <Parameter
-            attrKey="members"
-            type="null"
-            description="Members of the group, null if not specified or empty."
-          />
-        </details>
-      </Parameter>
+        description="Raw attributes of the directory provider"
+      />
       <Parameter
         attrKey="environment_id"
         type="string"
-        description="Identifier for the environment where the event occurred."
+        description="Identifier for the environment where the event occurred"
       />
-      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-      <Parameter
-        attrKey="object"
-        type="string"
-        description="Type of object the event relates to."
-      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event" />
+      <Parameter attrKey="object" type="string" description="Type of object the event relates to" />
       <Parameter
         attrKey="occurred_at"
         type="string"
-        description="Timestamp when the event occurred."
+        description="Timestamp when the event occurred"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the event."
+        description="Identifier for the organization associated with the event"
       />
       <Parameter
         attrKey="spec_version"
         type="string"
-        description="Specification version of the event."
+        description="Specification version of the event"
       />
       <Parameter
         attrKey="type"
         type="string"
-        description="Type of the event, indicating the action that occurred."
+        description="Type of the event, indicating the action that occurred"
       />
     </ul>
+
   </div>
   <div className="col col--6">
     <CodeWithHeader title="organization.directory.group_created">
@@ -976,7 +886,6 @@ This webhook is triggered when a organization connection is disabled
         }}
       />
     </CodeWithHeader>
-
   </div>
 </div>
 
@@ -988,93 +897,65 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a directory group is updated.
+    This webhook is triggered when a directory group is updated
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
       <Parameter
         attrKey="directory_id"
         type="string"
-        description="Unique identifier for the directory."
+        description="Unique identifier for the directory"
       />
       <Parameter
         attrKey="display_name"
         type="string"
-        description="Display name of the directory group."
+        description="Display name of the directory group"
       />
       <Parameter
         attrKey="external_id"
         type="null"
-        description="External identifier for the group, null if not specified."
+        description="External identifier for the group, null if not specified"
       />
       <Parameter
         attrKey="id"
         type="string"
-        description="Unique identifier for the directory group."
+        description="Unique identifier for the directory group"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the group."
+        description="Identifier for the organization associated with the group"
       />
       <Parameter
         attrKey="raw_attributes"
         type="object"
-        description="Raw attributes of the directory group."
-      >
-        <details>
-          <summary>Child Attributes</summary>
-          <Parameter
-            attrKey="displayName"
-            type="string"
-            description="Display name of the group as received from the directory provider."
-          />
-          <Parameter attrKey="members" type="array" description="Array of members in the group.">
-            <details>
-              <summary>Child Attributes</summary>
-              <Parameter
-                attrKey="display"
-                type="string"
-                description="Display name or email of the group member."
-              />
-              <Parameter
-                attrKey="value"
-                type="string"
-                description="Unique identifier for the group member."
-              />
-            </details>
-          </Parameter>
-        </details>
-      </Parameter>
+        description="Raw attributes of the directory group"
+      />
       <Parameter
         attrKey="environment_id"
         type="string"
-        description="Identifier for the environment where the event occurred."
+        description="Identifier for the environment where the event occurred"
       />
-      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-      <Parameter
-        attrKey="object"
-        type="string"
-        description="Type of object the event relates to."
-      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event" />
+      <Parameter attrKey="object" type="string" description="Type of object the event relates to" />
       <Parameter
         attrKey="occurred_at"
         type="string"
-        description="Timestamp when the event occurred."
+        description="Timestamp when the event occurred"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the event."
+        description="Identifier for the organization associated with the event"
       />
       <Parameter
         attrKey="spec_version"
         type="string"
-        description="Specification version of the event."
+        description="Specification version of the event"
       />
       <Parameter
         attrKey="type"
         type="string"
-        description="Type of the event, indicating the action that occurred."
+        description="Type of the event, indicating the action that occurred"
       />
     </ul>
   </div>
@@ -1111,58 +992,58 @@ This webhook is triggered when a organization connection is disabled
 />
 <div className="row section">
   <div className="col col--6">
-    This webhook is triggered when a directory group is deleted.
+    This webhook is triggered when a directory group is deleted
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">Event Data</li>
       <Parameter
         attrKey="directory_id"
         type="string"
-        description="Unique identifier for the directory."
+        description="Unique identifier for the directory"
       />
       <Parameter
         attrKey="display_name"
         type="string"
-        description="Display name of the directory group."
+        description="Display name of the directory group"
       />
       <Parameter
         attrKey="dp_id"
         type="string"
-        description="Unique identifier for the group in the directory provider system."
+        description="Unique identifier for the group in the directory provider system"
       />
       <Parameter
         attrKey="id"
         type="string"
-        description="Unique identifier for the directory group."
+        description="Unique identifier for the directory group"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the group."
+        description="Identifier for the organization associated with the group"
       />
       <Parameter
         attrKey="raw_attributes"
         type="object"
-        description="Raw attributes of the directory group as received from the provider."
+        description="Raw attributes of the directory group as received from the provider"
       >
         <details>
           <summary>Child Attributes</summary>
           <Parameter
             attrKey="displayName"
             type="string"
-            description="Display name of the group as received from the directory provider."
+            description="Display name of the group as received from the directory provider"
           />
           <Parameter
             attrKey="externalId"
             type="string"
-            description="External identifier for the group in the directory provider system."
+            description="External identifier for the group in the directory provider system"
           />
-          <Parameter attrKey="members" type="array" description="Array of members in the group.">
+          <Parameter attrKey="members" type="array" description="Array of members in the group">
             <details>
               <summary>Child Attributes</summary>
               <Parameter
                 attrKey="value"
                 type="string"
-                description="Unique identifier for the group member."
+                description="Unique identifier for the group member"
               />
             </details>
           </Parameter>
@@ -1171,33 +1052,29 @@ This webhook is triggered when a organization connection is disabled
       <Parameter
         attrKey="environment_id"
         type="string"
-        description="Identifier for the environment where the event occurred."
+        description="Identifier for the environment where the event occurred"
       />
-      <Parameter attrKey="id" type="string" description="Unique identifier for the event." />
-      <Parameter
-        attrKey="object"
-        type="string"
-        description="Type of object the event relates to."
-      />
+      <Parameter attrKey="id" type="string" description="Unique identifier for the event" />
+      <Parameter attrKey="object" type="string" description="Type of object the event relates to" />
       <Parameter
         attrKey="occurred_at"
         type="string"
-        description="Timestamp when the event occurred."
+        description="Timestamp when the event occurred"
       />
       <Parameter
         attrKey="organization_id"
         type="string"
-        description="Identifier for the organization associated with the event."
+        description="Identifier for the organization associated with the event"
       />
       <Parameter
         attrKey="spec_version"
         type="string"
-        description="Specification version of the event."
+        description="Specification version of the event"
       />
       <Parameter
         attrKey="type"
         type="string"
-        description="Type of the event, indicating the action that occurred."
+        description="Type of the event, indicating the action that occurred"
       />
     </ul>
   </div>
