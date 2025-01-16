@@ -39,15 +39,16 @@ import DirectoryTag from './_directory.mdx';
 <div className="col col--6">
 Scalekit API is modeled around the [REST](https://en.wikipedia.org/wiki/REST) architecture style. That means, our API has predictable resource-oriented URLs, accepts form-encoded request bodies and produces JSON formatted responses, uses standard HTTP verbs and error codes.
 
-Apart from REST APIs, we have published SDKs in some of the popular languages as shown below. You can use these SDKs and
-integrate with Scalekit much faster.
+Apart from REST APIs, we have published SDKs in some of the popular languages as shown below. You
+can use these SDKs and integrate with Scalekit much faster.
 
 Some additional instructions around using our APIs
 
 - API Endpoint Host must use the `Environment URL` of the environment you are targeting.
 - API requests without appropriate authentication headers will fail with 401 status code.
 
-Read below to understand more about how to authenticate the API calls and how to handle errors appropriately.
+Read below to understand more about how to authenticate the API calls and how to handle errors
+appropriately.
 
 </div>
 <div className="col col--6">
@@ -108,7 +109,11 @@ curl -L 'https://<ENV_URL>/oauth/token' \
 ```js showLineNumbers
 import { Scalekit } from '@scalekit-sdk/node';
 
-const scalekit = new Scalekit('<SCALEKIT_ENVIRONMENT_URL>', '<SCALEKIT_CLIENT_ID>', '<SCALEKIT_CLIENT_SECRET>');
+const scalekit = new Scalekit(
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>',
+);
 ```
 
 </TabItem>
@@ -178,7 +183,12 @@ public class Main {
 </div>
 </div>
 
-<IntersectingHeader id="using-access-token" title="Using Access Token" subheading="true" classList="ApiCategoryList" />
+<IntersectingHeader
+  id="using-access-token"
+  title="Using Access Token"
+  subheading="true"
+  classList="ApiCategoryList"
+/>
 
 <div className="row section">
     <div className="col col--6">
@@ -214,8 +224,8 @@ $ curl --request GET "https://{ENV_URL}/api/v1/organizations" \
     <div className="col col--6">
 As mentioned earlier, Scalekit APIs return appropriate HTTP Status Codes along with the detailed error messages in case of invalid usage of APIs.
 
-You can see the list of different HTTP Status Codes and the error message format in the right pane. We strongly
-recommend you to handle errors gracefully while writing code using our SDKs.
+You can see the list of different HTTP Status Codes and the error message format in the right pane.
+We strongly recommend you to handle errors gracefully while writing code using our SDKs.
 
 </div>
 <div className="col col--6">
@@ -256,7 +266,8 @@ recommend you to handle errors gracefully while writing code using our SDKs.
     <div className="col col--6">
         When you need one of your customers to login via Enterprise SSO, you can redirect them to Scalekit's Authorization URL with necessary details about the organization or the SSO connection. Scalekit will seamlessly deal with integrating with any Identity Provider and exchanges user information via SAML or OIDC or OAuth2.
 
-More details about the Single Sign-on flow is described <Link href="/sso/quickstart" target="_blank">here</Link>
+More details about the Single Sign-on flow is described
+<Link href="/sso/quickstart" target="_blank">here</Link>
 
 </div>
 <div className="col col--6">

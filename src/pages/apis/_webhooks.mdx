@@ -11,64 +11,64 @@ import { Endpoint } from '@site/src/components/endpoint';
         <CodeWithHeader title="List of Events">
             <div className="endpoints">
                 <Endpoint
-                    key='scalekit.dir.conn.enable'
-                    href='#tag/Webhooks/scalekit.dir.conn.enable'
+                    key='organization.sso_enabled'
+                    href='#tag/Webhooks/organization.sso_enabled'
                     method='event'
-                    label='scalekit.dir.conn.enable'
+                    label='organization.sso_enabled'
                 />
                 <Endpoint
                     key='scalekit.dir.conn.disable'
-                    href='#tag/Webhooks/scalekit.org.conn.disable'
+                    href='#tag/Webhooks/organization.sso_disabled'
                     method='event'
                     label='scalekit.dir.conn.disable'
                 />
                 <Endpoint
-                    key='scalekit.dir.sync.enable'
-                    href='#tag/Webhooks/scalekit.dir.sync.enable'
+                    key='organization.directory_enabled'
+                    href='#tag/Webhooks/organization.directory_enabled'
                     method='event'
-                    label='scalekit.dir.sync.enable'
+                    label='organization.directory_enabled'
                 />
                 <Endpoint
-                    key='scalekit.dir.sync.disable'
-                    href='#tag/Webhooks/scalekit.dir.sync.disable'
+                    key='organization.directory_disabled'
+                    href='#tag/Webhooks/organization.directory_disabled'
                     method='event'
-                    label='scalekit.dir.sync.disable'
+                    label='organization.directory_disabled'
                 />
                 <Endpoint
-                    key='scalekit.dir.user.create'
-                    href='#tag/Webhooks/scalekit.dir.user.create'
+                    key='organization.directory.user_created'
+                    href='#tag/Webhooks/organization.directory.user_created'
                     method='event'
-                    label='scalekit.dir.user.create'
+                    label='organization.directory.user_created'
                 />
                 <Endpoint
-                    key='scalekit.dir.user.update'
-                    href='#tag/Webhooks/scalekit.dir.user.update'
+                    key='organization.directory.user_updated'
+                    href='#tag/Webhooks/organization.directory.user_updated'
                     method='event'
-                    label='scalekit.dir.user.update'
+                    label='organization.directory.user_updated'
                 />
                 <Endpoint
-                    key='scalekit.dir.user.delete'
-                    href='#tag/Webhooks/scalekit.dir.user.delete'
+                    key='organization.directory.user_deleted'
+                    href='#tag/Webhooks/organization.directory.user_deleted'
                     method='event'
-                    label='scalekit.dir.user.delete'
+                    label='organization.directory.user_deleted'
                 />
                 <Endpoint
-                    key='scalekit.dir.group.create'
-                    href='#tag/Webhooks/scalekit.dir.group.create'
+                    key='organization.directory.group_created'
+                    href='#tag/Webhooks/organization.directory.group_created'
                     method='event'
-                    label='scalekit.dir.group.create'
+                    label='organization.directory.group_created'
                 />
                 <Endpoint
-                    key='scalekit.dir.group.update'
-                    href='#tag/Webhooks/scalekit.dir.group.update'
+                    key='organization.directory.group_updated'
+                    href='#tag/Webhooks/organization.directory.group_updated'
                     method='event'
-                    label='scalekit.dir.group.update'
+                    label='organization.directory.group_updated'
                 />
                 <Endpoint
-                    key='scalekit.dir.group.delete'
-                    href='#tag/Webhooks/scalekit.dir.group.delete'
+                    key='organization.directory.group_deleted'
+                    href='#tag/Webhooks/organization.directory.group_deleted'
                     method='event'
-                    label='scalekit.dir.group.delete'
+                    label='organization.directory.group_deleted'
                 />
             </div>
         </CodeWithHeader>
@@ -84,7 +84,7 @@ import { Endpoint } from '@site/src/components/endpoint';
             <li className="ApiReference-Parameter header">Event Metadata</li>
             <Parameter attrKey="spec_version" type="string" description="Version of the event specification (currently '1')." />
             <Parameter attrKey="category" type="string" description="Indicates the event category (Example: 'dir' for directory-related events)." />
-            <Parameter attrKey="type" type="string" description="Specifies the exact event type (Example: 'scalekit.dir.user.create' for user creation)." />
+            <Parameter attrKey="type" type="string" description="Specifies the exact event type (Example: 'organization.directory.user_created' for user creation)." />
             <Parameter attrKey="occured_at" type="string" description="Timestamp of when the event occurred." />
             <Parameter attrKey="source" type="string" description="The origin of the event (always 'scalekit' in this case)." />
             <Parameter attrKey="object" type="string" description="The type of object affected (Example: 'DirectoryUser')." />
@@ -98,7 +98,7 @@ import { Endpoint } from '@site/src/components/endpoint';
         {
           "spec_version": "1",
           "category": "dir",
-          "type": "scalekit.dir.user.create",
+          "type": "organization.directory.user_created",
           "occured_at": "2024-08-21T10:20:17.072Z",
           "source": "scalekit",
           "object": "DirectoryUser",
@@ -111,7 +111,8 @@ import { Endpoint } from '@site/src/components/endpoint';
     </div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.org.conn.enable" title="scalekit.org.conn.enable" subheading="true" classList="ApiCategoryList webhook method"/>
+<IntersectingHeader title="Enterprise SSO" subheading="true" />
+<IntersectingHeader id="tag/Webhooks/organization.sso_enabled" title="SSO Enabled" subheading="true" classList="ApiCategoryList webhook method"/>
 <div className="row section">
     <div className="col col--6">
     This webhook is triggered when a organization connection is enabled
@@ -188,11 +189,11 @@ import { Endpoint } from '@site/src/components/endpoint';
 </ul>
     </div>
     <div className="col col--6">
-        <CodeWithHeader title="scalekit.org.conn.enable">
+        <CodeWithHeader title="organization.sso_enabled">
           <JsonViewer src={{
               "spec_version": "1",
               "category": "conn",
-              "type": "scalekit.org.conn.enable",
+              "type": "organization.sso_enabled",
               "occured_at": "2024-08-21T10:20:17.072Z",
               "source": "scalekit",
               "object": "Connection",
@@ -209,7 +210,7 @@ import { Endpoint } from '@site/src/components/endpoint';
     </div>
 </div>
 
-<IntersectingHeader id="tag/Webhooks/scalekit.org.conn.disable" title="scalekit.org.conn.disable" subheading="true" classList="ApiCategoryList webhook method"/>
+<IntersectingHeader id="tag/Webhooks/organization.sso_disabled" title="SSO Disabled" subheading="true" classList="ApiCategoryList webhook method"/>
 <div className="row section">
 <div className="col col--6">
 This webhook is triggered when a organization connection is disabled
@@ -291,11 +292,11 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <div className="col col--6">
-    <CodeWithHeader title="scalekit.org.conn.disable">
+    <CodeWithHeader title="organization.sso_disabled">
       <JsonViewer src={{
           "spec_version": "1",
           "category": "conn",
-          "type": "scalekit.org.conn.disable",
+          "type": "organization.sso_disabled",
           "occured_at": "2024-08-21T10:20:17.072Z",
           "source": "scalekit",
           "object": "Connection",
@@ -312,9 +313,10 @@ This webhook is triggered when a organization connection is disabled
 </div>
 </div>
 
+<IntersectingHeader title="SCIM Provisioning" subheading="true" />
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.sync.enable"
-  title="scalekit.dir.sync.enable"
+  id="tag/Webhooks/organization.directory_enabled"
+  title="Directory Enabled"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -368,12 +370,12 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.sync.enable">
+    <CodeWithHeader title="organization.directory_enabled">
       <JsonViewer
         src={{
           spec_version: '1',
           id: 'evt_53891640779079756',
-          type: 'scalekit.dir.sync.enable',
+          type: 'organization.directory_enabled',
           occurred_at: '2025-01-06T18:45:21.057814Z',
           environment_id: 'env_53814739859406915',
           organization_id: 'org_53879494091473415',
@@ -394,8 +396,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.sync.disable"
-  title="scalekit.dir.sync.disable"
+  id="tag/Webhooks/organization.directory_disabled"
+  title="Directory Disabled"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -452,12 +454,12 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.sync.disable">
+    <CodeWithHeader title="organization.directory_disabled">
       <JsonViewer
         src={{
           spec_version: '1',
           id: 'evt_53891640779079756',
-          type: 'scalekit.dir.sync.enable',
+          type: 'organization.directory_enabled',
           occurred_at: '2025-01-06T18:45:21.057814Z',
           environment_id: 'env_53814739859406915',
           organization_id: 'org_53879494091473415',
@@ -478,8 +480,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.user.create"
-  title="scalekit.dir.user.create"
+  id="tag/Webhooks/organization.directory.user_created"
+  title="Directory User Created"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -591,12 +593,12 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.user.create">
+    <CodeWithHeader title="organization.directory.user_created">
       <JsonViewer
         src={{
           spec_version: '1',
           category: 'dir',
-          type: 'scalekit.dir.user.create',
+          type: 'organization.directory.user_created',
           occured_at: '2024-08-21T10:20:17.072Z',
           source: 'scalekit',
           object: 'DirectoryUser',
@@ -644,8 +646,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.user.update"
-  title="scalekit.dir.user.update"
+  id="tag/Webhooks/organization.directory.user_updated"
+  title="Directory User Updated"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -761,12 +763,12 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.user.update">
+    <CodeWithHeader title="organization.directory.user_updated">
       <JsonViewer
         src={{
           spec_version: '1',
           category: 'dir',
-          type: 'scalekit.dir.user.update',
+          type: 'organization.directory.user_updated',
           occured_at: '2024-08-21T10:20:17.072Z',
           source: 'scalekit',
           object: 'DirectoryUser',
@@ -814,8 +816,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.user.delete"
-  title="scalekit.dir.user.delete"
+  id="tag/Webhooks/organization.directory.user_deleted"
+  title="Directory User Deleted"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -839,12 +841,12 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.user.delete">
+    <CodeWithHeader title="organization.directory.user_deleted">
       <JsonViewer
         src={{
           spec_version: '1',
           category: 'dir',
-          type: 'scalekit.dir.user.delete',
+          type: 'organization.directory.user_deleted',
           occured_at: '2024-08-21T10:20:17.072Z',
           source: 'scalekit',
           object: 'DirectoryUser',
@@ -861,8 +863,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.group.create"
-  title="scalekit.dir.group.create"
+  id="tag/Webhooks/organization.directory.group_created"
+  title="Directory Group Created"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -949,7 +951,7 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.group.create">
+    <CodeWithHeader title="organization.directory.group_created">
       <JsonViewer
         src={{
           data: {
@@ -969,7 +971,7 @@ This webhook is triggered when a organization connection is disabled
           occurred_at: '2024-09-25T02:26:39.036398577Z',
           organization_id: 'org_38609339635728478',
           spec_version: '1',
-          type: 'scalekit.dir.group.create',
+          type: 'organization.directory.group_created',
         }}
       />
     </CodeWithHeader>
@@ -977,8 +979,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.group.update"
-  title="scalekit.dir.group.update"
+  id="tag/Webhooks/organization.directory.group_updated"
+  title="Directory Group Updated"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -1075,7 +1077,7 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.group.update">
+    <CodeWithHeader title="organization.directory.group_updated">
       <JsonViewer
         src={{
           data: {
@@ -1100,7 +1102,7 @@ This webhook is triggered when a organization connection is disabled
           occurred_at: '2024-09-25T02:48:34.745030921Z',
           organization_id: 'org_38609339635728478',
           spec_version: '1',
-          type: 'scalekit.dir.group.update',
+          type: 'organization.directory.group_updated',
         }}
       />
     </CodeWithHeader>
@@ -1108,8 +1110,8 @@ This webhook is triggered when a organization connection is disabled
 </div>
 
 <IntersectingHeader
-  id="tag/Webhooks/scalekit.dir.group.delete"
-  title="scalekit.dir.group.delete"
+  id="tag/Webhooks/organization.directory.group_deleted"
+  title="Directory Group Deleted"
   subheading="true"
   classList="ApiCategoryList webhook method"
 />
@@ -1206,7 +1208,7 @@ This webhook is triggered when a organization connection is disabled
     </ul>
   </div>
   <div className="col col--6">
-    <CodeWithHeader title="scalekit.dir.group.delete">
+    <CodeWithHeader title="organization.directory.group_deleted">
       <JsonViewer
         src={{
           data: {
@@ -1237,7 +1239,7 @@ This webhook is triggered when a organization connection is disabled
           occurred_at: '2024-10-07T10:25:26.289331747Z',
           organization_id: 'org_39802449573184223',
           spec_version: '1',
-          type: 'scalekit.dir.group.delete',
+          type: 'organization.directory.group_deleted',
         }}
       />
     </CodeWithHeader>
