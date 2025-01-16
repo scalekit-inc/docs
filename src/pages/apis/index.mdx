@@ -39,16 +39,14 @@ import DirectoryTag from './_directory.mdx';
 <div className="col col--6">
 Scalekit API is modeled around the [REST](https://en.wikipedia.org/wiki/REST) architecture style. That means, our API has predictable resource-oriented URLs, accepts form-encoded request bodies and produces JSON formatted responses, uses standard HTTP verbs and error codes.
 
-Apart from REST APIs, we have published SDKs in some of the popular languages as shown below. You
-can use these SDKs and integrate with Scalekit much faster.
+Apart from REST APIs, we have published SDKs in some of the popular languages as shown below. You can use these SDKs and integrate with Scalekit much faster.
 
 Some additional instructions around using our APIs
 
 - API Endpoint Host must use the `Environment URL` of the environment you are targeting.
 - API requests without appropriate authentication headers will fail with 401 status code.
 
-Read below to understand more about how to authenticate the API calls and how to handle errors
-appropriately.
+Read below to understand more about how to authenticate the API calls and how to handle errors appropriately.
 
 </div>
 <div className="col col--6">
@@ -224,8 +222,7 @@ $ curl --request GET "https://{ENV_URL}/api/v1/organizations" \
     <div className="col col--6">
 As mentioned earlier, Scalekit APIs return appropriate HTTP Status Codes along with the detailed error messages in case of invalid usage of APIs.
 
-You can see the list of different HTTP Status Codes and the error message format in the right pane.
-We strongly recommend you to handle errors gracefully while writing code using our SDKs.
+You can see the list of different HTTP Status Codes and the error message format in the right pane. We strongly recommend you to handle errors gracefully while writing code using our SDKs.
 
 </div>
 <div className="col col--6">
