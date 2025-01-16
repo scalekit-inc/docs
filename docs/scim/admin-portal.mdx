@@ -1,23 +1,27 @@
 ---
 title: 'SCIM Admin Portal: Configure User Provisioning with Scalekit'
-description: "Learn how to empower IT administrators with Scalekit's Admin Portal for SCIM provisioning configuration. Implement no-code or embedded solutions for seamless directory integration and automated user management."
-keywords: [
-  'SCIM Admin Portal',
-  'User Provisioning',
-  'Directory Integration',
-  'Identity Management',
-  'Enterprise Administration',
-  'SCIM Configuration',
-  'IT Administration',
-  'Self-service Portal',
-  'Directory Sync',
-  'User Management',
-  'Enterprise Integration',
-  'SCIM Setup',
-  'Directory Provider',
-  'User Synchronization',
-  'Access Management'
-]
+description:
+  "Learn how to empower IT administrators with Scalekit's Admin Portal for SCIM provisioning
+  configuration. Implement no-code or embedded solutions for seamless directory integration and
+  automated user management."
+keywords:
+  [
+    'SCIM Admin Portal',
+    'User Provisioning',
+    'Directory Integration',
+    'Identity Management',
+    'Enterprise Administration',
+    'SCIM Configuration',
+    'IT Administration',
+    'Self-service Portal',
+    'Directory Sync',
+    'User Management',
+    'Enterprise Integration',
+    'SCIM Setup',
+    'Directory Provider',
+    'User Synchronization',
+    'Access Management',
+  ]
 ---
 
 import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
@@ -69,7 +73,6 @@ Convenient access for making changes on the go, and Reduced navigation barriers 
 
 Install the Scalekit SDK, which includes the <SimpleCode>generatePortalLink()</SimpleCode> method:
 
-
 Use the Generate Portal Link API to create a unique and embeddable Admin Portal link for an
 organization:
 
@@ -97,7 +100,7 @@ portal_link = scalekit_client.organization.generate_portal_link('<organization_i
 
 </TabItem>
 
-{/* <TabItem value="go" label="Go">
+<TabItem value="go" label="Go">
 
 ```go
 link, err := sc.Organization.GeneratePortalLink(
@@ -106,12 +109,13 @@ link, err := sc.Organization.GeneratePortalLink(
 )
 ```
 
-</TabItem> */}
+</TabItem>
 
 <TabItem value="java" label="Java">
 
 ```java
 Link response = scalekitClient.organizations().generatePortalLink(organizationId);
+
 ```
 
 </TabItem>

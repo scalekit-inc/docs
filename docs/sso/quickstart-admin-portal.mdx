@@ -138,6 +138,58 @@ attribute of an iframe in your web pages.
 
 </CodeWithHeader>
 
+### UI Events in the Portal
+
+When the Admin Portal is embedded in your application via an iframe, it can emit events to the
+parent window. You can capture these events using the window.onmessage method.
+
+<CodeWithHeader title="Listening to Portal Events in the UI">
+
+```javascript
+window.onmessage = event => {
+  if (
+    event.origin === '<SCALEKIT_ENVIRONMENT_URL>' && // 'https://yourapp.scalekit.dev'
+    event.data &&
+    event.data.event_type === 'ORGANIZATION_SSO_ENABLED' // Check for the specific event type
+  ) {
+    console.log(event.data); // Handle the event data
+  }
+};
+```
+
+</CodeWithHeader>
+
+Below is an example of the data structure you might receive in your browser console when the <SimpleCode>ORGANIZATION_SSO_ENABLED</SimpleCode> event is triggered:
+
+<CodeWithHeader title="Event Data in Browser Console">
+
+<JsonViewer
+  src={{
+    event_type: 'ORGANIZATION_SSO_ENABLED',
+    object: 'connection',
+    organization_id: 'org_4010340X34236531',
+    data: {
+      connection_type: 'SSO',
+      status: 'COMPLETED',
+      id: 'conn_4256075523X312',
+      type: 'OIDC',
+      provider: 'OKTA',
+      enabled: true,
+    },
+  }}
+/>
+
+</CodeWithHeader>
+
+:::note
+
+1. The domain of your parent window must be listed in the Scalekit Dashboard > API Config > Redirect
+   URIs for security purpose
+2. Always validate the <SimpleCode>event.origin</SimpleCode> to ensure events are coming from a
+   trusted source.
+
+:::
+
 **Important Considerations**
 
 1. The generated link is designed for one-time use and expires after 5 minutes or upon its initial
