@@ -26,7 +26,7 @@ go get -u github.com/scalekit-inc/scalekit-sdk-go
 
 ```groovy
 /* Gradle users - add the following to your dependencies in build file */
-implementation "com.scalekit:scalekit-sdk-java:1.1.0"
+implementation "com.scalekit:scalekit-sdk-java:1.1.2"
 ```
 
 ```xml
@@ -34,7 +34,7 @@ implementation "com.scalekit:scalekit-sdk-java:1.1.0"
 <dependency>
     <groupId>com.scalekit</groupId>
     <artifactId>scalekit-sdk-java</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
