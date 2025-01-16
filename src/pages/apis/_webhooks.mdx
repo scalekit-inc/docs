@@ -192,20 +192,21 @@ import { Endpoint } from '@site/src/components/endpoint';
         <CodeWithHeader title="organization.sso_enabled">
           <JsonViewer src={{
               "spec_version": "1",
-              "category": "conn",
-              "type": "organization.sso_enabled",
-              "occured_at": "2024-08-21T10:20:17.072Z",
-              "source": "scalekit",
+              "id": "evt_55135294931862024",
               "object": "Connection",
-              "id" : "evt_12343",
+              "environment_id": "env_27758032200925221",
+              "occurred_at": "2025-01-15T08:39:56.694563302Z",
+              "organization_id": "org_30682579501843011",
+              "type": "organization.sso_enabled",
               "data": {
-                  "id": "conn_54237072013131859",
-                  "provider": "OKTA",
-                  "type": "SAML", // or "OIDC"
-                  "enabled": true,
-                  "status": "COMPLETED",
+                "connection_type": "OIDC",
+                "enabled": true,
+                "id": "conn_30682599886160264",
+                "provider": "OKTA",
+                "organization_id": "org_30682579501843011",
+                "status": "COMPLETED"
               }
-          }} />
+            }} />
         </CodeWithHeader>
     </div>
 </div>
@@ -294,20 +295,21 @@ This webhook is triggered when a organization connection is disabled
 <div className="col col--6">
     <CodeWithHeader title="organization.sso_disabled">
       <JsonViewer src={{
-          "spec_version": "1",
-          "category": "conn",
-          "type": "organization.sso_disabled",
-          "occured_at": "2024-08-21T10:20:17.072Z",
-          "source": "scalekit",
+          "environment_id": "env_27758032200925221",
+          "id": "evt_55135244717654530",
           "object": "Connection",
-          "id" : "evt_12343",
+          "occurred_at": "2025-01-15T08:39:26.764447559Z",
+          "organization_id": "org_30682579501843011",
+          "spec_version": "1",
+          "type": "organization.sso_enabled",
           "data": {
-              "id": "conn_54237072013131859",
-              "provider": "OKTA",
-              "type": "SAML", // or "OIDC"
-              "enabled": true,
-              "status": "COMPLETED",
-          }
+            "organization_id": "org_30682579501843011",
+            "connection_type": "OIDC",
+            "enabled": false,
+            "id": "conn_30682599886160264",
+            "provider": "OKTA",
+            "status": "COMPLETED"
+          },
         }} />
     </CodeWithHeader>
 </div>
@@ -373,21 +375,20 @@ This webhook is triggered when a organization connection is disabled
     <CodeWithHeader title="organization.directory_enabled">
       <JsonViewer
         src={{
-          spec_version: '1',
-          id: 'evt_53891640779079756',
-          type: 'organization.directory_enabled',
-          occurred_at: '2025-01-06T18:45:21.057814Z',
-          environment_id: 'env_53814739859406915',
-          organization_id: 'org_53879494091473415',
+          environment_id: 'env_27758032200925221',
+          id: 'evt_55136848686613000',
           object: 'Directory',
+          occurred_at: '2025-01-15T08:55:22.802860294Z',
+          organization_id: 'org_55135410258444802',
+          spec_version: '1',
+          type: 'organization.directory_enabled',
           data: {
             directory_type: 'SCIM',
-            enabled: true,
-            id: 'dir_53879621145330183',
-            last_sync_at: '2025-01-06T18:45:03.206676Z',
-            organization_id: 'org_53879494091473415',
+            enabled: false,
+            id: 'dir_55135622825771522',
+            organization_id: 'org_55135410258444802',
             provider: 'OKTA',
-            updated_at: '2025-01-06T18:45:21.04978184Z',
+            updated_at: '2025-01-15T08:55:22.792993454Z',
           },
         }}
       />
@@ -459,7 +460,7 @@ This webhook is triggered when a organization connection is disabled
         src={{
           spec_version: '1',
           id: 'evt_53891640779079756',
-          type: 'organization.directory_enabled',
+          type: 'organization.directory_disabled',
           occurred_at: '2025-01-06T18:45:21.057814Z',
           environment_id: 'env_53814739859406915',
           organization_id: 'org_53879494091473415',
@@ -468,7 +469,6 @@ This webhook is triggered when a organization connection is disabled
             directory_type: 'SCIM',
             enabled: false,
             id: 'dir_53879621145330183',
-            last_sync_at: '2025-01-06T18:45:03.206676Z',
             organization_id: 'org_53879494091473415',
             provider: 'OKTA',
             updated_at: '2025-01-06T18:45:21.04978184Z',
@@ -597,19 +597,40 @@ This webhook is triggered when a organization connection is disabled
       <JsonViewer
         src={{
           spec_version: '1',
-          category: 'dir',
+          id: 'evt_53891546994442316',
           type: 'organization.directory.user_created',
-          occured_at: '2024-08-21T10:20:17.072Z',
-          source: 'scalekit',
+          occurred_at: '2025-01-06T18:44:25.153954Z',
+          environment_id: 'env_53814739859406915',
+          organization_id: 'org_53879494091473415',
           object: 'DirectoryUser',
           data: {
-            id: 'diruser_12312312312312',
-            organization_id: 'org_12312312312312',
-            dp_id: '<scim_external_id>',
-            preferred_username: '<idp_user_name>',
-            email: 'john.doe@example.com',
             active: true,
-            name: 'John Doe',
+            cost_center: 'QAUZJUHSTYCN',
+            custom_attributes: {
+              mobile_phone_number: '1-579-4072',
+            },
+            department: 'HNXJPGISMIFN',
+            division: 'MJFUEYJOKICN',
+            dp_id: '<id from IDP>',
+            email: 'flavio@runolfsdottir.co.duk',
+            employee_id: 'AWNEDTILGaIZN',
+            family_name: 'Jaquelin',
+            given_name: 'Dayton',
+            groups: null,
+            id: 'diruser_53891546960887884',
+            language: 'se',
+            locale: 'LLWLEWESPLDC',
+            name: 'QURGUZZDYMFU',
+            nickname: 'DTUODYKGFPPC',
+            organization: 'AUIITQVUQGVH',
+            organization_id: 'org_53879494091473415',
+            phone_number: '1-579-4072',
+            preferred_username: 'kuntala1233a',
+            profile: 'YMIUQUHKGVAX',
+            raw_attributes: {},
+            title: 'FKQBHCWJXZSC',
+            user_type: 'RBQFJSQEFAEH',
+            zoneinfo: 'America/Araguaina',
             roles: [
               {
                 role_name: 'billing_admin',
@@ -621,23 +642,6 @@ This webhook is triggered when a organization connection is disabled
                 name: 'Group Name',
               },
             ],
-            given_name: 'John',
-            family_name: 'Doe',
-            nickname: 'Jhonny boy',
-            picture: 'https://image.com/profile.jpg',
-            phone_number: '1234567892',
-            address: {
-              postal_code: '64112',
-              state: 'Missouri',
-              formatted: '123, Oxford Lane, Kansas City, Missouri, 64112',
-            },
-            custom_attributes: {
-              attribute1: 'value1',
-              attribute2: 'value2',
-            },
-            raw_attributes: {
-              // SCIM payload
-            },
           },
         }}
       />
@@ -767,14 +771,15 @@ This webhook is triggered when a organization connection is disabled
       <JsonViewer
         src={{
           spec_version: '1',
-          category: 'dir',
+          id: 'evt_53891546994442316',
           type: 'organization.directory.user_updated',
-          occured_at: '2024-08-21T10:20:17.072Z',
-          source: 'scalekit',
+          occurred_at: '2025-01-06T18:44:25.153954Z',
+          environment_id: 'env_53814739859406915',
+          organization_id: 'org_53879494091473415',
           object: 'DirectoryUser',
           data: {
             id: 'diruser_12312312312312',
-            organization_id: 'org_12312312312312',
+            organization_id: 'org_53879494091473415',
             dp_id: '<scim_external_id>',
             preferred_username: '<idp_user_name>',
             email: 'john.doe@example.com',
@@ -805,9 +810,7 @@ This webhook is triggered when a organization connection is disabled
               attribute1: 'value1',
               attribute2: 'value2',
             },
-            raw_attributes: {
-              // SCIM payload
-            },
+            raw_attributes: {},
           },
         }}
       />
@@ -845,10 +848,11 @@ This webhook is triggered when a organization connection is disabled
       <JsonViewer
         src={{
           spec_version: '1',
-          category: 'dir',
+          id: 'evt_53891546994442316',
           type: 'organization.directory.user_deleted',
-          occured_at: '2024-08-21T10:20:17.072Z',
-          source: 'scalekit',
+          occurred_at: '2025-01-06T18:44:25.153954Z',
+          environment_id: 'env_53814739859406915',
+          organization_id: 'org_53879494091473415',
           object: 'DirectoryUser',
           data: {
             id: 'diruser_12312312312312',
@@ -954,6 +958,13 @@ This webhook is triggered when a organization connection is disabled
     <CodeWithHeader title="organization.directory.group_created">
       <JsonViewer
         src={{
+          spec_version: '1',
+          id: 'evt_38862741515010639',
+          environment_id: 'env_32080745237316098',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-09-25T02:26:39.036398577Z',
+          organization_id: 'org_38609339635728478',
+          type: 'organization.directory.group_created',
           data: {
             directory_id: 'dir_38610496391217780',
             display_name: 'Avengers',
@@ -965,13 +976,6 @@ This webhook is triggered when a organization connection is disabled
               members: null,
             },
           },
-          environment_id: 'env_32080745237316098',
-          id: 'evt_38862741515010639',
-          object: 'DirectoryGroup',
-          occurred_at: '2024-09-25T02:26:39.036398577Z',
-          organization_id: 'org_38609339635728478',
-          spec_version: '1',
-          type: 'organization.directory.group_created',
         }}
       />
     </CodeWithHeader>
@@ -1080,10 +1084,17 @@ This webhook is triggered when a organization connection is disabled
     <CodeWithHeader title="organization.directory.group_updated">
       <JsonViewer
         src={{
+          spec_version: '1',
+          id: 'evt_38864948910162368',
+          organization_id: 'org_38609339635728478',
+          type: 'organization.directory.group_updated',
+          environment_id: 'env_32080745237316098',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-09-25T02:48:34.745030921Z',
           data: {
             directory_id: 'dir_38610496391217780',
             display_name: 'Avengers',
-            external_id: null,
+            external_id: '<external_id>',
             id: 'dirgroup_38862741498233423',
             organization_id: 'org_38609339635728478',
             raw_attributes: {
@@ -1096,13 +1107,6 @@ This webhook is triggered when a organization connection is disabled
               ],
             },
           },
-          environment_id: 'env_32080745237316098',
-          id: 'evt_38864948910162368',
-          object: 'DirectoryGroup',
-          occurred_at: '2024-09-25T02:48:34.745030921Z',
-          organization_id: 'org_38609339635728478',
-          spec_version: '1',
-          type: 'organization.directory.group_updated',
         }}
       />
     </CodeWithHeader>
@@ -1211,6 +1215,13 @@ This webhook is triggered when a organization connection is disabled
     <CodeWithHeader title="organization.directory.group_deleted">
       <JsonViewer
         src={{
+          spec_version: '1',
+          id: 'evt_40650399597723966',
+          environment_id: 'env_12205603854221623',
+          object: 'DirectoryGroup',
+          occurred_at: '2024-10-07T10:25:26.289331747Z',
+          organization_id: 'org_39802449573184223',
+          type: 'organization.directory.group_deleted',
           data: {
             directory_id: 'dir_39802485862301855',
             display_name: 'Admins',
@@ -1233,13 +1244,6 @@ This webhook is triggered when a organization connection is disabled
               ],
             },
           },
-          environment_id: 'env_12205603854221623',
-          id: 'evt_40650399597723966',
-          object: 'DirectoryGroup',
-          occurred_at: '2024-10-07T10:25:26.289331747Z',
-          organization_id: 'org_39802449573184223',
-          spec_version: '1',
-          type: 'organization.directory.group_deleted',
         }}
       />
     </CodeWithHeader>
