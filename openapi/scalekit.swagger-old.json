@@ -69,92 +69,6 @@
         }
       }
     },
-    "/api/v1/environments/{environment_id}/organizations/{id}/session-settings": {
-      "get": {
-        "tags": ["OrganizationService"],
-        "operationId": "OrganizationService_GetOrganizationSessionSettings",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "environment_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {}
-      },
-      "post": {
-        "tags": ["OrganizationService"],
-        "operationId": "OrganizationService_CreateOrganizationSessionSettings",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "environment_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {}
-      },
-      "delete": {
-        "tags": ["OrganizationService"],
-        "operationId": "OrganizationService_DeleteOrganizationSessionSettings",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "environment_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {}
-      },
-      "patch": {
-        "tags": ["OrganizationService"],
-        "operationId": "OrganizationService_UpdateOrganizationSessionSettings",
-        "parameters": [
-          {
-            "type": "string",
-            "name": "environment_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "session_settings",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/organizationsOrganizationSessionSettings"
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
     "/api/v1/organizations": {
       "get": {
         "description": "Retrieve a paginated list of all organizations within the environment. Use the page_token from the response to access subsequent pages of results",
@@ -325,24 +239,12 @@
           },
           {
             "type": "boolean",
-            "description": "Deprecated: Use features",
             "name": "sso",
             "in": "query"
           },
           {
             "type": "boolean",
-            "description": "Deprecated: Use features",
             "name": "directory_sync",
-            "in": "query"
-          },
-          {
-            "type": "array",
-            "items": {
-              "enum": ["dir_sync", "sso"],
-              "type": "string"
-            },
-            "collectionFormat": "multi",
-            "name": "features",
             "in": "query"
           }
         ],
@@ -616,7 +518,7 @@
           {
             "type": "string",
             "format": "date-time",
-            "description": "Filter users that were updated after the specified timestamp. Use ISO 8601 format",
+            "description": "Filter users that were updated after the specified timestamp. Use RFC 3339 format",
             "name": "updated_after",
             "in": "query"
           }
@@ -722,102 +624,6 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/directoriesToggleDirectoryResponse"
-            }
-          }
-        }
-      }
-    },
-    "/api/v1/organizations:external/{external_id}": {
-      "get": {
-        "description": "Fetch detailed information about a specific organization using its unique identifier.",
-        "tags": ["Organization"],
-        "summary": "Retrieve Organization Information",
-        "operationId": "OrganizationService_GetOrganization2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Unique identifier that links an Organization Object to your app's tenant, stored as an External ID",
-            "name": "external_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Unique identifier to an Organization",
-            "name": "id",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved organization details",
-            "schema": {
-              "$ref": "#/definitions/organizationsGetOrganizationResponse"
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Remove an existing organization from the environment using its unique identifier",
-        "tags": ["Organization"],
-        "summary": "Delete an Organization",
-        "operationId": "OrganizationService_DeleteOrganization2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "External ID of the organization to delete",
-            "name": "external_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Unique identifier of the organization to delete",
-            "name": "id",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Deleted Successfully",
-            "schema": {}
-          }
-        }
-      },
-      "patch": {
-        "description": "Update the details of an existing organization using its unique identifier",
-        "tags": ["Organization"],
-        "summary": "Update Organization Information",
-        "operationId": "OrganizationService_UpdateOrganization2",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "External ID of the organization to be updated",
-            "name": "external_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "name": "organization",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "description": "Organization Parameters to be updated",
-              "$ref": "#/definitions/v1organizationsUpdateOrganization"
-            }
-          },
-          {
-            "type": "string",
-            "description": "Unique identifier of the organization to be updated",
-            "name": "id",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Organization updated successfully",
-            "schema": {
-              "$ref": "#/definitions/organizationsUpdateOrganizationResponse"
             }
           }
         }
@@ -1106,10 +912,6 @@
           "type": "string",
           "example": "org_2123312131125533"
         },
-        "password_less_config": {
-          "description": "Magic Link Configuration if ConnectionType == MAGIC_LINK",
-          "$ref": "#/definitions/connectionsPasswordLessConfig"
-        },
         "provider": {
           "description": "SSO provider (e.g., OKTA, Google, Azure AD)",
           "$ref": "#/definitions/connectionsConnectionProvider",
@@ -1153,8 +955,7 @@
         "LINKEDIN",
         "SALESFORCE",
         "MICROSOFT",
-        "IDP_SIMULATOR",
-        "SCALEKIT"
+        "IDP_SIMULATOR"
       ]
     },
     "connectionsConnectionStatus": {
@@ -1163,7 +964,7 @@
     },
     "connectionsConnectionType": {
       "type": "string",
-      "enum": ["OIDC", "SAML", "PASSWORD", "OAUTH", "PASSWORD_LESS"]
+      "enum": ["OIDC", "SAML", "PASSWORD", "OAUTH"]
     },
     "connectionsGetConnectionResponse": {
       "type": "object",
@@ -1293,11 +1094,6 @@
           "type": "boolean",
           "example": true
         },
-        "prompt": {
-          "description": "Prompt for the user",
-          "type": "string",
-          "example": "none"
-        },
         "redirect_uri": {
           "description": "Redirect URI",
           "type": "string",
@@ -1331,12 +1127,6 @@
           "type": "string",
           "example": "https://youridp.com/service/oauth/authorize"
         },
-        "backchannel_logout_redirect_uri": {
-          "description": "backchannel logout redirect uri where idp sends logout_token",
-          "type": "string",
-          "readOnly": true,
-          "example": "https://yourapp.com/sso/v1/oidc/conn_1234/backchannel-logout"
-        },
         "client_id": {
           "description": "Client ID",
           "type": "string",
@@ -1351,11 +1141,6 @@
           "description": "Discovery Endpoint",
           "type": "string",
           "example": "https://youridp.com/service/oauth/.well-known/openid-configuration"
-        },
-        "idp_logout_required": {
-          "description": "Enable IDP logout",
-          "type": "boolean",
-          "example": true
         },
         "issuer": {
           "description": "Issuer URL",
@@ -1372,16 +1157,10 @@
           "type": "boolean",
           "example": true
         },
-        "post_logout_redirect_uri": {
-          "description": "post logout redirect uri",
-          "type": "string",
-          "readOnly": true,
-          "example": "https://yourapp.com/sso/v1/oidc/conn_1234/logout/callback"
-        },
         "redirect_uri": {
           "description": "Redirect URI",
           "type": "string",
-          "example": "https://yourapp.com/sso/v1/oidc/conn_1234/callback"
+          "example": "https://yourapp.com/service/oauth/redirect"
         },
         "scopes": {
           "description": "OIDC Scopes",
@@ -1411,32 +1190,6 @@
     "connectionsOIDCScope": {
       "type": "string",
       "enum": ["openid", "profile", "email", "address", "phone"]
-    },
-    "connectionsPasswordLessConfig": {
-      "type": "object",
-      "properties": {
-        "frequency": {
-          "description": "Link Frequency",
-          "type": "integer",
-          "format": "int32",
-          "example": 1
-        },
-        "magicLinkEnabled": {
-          "description": "Password Less Enabled",
-          "type": "boolean",
-          "example": true
-        },
-        "magicOTPEnabled": {
-          "description": "Password Less Enabled",
-          "type": "boolean",
-          "example": true
-        },
-        "validity": {
-          "description": "Link Validity",
-          "type": "string",
-          "example": "24h"
-        }
-      }
     },
     "connectionsProvider": {
       "type": "object",
@@ -1518,11 +1271,6 @@
           "$ref": "#/definitions/connectionsRequestBinding",
           "example": "HTTP_POST"
         },
-        "idp_slo_required": {
-          "description": "Enable IDP logout",
-          "type": "boolean",
-          "example": true
-        },
         "idp_slo_url": {
           "description": "IDP SLO URL",
           "type": "string",
@@ -1557,12 +1305,6 @@
           "description": "SP Metadata URL",
           "type": "string",
           "example": "https://youridp.com/service/saml/metadata"
-        },
-        "sp_slo_url": {
-          "description": "Service Provider SLO url",
-          "type": "string",
-          "readOnly": true,
-          "example": "https://yourapp.com/sso/v1/saml/conn_1234/slo/callback"
         },
         "ui_button_title": {
           "description": "UI Button Title",
@@ -1740,7 +1482,7 @@
     },
     "directoriesDirectoryProvider": {
       "type": "string",
-      "enum": ["OKTA", "GOOGLE", "MICROSOFT_AD", "AUTH0", "ONELOGIN", "JUMPCLOUD", "PING_IDENTITY"]
+      "enum": ["OKTA", "GOOGLE", "MICROSOFT_AD", "AUTH0", "ONELOGIN"]
     },
     "directoriesDirectoryType": {
       "type": "string",
@@ -2024,24 +1766,6 @@
         }
       }
     },
-    "organizationsCreateOrganizationSessionSettingsResponse": {
-      "type": "object",
-      "properties": {
-        "environment_id": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "session_settings": {
-          "$ref": "#/definitions/organizationsOrganizationSessionSettings"
-        }
-      }
-    },
-    "organizationsFeature": {
-      "type": "string",
-      "enum": ["dir_sync", "sso"]
-    },
     "organizationsGeneratePortalLinkResponse": {
       "type": "object",
       "properties": {
@@ -2057,20 +1781,6 @@
         "organization": {
           "description": "Organization details",
           "$ref": "#/definitions/organizationsOrganization"
-        }
-      }
-    },
-    "organizationsGetOrganizationSessionSettingsResponse": {
-      "type": "object",
-      "properties": {
-        "environment_id": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "session_settings": {
-          "$ref": "#/definitions/organizationsOrganizationSessionSettings"
         }
       }
     },
@@ -2178,25 +1888,6 @@
         }
       }
     },
-    "organizationsOrganizationSessionSettings": {
-      "type": "object",
-      "properties": {
-        "absolute_session_timeout": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "idle_session_enabled": {
-          "type": "boolean"
-        },
-        "idle_session_timeout": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "session_management_enabled": {
-          "type": "boolean"
-        }
-      }
-    },
     "organizationsOrganizationSettings": {
       "type": "object",
       "properties": {
@@ -2249,20 +1940,6 @@
         "organization": {
           "description": "Updated organization details",
           "$ref": "#/definitions/organizationsOrganization"
-        }
-      }
-    },
-    "organizationsUpdateOrganizationSessionSettingsResponse": {
-      "type": "object",
-      "properties": {
-        "environment_id": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "session_settings": {
-          "$ref": "#/definitions/organizationsOrganizationSessionSettings"
         }
       }
     },
@@ -2330,14 +2007,14 @@
       "name": "Single Sign-On"
     },
     {
-      "description": "Organization represents a customer or a tenant of your product. This is the top level entity and all the resources are mapped to this Organization object. Each organization will be uniquely identified by `organization_id`. You can use this service to create and manage Enterprise SSO Connections for an organization.\n\n**Attributes**\n\n| Attribute Name | Attribute Description |\n|---|---|\n| `id`\u003cbr\u003e_string_ | Unique ID of an Organization. This attribute is required for all API operations to be performed against this organization.  |\n| `display_name`\u003cbr\u003e_string_ | Name of the Organization |\n| `create_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was created in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: `2011-10-05T14:48:00.000Z` |\n| `update_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was last updated in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: \u003cbr\u003e`2021-10-05T14:48:00.000Z` |\n| `external_id`\u003cbr\u003e_string_ | Unique ID of this organization according to your system. You can store your unique ID for this organization in Scalekit's system and later use this to fetch Organization and Connection details. This is helpful if you don't want to persist Scalekit's Unique Identifiers in your database. |\n| `metadata`\u003cbr\u003e_object_ | JSON representation of any additional organization information that you want to store in Scalekit's system. Example: `{\"key\":\"value\"}` |\n| `region_code`\u003cbr\u003e_string_ | Represents the Data Center region in which this organization's data is stored. Currently, it always returns `US` |",
+      "description": "Organization represents a customer or a tenant of your product. This is the top level entity and all the resources are mapped to this Organization object. Each organization will be uniquely identified by `organization_id`. You can use this service to create and manage Enterprise SSO Connections for an organization.\n\n**Attributes**\n\n| Attribute Name | Attribute Description |\n|---|---|\n| `id`\u003cbr\u003e_string_ | Unique ID of an Organization. This attribute is required for all API operations to be performed against this organization.  |\n| `display_name`\u003cbr\u003e_string_ | Name of the Organization |\n| `create_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was created in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. For Example: `2011-10-05T14:48:00.000Z` |\n| `update_time`\u003cbr\u003e_string_ | Timestamp at which this organization record was last updated in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. For Example: \u003cbr\u003e`2021-10-05T14:48:00.000Z` |\n| `external_id`\u003cbr\u003e_string_ | Unique ID of this organization according to your system. You can store your unique ID for this organization in Scalekit's system and later use this to fetch Organization and Connection details. This is helpful if you don't want to persist Scalekit's Unique Identifiers in your database. |\n| `metadata`\u003cbr\u003e_object_ | JSON representation of any additional organization information that you want to store in Scalekit's system. Example: `{\"key\":\"value\"}` |\n| `region_code`\u003cbr\u003e_string_ | Represents the Data Center region in which this organization's data is stored. Currently, it always returns `US` |",
       "name": "Organization"
     },
     {
       "name": "Admin Portal"
     },
     {
-      "description": " Connection represents a unique Single Sign-on instance for an Organization. Connection has the configuration needed to establish an SSO and exchange user information securely between Scalekit and your customer's Identity Provider. Depending on the connection type parameter, the corresponding configuration details are found in `oidc_config` or `saml_config` parameter.\n\n**Connection Attributes**\n\n| Attribute Name | Attribute Description |\n|---|---|\n| `id`\u003cbr\u003e_string_ | Unique ID of an SSO Connection. This attribute is required for all API operations to be performed against this connection.  |\n| `provider`\u003cbr\u003e_ENUM_ | Name of the Identity Provider. Possible Values are: `OKTA`, `GOOGLE`, `MICROSOFT_AD`, `AUTH0`, `ONELOGIN`, `PING_IDENTITY`, `JUMPCLOUD`, `CUSTOM` |\n| `type`\u003cbr\u003e_ENUM_ | Protocol type that is used for this connection. Possible values are `SAML` or `OIDC` |\n| `status`\u003cbr\u003e_ENUM_ | Indicates the configuration progress status of the SSO Connection. Possible Values are `DRAFT`, `INPROGRESS`, `COMPLETED`. \u003cbr\u003e_Note_: This doesn't indicate whether this connection is active or not. |\n| `enabled`\u003cbr\u003e_boolean_ | Indicates whether this connection is active or not. Users can only login via active SSO connections. |\n| `organization_id`\u003cbr\u003e_string_ | Organization ID to which this SSO connection belongs to. |\n| `saml_config`\u003cbr\u003e_Object_ | If this connection is of type `SAML`, the configuration details are found in this object. |\n| `oidc_config`\u003cbr\u003e_Object_ | If this connection is of type `OIDC`, the configuration details are found in this object. |\n| `attribute_mapping`\u003cbr\u003e_Object_ | Array of attribute mappings using which the user information received from the Identity Provider is normalized. Example: \u003ccode\u003e \u003cbr/\u003e{ \u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"email\": \"email\",\u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"family_name\": \"lastName\", \u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"given_name\": \"firstName\",\u003cbr/\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\"sub\": \"nameid\" \u003cbr/\u003e} \u003c/code\u003e |\n| `create_time` | Timestamp at which this connection record was created in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: `2021-10-05T14:48:00.000Z` |\n| `update_time`\u003cbr\u003e_string_ | Timestamp at which this connection record was last updated in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For Example: `2021-10-10T14:48:00.000Z` |",
+      "description": " Connection represents a unique Single Sign-on instance for an Organization. Connection has the configuration needed to establish an SSO and exchange user information securely between Scalekit and your customer's Identity Provider. Depending on the connection type parameter, the corresponding configuration details are found in `oidc_config` or `saml_config` parameter.\n\n**Connection Attributes**\n\n| Attribute Name | Attribute Description |\n|---|---|\n| `id`\u003cbr\u003e_string_ | Unique ID of an SSO Connection. This attribute is required for all API operations to be performed against this connection.  |\n| `provider`\u003cbr\u003e_ENUM_ | Name of the Identity Provider. Possible Values are: `OKTA`, `GOOGLE`, `MICROSOFT_AD`, `AUTH0`, `ONELOGIN`, `PING_IDENTITY`, `JUMPCLOUD`, `CUSTOM` |\n| `type`\u003cbr\u003e_ENUM_ | Protocol type that is used for this connection. Possible values are `SAML` or `OIDC` |\n| `status`\u003cbr\u003e_ENUM_ | Indicates the configuration progress status of the SSO Connection. Possible Values are `DRAFT`, `INPROGRESS`, `COMPLETED`. \u003cbr\u003e_Note_: This doesn't indicate whether this connection is active or not. |\n| `enabled`\u003cbr\u003e_boolean_ | Indicates whether this connection is active or not. Users can only login via active SSO connections. |\n| `organization_id`\u003cbr\u003e_string_ | Organization ID to which this SSO connection belongs to. |\n| `saml_config`\u003cbr\u003e_Object_ | If this connection is of type `SAML`, the configuration details are found in this object. |\n| `oidc_config`\u003cbr\u003e_Object_ | If this connection is of type `OIDC`, the configuration details are found in this object. |\n| `attribute_mapping`\u003cbr\u003e_Object_ | Array of attribute mappings using which the user information received from the Identity Provider is normalized. Example: \u003ccode\u003e \u003cbr/\u003e{ \u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"email\": \"email\",\u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"family_name\": \"lastName\", \u003cbr/\u003e\u0026nbsp;\u0026nbsp; \"given_name\": \"firstName\",\u003cbr/\u003e\u0026nbsp;\u0026nbsp;\u0026nbsp;\"sub\": \"nameid\" \u003cbr/\u003e} \u003c/code\u003e |\n| `create_time` | Timestamp at which this connection record was created in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. For Example: `2021-10-05T14:48:00.000Z` |\n| `update_time`\u003cbr\u003e_string_ | Timestamp at which this connection record was last updated in [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) format. For Example: `2021-10-10T14:48:00.000Z` |",
       "name": "Connection"
     },
     {
