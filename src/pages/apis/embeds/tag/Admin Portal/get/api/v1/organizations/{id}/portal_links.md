@@ -38,7 +38,10 @@ links, err := sc.Organization.GetPortalLinks(
 <TabItem value="java" label="Java">
 
 ```java
-Link response = scalekitClient.organizations().generatePortalLink(organizationId);
+Link portalLink = client
+  .organizations()
+  .generatePortalLink(organizationId, Arrays.asList(Feature.sso, Feature.dir_sync));
+
 ```
 
 </TabItem>
