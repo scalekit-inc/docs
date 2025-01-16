@@ -2,22 +2,22 @@
 title: 'Webhook Implementation Guide: Best Practices for SCIM Integration'
 description: 'Learn best practices for implementing webhooks in your SCIM integration. Covers security measures, event handling, signature verification, and performance optimization techniques for real-time directory updates.'
 keywords: [
-  'Webhooks',
-  'Event Handling',
-  'Webhook Security',
-  'Signature Verification',
-  'Directory Events',
-  'Real-time Updates',
-  'SCIM Integration',
-  'Webhook Best Practices',
-  'Event Processing',
-  'API Integration',
-  'Webhook Endpoints',
-  'Asynchronous Processing',
-  'Enterprise Integration',
-  'Directory Synchronization',
-  'Event Types'
-]
+    'Webhooks',
+    'Event Handling',
+    'Webhook Security',
+    'Signature Verification',
+    'Directory Events',
+    'Real-time Updates',
+    'SCIM Integration',
+    'Webhook Best Practices',
+    'Event Processing',
+    'API Integration',
+    'Webhook Endpoints',
+    'Asynchronous Processing',
+    'Enterprise Integration',
+    'Directory Synchronization',
+    'Event Types',
+  ]
 ---
 
 # Best Practices for Webhooks
@@ -63,14 +63,10 @@ app.post('/webhook', async (req, res) => {
 
   try {
     // Verify the webhook payload
-    await scalekit.verifyWebhookPayload(
-      secret,
-      headers,
-      event
-    );
+    await scalekit.verifyWebhookPayload(secret, headers, event);
   } catch (error) {
     return res.status(400).json({
-      error: 'Invalid signature'
+      error: 'Invalid signature',
     });
   }
 });
@@ -152,49 +148,42 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 
 ```java showLineNumbers
 @PostMapping("/webhook")
-public String webhook(
-    @RequestBody String body,
-    @RequestHeader Map<String, String> headers
-) {
-    String secret = "<WEBHOOK SECRET>";
+public String webhook(@RequestBody String body, @RequestHeader Map<String, String> headers) {
+  String secret = "<WEBHOOK SECRET>";
 
-    // Verify webhook signature
-    boolean valid = scalekit.webhook().verifyWebhookPayload(
-        secret,
-        headers,
-        body.getBytes()
-    );
+  // Verify webhook signature
+  boolean valid = scalekit.webhook().verifyWebhookPayload(secret, headers, body.getBytes());
 
-    if (!valid) {
-        return "error";
+  if (!valid) {
+    return "error";
+  }
+
+  ObjectMapper mapper = new ObjectMapper();
+
+  try {
+    // Parse event data
+    JsonNode node = mapper.readTree(body);
+    String eventType = node.get("type").asText();
+    JsonNode data = node.get("data");
+
+    // Handle different event types
+    switch (eventType) {
+      case "organization.directory.user_created":
+        handleUserCreate(data);
+        break;
+      case "organization.directory.user_updated":
+        handleUserUpdate(data);
+        break;
+      default:
+        System.out.println("Unhandled event type: " + eventType);
     }
+  } catch (IOException e) {
+    return "error";
+  }
 
-    ObjectMapper mapper = new ObjectMapper();
-
-    try {
-        // Parse event data
-        JsonNode node = mapper.readTree(body);
-        String eventType = node.get("type").asText();
-        JsonNode data = node.get("data");
-
-        // Handle different event types
-        switch (eventType) {
-            case "scalekit.dir.user.create":
-                handleUserCreate(data);
-                break;
-            case "scalekit.dir.user.update":
-                handleUserUpdate(data);
-                break;
-            default:
-                System.out.println("Unhandled event type: " + eventType);
-        }
-
-    } catch (IOException e) {
-        return "error";
-    }
-
-    return "ok";
+  return "ok";
 }
+
 ```
 
 </TabItem>
@@ -220,12 +209,12 @@ app.post('/webhook', async (req, res) => {
 
   // Handle different event types
   switch (event.type) {
-    case 'scalekit.dir.user.create':
+    case 'organization.directory.user_created':
       const { email, name } = event.data;
       await createUserAccount(email, name);
       break;
 
-    case 'scalekit.dir.user.update':
+    case 'organization.directory.user_updated':
       await updateUserAccount(event.data);
       break;
 
@@ -234,7 +223,7 @@ app.post('/webhook', async (req, res) => {
   }
 
   return res.status(201).json({
-    status: 'success'
+    status: 'success',
   });
 });
 
@@ -261,9 +250,9 @@ async def api_webhook(request: Request):
 
     # Handle different event types
     match event_type:
-        case 'scalekit.dir.user.create':
+        case 'organization.directory.user_created':
             await handle_user_create(payload['data'])
-        case 'scalekit.dir.user.update':
+        case 'organization.directory.user_updated':
             await handle_user_update(payload['data'])
         case _:
             print('Unhandled event type:', event_type)
@@ -298,9 +287,9 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
     // Handle different event types
     eventType := event["type"]
     switch eventType {
-    case "scalekit.dir.user.create":
+    case "organization.directory.user_created":
         handleUserCreate(event["data"])
-    case "scalekit.dir.user.update":
+    case "organization.directory.user_updated":
         handleUserUpdate(event["data"])
     default:
         fmt.Println("Unhandled event type:", eventType)
@@ -316,41 +305,38 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 
 ```java showLineNumbers
 @PostMapping("/webhook")
-public String webhook(
-    @RequestBody String body,
-    @RequestHeader Map<String, String> headers
-) {
-    // Verify webhook signature first
-    String secret = "<WEBHOOK_SECRET>";
-    if (!verifyWebhookSignature(secret, headers, body)) {
-        return "error";
+public String webhook(@RequestBody String body, @RequestHeader Map<String, String> headers) {
+  // Verify webhook signature first
+  String secret = "<WEBHOOK_SECRET>";
+  if (!verifyWebhookSignature(secret, headers, body)) {
+    return "error";
+  }
+
+  try {
+    // Parse event data
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode node = mapper.readTree(body);
+    String eventType = node.get("type").asText();
+    JsonNode data = node.get("data");
+
+    // Handle different event types
+    switch (eventType) {
+      case "organization.directory.user_created":
+        handleUserCreate(data);
+        break;
+      case "organization.directory.user_updated":
+        handleUserUpdate(data);
+        break;
+      default:
+        System.out.println("Unhandled event type: " + eventType);
     }
+  } catch (IOException e) {
+    return "error";
+  }
 
-    try {
-        // Parse event data
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(body);
-        String eventType = node.get("type").asText();
-        JsonNode data = node.get("data");
-
-        // Handle different event types
-        switch (eventType) {
-            case "scalekit.dir.user.create":
-                handleUserCreate(data);
-                break;
-            case "scalekit.dir.user.update":
-                handleUserUpdate(data);
-                break;
-            default:
-                System.out.println("Unhandled event type: " + eventType);
-        }
-
-    } catch (IOException e) {
-        return "error";
-    }
-
-    return "ok";
+  return "ok";
 }
+
 ```
 
 </TabItem>
@@ -368,5 +354,7 @@ from Scalekit, maintaining optimal performance and security.
 
 ## Do not ignore errors
 
-Do not overlook repeated 4xx and 5xx error codes. Instead, verify that your API interactions are correct.
-For instance, if an endpoint expects a string but receives a numeric value, a validation error should occur. Likewise, trying to access an unauthorized or nonexistent endpoint will trigger a 4xx error.
+Do not overlook repeated 4xx and 5xx error codes. Instead, verify that your API interactions are
+correct. For instance, if an endpoint expects a string but receives a numeric value, a validation
+error should occur. Likewise, trying to access an unauthorized or nonexistent endpoint will trigger
+a 4xx error.

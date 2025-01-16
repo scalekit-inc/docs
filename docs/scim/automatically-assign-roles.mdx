@@ -3,22 +3,22 @@ displayed_sidebar: 'scimSidebar'
 title: 'Automated Role Assignment: Directory-Based Access Control'
 description: 'Implement automated role assignment in your application using directory group memberships. Learn how to synchronize user roles with directory groups for efficient access management.'
 keywords: [
-  'Automated Role Assignment',
-  'Directory Groups',
-  'Access Control',
-  'Role Management',
-  'User Permissions',
-  'Group Synchronization',
-  'Role Mapping',
-  'Directory Integration',
-  'Enterprise Access',
-  'User Authorization',
-  'Role Automation',
-  'Access Management',
-  'SCIM Integration',
-  'Directory Events',
-  'Role Configuration'
-]
+    'Automated Role Assignment',
+    'Directory Groups',
+    'Access Control',
+    'Role Management',
+    'User Permissions',
+    'Group Synchronization',
+    'Role Mapping',
+    'Directory Integration',
+    'Enterprise Access',
+    'User Authorization',
+    'Role Automation',
+    'Access Management',
+    'SCIM Integration',
+    'Directory Events',
+    'Role Configuration',
+  ]
 ---
 
 # Automatic Role Assignment
@@ -81,9 +81,9 @@ Scalekit continuously monitors updates from your customers’ directory provider
 payloads to your application via a registered webhook endpoint. To set up these endpoints and manage
 subscriptions, refer to the Scalekit Dashboard documentation.
 
-In this scenario, you will listen for the <SimpleCode>scalekit.dir.user.update</SimpleCode> event to
-determine a user's role from the payload. Scalekit automatically includes a role property relevant
-to your app, based on the role information configured in the Scalekit Dashboard.
+In this scenario, you will listen for the <SimpleCode>organization.directory.user_updated</SimpleCode> event to determine a user's role from
+the payload. Scalekit automatically includes a role property relevant to your app, based on the role
+information configured in the Scalekit Dashboard.
 
 <CodeWithHeader title="Webhook Endpoint for Role Updates">
 
@@ -108,7 +108,7 @@ app.post('/webhook', async (req, res) => {
   console.log('App updated access for user:', email);
 
   res.status(201).json({
-    message: 'Role assigned'
+    message: 'Role assigned',
   });
 });
 ```
@@ -150,27 +150,25 @@ async def api_webhook(request: Request):
 
 ```java showLineNumbers
 @PostMapping("/webhook")
-public String webhook(
-    @RequestBody String body,
-    @RequestHeader Map<String, String> headers
-) {
-    ObjectMapper mapper = new ObjectMapper();
+public String webhook(@RequestBody String body, @RequestHeader Map<String, String> headers) {
+  ObjectMapper mapper = new ObjectMapper();
 
-    try {
-        JsonNode node = mapper.readTree(body);
-        JsonNode roles = node.get("data").get("roles");
-        String email = node.get("data").get("email").asText();
+  try {
+    JsonNode node = mapper.readTree(body);
+    JsonNode roles = node.get("data").get("roles");
+    String email = node.get("data").get("email").asText();
 
-        System.out.println(roles);
-        System.out.println(email);
-        // Add role to user
+    System.out.println(roles);
+    System.out.println(email);
+    // Add role to user
 
-    } catch (IOException e) {
-        return "error";
-    }
+  } catch (IOException e) {
+    return "error";
+  }
 
-    return "ok";
+  return "ok";
 }
+
 ```
 
 </TabItem>
@@ -213,8 +211,8 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 </Tabs>
 </CodeWithHeader>
 
-See the [User Event Payload Reference](/apis#tag/Webhooks/scalekit.dir.user.update) for more
-information about the payload structure.
+See the [User Event Payload Reference](/apis#tag/Webhooks/organization.directory.user_updated) for
+more information about the payload structure.
 
 By utilizing Scalekit's group-based role assignment feature, you can simplify access management for
 your enterprise customers and ensure that user roles remain synchronized with their directory
