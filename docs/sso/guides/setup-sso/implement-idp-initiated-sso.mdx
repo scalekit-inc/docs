@@ -34,12 +34,14 @@ In IdP initiated SSO:
 3. Your application validates the assertions, retrieves the user information, and if everything
    checks out, logs the user in.
 
-<figure className="width-50">
+<figure>
   ![IdP initiated SSO workflow](@site/docs/sso/assets/guides/idp-initiated-sso.png)
   <figcaption>IdP initiated SSO workflow</figcaption>
 </figure>
 
-Since the login is initiated from the identity provider's portal, this flow is called IdP-initiated SSO. Attackers can steal these assertions and use them to gain unauthorized access.
+Since the login is initiated from the identity provider's portal, this flow is called IdP-initiated SSO.
+
+However, this convenience comes with potential security risks. Attackers can steal these assertions and use them to gain unauthorized access. To address these concerns, it's crucial to implement strategies that mitigate these risks while maintaining a seamless user experience.
 
 ## Mitigating Security Risks: Convert IdP-initiated to SP-initiated SSO
 
