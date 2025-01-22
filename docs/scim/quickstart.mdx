@@ -496,12 +496,9 @@ logic — in this case, creating a user account.
 
 ### Register Webhook Endpoint
 
-First, navigate to the "Webhooks" tab in the Scalekit Dashboard. Click on the "+Add Endpoint" button
-and enter the endpoint URL along with a meaningful description. Finally, select the desired event
-types, such as <SimpleCode>scalekit.dir.user.\*</SimpleCode>, to subscribe to the relevant events.
+First, navigate to the "Webhooks" tab in the Scalekit Dashboard. Click on the "+Add Endpoint" button and enter the endpoint URL along with a meaningful description. Finally, select the desired event types, for example <SimpleCode>organization.directory.user_created</SimpleCode>, to subscribe to the relevant events.
 
-Click "Create." Once registered, the webhook endpoint will start receiving event payloads from the
-directory providers.
+Click "Create" Once registered, the webhook endpoint will start receiving event payloads from the directory providers.
 
 Refer to the [API reference](/apis#tag/Webhooks) for the list of all available event types and
 [setting up webhooks](scim/webhooks.mdx) to explore testing webhooks with test endpoints.
