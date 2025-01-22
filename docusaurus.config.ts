@@ -130,6 +130,9 @@ const config: Config = {
         theme: {
           customCss: ['./src/css/scalar_theme.css', './src/css/custom.css'],
         },
+        googleTagManager:{
+          containerId: 'GTM-MV8B7J56'
+        }
       } satisfies Preset.Options,
     ],
   ],
