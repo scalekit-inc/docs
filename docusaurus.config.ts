@@ -131,7 +131,7 @@ const config: Config = {
           customCss: ['./src/css/scalar_theme.css', './src/css/custom.css'],
         },
         googleTagManager: {
-          containerId: 'GTM-MV8B7J56',
+          containerId: 'GTM-N4QQB5CB',
         },
       } satisfies Preset.Options,
     ],
