@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@docsearch/js": "^3.6.1",
-    "@docusaurus/core": "^3.6.2",
-    "@docusaurus/plugin-client-redirects": "^3.6.2",
-    "@docusaurus/preset-classic": "^3.6.2",
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/plugin-client-redirects": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
     "@floating-ui/react": "^0.26.19",
     "@mdx-js/react": "^3.0.0",
     "@shikijs/rehype": "^1.12.1",
@@ -38,9 +38,9 @@
     "shiki": "^1.12.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.5.2",
-    "@docusaurus/tsconfig": "^3.5.2",
-    "@docusaurus/types": "^3.5.2",
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "@docusaurus/types": "^3.7.0",
     "prettier-plugin-go-template": "^0.0.15",
     "prettier-plugin-java": "^2.6.4",
     "typescript": "~5.2.2"

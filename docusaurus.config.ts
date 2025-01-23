@@ -113,7 +113,7 @@ const config: Config = {
   ],
   presets: [
     [
-      'classic',
+      '@docusaurus/preset-classic',
       {
         docs: {
           showLastUpdateTime: false,
@@ -130,9 +130,9 @@ const config: Config = {
         theme: {
           customCss: ['./src/css/scalar_theme.css', './src/css/custom.css'],
         },
-        googleTagManager:{
-          containerId: 'GTM-MV8B7J56'
-        }
+        googleTagManager: {
+          containerId: 'GTM-MV8B7J56',
+        },
       } satisfies Preset.Options,
     ],
   ],
