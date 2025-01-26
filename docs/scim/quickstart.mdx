@@ -488,7 +488,7 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 </CodeWithHeader>
 
 {/* prettier-ignore */}
-In this example, the endpoint URL is <SimpleCode>https://<span></span>www<span></span>.hero-saas.<span></span>app/api/webhook/user-access</SimpleCode>
+In this example, the endpoint URL is <SimpleCode>https://<span></span>www<span></span>.your-app.<span></span>app/api/webhook/user-access</SimpleCode>
 
 When the endpoint receives an HTTP POST request with event data, it extracts the name and email from
 the payload and calls <SimpleCode>createUserAccount()</SimpleCode> to perform the necessary business
@@ -516,3 +516,9 @@ See [Webhook Events](/apis#tag/Webhooks) for the list of all available event typ
 
 You have now successfully created and registered a webhook endpoint, allowing your app to receive
 real-time events to automate user provisioning.
+
+:::note
+
+Webhook messages are delivered using an exponential backoff retry policy until a successful HTTP 200 or 201 response is received. The retry intervals are: immediately, 5 seconds, 5 minutes, 30 minutes, 2 hours, 5 hours, and then 10 hours for subsequent attempts. This approach ensures reliable delivery while minimizing server load.
+
+:::
