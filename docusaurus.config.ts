@@ -42,7 +42,7 @@ const rehypeShikiPlugin = [
 const config: Config = {
   title: 'Scalekit Docs',
   tagline: 'Enterprise Ready Authentiction Platform for SaaS',
-  favicon: 'img/Favicon.svg',
+  favicon: 'img/favicon-new.svg',
   url: 'https://docs.scalekit.com',
   baseUrl: '/',
   trailingSlash: false,
