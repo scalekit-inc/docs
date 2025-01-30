@@ -249,7 +249,7 @@
 }
 
 .homepage .hero {
-  background: #edefff;
+  background: linear-gradient(180deg, #0c0d0f 36.63%, #0d2b5c 165.53%, #30399c 294.44%);
   margin: 0 -20%;
   padding: 0 15%;
   margin-top: -2rem;
@@ -845,14 +845,12 @@ ul.table-of-contents.table-of-contents__left-border:before {
 .navbar {
   /* padding: 0 var(--ifm-navbar-padding-horizontal); */
   height: 64px;
-
 }
 
 /* #__docusaurus > nav {
   display: flex;
   align-items: center;
 } */
-
 
 .navbar:has(.navbar__secondary) {
   display: block;
@@ -1841,3 +1839,43 @@ h1 .badge {
 }
 
 /* End Shiki Styles */
+
+.hero-section {
+  text-align: center;
+  padding: 4rem 2rem 8rem; /* Increased bottom padding */
+  background: linear-gradient(180deg, #0c0d0f 36.63%, #0d2b5c 165.53%, #30399c 294.44%);
+  margin: -2rem calc(50% - 50vw) 0; /* Reduced bottom margin from 3rem to 0 */
+  padding: 4rem calc(50vw - 50%) 4rem; /* Increased bottom padding */
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.clean-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.clean-list li {
+  margin-bottom: 0.4rem;
+}
+
+.clean-list li:last-child {
+  margin-bottom: 0;
+}
+
+.padding-vert--lg {
+  padding-top: 2rem; /* Reduced top padding to bring content closer to hero */
+  padding-bottom: 3rem;
+}

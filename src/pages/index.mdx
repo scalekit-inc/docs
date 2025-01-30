@@ -4,8 +4,7 @@ slug: /
 hide_table_of_contents: true
 pagination_next: null
 description:
-  Learn how to implement  authentication capabilities through our quick start guides, SDKs and code
-  samples
+  Learn how to add enterprise features with Scalekit API
 ---
 
 import CardList from '@site/src/components/CardList/CardList';
@@ -19,121 +18,95 @@ import { IoHelpBuoyOutline, IoHelpCircleOutline } from 'react-icons/io5';
 import { VscDebugStart } from 'react-icons/vsc';
 import { FaArrowRight } from 'react-icons/fa6';
 
+import starIcon from '@site/src/components/Hero/assets/social.png';
+import keyIcon from '@site/src/components/Hero/assets/sso.png';
+import scimIcon from '@site/src/components/Hero/assets/scim.png';
+
 <div className="homepage">
-<div className="row hero">
-<div className="col col--4 padding-vert--lg">
-{/** changing "title" to titles just temporarily to hide subtitle */}
-{/* <Hero title="Enterprise Auth for Developers" titles="Learn how to implement authentication capabilities through our quick start guides, SDKs and code samples" titles="Scalekit Docs"> */}
-<Hero className="hero" title={`Add enterprise auth \n to your SaaS without delay`} >
-  <div className="cta-container">
-    <Link className="button--tertiary" href="/sso/quickstart">Launch Enterprise SSO &rarr;</Link>
-    <Link className="button--tertiary" href="/scim/quickstart">Launch SCIM Provisioning &rarr;</Link>
+  <div className="hero-section">
+    <h1>Your App's Scalekit</h1>
+    <p className="hero-subtitle">Learn how to add enterprise features with Scalekit API</p>
   </div>
-</Hero>
-</div>
-<div className="col col--7">
-![Welcome to Scalekit Docs](/img/hero_docs_2.png)
-</div>
-</div>
 
-<div className="row padding-vert--lg section">
-<div className="col col--5">
-## Single Sign-on
 
-Implement SSO with our easy to follow quick start guides.
+  <div className="row padding-vert--lg">
+    <div className="col">
+      <h2 className="text--center">Get started with tools and guides</h2>
+      <div className="row">
+        <div className="col col--4">
+          <Card
+            iconImage={starIcon}
+            title="Social Logins"
+            description="Add Social Connectors"
+            href="/sso/social-login"
+          />
+        </div>
+        <div className="col col--4">
+          <Card
+            iconImage={keyIcon}
+            title="SSO Quickstart"
+            description="Launch Enterprise SSO in hours"
+            href="/sso/quickstart"
+          />
+        </div>
+        <div className="col col--4">
+          <Card
+            iconImage={scimIcon}
+            title="SCIM Quickstart"
+            description="User Provisioning and Deprovisioning"
+            href="/scim/quickstart"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
-<div className="col col--7">
-<ProductList
-items={[{
-  title: "Login with SSO: Quickstart",
-  description: "Launch enterprise SSO in hours. Connect your application to any of your customers identity providers through SAML or OIDC",
-  href: "/sso/quickstart",
-},{
-  title: "Login with Social: Quickstart",
-  description: "Make it easy for your customers to securely login to your application with OAuth2 social providers like Google, Microsoft, GitHub etc",
-  href: "/sso/social-login",
-},{
-  title: "Integrate Admin Portal",
-  description: "Empower your customers to configure and manage SSO connections themselves with a self-service Admin Portal",
-  href: "/sso/quickstart-admin-portal",
-},{
-  title: "Launch Checklist",
-  description: "Check off these recommended steps before launching your app in Production",
-  href: "/sso/launch-checklist",
-}]}>
+  <div className="row padding-vert--lg">
+    <div className="col">
 
-</ProductList>
-</div>
-</div>
+      <div className="row">
+        <div className="col col--6">
+          <h2>Explore</h2>
+          <ul className="clean-list">
+            <li>
+              <a href="/sso/launch-checklist">Checklist before launching your app in production</a>
+            </li>
+            <li>
+              <a href="/scim/automatically-assign-roles">Implement automatic group based role assignment</a>
+            </li>
+            <li>
+              <a href="/apis#tag/Webhooks">Events and Webhooks</a>
+            </li>
+            <li>
+              <a href="/sso/quickstart-admin-portal">Integrate admin portal for your customers</a>
+            </li>
+          </ul>
+        </div>
+        <div className="col col--6">
+        <h2></h2>
+          <ul className="clean-list">
+            <li>
+              <a href="/sso/launch-checklist">Checklist before launching your app in production</a>
+            </li>
+            <li>
+              <a href="/scim/automatically-assign-roles">Implement automatic group based role assignment</a>
+            </li>
+            <li>
+              <a href="/apis#tag/Webhooks">Events and Webhooks</a>
+            </li>
+            <li>
+              <a href="/sso/quickstart-admin-portal">Integrate admin portal for your customers</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- Directory Sync -->
-
-<div className="row padding-vert--lg section">
-<div className="col col--5">
-## SCIM Provisioning <span className="badge--lang">New</span>
-
-Automatically provision and deprovision users with our easy to follow quick start guides.
-
-</div>
-<div className="col col--7">
-<ProductList
-items={[{
-  title: "Quickstart Guide",
-  description: "Implement SCIM Provisioning in hours. Connect your application to any of your customers directory providers through SCIM",
-  href: "/scim/quickstart",
-},{
-  title: "Automatic Role Assignment",
-  description: " Implement Group Based Access Control in your application with our easy to follow quick start guides",
-  href: "/scim/automatically-assign-roles",
-},{
-  title: "Integrate Admin Portal",
-  description: "Empower your customers to configure and manage SSO connections themselves with a self-service Admin Portal",
-  href: "/scim/admin-portal",
-},
-{
-  title: "Launch Checklist",
-  description: "Check off these recommended steps before launching your app in Production",
-  href: "/scim/checklist",
-}]}>
-
-</ProductList>
-</div>
-</div>
-
-<div className="row section padding-vert--lg">
-<div className="col col--5">
-
-## Developer Resources
-
-Get up and running with SDKs, API References, and integration tools.
-
-</div>
-<div className="col col--7">
-<ProductList
-items={[{
-  title: "API Reference",
-  description: "Go through our well documented REST APIs and code samples in Node.JS, Python, Go and Java",
-  href: "/apis",
-},{
-  title: "SDKs",
-  description: "Official Scalekit client libraries in Node.JS, Python, Go and Java",
-  href: "/sdks",
-}, {
-  title: "Webhooks",
-  description: "Get real-time events and https callbacks for changes related to organizations, users, connections and directories",
-  href: "/apis#tag/Webhooks",
-}]}>
-
-</ProductList>
-</div>
-</div>
-
-<div className="footerLink">
-  <IoHelpBuoyOutline /> Need help? <a href="mailto:support@scalekit.com">Contact Support</a>
-</div>
-<div className="footerLink">
-  <IoHelpCircleOutline /> Questions? <a href="mailto:hi@scalekit.com">Contact Us</a>
-</div>
-
+  {/* <div className="footerLink">
+    <IoHelpBuoyOutline /> Need help? <a href="mailto:support@scalekit.com">Contact Support</a>
+  </div>
+  <div className="footerLink">
+    <IoHelpCircleOutline /> Questions? <a href="mailto:hi@scalekit.com">Contact Us</a>
+  </div> */}
 </div>

@@ -9,6 +9,7 @@ export type CardType = {
   description?: string;
   linkText?: string;
   icon?: React.ReactNode;
+  iconImage?: string; // New prop for image-based icons
   children?: React.ReactNode;
   disableCardClick?: boolean; // New prop to disable card click
 };
@@ -38,13 +39,20 @@ const Card = ({
   description,
   linkText,
   icon,
+  iconImage, // Add the new prop
   children,
   disableCardClick,
 }: PropType) => {
   return (
     <CardContentWrapper href={href} disableCardClick={disableCardClick}>
       <div className={clsx(styles.header)}>
-        {icon && <div className={clsx(styles.icon)}>{icon}</div>}
+        {iconImage ? (
+          <div className={clsx(styles.icon)}>
+            <img src={iconImage} alt={title || 'card icon'} className={styles.iconImage} />
+          </div>
+        ) : icon ? (
+          <div className={clsx(styles.icon)}>{icon}</div>
+        ) : null}
         {title && <h5 className={clsx(styles.title)}>{title}</h5>}
       </div>
       {description && <p className={clsx(styles.description)}>{description}</p>}
