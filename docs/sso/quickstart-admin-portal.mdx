@@ -189,12 +189,13 @@ Below is an example of the data structure you might receive in your browser cons
 
 **Important Considerations**
 
-1. The generated link is designed for one-time use and expires after 6 hours or upon its initial
-   access.
-2. Ensure your domain is listed as one of the Redirect URIs in the Scalekit Dashboard > API Config.
-3. Once activated, the IT admin can configure SSO for an extended period. The session remains active
+1. The generated link is designed for one-time use and expires after 5 minutes.
+2. The embedded portal session times out after 6 hours, requiring administrators to complete the
+   configuration within this period.
+3. Ensure your domain is listed as one of the Redirect URIs in the Scalekit Dashboard > API Config.
+4. Once activated, the IT admin can configure SSO for an extended period. The session remains active
    until the setup is complete.
-4. For local development, use tools like Svix or Ngrok to expose localhost URLs to the internet.
+5. For local development, use tools like Svix or Ngrok to expose localhost URLs to the internet.
    Register the generated HTTPS URLs in the Scalekit Dashboard > API Config, and access the webpage
    using the Svix or Ngrok URL.
 
