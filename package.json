@@ -7,6 +7,7 @@
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
+    "format:mdx": "remark . --ext .mdx --frail",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
@@ -43,6 +44,8 @@
     "@docusaurus/types": "^3.7.0",
     "prettier-plugin-go-template": "^0.0.15",
     "prettier-plugin-java": "^2.6.4",
+    "remark-cli": "^12.0.1",
+    "remark-mdx": "^3.1.0",
     "typescript": "~5.2.2"
   },
   "browserslist": {
