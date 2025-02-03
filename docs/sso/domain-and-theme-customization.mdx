@@ -49,11 +49,11 @@ Once your custom domain is set up, here’s what you need to know:
 
 To set up your custom domain:
 
-- Follow the Custom Domains steps in the **Customization > Custom Domain** section in your Dashboard.
+- Go to **Customization > Custom Domain** in your Scalekit Dashboard and follow the setup steps
 - Add a CNAME record in your domain’s DNS settings. For example, if your project’s default domain is <SimpleCode>https:<span></span>//yourapp.scalekit.com</SimpleCode>, then:
   - Create a CNAME record for <SimpleCode>auth.yourapp.com</SimpleCode> that resolves to <SimpleCode>yourapp.scalekit.com</SimpleCode>.
   - Use the recommended TTL value to ensure changes propagate quickly.
-  - Verify that no extra domain names are appended by your DNS registrar. If extra parts are added (e.g., <SimpleCode>auth.yourapp.com.yourapp.com</SimpleCode>), remove the redundant portion by using only the appropriate prefix (e.g., <SimpleCode>auth</SimpleCode>).
+  - Check that your DNS registrar doesn’t append extra domain names. If redundant parts are added (e.g., <SimpleCode>auth.yourapp.com.yourapp.com</SimpleCode>), update it to use only the appropriate prefix (e.g., <SimpleCode>auth</SimpleCode>).
 
 ## Custom Theme
 
