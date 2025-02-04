@@ -50,11 +50,23 @@ Custom domains allow you to provide a fully branded experience. By default, Scal
 
 To set up your custom domain:
 
-- Follow the Custom Domains steps in the **Customization > Custom Domain** section in your Dashboard.
-- Add a CNAME record in your domain’s DNS settings. For example, if your project’s default domain is <SimpleCode>https:<span></span>//yourapp.scalekit.com</SimpleCode>, then:
-  - Create a CNAME record for <SimpleCode>auth.yourapp.com</SimpleCode> that resolves to <SimpleCode>yourapp.scalekit.com</SimpleCode>.
-  - Use the recommended TTL value to ensure changes propagate quickly.
-  - Verify that no extra domain names are appended by your DNS registrar. If extra parts are added (e.g., <SimpleCode>auth.yourapp.com.yourapp.com</SimpleCode>), remove the redundant portion by using only the appropriate prefix (e.g., <SimpleCode>auth</SimpleCode>).
+1. Go to your domain’s DNS Registrar.
+2. Add a new record to your DNS settings and select **CNAME** as the record type.
+3. Copy the **Name** (your desired subdomain) from the Scalekit Dashboard and paste it into the **Name/Label/Host** field in your DNS Registrar.
+4. Copy the **Value** from the Scalekit Dashboard and paste it into the **Destination/Target/Value** field in your DNS Registrar.
+5. Save the record in your DNS Registrar. Note that CNAME record changes can take up to 72 hours to propagate, although they typically happen much sooner.
+6. In the Scalekit Dashboard, click **Verify**.
+
+If there are any issues during the CNAME verification step:
+- Double-check your DNS configuration to ensure all values are correctly entered.
+- Once the CNAME changes take effect, Scalekit will automatically provision an SSL certificate for your custom domain. This process can take up to 24 hours.
+
+You can click on the **Check** button in the Scalekit Dashboard to verify SSL certification status. If SSL provisioning takes longer than 24 hours, please contact us at [support@scalekit.com](mailto:support@scalekit.com).
+
+#### Helpful Links for Popular DNS Registrars
+For detailed instructions on adding a CNAME record in specific registrars:
+- [GoDaddy: Add a CNAME Record](https://www.godaddy.com/en-in/help/add-a-cname-record-19236)
+- [Namecheap: How to Create a CNAME Record](https://www.namecheap.com/support/knowledgebase/article.aspx/9646/2237/how-to-create-a-cname-record-for-your-domain)
 
 ## Custom Theme
 
@@ -65,7 +77,3 @@ Personalize your Admin Portal further by matching it to your brand. The followin
 - **Favicon:** Set a favicon that represents your brand identity.
 
 These customization options help ensure that the Admin Portal feels like an integrated extension of your application.
-
-:::note
-If you need to disable the option to change the enterprise connection or disable an already enabled connection, please contact support at support@scalekit.com.
-:::
