@@ -226,7 +226,7 @@ const config: Config = {
         },
         {
           to: 'https://app.scalekit.com/ws/signup',
-          html: 'Sign in to Scalekit',
+          html: 'Signup',
           position: 'right',
           className: 'loginLink',
         },
