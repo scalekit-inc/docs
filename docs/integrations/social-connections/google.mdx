@@ -116,6 +116,28 @@ After completing the setup, click "Save Changes" in Scalekit for the changes to 
   </figcaption>
 </figure>
 
+### Customizing User Interaction During the Authentication Process
+
+Scalekit offers flexibility to control how and when users are prompted for reauthentication, consent, or account selection. Below are the available options for customizing user sign-in behavior:
+
+#### **User Sign-In Behavior Options**
+
+- **Auto Sign-in (default)**:
+  Automatically completes the login process without showing any confirmation prompts. This is ideal for single Google account users who are already logged in and have previously provided consent.
+
+- **Always Consent**:
+  Prompts the user for authorization every time, even if they have previously consented to share their information.
+
+- **Always Choose Account**:
+  Requires the user to select an account from the list of currently logged-in accounts, ensuring the correct account is chosen.
+
+- **Force Login**:
+  Forces the user to re-enter their credentials and log in, even if a valid session already exists.
+
+- **Silent Check**:
+  Performs a background authentication check without displaying any screens. If the user is not authenticated or hasn’t provided consent, an error will be returned.
+
+
 ## Test the Connection
 
 Click the "Test Connection" button in Scalekit. You will be redirected to the Google Consent screen
