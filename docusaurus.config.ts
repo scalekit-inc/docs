@@ -225,6 +225,12 @@ const config: Config = {
           position: 'right',
         },
         {
+          to: 'https://www.scalekit.com/demo',
+          html: 'Schedule a Demo',
+          position: 'right',
+          className: 'button button--secondary button--outline',
+        },
+        {
           to: 'https://app.scalekit.com/ws/signup',
           html: 'Signup',
           position: 'right',
