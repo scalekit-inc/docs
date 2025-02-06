@@ -235,6 +235,7 @@ const config: Config = {
           html: 'Signup',
           position: 'right',
           className: 'loginLink',
+          // className: 'button button--primary button--outline',
         },
       ],
     },
