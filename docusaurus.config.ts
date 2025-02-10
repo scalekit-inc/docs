@@ -210,7 +210,7 @@ const config: Config = {
         },
         {
           to: '/apis',
-          label: 'API Reference',
+          label: 'API',
           position: 'left',
         },
         {
