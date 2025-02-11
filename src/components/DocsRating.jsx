@@ -1,16 +1,20 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 import { IoHelpBuoyOutline, IoHelpCircleOutline } from 'react-icons/io5';
-import { PostHogProvider, usePostHog } from 'posthog-js/react';
-const options = {
-  api_host: 'https://us.i.posthog.com',
-};
+import { usePostHog } from 'posthog-js/react';
 
 const DocsRating = ({ label }) => {
   const [haveVoted, setHaveVoted] = useState(false);
   const [showTextFeedback, setShowTextFeedback] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const posthog = usePostHog();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const giveFeedback = (value) => {
+    if (!isClient) return;
     posthog?.capture('docs_feedback', { label: label, liked: value });
     if (value == 1) {
       setHaveVoted(true);
@@ -18,11 +22,17 @@ const DocsRating = ({ label }) => {
       setShowTextFeedback(true);
     }
   };
+
   const giveFullFeedback = (value) => {
+    if (!isClient) return;
     posthog?.capture('docs_feedback_text', { label: label, comments: value });
     setHaveVoted(true);
     setShowTextFeedback(false);
   };
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div className="docsRating">
