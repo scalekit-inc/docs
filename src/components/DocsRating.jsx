@@ -1,25 +1,49 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 import { IoHelpBuoyOutline, IoHelpCircleOutline } from 'react-icons/io5';
 import { PostHogProvider, usePostHog } from 'posthog-js/react';
+import posthog from 'posthog-js';
+
 const options = {
   api_host: 'https://us.i.posthog.com',
+  autocapture: false,
+  loaded: (posthog) => {
+    if (process.env.NODE_ENV === 'development') posthog.opt_out_capturing();
+  },
+  bootstrap: {
+    distinctID: 'anonymous',
+    isIdentifiedID: false,
+  },
 };
 
 const DocsRating = ({ label }) => {
   const [haveVoted, setHaveVoted] = useState(false);
   const [showTextFeedback, setShowTextFeedback] = useState(false);
   const posthog = usePostHog();
-  const giveFeedback = value => {
-    posthog?.capture('docs_feedback', { label: label, liked: value });
+
+  useEffect(() => {
+    return () => {
+      if (typeof window !== 'undefined') {
+        posthog?.shutdown();
+      }
+    };
+  }, [posthog]);
+
+  const giveFeedback = (value) => {
+    if (typeof window !== 'undefined' && posthog) {
+      posthog.capture('docs_feedback', { label: label, liked: value });
+    }
     if (value == 1) {
       setHaveVoted(true);
     } else {
       setShowTextFeedback(true);
     }
   };
-  const giveFullFeedback = value => {
-    posthog?.capture('docs_feedback_text', { label: label, comments: value });
+
+  const giveFullFeedback = (value) => {
+    if (typeof window !== 'undefined' && posthog) {
+      posthog.capture('docs_feedback_text', { label: label, comments: value });
+    }
     setHaveVoted(true);
     setShowTextFeedback(false);
   };
@@ -45,7 +69,7 @@ const DocsRating = ({ label }) => {
           </a>
           <TextFeedbackComponent
             className={!showTextFeedback ? 'hidden' : 'shown'}
-            onFeedback={feedback => giveFullFeedback(feedback)}
+            onFeedback={(feedback) => giveFullFeedback(feedback)}
           />
         </div>
       )}
@@ -58,10 +82,16 @@ const TextFeedbackComponent = ({ className, onFeedback }) => {
 
   return (
     <div className={className + ' feedbackContainer '}>
-      <textarea ref={ref} rows="3" placeholder="Sorry to hear that. How can we help you?" />
+      <textarea
+        ref={ref}
+        rows="3"
+        placeholder="Sorry to hear that. How can we help you?"
+      />
       <a
         className="button button--secondary button--outline"
-        onClick={() => ref.current && ref.current.value && onFeedback(ref.current.value)}
+        onClick={() =>
+          ref.current && ref.current.value && onFeedback(ref.current.value)
+        }
       >
         Send Feedback
       </a>
@@ -69,9 +99,27 @@ const TextFeedbackComponent = ({ className, onFeedback }) => {
   );
 };
 
-const ScalekitFooterComponent = ({ seekFeedback = true, className = 'feedbackFooter' }) => {
+// Only initialize PostHog in browser environment
+const isClient = typeof window !== 'undefined';
+const PostHogWrapper = ({ children }) => {
+  if (!isClient) return children;
+
   return (
-    <PostHogProvider apiKey="phc_85pLP8gwYvRCQdxgLQP24iqXHPRGaLgEw4S4dgZHJZ" options={options}>
+    <PostHogProvider
+      apiKey="phc_85pLP8gwYvRCQdxgLQP24iqXHPRGaLgEw4S4dgZHJZ"
+      options={options}
+    >
+      {children}
+    </PostHogProvider>
+  );
+};
+
+const ScalekitFooterComponent = ({
+  seekFeedback = true,
+  className = 'feedbackFooter',
+}) => {
+  return (
+    <PostHogWrapper>
       <div className={className}>
         <hr />
         {seekFeedback ? <DocsRating /> : null}
@@ -84,7 +132,7 @@ const ScalekitFooterComponent = ({ seekFeedback = true, className = 'feedbackFoo
           Questions? <a href="mailto:hi@scalekit.com">Contact Us</a>
         </div>
       </div>
-    </PostHogProvider>
+    </PostHogWrapper>
   );
 };
 
