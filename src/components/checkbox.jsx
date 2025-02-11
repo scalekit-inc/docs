@@ -1,49 +1,45 @@
-const CHECKBOX_LS_KEY = "SK_CB_PRST";
+import React, { useEffect, useState } from 'react';
 
-const lsUtils = {
-  isChecked: (cbId) => {
-    try {
-      return JSON.parse(window.localStorage.getItem(CHECKBOX_LS_KEY))[cbId];
-    } catch (e) {
-      return false;
-    }
-  },
-  updateChecked: (cbId, isChecked) => {
-    if (!cbId) {
-      throw new Error(`Missing cbId. Can not persist data`);
-    }
+const CHECKBOX_LS_KEY = 'scalekit-docs-checkboxes';
+
+function getStoredValue(cbId) {
+  if (typeof window === 'undefined') return false;
+  try {
     const data = JSON.parse(window.localStorage.getItem(CHECKBOX_LS_KEY)) || {};
-    data[cbId] = !!isChecked;
-    window.localStorage &&
-      window.localStorage.setItem(CHECKBOX_LS_KEY, JSON.stringify(data));
-  },
-};
-
-function Checkbox({ shouldPersist = true, id, className = "persist_chkbox" }) {
-  if (shouldPersist && !id) {
-    throw new Error(
-      "Please provide a unique element identifier as shouldPersist is enabled",
-    );
+    return data[cbId] || false;
+  } catch (e) {
+    return false;
   }
-
-  return (
-    <input
-      type="checkbox"
-      id={id}
-      className={className}
-      defaultChecked={lsUtils.isChecked(id)}
-      onChange={(e) =>
-        shouldPersist && lsUtils.updateChecked(id, e.target.checked)
-      }
-    />
-  );
 }
 
-export default function LabeledCheckbox({ children, ...props }) {
+function setStoredValue(cbId, value) {
+  if (typeof window === 'undefined') return;
+  try {
+    const data = JSON.parse(window.localStorage.getItem(CHECKBOX_LS_KEY)) || {};
+    data[cbId] = value;
+    window.localStorage.setItem(CHECKBOX_LS_KEY, JSON.stringify(data));
+  } catch (e) {
+    console.error('Failed to save checkbox state:', e);
+  }
+}
+
+export default function LabeledCheckbox({ children, id }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    setIsChecked(getStoredValue(id));
+  }, [id]);
+
+  const onChange = (e) => {
+    const newValue = e.target.checked;
+    setIsChecked(newValue);
+    setStoredValue(id, newValue);
+  };
+
   return (
-    <label htmlFor={props.id}>
-      <Checkbox {...props} />
-      {children}
-    </label>
+    <div className="checkbox-wrapper">
+      <input type="checkbox" id={id} checked={isChecked} onChange={onChange} />
+      <label htmlFor={id}>{children}</label>
+    </div>
   );
 }

@@ -1,76 +1,61 @@
-import { InView } from 'react-intersection-observer';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from '@docusaurus/Link';
 import { useHeaderContext } from '@site/src/components/SidebarWrapper';
 
 const activeLinkClass = 'menu__link--active';
 let currentActiveLink,
   sidebarItems = [];
-function highlightIntersectingSection(id) {
-  var newActiveLink = document.querySelector(
-    ".menu__list a[href='#" + id + "']",
-  );
-  if (!newActiveLink) {
-    return;
-  }
 
-  currentActiveLink?.classList?.remove(activeLinkClass);
-  newActiveLink.classList?.add(activeLinkClass);
-  currentActiveLink = newActiveLink;
-}
-
-export default function IntersectingHeader({ ...props }) {
+export default function IntersectingHeader({ children, id }) {
   const { addItem } = useHeaderContext();
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
-    addItem(props);
+    if (typeof window === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          const newActiveLink = document.querySelector(
+            `a[href="#${entry.target.id}"]`
+          );
+          if (newActiveLink) {
+            const oldActiveLink = document.querySelector(
+              'a.table-of-contents__link--active'
+            );
+            if (oldActiveLink) {
+              oldActiveLink.classList.remove('table-of-contents__link--active');
+            }
+            newActiveLink.classList.add('table-of-contents__link--active');
+          }
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    const element = document.getElementById(id);
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, [id]);
+
+  useEffect(() => {
+    addItem({ id, children });
   }, []);
 
   return (
-    <InView
-      initialInView={props.initialInView}
-      rootMargin="0% 0% -50% 0%"
-      onChange={(inView, entry) => {
-        if (inView) {
-          highlightIntersectingSection(entry.target.id);
-        }
-      }}
+    <div
+      id={id}
+      className={`intersecting-header ${isIntersecting ? 'intersecting' : ''}`}
     >
-      {props.subheading
-        ? ({ inView, ref, entry }) => (
-            <h3
-              id={props.id}
-              ref={ref}
-              className="headingWithStickyNavBar anchor"
-            >
-              {props.title}
-              <Link
-                href={`#${props.id}`}
-                className="hash-link"
-                aria-label={`Direct link to ${props.title}`}
-                title={`Direct link to ${props.title}`}
-              >
-                ​
-              </Link>
-            </h3>
-          )
-        : ({ inView, ref, entry }) => (
-            <h2
-              id={props.id}
-              ref={ref}
-              className="headingWithStickyNavBar anchor"
-            >
-              {props.title}
-              <Link
-                href={`#${props.id}`}
-                className="hash-link"
-                aria-label={`Direct link to ${props.title}`}
-                title={`Direct link to ${props.title}`}
-              >
-                ​
-              </Link>
-            </h2>
-          )}
-    </InView>
+      {children}
+    </div>
   );
 }
