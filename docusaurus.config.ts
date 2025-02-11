@@ -35,7 +35,11 @@ const rehypeShikiPlugin = [
       transformerNotationErrorLevel(),
       transformerMetaHighlight(),
     ],
-    langs: [...(Object.keys(bundledLanguages) as Array<keyof typeof bundledLanguages>)],
+    langs: [
+      ...(Object.keys(bundledLanguages) as Array<
+        keyof typeof bundledLanguages
+      >),
+    ],
   } as RehypeShikiOptions,
 ];
 
@@ -53,6 +57,7 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
   clientModules: ['./scalekit.js'],
   i18n: { defaultLocale: 'en', locales: ['en'] },
+  themes: ['@docusaurus/theme-live-codeblock'],
   plugins: [
     'plugin-image-zoom',
     [
@@ -68,7 +73,10 @@ const config: Config = {
             to: '/sso/quickstart-admin-portal',
           },
           {
-            from: ['/admin-portal/custom-domain', '/admin-portal/branding-theming'],
+            from: [
+              '/admin-portal/custom-domain',
+              '/admin-portal/branding-theming',
+            ],
             to: '/sso/domain-and-theme-customization',
           },
           {
@@ -227,7 +235,8 @@ const config: Config = {
     },
     imageZoom: {
       // CSS selector to apply the plugin to, defaults to '.markdown img'
-      selector: '.markdown :not(.cardContainer h3) > img,  .markdown :not(.language-row) img',
+      selector:
+        '.markdown :not(.cardContainer h3) > img,  .markdown :not(.language-row) img',
       // Optional medium-zoom options
       // see: https://www.npmjs.com/package/medium-zoom#options
       options: {

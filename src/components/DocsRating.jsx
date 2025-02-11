@@ -10,7 +10,7 @@ const DocsRating = ({ label }) => {
   const [haveVoted, setHaveVoted] = useState(false);
   const [showTextFeedback, setShowTextFeedback] = useState(false);
   const posthog = usePostHog();
-  const giveFeedback = value => {
+  const giveFeedback = (value) => {
     posthog?.capture('docs_feedback', { label: label, liked: value });
     if (value == 1) {
       setHaveVoted(true);
@@ -18,7 +18,7 @@ const DocsRating = ({ label }) => {
       setShowTextFeedback(true);
     }
   };
-  const giveFullFeedback = value => {
+  const giveFullFeedback = (value) => {
     posthog?.capture('docs_feedback_text', { label: label, comments: value });
     setHaveVoted(true);
     setShowTextFeedback(false);
@@ -45,7 +45,7 @@ const DocsRating = ({ label }) => {
           </a>
           <TextFeedbackComponent
             className={!showTextFeedback ? 'hidden' : 'shown'}
-            onFeedback={feedback => giveFullFeedback(feedback)}
+            onFeedback={(feedback) => giveFullFeedback(feedback)}
           />
         </div>
       )}
@@ -58,10 +58,16 @@ const TextFeedbackComponent = ({ className, onFeedback }) => {
 
   return (
     <div className={className + ' feedbackContainer '}>
-      <textarea ref={ref} rows="3" placeholder="Sorry to hear that. How can we help you?" />
+      <textarea
+        ref={ref}
+        rows="3"
+        placeholder="Sorry to hear that. How can we help you?"
+      />
       <a
         className="button button--secondary button--outline"
-        onClick={() => ref.current && ref.current.value && onFeedback(ref.current.value)}
+        onClick={() =>
+          ref.current && ref.current.value && onFeedback(ref.current.value)
+        }
       >
         Send Feedback
       </a>
@@ -69,22 +75,23 @@ const TextFeedbackComponent = ({ className, onFeedback }) => {
   );
 };
 
-const ScalekitFooterComponent = ({ seekFeedback = true, className = 'feedbackFooter' }) => {
+const ScalekitFooterComponent = ({
+  seekFeedback = true,
+  className = 'feedbackFooter',
+}) => {
   return (
-    <PostHogProvider apiKey="phc_85pLP8gwYvRCQdxgLQP24iqXHPRGaLgEw4S4dgZHJZ" options={options}>
-      <div className={className}>
-        <hr />
-        {seekFeedback ? <DocsRating /> : null}
-        <div className="footerLink">
-          <IoHelpBuoyOutline />
-          Need help? <a href="mailto:support@scalekit.com">Contact Support</a>
-        </div>
-        <div className="footerLink">
-          <IoHelpCircleOutline />
-          Questions? <a href="mailto:hi@scalekit.com">Contact Us</a>
-        </div>
+    <div className={className}>
+      <hr />
+      {seekFeedback ? <DocsRating /> : null}
+      <div className="footerLink">
+        <IoHelpBuoyOutline />
+        Need help? <a href="mailto:support@scalekit.com">Contact Support</a>
       </div>
-    </PostHogProvider>
+      <div className="footerLink">
+        <IoHelpCircleOutline />
+        Questions? <a href="mailto:hi@scalekit.com">Contact Us</a>
+      </div>
+    </div>
   );
 };
 

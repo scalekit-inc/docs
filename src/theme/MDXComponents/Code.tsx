@@ -1,4 +1,3 @@
-
 import CodeInline from '@theme/CodeInline';
 import type { ComponentProps } from 'react';
 import React from 'react';
@@ -7,18 +6,21 @@ import type { Props } from '@theme/MDXComponents/Code';
 import codeBlockStyles from './CodeBlock.module.css';
 import clsx from 'clsx';
 
+const isBrowser = typeof window !== 'undefined';
+
 function shouldBeInline(props: Props): boolean {
   return (
     // empty code blocks have no props.children,
     // see https://github.com/facebook/docusaurus/pull/9704
     typeof props.children !== 'undefined' &&
     React.Children.toArray(props.children).every(
-      (el) => typeof el === 'string' && !el.includes('\n'),
+      (el) => typeof el === 'string' && !el.includes('\n')
     )
   );
 }
 
 function getTextForCopy(node: React.ReactNode): string {
+  if (!isBrowser) return '';
   if (node === null) return '';
 
   switch (typeof node) {
@@ -60,7 +62,6 @@ function CodeBlock(props: ComponentProps<'code'>): JSX.Element {
     </div>
   );
 }
-
 
 export default function MDXCode(props: Props): JSX.Element {
   return shouldBeInline(props) ? (
