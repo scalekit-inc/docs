@@ -57,6 +57,7 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
   clientModules: ['./scalekit.js'],
   i18n: { defaultLocale: 'en', locales: ['en'] },
+  themes: ['@docusaurus/theme-live-codeblock'],
   plugins: [
     'plugin-image-zoom',
     [

@@ -263,9 +263,23 @@ const sidebars: SidebarsConfig = {
   ],
   integrationsSidebar: [
     {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Integrations</span>",
+      defaultStyle: true,
+    },
+    {
       type: 'doc',
       label: 'Overview',
       id: 'integrations/integrations',
+    },
+    {
+      type: 'category',
+      label: 'Social Connections',
+      items: [
+        'integrations/social-connections/google',
+        'integrations/social-connections/microsoft',
+      ],
     },
     {
       type: 'html',

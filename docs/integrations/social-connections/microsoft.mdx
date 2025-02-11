@@ -1,4 +1,4 @@
-# Microsoft as Your Sign In Option
+# Microsoft as your sign in option
 
 <Subtitle>Easily add Microsoft Sign In to your app with Scalekit</Subtitle>
 
@@ -77,6 +77,25 @@ After completing the setup, click "Save Changes" in Scalekit for the changes to 
     Microsoft OAuth configuration for social login, showing redirect URI, client ID, and scopes for authentication.
   </figcaption>
 </figure>
+
+### Choose the user experience for login prompt
+
+Scalekit offers flexibility to control how and when users are prompted for reauthentication, consent, or account selection. Below are the available options for customizing user sign-in behavior:
+
+- **Auto Sign-in (default)**:
+  Automatically completes the login process without showing any confirmation prompts. This is ideal for single account users who are already logged in and have previously provided consent.
+
+- **Consent**:
+  The authorization server triggers a consent screen after sign-in, asking the user to grant permissions to the app.
+
+- **Select Account**:
+  The authorization server prompts the user to select a user account. This allows a user who has multiple accounts at the authorization server to select amongst the multiple accounts that they may have current sessions for.
+
+- **Login**:
+  Forces the user to re-enter their credentials and log in, even if a valid session already exists.
+
+- **None**:
+  Performs a background authentication check without displaying any screens. If the user is not authenticated or hasn’t provided consent, an error will be returned.
 
 ## Test the Connection
 

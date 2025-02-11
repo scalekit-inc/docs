@@ -116,6 +116,23 @@ After completing the setup, click "Save Changes" in Scalekit for the changes to 
   </figcaption>
 </figure>
 
+### Choose the user experience for login prompt
+
+Scalekit offers flexibility to control how and when users are prompted for reauthentication, consent, or account selection. Below are the available options for customizing user sign-in behavior:
+
+- **Auto Sign-in (default)**:
+  Automatically completes the login process without showing any confirmation prompts. This is ideal for single Google account users who are already logged in and have previously provided consent.
+
+- **Consent**:
+  The authorization server prompts the user for consent before returning information to the client.
+
+- **Select Account**:
+  The authorization server prompts the user to select a user account. This allows a user who has multiple accounts at the authorization server to select amongst the multiple accounts that they may have current sessions for.
+
+- **None**:
+  The authorization server does not display any authentication or user consent screens; it will return an error if the user is not already authenticated and has not pre-configured consent for the requested scopes. You can use none to check for existing authentication and/or consent.
+
+
 ## Test the Connection
 
 Click the "Test Connection" button in Scalekit. You will be redirected to the Google Consent screen
