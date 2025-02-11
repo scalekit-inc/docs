@@ -20,6 +20,7 @@
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/plugin-client-redirects": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/theme-live-codeblock": "^3.7.0",
     "@floating-ui/react": "^0.26.19",
     "@mdx-js/react": "^3.0.0",
     "@shikijs/rehype": "^1.12.1",
