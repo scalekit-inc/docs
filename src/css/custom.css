@@ -167,14 +167,9 @@
   --tblr-danger: #d63939;
   --tblr-light: #f4f6fa;
   --tblr-dark: #232e3c;
-  --tblr-font-sans-serif: 'IBM Plex Sans', 'Inter', -apple-system,
-    BlinkMacSystemFont, sans-serif;
+  --tblr-font-sans-serif: 'IBM Plex Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --tblr-font-monospace: monospace;
-  --tblr-gradient: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  --tblr-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --doc-sidebar-width: 280px !important;
   --ifm-link-color: #4f5eff;
   --ifm-menu-color-background-active: #e7edf6;
@@ -557,11 +552,7 @@ figure img {
 
 .sidebar-heading.active_page .sidebar-heading-type,
 .sidebar-heading-type-active {
-  color: color-mix(
-    in srgb,
-    var(--method-color, var(--scalar-color-1)),
-    transparent 0%
-  );
+  color: color-mix(in srgb, var(--method-color, var(--scalar-color-1)), transparent 0%);
   background: var(--method-color, transparent);
 }
 
@@ -854,12 +845,14 @@ ul.table-of-contents.table-of-contents__left-border:before {
 .navbar {
   /* padding: 0 var(--ifm-navbar-padding-horizontal); */
   height: 64px;
+
 }
 
 /* #__docusaurus > nav {
   display: flex;
   align-items: center;
 } */
+
 
 .navbar:has(.navbar__secondary) {
   display: block;
@@ -875,9 +868,7 @@ ul.table-of-contents.table-of-contents__left-border:before {
 
 @media screen and (max-width: 1200px) {
   .navbar__logo {
-    height: calc(
-      var(--ifm-navbar-height) * 0.8
-    ); /* Adjust the multiplier as needed */
+    height: calc(var(--ifm-navbar-height) * 0.8); /* Adjust the multiplier as needed */
   }
 }
 
@@ -1085,12 +1076,7 @@ html {
   line-height: 28px;
 }
 
-div.narrow-references-container
-  > div:nth-child(2)
-  > section
-  > div
-  > div
-  > div:nth-child(2) {
+div.narrow-references-container > div:nth-child(2) > section > div > div > div:nth-child(2) {
   display: none;
 }
 
@@ -1217,8 +1203,7 @@ svg {
   border-radius: 0;
   cursor: pointer;
   display: inline-flex;
-  transition: background-color var(--ifm-transition-fast)
-    var(--ifm-transition-timing-default);
+  transition: background-color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
   padding: 8px;
 }
 
@@ -1229,11 +1214,10 @@ svg {
 }
 
 .loginLink {
-  padding: 0.45rem 1.65rem !important;
-  /* padding-right: 12px !important;
+  padding-right: 12px !important;
   padding-top: 3px;
   padding-left: 12.2px;
-  padding-bottom: 3px; */
+  padding-bottom: 3px;
   border-radius: 5px;
   margin-right: 20px;
   background-color: #000000;
@@ -1322,9 +1306,7 @@ svg {
   display: flex;
   flex-direction: column;
   font-family: var(--ifm-font-family-base);
-  max-height: calc(
-    var(--full-height) / 2 - var(--refs-header-height) / 2 - 30px
-  );
+  max-height: calc(var(--full-height) / 2 - var(--refs-header-height) / 2 - 30px);
   overflow: hidden;
   position: relative;
   margin-bottom: 0.5rem;
@@ -1858,15 +1840,3 @@ h1 .badge {
 }
 
 /* End Shiki Styles */
-
-.navbar__items .button--secondary.button--outline {
-  border: 2px solid #000000;
-  border-radius: 5px;
-}
-
-.navbar__items .button--primary.button--outline:hover {
-  background-color: #202020; /* Slightly lighter than black for hover */
-  color: #ffffff;
-  border-color: #202020;
-  transition: all 0.2s ease-in-out;
-}
