@@ -23,7 +23,6 @@ const DocsRating = ({ label }) => {
 
   useEffect(() => {
     return () => {
-      // Cleanup PostHog on unmount
       if (typeof window !== 'undefined' && window.posthog) {
         window.posthog.shutdown();
       }
