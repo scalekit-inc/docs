@@ -44,8 +44,12 @@ const Card = ({
   return (
     <CardContentWrapper href={href} disableCardClick={disableCardClick}>
       <div className={clsx(styles.header)}>
-        {icon && <div className={clsx(styles.icon)}>{icon}</div>}
-        {title && <h5 className={clsx(styles.title)}>{title}</h5>}
+        {title && (
+          <h5 className={clsx(styles.title)}>
+            {icon && <span className={clsx(styles.icon)}>{icon}</span>}
+            {title}
+          </h5>
+        )}
       </div>
       {description && <p className={clsx(styles.description)}>{description}</p>}
       <div className={clsx(styles.links)}>{children}</div>
