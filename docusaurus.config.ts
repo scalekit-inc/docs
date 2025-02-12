@@ -224,15 +224,16 @@ const config: Config = {
           type: 'search',
           position: 'right',
         },
+        // {
+        //   to: 'https://www.scalekit.com/demo',
+        //   html: 'Schedule a Demo',
+        //   position: 'right',
+        //   className: 'button button--secondary button--outline',
+        // },
         {
+          // to: 'https://app.scalekit.com/ws/signup',
           to: 'https://www.scalekit.com/demo',
-          html: 'Schedule a Demo',
-          position: 'right',
-          className: 'button button--secondary button--outline',
-        },
-        {
-          to: 'https://app.scalekit.com/ws/signup',
-          html: 'Signup',
+          html: 'Get Early Access',
           position: 'right',
           className: 'loginLink',
           // className: 'button button--primary button--outline',
