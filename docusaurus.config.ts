@@ -46,7 +46,7 @@ const rehypeShikiPlugin = [
 const config: Config = {
   title: 'Scalekit Docs',
   tagline: 'Enterprise Ready Authentiction Platform for SaaS',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/favicon-new.svg',
   url: 'https://docs.scalekit.com',
   baseUrl: '/',
   trailingSlash: false,
@@ -55,7 +55,7 @@ const config: Config = {
   deploymentBranch: 'gh-pages',
   onBrokenLinks: 'log',
   onBrokenMarkdownLinks: 'warn',
-  clientModules: ['./scalekit.js', './src/ga-cleanup.ts'],
+  clientModules: ['./scalekit.js'],
   i18n: { defaultLocale: 'en', locales: ['en'] },
   plugins: [
     'plugin-image-zoom',
@@ -139,10 +139,6 @@ const config: Config = {
         },
         googleTagManager: {
           containerId: 'GTM-N4QQB5CB',
-        },
-        gtag: {
-          trackingID: 'GTM-N4QQB5CB',
-          anonymizeIP: true,
         },
       } satisfies Preset.Options,
     ],
