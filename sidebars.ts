@@ -498,7 +498,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'link',
       label: 'Contact Us',
-      href: '/',
+      href: '/contact-us',
     },
     {
       type: 'link',
