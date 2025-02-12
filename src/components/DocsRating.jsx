@@ -23,8 +23,12 @@ const DocsRating = ({ label }) => {
 
   useEffect(() => {
     return () => {
-      if (typeof window !== 'undefined') {
-        posthog?.shutdown();
+      if (
+        typeof window !== 'undefined' &&
+        posthog &&
+        typeof posthog.shutdown === 'function'
+      ) {
+        posthog.shutdown();
       }
     };
   }, [posthog]);
