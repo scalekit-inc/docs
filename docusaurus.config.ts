@@ -35,7 +35,11 @@ const rehypeShikiPlugin = [
       transformerNotationErrorLevel(),
       transformerMetaHighlight(),
     ],
-    langs: [...(Object.keys(bundledLanguages) as Array<keyof typeof bundledLanguages>)],
+    langs: [
+      ...(Object.keys(bundledLanguages) as Array<
+        keyof typeof bundledLanguages
+      >),
+    ],
   } as RehypeShikiOptions,
 ];
 
@@ -68,7 +72,10 @@ const config: Config = {
             to: '/sso/quickstart-admin-portal',
           },
           {
-            from: ['/admin-portal/custom-domain', '/admin-portal/branding-theming'],
+            from: [
+              '/admin-portal/custom-domain',
+              '/admin-portal/branding-theming',
+            ],
             to: '/sso/domain-and-theme-customization',
           },
           {
@@ -203,7 +210,7 @@ const config: Config = {
         },
         {
           to: '/apis',
-          label: 'API Reference',
+          label: 'API',
           position: 'left',
         },
         {
@@ -218,16 +225,24 @@ const config: Config = {
           position: 'right',
         },
         {
-          to: 'https://www.scalekit.com/?intent=earlyaccess&utm_source=docs',
-          html: 'Get Early Access',
+          to: 'https://www.scalekit.com/demo',
+          html: 'Schedule a Demo',
+          position: 'right',
+          className: 'button button--secondary button--outline',
+        },
+        {
+          to: 'https://app.scalekit.com/ws/signup',
+          html: 'Signup',
           position: 'right',
           className: 'loginLink',
+          // className: 'button button--primary button--outline',
         },
       ],
     },
     imageZoom: {
       // CSS selector to apply the plugin to, defaults to '.markdown img'
-      selector: '.markdown :not(.cardContainer h3) > img,  .markdown :not(.language-row) img',
+      selector:
+        '.markdown :not(.cardContainer h3) > img,  .markdown :not(.language-row) img',
       // Optional medium-zoom options
       // see: https://www.npmjs.com/package/medium-zoom#options
       options: {

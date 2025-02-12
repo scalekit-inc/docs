@@ -18,7 +18,6 @@ const sidebars: SidebarsConfig = {
       label: 'SSO - Quickstart', // The link label
       id: 'sso/quickstart', // The internal path
     },
-
     {
       type: 'doc',
       label: 'Admin Portal',
@@ -419,6 +418,92 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       label: 'Explore',
       id: 'sso/guides/index',
+    },
+  ],
+  homeSidebar: [
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Introduction</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'doc',
+      label: 'Overview',
+      id: 'index',
+    },
+    {
+      type: 'html',
+      value: '<div />',
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Quickstarts</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'link',
+      label: 'Single Sign-On',
+      href: '/sso/quickstart',
+    },
+    {
+      type: 'link',
+      label: 'SCIM Provisioning',
+      href: '/scim/quickstart',
+    },
+    {
+      type: 'link',
+      label: 'Social Login',
+      href: '/sso/social-login',
+    },
+    {
+      type: 'html',
+      value: '<div />',
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>For Your Customers</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'link',
+      label: 'Admin Portal',
+      href: '/sso/quickstart-admin-portal',
+    },
+    {
+      type: 'link',
+      label: 'Custom Domains',
+      href: '/sso/domain-and-theme-customization#custom-domain',
+    },
+    {
+      type: 'link',
+      label: 'Integrations',
+      href: '/integrations',
+    },
+    {
+      type: 'html',
+      value: '<div />',
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Support</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'link',
+      label: 'Contact Us',
+      href: '/contact-us',
+    },
+    {
+      type: 'link',
+      label: 'Status Page',
+      href: 'https://status.scalekit.com',
     },
   ],
 };
