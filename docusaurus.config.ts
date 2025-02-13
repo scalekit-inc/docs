@@ -232,8 +232,7 @@ const config: Config = {
         //   className: 'button button--secondary button--outline',
         // },
         {
-          // to: 'https://app.scalekit.com/ws/signup',
-          to: 'https://www.scalekit.com/demo',
+          to: 'https://app.scalekit.com/ws/signup',
           html: 'Start building auth',
           position: 'right',
           className: 'loginLink',
