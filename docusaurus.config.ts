@@ -234,7 +234,7 @@ const config: Config = {
         {
           // to: 'https://app.scalekit.com/ws/signup',
           to: 'https://www.scalekit.com/demo',
-          html: 'Get Early Access',
+          html: 'Start building auth',
           position: 'right',
           className: 'loginLink',
           // className: 'button button--primary button--outline',
