@@ -3,6 +3,16 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   ssoSidebar: [
     {
+      type: 'link',
+      label: 'Back to Overview',
+      href: '/',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
       type: 'html',
       value:
         "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
@@ -169,6 +179,16 @@ const sidebars: SidebarsConfig = {
     },
   ],
   scimSidebar: [
+    {
+      type: 'link',
+      label: 'Back to Overview',
+      href: '/',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
     {
       type: 'html',
       value:
