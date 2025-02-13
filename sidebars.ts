@@ -455,7 +455,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Social Login',
+      label: 'Social Logins',
       href: '/sso/social-login',
     },
     {
@@ -466,7 +466,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>For Your Customers</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Config and Admin</span>",
       defaultStyle: true,
     },
     {
@@ -476,13 +476,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Custom Domains',
-      href: '/sso/domain-and-theme-customization#custom-domain',
+      label: 'Auth Integrations',
+      href: '/integrations',
     },
     {
       type: 'link',
-      label: 'Integrations',
-      href: '/integrations',
+      label: 'Custom Domains',
+      href: '/sso/domain-and-theme-customization#custom-domain',
     },
     {
       type: 'html',
