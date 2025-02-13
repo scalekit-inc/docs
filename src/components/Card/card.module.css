@@ -1,73 +1,70 @@
 .container {
-  display: block;
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
-  padding: 2rem;
-  border: 1px solid var(--ifm-color-emphasis-200);
-  background-color: var(--background-panels);
-  border-radius: 4px;
-  color: var(--text-content);
+  padding: 1.5rem;
+  border: 1px solid var(--primary-grey-300);
+  background-color: var(--primary-grey-50);
+  border-radius: 8px;
+  color: var(--primary-graphite-300);
   text-decoration: none;
   flex-basis: 0;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  transition: all 0.2s ease-in-out;
 }
 
 .container img {
-  box-shadow: 0px 0px 0px;
+  box-shadow: none;
 }
 
 .container:hover {
   text-decoration: none;
-  color: var(--text-content);
+  color: var(--primary-graphite-200);
+  border-color: var(--primary-indigo-blue-100);
   box-shadow:
-    0 0 0 1px rgba(50, 50, 93, 0.01),
-    0 7px 14px 0 rgba(50, 50, 93, 0.1),
-    0 3px 6px 0 rgba(0, 0, 0, 0.02);
+    0 0 0 1px rgba(79, 94, 255, 0.05),
+    0 4px 12px 0 rgba(79, 94, 255, 0.15);
+  transform: translateY(-2px);
 }
 
 .container:hover .linkTextContainer {
-  color: var(--text-link);
+  color: var(--primary-indigo-blue-300);
   transition: color 200ms;
 }
 
 .container:hover .linkTextContainer .rightArrow {
-  transform: translateX(4px) scale(1.2);
-  transition: transform 200ms;
-}
-
-.container:hover .linkTextContainer {
+  transform: translateX(4px);
   transition: transform 200ms;
 }
 
 .header {
   display: flex;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .icon {
-  margin-right: 8px;
+  margin-right: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5em;
   line-height: 1;
-  vertical-align: middle;
+  color: var(--primary-indigo-blue-300);
 }
 
 .icon svg {
   width: 1.5em;
   height: 1.5em;
-  position: relative;
-  top: -1px;
 }
 
 .title {
+  font-family: var(--ifm-heading-font-family);
   font-size: 1.125rem;
-  font-weight: bold;
-  color: inherit;
+  font-weight: var(--ifm-heading-font-weight);
+  color: var(--primary-graphite-300);
   text-decoration: none;
-  margin-bottom: 0.5rem;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -78,28 +75,30 @@
 }
 
 .description {
-  margin-bottom: 0;
+  margin: 0 0 1rem 0;
   font-size: 0.875rem;
+  color: var(--primary-graphite-100);
+  line-height: 1.5;
 }
 
 .links {
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  margin-top: auto;
 }
 
 .linkTextContainer {
-  font-size: 0.813rem;
-  margin-top: 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
   position: relative;
-  transition: 400ms color;
+  transition: color 200ms ease;
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  color: var(--primary-indigo-blue-200);
 }
 
 .rightArrow {
-  position: absolute;
-  transition: transform 400ms;
-  margin-left: 4px;
+  margin-left: 6px;
+  transition: transform 200ms ease;
 }
