@@ -15,7 +15,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'SSO - Quickstart', // The link label
+      label: 'SSO Quickstart', // The link label
       id: 'sso/quickstart', // The internal path
     },
     {
@@ -46,7 +46,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Social Login - Quickstart',
+      label: 'Social Logins Quickstart',
       id: 'sso/social-login',
     },
     {
@@ -177,7 +177,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Quickstart',
+      label: 'SCIM Quickstart',
       id: 'scim/quickstart',
     },
     {
@@ -497,12 +497,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Contact Us',
+      label: 'Contact us',
       href: '/contact-us',
     },
     {
       type: 'link',
-      label: 'Status Page',
+      label: 'Status page',
       href: 'https://status.scalekit.com',
     },
   ],
