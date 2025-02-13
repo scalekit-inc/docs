@@ -3,6 +3,16 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   ssoSidebar: [
     {
+      type: 'link',
+      label: 'Back to Overview',
+      href: '/',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
       type: 'html',
       value:
         "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
@@ -15,7 +25,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'SSO - Quickstart', // The link label
+      label: 'SSO Quickstart', // The link label
       id: 'sso/quickstart', // The internal path
     },
     {
@@ -46,7 +56,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Social Login - Quickstart',
+      label: 'Social Logins Quickstart',
       id: 'sso/social-login',
     },
     {
@@ -170,6 +180,16 @@ const sidebars: SidebarsConfig = {
   ],
   scimSidebar: [
     {
+      type: 'link',
+      label: 'Back to Overview',
+      href: '/',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
       type: 'html',
       value:
         "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
@@ -177,7 +197,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Quickstart',
+      label: 'SCIM Quickstart',
       id: 'scim/quickstart',
     },
     {
@@ -497,12 +517,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Contact Us',
+      label: 'Contact us',
       href: '/contact-us',
     },
     {
       type: 'link',
-      label: 'Status Page',
+      label: 'Status page',
       href: 'https://status.scalekit.com',
     },
   ],
