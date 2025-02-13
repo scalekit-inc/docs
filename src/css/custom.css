@@ -1248,10 +1248,12 @@ svg {
   /* padding-top: 2.6px;
   padding-left: 12.2px;
   padding-bottom: 3px; */
+  border-radius: 5px;
   margin-right: 20px;
   text-decoration: none;
   color: #ffffff;
 }
+
 .iconExternalLink_node_modules-\@docusaurus-theme-classic-lib-theme-Icon-ExternalLink-styles-module {
   display: none;
 }
