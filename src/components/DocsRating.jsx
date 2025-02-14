@@ -31,7 +31,7 @@ const DocsRating = ({ label }) => {
         posthog.shutdown();
       }
     };
-  }, [posthog]);
+  }, []);
 
   const giveFeedback = (value) => {
     if (typeof window !== 'undefined' && posthog) {
