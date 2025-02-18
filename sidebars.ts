@@ -523,7 +523,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'link',
       label: 'Status page',
-      href: 'https://status.scalekit.com',
+      href: 'https://scalekit.statuspage.io/',
     },
   ],
 };
