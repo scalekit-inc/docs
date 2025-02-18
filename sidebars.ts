@@ -517,6 +517,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
+      label: 'Glossary',
+      href: 'manage-scalekit/glossary',
+    },
+    {
+      type: 'link',
       label: 'Contact us',
       href: '/contact-us',
     },
