@@ -107,8 +107,8 @@ try {
     "username": "john@example.com",
     "id": "conn_32688947352043861;dc025689-4871-4772-8ed0-a31b1bdc010b"
   },
-  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua18yMDMy...[truncated]",
-  "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua18yMDMy...[truncated]",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6...[truncated]",
+  "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZ...[truncated]",
   "expiresIn": 899
 }} />
 
