@@ -24,11 +24,7 @@ if (error) {
 }
 
 // Fetch user details by exchanding the code received in the request params
-const { user } = await scalekit.authenticateWithCode(
-  code,
-  "<redirectUri>"
-);
-
+const { user } = await scalekit.authenticateWithCode(code, '<redirectUri>');
 ```
 
 </TabItem>
@@ -104,10 +100,16 @@ try {
 <CodeWithHeader title="Response">
 
 <JsonViewer src={{
-  "access_token": "ey ... vPnyWBQ",
-  "expires_in": 899,
-  "id_token": "eyJhbGc ... ar79GwZg",
-  "token_type": "Bearer"
+  "user": {
+    "email": "john@example.com",
+    "familyName": "Doe",
+    "givenName": "John",
+    "username": "john@example.com",
+    "id": "conn_32688947352043861;dc025689-4871-4772-8ed0-a31b1bdc010b"
+  },
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua18yMDMy...[truncated]",
+  "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua18yMDMy...[truncated]",
+  "expiresIn": 899
 }} />
 
 </CodeWithHeader>
