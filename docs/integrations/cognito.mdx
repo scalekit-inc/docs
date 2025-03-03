@@ -1,0 +1,140 @@
+# AWS Cognito and Scalekit SSO Integration Guide
+
+This guide provides instructions on how to integrate **Scalekit** with **AWS Cognito** to enable Single Sign-On (SSO) using the OpenID Connect (OIDC) protocol. By following this guide, you can extend AWS Cognito to support enterprise users logging into your application.
+
+## Overview of AWS Cognito
+
+AWS Cognito is an authentication service that allows users to securely log into your application. This guide demonstrates how to configure AWS Cognito to support enterprise SSO by integrating it with Scalekit.
+
+<figure>
+  ![Scalekit - AWS Cognito Integration](@site/docs/sso/assets/integrations/cognito/0.png)
+  <figcaption>Scalekit - AWS Cognito Integration</figcaption>
+</figure>
+
+For a practical demonstration, refer to the example application showcasing this integration.
+
+
+## Configuring Scalekit as an OIDC Provider
+
+OpenID Connect (OIDC) enables AWS Cognito to recognize Scalekit as an external identity provider, facilitating SSO for enterprise users.
+
+### Steps to Configure Scalekit:
+1. Navigate to the **AWS Cognito Dashboard**.
+2. Under the **Authentication** section, select **Social and External Providers**.
+3. Click on **Add Identity Provider > OpenID Connect (OIDC)**.
+4. Fill in the following details:
+
+| **Field**             | **Description**                                                                                     |
+|-----------------------|-----------------------------------------------------------------------------------------------------|
+| **Provider Name**     | A label to recognize Scalekit within AWS. For example, <SimpleCode>ScalekitIdPRouter</SimpleCode>. |
+| **Client ID**         | The Client ID from your Scalekit Dashboard under **API Config**.                                    |
+| **Client Secret**     | Create a secret in the Scalekit Dashboard and input it here.                                        |
+| **Authorized Scopes** | Define the scopes (information) that AWS Cognito will use to limit access to user attributes.       |
+| **Issuer URL**        | The URL of the OIDC issuer, this is your Environment URL in Scalekit > API Config (e.g., <SimpleCode>https:<br/>//subdomain.scalekit.dev</SimpleCode>).|
+| **Identifiers**       | An identifier tells Amazon Cognito it should check the email address a user enters when they sign in, and then direct them to the provider that corresponds to their domain.                             |
+| **Attribute Request Method** | The method used to request user attributes (e.g., GET or POST). Use **GET** for current implementation.                              |
+| **Map Attributes**    | Map attributes from Scalekit to AWS Cognito user pool attributes (e.g., <SimpleCode>email</SimpleCode>, <SimpleCode>name</SimpleCode>).           |
+
+
+
+## Initiating Single Sign-On
+
+To initiate SSO, generate an authorization endpoint and redirect users to it. Use any OIDC client library for this purpose.
+
+<CodeWithHeader title="Example Code">
+
+```javascript
+import { Issuer, Client } from "openid-client";
+
+const client = await getOidcClient();
+
+const authUrl = client.authorizationUrl({
+  scope: "openid email phone",
+  state: state,
+  nonce: nonce,
+  identity_provider: "ScalekitIdPRouter",
+  login_hint: email,
+});
+console.log("authUrl", authUrl);
+const response = NextResponse.redirect(authUrl);
+
+async function getOidcClient(): Promise<Client> {
+  if (client) return client;
+
+  // Initialize OpenID Client
+  const issuer = await Issuer.discover(
+    "https://cognito-idp.eu-north-1.amazonaws.com/eu-north-1_6m0O668r5"
+  );
+
+  client = new issuer.Client({
+    client_id: process.env.COGNITO_CLIENT_ID || "k6tana1l8b0bvhk9gfijkurr6",
+    client_secret: process.env.COGNITO_CLIENT_SECRET || "",
+    redirect_uris: [
+      process.env.REDIRECT_URI || "http://localhost:3000/auth/callback",
+    ],
+    response_types: ["code"],
+  });
+
+  return client;
+}
+```
+
+</CodeWithHeader>
+
+:::info
+The example code above uses the `openid-client` library for node.js. See Quick setup guides in your AWS Cognito dashboard (Applications > App clients > Quick setup guide) for other libraries for Python, Java and Go.
+:::
+
+
+### Authorization Endpoint Parameters
+
+Your authorization endpoint must include two additional parameters for seamless Scalekit integration:
+1. <SimpleCode>identity_provider</SimpleCode>: The name assigned when creating the provider in AWS Cognito (e.g., <SimpleCode>ScalekitIdPRouter</SimpleCode>).
+2. <SimpleCode>login_hint</SimpleCode>: The email address of the enterprise user attempting authentication.
+
+ AWS Cognito's default login page doesn't pass `login_hint` (user email). To resolve this, use your own login page to collect user email before redirect or bypass managed page using direct authorization endpoint.
+
+<CodeWithHeader title="Example Authorization URL">
+
+```http
+https://eu-north-16m0o668r5.auth.[eu-north-1].amazoncognito.com/oauth2/authorize
+  ?client_id=[k6tana11xxx0bvhk9gfijkurr6]
+  &scope=openid%20email%20phone
+  &response_type=code
+  &redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fcallback
+  &state=-5iLRZmPwwdqT-A4yiJM6KQvCLQM0JRx9QaXOIwzRE~
+  &nonce=sGSXePnJOUe5GZyTpKG4rRsVeWyfZlolmbMWunUDbG4
+  &identity_provider=ScalekitIdPRouter
+  &login_hint=enterpriseuser@example.org
+```
+
+</CodeWithHeader>
+
+For testing purposes, Scalekit supports domains like `@example.org` and `@example.com`. Endpoints generated using these domains will redirect enterprise users to the IdP Simulator.
+
+To onboard an enterprise customer:
+1. Use the Admin Portal to configure the relevant IdP.
+2. When a user logs in with `user@company.com`, they will be redirected to their organization's IdP.
+3. The user authenticates using methods set by their organization (e.g., Multi-factor Authentication).
+4. Upon successful authentication, your app will receive user profile details at its callback endpoint.
+
+<CodeWithHeader title="Example Callback URL">
+
+```json
+{
+"sub": "807c593c-d0c1-709c-598f-633ec61bcc8b",
+"email_verified": "false",
+"email": "john@example.com",
+"username": "scalekitIdPRouter_conn_60040666217971987;a2c49d97-d36f-460f-97c2-87eb295095af"
+}
+```
+
+</CodeWithHeader>
+
+
+:::info
+Define callback and sign-out URLs in:
+- **Amazon Cognito > Applications > App Clients > Login Pages**
+
+Ensure these URLs allow token exchange and trigger sign-out as required by your application.
+:::

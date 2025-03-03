@@ -381,6 +381,11 @@ const sidebars: SidebarsConfig = {
       id: 'integrations/firebase',
     },
     {
+      type: 'doc',
+      label: 'AWS Cognito',
+      id: 'integrations/cognito',
+    },
+    {
       type: 'html',
       value: '<div />', // The link label
       defaultStyle: true,
