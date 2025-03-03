@@ -30,7 +30,7 @@ OpenID Connect (OIDC) enables AWS Cognito to recognize Scalekit as an external i
 | **Client ID**         | The Client ID from your Scalekit Dashboard under **API Config**.                                    |
 | **Client Secret**     | Create a secret in the Scalekit Dashboard and input it here.                                        |
 | **Authorized Scopes** | Define the scopes (information) that AWS Cognito will use to limit access to user attributes.       |
-| **Issuer URL**        | The URL of the OIDC issuer, this is your Environment URL in Scalekit > API Config (e.g., <SimpleCode>https:<br/>//subdomain.scalekit.dev</SimpleCode>).|
+| **Issuer URL**        | The URL of the OIDC issuer, this is your Environment URL in Scalekit > API Config (e.g., `https://subdomain.scalekit.dev`).|
 | **Identifiers**       | An identifier tells Amazon Cognito it should check the email address a user enters when they sign in, and then direct them to the provider that corresponds to their domain.                             |
 | **Attribute Request Method** | The method used to request user attributes (e.g., GET or POST). Use **GET** for current implementation.                              |
 | **Map Attributes**    | Map attributes from Scalekit to AWS Cognito user pool attributes (e.g., <SimpleCode>email</SimpleCode>, <SimpleCode>name</SimpleCode>).           |
