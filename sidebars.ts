@@ -136,6 +136,11 @@ const sidebars: SidebarsConfig = {
       label: 'Integrate with Firebase',
       id: 'sso/guides/integrate-with-your-auth-system/firebase',
     },
+    {
+      type: 'doc',
+      label: 'Integrate with AWS Cognito',
+      id: 'integrations/cognito',
+    },
     // {
     //   type: "doc",
     //   label: "Test your Integration using Okta",
