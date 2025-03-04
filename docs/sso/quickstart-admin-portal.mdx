@@ -179,28 +179,28 @@ window.onmessage = event => {
 
 </CodeWithHeader>
 
-Below is an example of the data structure you might receive in your browser console when the <SimpleCode>ORGANIZATION_SSO_ENABLED</SimpleCode> event is triggered:
+Below is an example of the data structure you might receive in your browser console when a event is triggered:
 
 <div class="row">
     <div class="col col--6">
       <div>
         <CodeWithHeader title="ORGANIZATION_SSO_ENABLED">
-
-<JsonViewer
-  src={{
-    event_type: 'ORGANIZATION_SSO_ENABLED',
-    object: 'connection',
-    organization_id: 'org_4010340X34236531',
-    data: {
-      connection_type: 'SSO',
-      status: 'COMPLETED',
-      id: 'conn_4256075523X312',
-      type: 'OIDC',
-      provider: 'OKTA',
-      enabled: true,
-    },
-  }}
-/>
+        <JsonViewer
+          src={{
+          "event_type":"ORGANIZATION_SSO_ENABLED",
+          "object":"connection",
+          "organization_id":"org_4010340X34236531",
+          "message": "SSO Connection enabled successfully",
+          "data":{
+              "connection_type":"SSO",
+              "status":"COMPLETED",
+              "id":"conn_4256075523X312",
+              "type":"OIDC",
+              "provider":"OKTA",
+              "enabled":true
+          }
+        }}
+        />
 
 </CodeWithHeader>
       </div>
@@ -208,22 +208,23 @@ Below is an example of the data structure you might receive in your browser cons
     <div class="col col--6">
       <div>
 
-<CodeWithHeader title="ORGANIZATION_SSO_ENABLED">
+<CodeWithHeader title="ORGANIZATION_SSO_DISABLED">
 
 <JsonViewer
   src={{
-    event_type: 'ORGANIZATION_SSO_DISABLED',
-    object: 'connection',
-    organization_id: 'org_4010340X34236531',
-    data: {
-      connection_type: 'SSO',
-      status: 'COMPLETED',
-      id: 'conn_4256075523X312',
-      type: 'OIDC',
-      provider: 'OKTA',
-      enabled: true,
-    },
-  }}
+   "event_type":"ORGANIZATION_SSO_DISABLED",
+   "object":"connection",
+   "organization_id":"org_4010340X34236531",
+   "message": "SSO Connection disabled successfully",
+   "data":{
+      "connection_type":"SSO",
+      "status":"COMPLETED",
+      "id":"conn_4256075523X312",
+      "type":"OIDC",
+      "provider":"OKTA",
+      "enabled": false
+   }
+}}
 />
 
 </CodeWithHeader>
@@ -237,22 +238,18 @@ Below is an example of the data structure you might receive in your browser cons
 <div class="row">
     <div class="col col--6">
       <div>
-        <CodeWithHeader title="ORGANIZATION_SSO_ENABLED">
+        <CodeWithHeader title="PORTAL_SESSION_WARNING">
 
 <JsonViewer
   src={{
-    event_type: 'ORGANIZATION_SSO_ENABLED',
-    object: 'connection',
-    organization_id: 'org_4010340X34236531',
-    data: {
-      connection_type: 'SSO',
-      status: 'COMPLETED',
-      id: 'conn_4256075523X312',
-      type: 'OIDC',
-      provider: 'OKTA',
-      enabled: true,
-    },
-  }}
+    "event_type": "PORTAL_SESSION_WARNING",
+    "object": "session",
+    "message": "The admin portal session will expire in 5 minutes",
+    "organization_id": "org_43982563588440584",
+    "data": {
+        "expiry": "2025-02-28T12:40:35.911Z"
+    }
+}}
 />
 
 </CodeWithHeader>
@@ -261,22 +258,18 @@ Below is an example of the data structure you might receive in your browser cons
     <div class="col col--6">
       <div>
 
-<CodeWithHeader title="ORGANIZATION_SSO_ENABLED">
+<CodeWithHeader title="PORTAL_SESSION_EXPIRY">
 
 <JsonViewer
   src={{
-    event_type: 'ORGANIZATION_SSO_DISABLED',
-    object: 'connection',
-    organization_id: 'org_4010340X34236531',
-    data: {
-      connection_type: 'SSO',
-      status: 'COMPLETED',
-      id: 'conn_4256075523X312',
-      type: 'OIDC',
-      provider: 'OKTA',
-      enabled: true,
-    },
-  }}
+  "event_type": "PORTAL_SESSION_EXPIRY",
+  "object": "session",
+  "message": "The admin portal session has expired",
+  "organization_id": "org_43982563588440584",
+  "data": {
+    "expiry": "2025-02-28T12:40:35.911Z"
+  }
+}}
 />
 
 </CodeWithHeader>
