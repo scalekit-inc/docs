@@ -1,6 +1,6 @@
 ---
-description: Verify SSO Connection using IdP Simulator
-title: Test Single Sign-on integration
+title: "Scalekit SSO Testing Guide | Validate Single Sign-On Integrations"
+description: "Learn how to test your SSO implementation using Scalekit's IdP Simulator and Test Organization, ensuring seamless and secure authentication workflows."
 ---
 
 # Test Single Sign-on integration
@@ -42,7 +42,7 @@ To validate this scenario, ensure the following:
   have provided. This involves checking that the URL is constructed correctly and that the redirection occurs
   seamlessly.
 - **Retrieving User Details**: Confirm that your application can successfully retrieve user details by exchanging
-  the <SimpleCode>code</SimpleCode> received in the previous step.
+  the <SimpleCode>code</SimpleCode> received in the previous step.
 
 To test this scenario, generate authorization URL using the organization ID of the Test Organization.
 
@@ -180,7 +180,7 @@ handle this scenario. Learn more about
 </figure>
 
 If the callback is IdP-initiated, retrieve the necessary details, such as <SimpleCode>connection_id</SimpleCode>
-or <SimpleCode>organization_id</SimpleCode>, from Scalekit to construct an Authorization URL. This step effectively
+or <SimpleCode>organization_id</SimpleCode>, from Scalekit to construct an Authorization URL. This step effectively
 converts an IdP-initiated SSO into an SP-initiated SSO.
 
 :::note
