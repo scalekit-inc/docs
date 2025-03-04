@@ -28,7 +28,6 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
   Empower your customers to configure and manage Single Sign-On settings independently
 </Subtitle>
 
-
 The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations.
 
 By offering a self-service portal for your customers, you can minimize the need for extensive back-and-forth communication. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options — No-Code and Embedded portals
@@ -229,6 +228,31 @@ Below is an example of the data structure you might receive in your browser cons
 />
 
 </CodeWithHeader>
+      </div>
+    </div>
+    <div class="col col--6">
+      <div>
+
+<CodeWithHeader title="PORTAL_SESSION_EXPIRY">
+
+<JsonViewer
+  src={{
+  "event_type": "PORTAL_SESSION_EXPIRY",
+  "object": "session",
+  "message": "The admin portal session has expired",
+  "organization_id": "org_43982563588440584",
+  "data": {
+    "expiry": "2025-02-28T12:40:35.911Z"
+  }
+}}
+/>
+
+</CodeWithHeader>
+
+
+      </div>
+    </div>
+  </div>
 
 
       </div>
