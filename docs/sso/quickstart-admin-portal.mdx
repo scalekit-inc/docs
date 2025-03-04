@@ -28,14 +28,13 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
   Empower your customers to configure and manage Single Sign-On settings independently
 </Subtitle>
 
-The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations. By offering a self-service portal, you can minimize the need for extensive back-and-forth communication between your team and your customers. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options:
+The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations.
 
-1. **No-Code Admin Portal**: Generate a shareable link to the portal and distribute it to your customers through standard communication channels.
-2. **Embedded Admin Portal**: Integrate the Admin Portal seamlessly into your application using an iframe for a more unified user experience.
+By offering a self-service portal for your customers, you can minimize the need for extensive back-and-forth communication. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options — No-Code and Embedded portals
 
-## 1. No-Code Admin Portal
+## No-Code Admin Portal
 
-### Generate a Shareable Link
+A portal will show up for your customers to configure SSO settings by accessing a shareable link. This portal contains the configuration settings that lets your customers setup a connection to their identity provider.
 
 To create and share a link for the Admin Portal, follow these steps:
 
@@ -46,15 +45,23 @@ To create and share a link for the Admin Portal, follow these steps:
 
 <figure>![Integrate via Shareable Link](@site/docs/scim/assets/1-admin-portal-v2.png)</figure>
 
-**Important Considerations**
+<CodeWithHeader title="Example">
 
-- The generated link is valid for 7 days but can be revoked at any time from the dashboard for security purposes.
-- You can share the link through communication channels such as email, Slack, or other preferred methods.
-- Be cautious when sharing the link, as anyone with access to it can view and update the organization's Single Sign-On settings.
+```http
+https://your-app.scalekit.dev/magicLink/2cbe56de-eec4-41d2-abed-90a5b82286c4_p
+```
+
+</CodeWithHeader>
+
+The generated link is valid for 7 days but can be revoked at any time from the dashboard for security purposes.You can share the link through communication channels such as email, Slack, or other preferred methods.
+
+:::note
+Be cautious when sharing the link, as anyone with access to it can view and update the organization's Single Sign-On settings.
+:::
 
 <figure>![Integrate via Shareable Link](@site/docs/scim/assets/2-admin-portal-v2.png)</figure>
 
-## 2. Embedded Admin Portal
+## Embedded Admin Portal
 
 Embedding the Admin Portal into your application offers several benefits:
 - **Easy Discoverability**: IT admins can quickly locate and access the portal within your app.
@@ -130,7 +137,10 @@ attribute of an iframe in your web pages.
 
 </CodeWithHeader>
 
-### UI Events in the Portal
+### UI Events
+
+
+
 
 When the Admin Portal is embedded in your application via an iframe, it can emit events to the parent window. You can capture these events using the <SimpleCode>window.onmessage</SimpleCode> method.
 
@@ -141,7 +151,7 @@ window.onmessage = event => {
   if (
     event.origin === '<SCALEKIT_ENVIRONMENT_URL>' && // 'https://yourapp.scalekit.dev'
     event.data &&
-    event.data.event_type === 'ORGANIZATION_SSO_ENABLED' // Check for the specific event type
+    event.data.event_type === 'ORGANIZATION_SSO_ENABLED' // Check specific event type
   ) {
     console.log(event.data); // Handle the event data
   }
