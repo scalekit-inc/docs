@@ -28,14 +28,14 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
   Empower your customers to configure and manage Single Sign-On settings independently
 </Subtitle>
 
-The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations. By offering a self-service portal, you can minimize the need for extensive back-and-forth communication between your team and your customers. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options:
 
-1. **No-Code Admin Portal**: Generate a shareable link to the portal and distribute it to your customers through standard communication channels.
-2. **Embedded Admin Portal**: Integrate the Admin Portal seamlessly into your application using an iframe for a more unified user experience.
+The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations.
 
-## 1. No-Code Admin Portal
+By offering a self-service portal for your customers, you can minimize the need for extensive back-and-forth communication. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options — No-Code and Embedded portals
 
-### Generate a Shareable Link
+## No-Code Admin Portal
+
+A portal will show up for your customers to configure SSO settings by accessing a shareable link. This portal contains the configuration settings that lets your customers setup a connection to their identity provider.
 
 To create and share a link for the Admin Portal, follow these steps:
 
@@ -46,24 +46,29 @@ To create and share a link for the Admin Portal, follow these steps:
 
 <figure>![Integrate via Shareable Link](@site/docs/scim/assets/1-admin-portal-v2.png)</figure>
 
-**Important Considerations**
+<CodeWithHeader title="Example">
 
-- The generated link is valid for 7 days but can be revoked at any time from the dashboard for security purposes.
-- You can share the link through communication channels such as email, Slack, or other preferred methods.
-- Be cautious when sharing the link, as anyone with access to it can view and update the organization's Single Sign-On settings.
+```http
+https://your-app.scalekit.dev/magicLink/2cbe56de-eec4-41d2-abed-90a5b82286c4_p
+```
+
+</CodeWithHeader>
+
+
+The link expires in 7 days but can be revoked at any time from the dashboard for security purposes.You can share the link through communication channels such as email, Slack, or other preferred methods.
+
 
 <figure>![Integrate via Shareable Link](@site/docs/scim/assets/2-admin-portal-v2.png)</figure>
 
-## 2. Embedded Admin Portal
+:::note
+Be cautious when sharing the link, as anyone with access to it can view and update the organization's connection settings
+:::
 
-Embedding the Admin Portal into your application offers several benefits:
-- **Easy Discoverability**: IT admins can quickly locate and access the portal within your app.
-- **Convenient Access**: Enables seamless updates to Single Sign-On settings on the go.
-- **Reduced Navigation Barriers**: Eliminates the need for external links or separate portals.
+## Embedded Admin Portal
 
-<figure>![Integrate via API](@site/docs/scim/assets/3-admin-portal.png)</figure>
+Users can do the connection setup right from your application by rendering Scalekit-hosted admin portal as a inline frame (iframe). This approach allows easy discovery & convenient access to the portal without the need for external links or separate portals.
 
-Install the Scalekit SDK, which includes the <SimpleCode>generatePortalLink()</SimpleCode> method:
+Generate the embeddable portal link when page loads or refreshes and inject the `src` of the `<iframe>`, at your app's runtime. This ensure secure programmatic access.
 
 <InstallSDK />
 
@@ -110,9 +115,9 @@ is the URL to the Admin Portal.
 </CodeWithHeader>
 
 Access the <SimpleCode>location</SimpleCode> property and set it as the <SimpleCode>src</SimpleCode>
-attribute of an iframe in your web pages.
+attribute of an iframe in your web pages at runtime. Ensure your domain is listed as one of the Redirect URIs in the **Scalekit Dashboard > API Config**.
 
-<CodeWithHeader title="Embed Admin Portal in an Iframe">
+<CodeWithHeader title="Render admin portal in iframe (example)">
 
 ```html
 <body>
@@ -130,19 +135,43 @@ attribute of an iframe in your web pages.
 
 </CodeWithHeader>
 
-### UI Events in the Portal
+For example, if your application has a "Settings" page for your users, this page can allow them to configure connection with their IdP right within from your app.
 
-When the Admin Portal is embedded in your application via an iframe, it can emit events to the
-parent window. You can capture these events using the window.onmessage method.
+<figure>![Integrate via API](@site/docs/scim/assets/3-admin-portal.png)</figure>
 
-<CodeWithHeader title="Listening to Portal Events in the UI">
+
+:::note
+1. The programmatically generated link is designed for one-time use and expires after 1 minute. Once activated in iframe, the IT admin can configure SSO for an extended period. The session remains active
+   until the setup is complete.
+2. The embedded portal session times out after 6 hours, requiring administrators to complete the
+   configuration within this period.
+:::
+
+### UI Events
+
+Listen to the browser events emitted from the embedded admin portal to perform actions on your app. For example, showing a notification when the SSO connection is enabled.
+
+| Event Type       | Description      |
+|----------------|----------------|
+| <SimpleCode>ORGANIZATION_SSO_ENABLED</SimpleCode>  | Triggered when the SSO connection is enabled |
+| <SimpleCode>ORGANIZATION_SSO_DISABLED</SimpleCode>  | Triggered when the SSO connection is disabled |
+| <SimpleCode>PORTAL_SESSION_EXPIRY</SimpleCode>  | Triggered when the portal session expires |
+| <SimpleCode>PORTAL_SESSION_TIMEOUT</SimpleCode>  | Triggered when the portal session times out |
+
+To listen to these events:
+
+1. Add a listener to the parent window.
+2. Check the event origin and type to determine the action to take.
+3. Handle the event data as needed.
+
+<CodeWithHeader title="Listening to events from the embedded admin portal">
 
 ```javascript
 window.onmessage = event => {
   if (
-    event.origin === '<SCALEKIT_ENVIRONMENT_URL>' && // 'https://yourapp.scalekit.dev'
+    event.origin === '<SCALEKIT_ENVIRONMENT_URL>' &&
     event.data &&
-    event.data.event_type === 'ORGANIZATION_SSO_ENABLED' // Check for the specific event type
+    event.data.event_type === '<EVENT_TYPE>'
   ) {
     console.log(event.data); // Handle the event data
   }
@@ -151,27 +180,105 @@ window.onmessage = event => {
 
 </CodeWithHeader>
 
-Below is an example of the data structure you might receive in your browser console when the <SimpleCode>ORGANIZATION_SSO_ENABLED</SimpleCode> event is triggered:
+Below is an example of the data structure you might receive in your browser console when a event is triggered:
 
-<CodeWithHeader title="Event Data in Browser Console">
+<div class="row">
+    <div class="col col--6">
+      <div>
+        <CodeWithHeader title="ORGANIZATION_SSO_ENABLED">
+        <JsonViewer
+          src={{
+          "event_type":"ORGANIZATION_SSO_ENABLED",
+          "object":"connection",
+          "organization_id":"org_4010340X34236531",
+          "message": "SSO Connection enabled successfully",
+          "data":{
+              "connection_type":"SSO",
+              "status":"COMPLETED",
+              "id":"conn_4256075523X312",
+              "type":"OIDC",
+              "provider":"OKTA",
+              "enabled":true
+          }
+        }}
+        />
+
+</CodeWithHeader>
+      </div>
+    </div>
+    <div class="col col--6">
+      <div>
+
+<CodeWithHeader title="ORGANIZATION_SSO_DISABLED">
 
 <JsonViewer
   src={{
-    event_type: 'ORGANIZATION_SSO_ENABLED',
-    object: 'connection',
-    organization_id: 'org_4010340X34236531',
-    data: {
-      connection_type: 'SSO',
-      status: 'COMPLETED',
-      id: 'conn_4256075523X312',
-      type: 'OIDC',
-      provider: 'OKTA',
-      enabled: true,
-    },
-  }}
+   "event_type":"ORGANIZATION_SSO_DISABLED",
+   "object":"connection",
+   "organization_id":"org_4010340X34236531",
+   "message": "SSO Connection disabled successfully",
+   "data":{
+      "connection_type":"SSO",
+      "status":"COMPLETED",
+      "id":"conn_4256075523X312",
+      "type":"OIDC",
+      "provider":"OKTA",
+      "enabled": false
+   }
+}}
 />
 
 </CodeWithHeader>
+
+
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+    <div class="col col--6">
+      <div>
+        <CodeWithHeader title="PORTAL_SESSION_WARNING">
+
+<JsonViewer
+  src={{
+    "event_type": "PORTAL_SESSION_WARNING",
+    "object": "session",
+    "message": "The admin portal session will expire in 5 minutes",
+    "organization_id": "org_43982563588440584",
+    "data": {
+        "expiry": "2025-02-28T12:40:35.911Z"
+    }
+}}
+/>
+
+</CodeWithHeader>
+      </div>
+    </div>
+    <div class="col col--6">
+      <div>
+
+<CodeWithHeader title="PORTAL_SESSION_EXPIRY">
+
+<JsonViewer
+  src={{
+  "event_type": "PORTAL_SESSION_EXPIRY",
+  "object": "session",
+  "message": "The admin portal session has expired",
+  "organization_id": "org_43982563588440584",
+  "data": {
+    "expiry": "2025-02-28T12:40:35.911Z"
+  }
+}}
+/>
+
+</CodeWithHeader>
+
+
+      </div>
+    </div>
+  </div>
 
 :::note
 
@@ -181,15 +288,6 @@ Below is an example of the data structure you might receive in your browser cons
    trusted source.
 
 :::
-
-**Important Considerations**
-
-1. The generated link is designed for one-time use and expires after 1 minute.
-2. The embedded portal session times out after 6 hours, requiring administrators to complete the
-   configuration within this period.
-3. Ensure your domain is listed as one of the Redirect URIs in the Scalekit Dashboard > API Config.
-4. Once activated, the IT admin can configure SSO for an extended period. The session remains active
-   until the setup is complete.
 
 The Admin Portal can be customized to match your brand's logo and colors. Refer to the
 [Customize Admin Portal Guide](/sso/domain-and-theme-customization) for more information.
