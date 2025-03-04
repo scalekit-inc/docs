@@ -28,6 +28,7 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
   Empower your customers to configure and manage Single Sign-On settings independently
 </Subtitle>
 
+
 The Admin Portal simplifies the process of connecting your application to the identity or directory providers used by enterprise organizations.
 
 By offering a self-service portal for your customers, you can minimize the need for extensive back-and-forth communication. Scalekit hosts and manages the Admin Portal entirely, providing two flexible integration options — No-Code and Embedded portals
@@ -53,7 +54,9 @@ https://your-app.scalekit.dev/magicLink/2cbe56de-eec4-41d2-abed-90a5b82286c4_p
 
 </CodeWithHeader>
 
+
 The link expires in 7 days but can be revoked at any time from the dashboard for security purposes.You can share the link through communication channels such as email, Slack, or other preferred methods.
+
 
 <figure>![Integrate via Shareable Link](@site/docs/scim/assets/2-admin-portal-v2.png)</figure>
 
@@ -66,8 +69,6 @@ Be cautious when sharing the link, as anyone with access to it can view and upda
 Users can do the connection setup right from your application by rendering Scalekit-hosted admin portal as a inline frame (iframe). This approach allows easy discovery & convenient access to the portal without the need for external links or separate portals.
 
 Generate the embeddable portal link when page loads or refreshes and inject the `src` of the `<iframe>`, at your app's runtime. This ensure secure programmatic access.
-
-
 
 <InstallSDK />
 
