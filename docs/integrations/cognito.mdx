@@ -1,5 +1,6 @@
 # AWS Cognito
-<Subtitle>AWS Cognito Integration with Scalekit for Single Sign-On </Subtitle>
+
+<Subtitle>AWS Cognito Integration with Scalekit for Single Sign-On</Subtitle>
 
 Expand your existing AWS Cognito authentication system by integrating Scalekit as an OpenID Connect (OIDC) provider. This integration enables enterprise users to log into your application seamlessly using Single Sign-On (SSO).
 
@@ -69,8 +70,7 @@ Your application should use its own custom login page instead of the managed log
   <figcaption>Your App (example) - Custom Login Page</figcaption>
 </figure>
 
-Generate an authorization URL with two additional parameters— <SimpleCode>identity_provider</SimpleCode> and
-<SimpleCode>login_hint</SimpleCode> — to redirect users seamlessly:
+Generate an authorization URL with two additional parameters— <SimpleCode>identity_provider</SimpleCode> and <SimpleCode>login_hint</SimpleCode> — to redirect users seamlessly:
 
 <CodeWithHeader title="Example Code">
 
@@ -123,6 +123,7 @@ For ease of development, Scalekit supports testing with <SimpleCode>@example.org
 Treat the IdP Simulator as equivalent to an actual organization's IdP authentication step. For instance, if John belongs to Megasoft (using Okta as their IdP), logging in with `john@megasoft.org` would redirect him to Okta's authentication process (including MFA or other organizational policies).
 
 Scalekit integrates seamlessly with [major identity providers](/integrations). Use Scalekit's [admin portal](/sso/quickstart-admin-portal) to onboard enterprise customers, enabling them to set up connections between their identity providers and your application.
+
 
 :::info
 The domain of your enterprise customer should be added to the list of identifiers in the AWS Cognito > User Pool > Authentication > Social and external providers > [ScalekitIdPRouter] > Identifiers
