@@ -184,3 +184,17 @@ public class Main {
 </Tabs>
 
 </CodeWithHeader>
+
+When constructing your authorization URL, you need to specify which connection to use. The system follows a specific precedence order when multiple parameters are provided:
+
+1. **`provider`**: If this parameter is present, all other connection parameters are ignored, and the user is directed to the Google login screen if `provider=google`.
+
+2. **`connection_id`**: Takes highest precedence among enterprise SSO parameters. If provided with a valid value, this specific connection will be used regardless of other parameters. If invalid, the authorization will fail.
+
+3. **`organization_id`**: Used when no valid `connection_id` is provided. It uses the SSO connection configured for the specified organization.
+
+4. **`domain`**: Used when neither `connection_id` nor `organization_id` are provided. The system will use the SSO connection configured for the specified domain.
+
+5. **`login_hint`**: Lowest precedence. The system extracts the domain portion of the email address and uses the corresponding SSO connection.
+
+If multiple parameters are provided (e.g., both `domain` and `organization_id`), the system will follow this precedence order to determine which parameter takes effect.
