@@ -319,12 +319,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Any Identity Provider - SAML',
+      label: 'Generic Provider - SAML',
       id: 'integrations/saml',
     },
     {
       type: 'doc',
-      label: 'Any Identity Provider - OIDC',
+      label: 'Generic Provider - OIDC',
       id: 'integrations/oidc',
     },
     {
