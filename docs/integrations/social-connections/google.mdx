@@ -27,8 +27,9 @@ the Scalekit SDK to add "Sign in with Google" to your application.
 
 By the end of this guide, you will be able to:
 
-1. Set up an OAuth 2.0 connection between Scalekit and Google
-2. Scalekit SDK to add "Sign in with Google" to your application
+1. Test Google sign-in without setting up Google OAuth credentials (dev only)
+2. Set up an OAuth 2.0 connection between Scalekit and Google
+3. Scalekit SDK to add "Sign in with Google" to your application
 
 ## Connect Google with Scalekit
 
@@ -48,13 +49,19 @@ Open your Scalekit dashboard and navigate to Social Login under the Authenticati
 
 Click the "+ Add Connection" button and select Google from the list of available options.
 
+
+
+## 1. Test using Scalekit credentials 
+Under OAuth Configuration, select **Use Scalekit credentials** and **save** the changes. Once done, you can now directly test the setup by clicking **Test Connection.**
+
 <figure>
   ![Add social login connections: Google, Microsoft, GitHub, GitLab,
-  Salesforce.](@site/docs/sso/assets/integrations/google-social/2-list-social-logins.png)
-  <figcaption>Add social login connections: Google</figcaption>
+  Salesforce.](@site/docs/sso/assets/integrations/google-social/2-1-test-scalekit-credentials.png)
+  <figcaption>Use Scalekit credentials to test connection</figcaption>
 </figure>
 
-## Configure OAuth settings
+## 2. Connect Google with Scalekit using your own credentials
+### Configure OAuth settings
 
 The OAuth Configuration details page helps you set up the connection:
 
