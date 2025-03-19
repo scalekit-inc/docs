@@ -29,7 +29,7 @@ By the end of this guide, you will be able to:
 
 1. Test Google sign-in without setting up Google OAuth credentials (dev only)
 2. Set up an OAuth 2.0 connection between Scalekit and Google
-3. Scalekit SDK to add "Sign in with Google" to your application
+3. Implement 'Sign in with Google' in your application using the Scalekit SDK.
 
 ## Connect Google with Scalekit
 
@@ -52,6 +52,12 @@ Click the "+ Add Connection" button and select Google from the list of available
 
 
 ## 1. Test using Scalekit credentials 
+
+For faster development and testing, Scalekit provides pre-configured Google OAuth credentials, allowing you to test the authentication flow without setting up your own Google OAuth client.
+
+This is particularly useful when you want to quickly validate Google sign-in functionality in your app without dealing with OAuth setup. It also helps if you’re still in the early stages of development and don’t have Google credentials yet, or if you need to test the behavior before setting up a production-ready connection.
+
+Now to be able to do so, under OAuth Configuration, select Use Scalekit credentials and save the changes. Once done, you can now directly test the setup by clicking Test Connection.
 Under OAuth Configuration, select **Use Scalekit credentials** and **save** the changes. Once done, you can now directly test the setup by clicking **Test Connection.**
 
 <figure>
