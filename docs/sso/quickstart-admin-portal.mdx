@@ -156,6 +156,8 @@ Listen to the browser events emitted from the embedded admin portal to perform a
 | <SimpleCode>ORGANIZATION_SSO_DISABLED</SimpleCode>  | Triggered when the SSO connection is disabled |
 | <SimpleCode>PORTAL_SESSION_EXPIRY</SimpleCode>  | Triggered when the portal session expires |
 | <SimpleCode>PORTAL_SESSION_TIMEOUT</SimpleCode>  | Triggered when the portal session times out |
+| <SimpleCode>ORGANIZATION_DIRECTORY_ENABLED</SimpleCode>  | Triggered when the SCIM provisioning is enabled |
+| <SimpleCode>ORGANIZATION_DIRECTORY_DISABLED</SimpleCode>  | Triggered when the SCIM provisioning is disabled |
 
 To listen to these events:
 
@@ -201,101 +203,114 @@ Below is an example of the data structure you might receive in your browser cons
           }
         }}
         />
-
-</CodeWithHeader>
+        </CodeWithHeader>
       </div>
     </div>
     <div class="col col--6">
       <div>
-
-<CodeWithHeader title="ORGANIZATION_SSO_DISABLED">
-
-<JsonViewer
-  src={{
-   "event_type":"ORGANIZATION_SSO_DISABLED",
-   "object":"connection",
-   "organization_id":"org_4010340X34236531",
-   "message": "SSO Connection disabled successfully",
-   "data":{
-      "connection_type":"SSO",
-      "status":"COMPLETED",
-      "id":"conn_4256075523X312",
-      "type":"OIDC",
-      "provider":"OKTA",
-      "enabled": false
-   }
-}}
-/>
-
-</CodeWithHeader>
+        <CodeWithHeader title="ORGANIZATION_SSO_DISABLED">
+        <JsonViewer
+          src={{
+           "event_type":"ORGANIZATION_SSO_DISABLED",
+           "object":"connection",
+           "organization_id":"org_4010340X34236531",
+           "message": "SSO Connection disabled successfully",
+           "data":{
+              "connection_type":"SSO",
+              "status":"COMPLETED",
+              "id":"conn_4256075523X312",
+              "type":"OIDC",
+              "provider":"OKTA",
+              "enabled": false
+           }
+        }}
+        />
+        </CodeWithHeader>
       </div>
     </div>
-    <div class="col col--6">
-      <div>
-
-<CodeWithHeader title="PORTAL_SESSION_EXPIRY">
-
-<JsonViewer
-  src={{
-  "event_type": "PORTAL_SESSION_EXPIRY",
-  "object": "session",
-  "message": "The admin portal session has expired",
-  "organization_id": "org_43982563588440584",
-  "data": {
-    "expiry": "2025-02-28T12:40:35.911Z"
-  }
-}}
-/>
-
-</CodeWithHeader>
-      </div>
-    </div>
-  </div>
-
+</div>
 
 <div class="row">
     <div class="col col--6">
       <div>
-        <CodeWithHeader title="PORTAL_SESSION_WARNING">
-
-<JsonViewer
-  src={{
-    "event_type": "PORTAL_SESSION_WARNING",
-    "object": "session",
-    "message": "The admin portal session will expire in 5 minutes",
-    "organization_id": "org_43982563588440584",
-    "data": {
-        "expiry": "2025-02-28T12:40:35.911Z"
-    }
-}}
-/>
-
-</CodeWithHeader>
+        <CodeWithHeader title="PORTAL_SESSION_EXPIRY">
+        <JsonViewer
+          src={{
+          "event_type": "PORTAL_SESSION_EXPIRY",
+          "object": "session",
+          "message": "The admin portal session has expired",
+          "organization_id": "org_43982563588440584",
+          "data": {
+            "expiry": "2025-02-28T12:40:35.911Z"
+          }
+        }}
+        />
+        </CodeWithHeader>
       </div>
     </div>
     <div class="col col--6">
       <div>
-
-<CodeWithHeader title="PORTAL_SESSION_EXPIRY">
-
-<JsonViewer
-  src={{
-  "event_type": "PORTAL_SESSION_EXPIRY",
-  "object": "session",
-  "message": "The admin portal session has expired",
-  "organization_id": "org_43982563588440584",
-  "data": {
-    "expiry": "2025-02-28T12:40:35.911Z"
-  }
-}}
-/>
-
-</CodeWithHeader>
-
-
+        <CodeWithHeader title="PORTAL_SESSION_WARNING">
+        <JsonViewer
+          src={{
+            "event_type": "PORTAL_SESSION_WARNING",
+            "object": "session",
+            "message": "The admin portal session will expire in 5 minutes",
+            "organization_id": "org_43982563588440584",
+            "data": {
+                "expiry": "2025-02-28T12:40:35.911Z"
+            }
+        }}
+        />
+        </CodeWithHeader>
       </div>
     </div>
-  </div>
+</div>
+
+<div class="row">
+    <div class="col col--6">
+      <div>
+        <CodeWithHeader title="ORGANIZATION_DIRECTORY_ENABLED">
+        <JsonViewer
+          src={{
+            "event_type": "ORGANIZATION_DIRECTORY_ENABLED",
+            "object": "directory",
+            "organization_id": "org_45716217859670289",
+            "message": "SCIM Provisioning enabled successfully!",
+            "data": {
+                "directory_type": "SCIM",
+                "status": "COMPLETED",
+                "id": "dir_45716228982964495",
+                "provider": "MICROSOFT_AD",
+                "enabled": true
+            }
+        }}
+        />
+        </CodeWithHeader>
+      </div>
+    </div>
+    <div class="col col--6">
+      <div>
+        <CodeWithHeader title="ORGANIZATION_DIRECTORY_DISABLED">
+        <JsonViewer
+          src={{
+            "event_type": "ORGANIZATION_DIRECTORY_DISABLED",
+            "object": "directory",
+            "organization_id": "org_45716217859670289",
+            "message": "SCIM Provisioning disabled successfully!",
+            "data": {
+                "directory_type": "SCIM",
+                "status": "COMPLETED",
+                "id": "dir_45716228982964495",
+                "provider": "MICROSOFT_AD",
+                "enabled": false
+            }
+        }}
+        />
+        </CodeWithHeader>
+      </div>
+    </div>
+</div>
 
 :::note
 
