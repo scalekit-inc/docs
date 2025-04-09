@@ -319,6 +319,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      label: 'Google Workspace - SAML',
+      id: 'integrations/google-saml',
+    },
+    {
+      type: 'doc',
+      label: 'PingIdenity - SAML',
+      id: 'integrations/pingidentity-saml',
+    },
+    {
+      type: 'doc',
       label: 'Generic Provider - SAML',
       id: 'integrations/saml',
     },
