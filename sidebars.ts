@@ -330,7 +330,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'Microsoft AD FS - SAML',
-      id: 'integrations/microsoft-adfs',
+      id: 'integrations/adfs-saml',
     },
     {
       type: 'doc',
