@@ -11,14 +11,16 @@ displayed_sidebar: integrationsSidebar
 
 ### 1. Choose Identity Provider
 
-Choose Microsoft AD FS as your identity provider to begin the configuration in admin portal. Download the Metadata XML file. We will provide this later to AD FS Server going forward.
+Choose Microsoft AD FS as your identity provider to begin the configuration in admin portal.
 
 <figure className="limited-width">
-  ![Choose Identity Provider](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
+  ![Choose Identity Provider](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1-1.png)
   <figcaption>Choose Identity Provider</figcaption>
 </figure>
 
 ### 2. Open AD FS Management Console
+
+Search for 'AD FS Management' in the start menu and open it.
 
 ### 3. Create Relying Party Trust
 
@@ -43,9 +45,14 @@ Choose 'Enter data about the relying party manually'
   <figcaption>Select Data Source</figcaption>
 </figure>
 
-You can configure the relying party trust using either of these methods:
-- Download and import the Metadata XML file from your application's Admin Portal
-- Enter the Metadata URL from Admin Portal directly (if network access allows)
+Download and import the Metadata XML file from your application's Admin Portal
+
+<figure className="limited-width">
+  ![Download Metadata XML](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
+  <figcaption>Download Metadata XML</figcaption>
+</figure>
+
+You can configure the relying party trust using the Metadata URL from Admin Portal directly (if network access allows)
 
 ### 5. Set Display Name
 
@@ -127,7 +134,7 @@ Navigate to Identity Provider Configuration in the Admin Portal
 - Click "Update" to save the configuration
 
 <figure className="limited-width">
-  ![Update Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/12.png)
+  ![Update Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/12-1.png)
   <figcaption>Update Configuration</figcaption>
 </figure>
 
