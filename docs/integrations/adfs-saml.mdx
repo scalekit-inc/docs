@@ -5,148 +5,145 @@ displayed_sidebar: integrationsSidebar
 
 # Microsoft AD FS
 
-This guide walks you through configuring Single Sign-On (SSO) with Microsoft Active Directory Federation Services (AD FS) as your Identity Provider.
+<Subtitle>
+  Step-by-step guide to configure Single Sign-on with Microsoft Active Directory Federation Services (AD FS) as your Identity Provider.
+</Subtitle>
 
-## What you'll learn
+### 1. Choose Identity Provider
 
-- How to set up a relying party trust in AD FS
-- How to configure claims issuance policies
-- How to establish the connection between AD FS and your application
+Choose Microsoft AD FS as your identity provider to begin the configuration in admin portal. Download the Metadata XML file. We will provide this later to AD FS Server going forward.
 
-## Before you begin
+<figure className="limited-width">
+  ![Choose Identity Provider](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
+  <figcaption>Choose Identity Provider</figcaption>
+</figure>
 
-To successfully set up AD FS SAML integration, you'll need:
+### 2. Open AD FS Management Console
 
-- Elevated access to your AD FS Management Console
-- Access to the Admin Portal of the application you're integrating Microsoft AD FS with.
+### 3. Create Relying Party Trust
 
-## Configuration steps
+In the left navigation pane, expand 'ADFS'
+- Right-click 'Relying Party Trusts'
+- Select 'Add Relying Party Trust'
 
-1. **Choose Microsoft AD FS as your identity provider** to begin the configuration in admin portal. Download the Metadata XML file. We will provide this later to AD FS Server going forward.
+<figure className="limited-width">
+  ![AD FS Management Console](@site/docs/sso/assets/integrations/microsoft-ad-fs/0-1.png)
+  <figcaption>AD FS Management Console</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Choose Identity Provider](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
-     <figcaption>Choose Identity Provider</figcaption>
-   </figure>
+- Select 'Claims aware' as the trust type and click 'Next'
 
-2. Open AD FS Management Console
+### 4. Configure Federation Metadata File
 
-3. **Create a Relying Party Trust**
-   - In the left navigation pane, expand 'ADFS'
-   - Right-click 'Relying Party Trusts'
-   - Select 'Add Relying Party Trust'
+Choose 'Enter data about the relying party manually'
+- Click 'Next' to proceed
 
-   <figure className="limited-width">
-     ![AD FS Management Console](@site/docs/sso/assets/integrations/microsoft-ad-fs/0.png)
-     <figcaption>AD FS Management Console</figcaption>
-   </figure>
+<figure className="limited-width">
+  ![Select Data Source](@site/docs/sso/assets/integrations/microsoft-ad-fs/2.png)
+  <figcaption>Select Data Source</figcaption>
+</figure>
 
-   - Select 'Claims aware' as the trust type and click 'Next'
+You can configure the relying party trust using either of these methods:
+- Download and import the Metadata XML file from your application's Admin Portal
+- Enter the Metadata URL from Admin Portal directly (if network access allows)
 
-4. **Configure federation metadata file**
+### 5. Set Display Name
 
-   - Choose 'Enter data about the relying party manually'
-   - Click 'Next' to proceed
+Enter a descriptive name for the application you are integrating with (e.g., "ExampleApp")
+- Click 'Next' to continue
 
-   <figure className="limited-width">
-     ![Select Data Source](@site/docs/sso/assets/integrations/microsoft-ad-fs/2.png)
-     <figcaption>Select Data Source</figcaption>
-   </figure>
+<figure className="limited-width">
+  ![Specify Display Name](@site/docs/sso/assets/integrations/microsoft-ad-fs/3.png)
+  <figcaption>Specify Display Name</figcaption>
+</figure>
 
-   You can configure the relying party trust using either of these methods:
-     - Download and import the Metadata XML file from your application's Admin Portal
-     - Enter the Metadata URL from Admin Portal directly (if network access allows)
+### 6. Configure Access Control
 
-5. **Set Display Name**
-   - Enter a descriptive name for your application (e.g., "Your App via Scalekit")
-   - Click 'Next' to continue
+Select an appropriate access control policy
+- For this guide, select 'Permit everyone'
+- Click 'Next' to proceed
 
-   <figure className="limited-width">
-     ![Specify Display Name](@site/docs/sso/assets/integrations/microsoft-ad-fs/3.png)
-     <figcaption>Specify Display Name</figcaption>
-   </figure>
+### 7. Review Trust Configuration
 
-6. **Configure Access Control**
-   - Select an appropriate access control policy
-   - For testing purposes, select 'Permit everyone'
-   - Click 'Next' to proceed
+Verify the following settings:
+- Monitoring configuration
+- Endpoints
+- Encryption settings
+- Click 'Next' to continue
 
-7. **Review Trust Configuration**
-   - Verify the following settings:
-     - Monitoring configuration
-     - Endpoints
-     - Encryption settings
-   - Click 'Next' to continue
+<figure className="limited-width">
+  ![Review Trust Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/5.png)
+  <figcaption>Review Trust Configuration</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Review Trust Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/5.png)
-     <figcaption>Review Trust Configuration</figcaption>
-   </figure>
+The wizard will complete with the 'Claim Issuance Policy' option automatically selected.
 
-   The wizard will complete with the 'Claim Issuance Policy' option automatically selected.
+<figure className="limited-width">
+  ![Edit Claim Issuance Policy](@site/docs/sso/assets/integrations/microsoft-ad-fs/6.png)
+  <figcaption>Edit Claim Issuance Policy</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Edit Claim Issuance Policy](@site/docs/sso/assets/integrations/microsoft-ad-fs/6.png)
-     <figcaption>Edit Claim Issuance Policy</figcaption>
-   </figure>
+### 8. Create Claim Rules
 
-8. **Create Claim Rules**
-   - Click 'Add Rule' to create a new claim rule
-   - Select 'Send LDAP Attributes as Claims' template
+Click 'Add Rule' to create a new claim rule
+- Select 'Send LDAP Attributes as Claims' template
 
-   <figure className="limited-width">
-     ![Create Claim Rule](@site/docs/sso/assets/integrations/microsoft-ad-fs/7.png)
-     <figcaption>Create Claim Rule</figcaption>
-   </figure>
+<figure className="limited-width">
+  ![Create Claim Rule](@site/docs/sso/assets/integrations/microsoft-ad-fs/7.png)
+  <figcaption>Create Claim Rule</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Configure Attribute Mapping](@site/docs/sso/assets/integrations/microsoft-ad-fs/8.png)
-     <figcaption>Configure LDAP Attribute Mapping</figcaption>
-   </figure>
+<figure className="limited-width">
+  ![Configure Attribute Mapping](@site/docs/sso/assets/integrations/microsoft-ad-fs/8.png)
+  <figcaption>Configure LDAP Attribute Mapping</figcaption>
+</figure>
 
-9. **Map User Attributes**
-   - Enter a descriptive rule name (e.g., "ExampleApp via Scalekit")
-   - Configure the following attribute mappings:
-     - `E-Mail-Addresses` → E-Mail Address
-     - `Given-Name` → Given Name
-     - `Surname` → Surname
-     - `User-Principal-Name` → Name ID
-   - Click 'OK' to complete the mapping and then 'Apply' changes
+### 9. Map User Attributes
 
-   <figure className="limited-width">
-     ![Map User Attributes](@site/docs/sso/assets/integrations/microsoft-ad-fs/9.png)
-     <figcaption>Map User Attributes</figcaption>
-   </figure>
+Enter a descriptive rule name (e.g., "Example App")
+- Configure the following attribute mappings:
+  - `E-Mail-Addresses` → E-Mail Address
+  - `Given-Name` → Given Name
+  - `Surname` → Surname
+  - `User-Principal-Name` → Name ID
+- Click 'OK' to complete the mapping and then 'Apply' changes
 
-10. **Complete Admin Portal Configuration**
-    - Navigate to Identity Provider Configuration in the Admin Portal
-    - Select "Configure Manually"
-    - Enter these required details:
-     - Microsoft AD FS Identifier: `http://<YOUR_AD_FS_SERVER_DOMAIN>/adfs/services/trust`
-     - Login URL: `http://<YOUR_AD_FS_SERVER_DOMAIN>/adfs/ls`
-     - Certificate:
-       1. Access `https://<YOUR_AD_FS_SERVER_DOMAIN>/FederationMetadata/2007-06/FederationMetadata.xml`
-       2. Locate the text after the first `X509Certificate` tag
-       3. Copy and paste this certificate into the "Certificate" field
-   - Click "Update" to save the configuration
+<figure className="limited-width">
+  ![Map User Attributes](@site/docs/sso/assets/integrations/microsoft-ad-fs/9.png)
+  <figcaption>Map User Attributes</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Update Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/12.png)
-     <figcaption>Update Configuration</figcaption>
-   </figure>
+### 10. Complete Admin Portal Configuration
 
-   The above endpoints are AD FS endpoints. You can find them listed in AD FS Console > Service > Endpoints > Tokens and Metadata sections
+Navigate to Identity Provider Configuration in the Admin Portal
+- Select "Configure Manually"
+- Enter these required details:
+  - Microsoft AD FS Identifier: `http://<YOUR_AD_FS_SERVER_DOMAIN>/adfs/services/trust`
+  - Login URL: `http://<YOUR_AD_FS_SERVER_DOMAIN>/adfs/ls`
+  - Certificate:
+    1. Access `https://<YOUR_AD_FS_SERVER_DOMAIN>/FederationMetadata/2007-06/FederationMetadata.xml`
+    2. Locate the text after the first `X509Certificate` tag
+    3. Copy and paste this certificate into the "Certificate" field
+- Click "Update" to save the configuration
 
-11. **Test the Integration**
-    - In the Admin Portal, click "Test Connection"
-    - You will be redirected to the AD FS login page
-    - Enter your AD FS credentials
-    - Verify successful redirection back to the Admin Portal with the correct user attributes
+<figure className="limited-width">
+  ![Update Configuration](@site/docs/sso/assets/integrations/microsoft-ad-fs/12.png)
+  <figcaption>Update Configuration</figcaption>
+</figure>
 
-   <figure className="limited-width">
-     ![Test Integration](@site/docs/sso/assets/integrations/microsoft-ad-fs/11.png)
-     <figcaption>Test Integration</figcaption>
-   </figure>
+The above endpoints are AD FS endpoints. You can find them listed in AD FS Console > Service > Endpoints > Tokens and Metadata sections
+
+### 11. Test the Integration
+
+In the Admin Portal, click "Test Connection"
+- You will be redirected to the AD FS login page
+- Enter your AD FS credentials
+- Verify successful redirection back to the Admin Portal with the correct user attributes
+
+<figure className="limited-width">
+  ![Test Integration](@site/docs/sso/assets/integrations/microsoft-ad-fs/11.png)
+  <figcaption>Test Integration</figcaption>
+</figure>
 
 ## Verification
 
@@ -155,12 +152,3 @@ After completing the configuration, test the SSO integration by:
 1. Logging out of your application
 2. Attempting to log in using the SSO option
 3. Verifying you're redirected to AD FS and can authenticate successfully
-
-## Troubleshooting
-
-If you encounter issues with your AD FS integration:
-
-- Verify all claim mappings are correctly configured
-- Check that the Metadata URL is accessible from Scalekit
-- Ensure your AD FS server's clock is synchronized
-- Review AD FS event logs for any authentication errors
