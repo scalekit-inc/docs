@@ -139,7 +139,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'Integrate with AWS Cognito',
-      id: 'integrations/cognito',
+      id: 'sso/guides/integrate-with-your-auth-system/cognito',
     },
     // {
     //   type: "doc",
