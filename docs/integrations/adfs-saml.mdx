@@ -18,6 +18,13 @@ Choose Microsoft AD FS as your identity provider to begin the configuration in a
   <figcaption>Choose Identity Provider</figcaption>
 </figure>
 
+Download Metadata XML file so that you can configure AD FS Server going forward.
+
+<figure className="limited-width">
+  ![Download Metadata XML](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
+  <figcaption>Download Metadata XML</figcaption>
+</figure>
+
 ### 2. Open AD FS Management Console
 
 Search for 'AD FS Management' in the start menu and open it.
@@ -37,7 +44,8 @@ In the left navigation pane, expand 'ADFS'
 
 ### 4. Configure Federation Metadata File
 
-Choose 'Enter data about the relying party manually'
+Choose 'Import data about the relying party from a file'
+- Click 'Browse' and select the Metadata XML file you downloaded earlier
 - Click 'Next' to proceed
 
 <figure className="limited-width">
@@ -45,19 +53,9 @@ Choose 'Enter data about the relying party manually'
   <figcaption>Select Data Source</figcaption>
 </figure>
 
-Download and import the Metadata XML file from your application's Admin Portal
-
-<figure className="limited-width">
-  ![Download Metadata XML](@site/docs/sso/assets/integrations/microsoft-ad-fs/-1.png)
-  <figcaption>Download Metadata XML</figcaption>
-</figure>
-
-You can configure the relying party trust using the Metadata URL from Admin Portal directly (if network access allows)
-
 ### 5. Set Display Name
 
-Enter a descriptive name for the application you are integrating with (e.g., "ExampleApp")
-- Click 'Next' to continue
+Enter a descriptive name for the application you are integrating with (e.g., "ExampleApp") and click 'Next' to continue
 
 <figure className="limited-width">
   ![Specify Display Name](@site/docs/sso/assets/integrations/microsoft-ad-fs/3.png)
