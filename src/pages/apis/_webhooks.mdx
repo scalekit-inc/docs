@@ -23,6 +23,12 @@ import { Endpoint } from '@site/src/components/endpoint';
                     label='organization.sso_disabled'
                 />
                 <Endpoint
+                    key='organization.directory_created'
+                    href='#tag/Webhooks/organization.directory_created'
+                    method='event'
+                    label='organization.directory_created'
+                />
+                <Endpoint
                     key='organization.directory_enabled'
                     href='#tag/Webhooks/organization.directory_enabled'
                     method='event'
@@ -112,144 +118,65 @@ import { Endpoint } from '@site/src/components/endpoint';
     </div>
 </div>
 
-<IntersectingHeader title="Enterprise SSO" subheading="true" />
-<IntersectingHeader
-  id="tag/Webhooks/organization.sso_enabled"
-  title="SSO Enabled"
-  subheading="true"
-  classList="ApiCategoryList webhook method"
-/>
-<div className="row section">
-  <div className="col col--6">
-    This webhook is triggered when an organization connection is enabled. The event type is{' '}
-    <SimpleCode>organization.sso_enabled</SimpleCode>
-    <ul className="ApiReference-Parameters">
-      <li className="ApiReference-Parameter header">Data Attributes</li>
-      <Parameter attrKey="id" type="string" description="Unique identifier for the connection" />
-      <Parameter attrKey="provider" type="enum" description="Identity provider for the connection">
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="OKTA" />
-        </details>
-      </Parameter>
-      <Parameter
-        attrKey="connection_type"
-        type="enum"
-        description="Type of authentication protocol"
-      >
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="SAML" />
-          <Parameter attrKey="OIDC" />
-        </details>
-      </Parameter>
-      <Parameter
-        attrKey="enabled"
-        type="boolean"
-        description="Indicates whether the connection is currently enabled or disabled"
-      />
-      <Parameter attrKey="status" type="enum" description="Current status of the connection">
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="COMPLETED" />
-        </details>
-      </Parameter>
-    </ul>
-  </div>
-  <div className="col col--6">
-    <CodeWithHeader title="organization.sso_enabled">
-      <JsonViewer
-        src={{
-          spec_version: '1',
-          id: 'evt_55135294931862024',
-          object: 'Connection',
-          environment_id: 'env_27758032200925221',
-          occurred_at: '2025-01-15T08:39:56.694563302Z',
-          organization_id: 'org_30682579501843011',
-          type: 'organization.sso_enabled',
-          data: {
-            connection_type: 'OIDC',
-            enabled: true,
-            id: 'conn_30682599886160264',
-            provider: 'OKTA',
-            organization_id: 'org_30682579501843011',
-            status: 'COMPLETED',
-          },
-        }}
-      />
-    </CodeWithHeader>
-  </div>
-</div>
-
-<IntersectingHeader
-  id="tag/Webhooks/organization.sso_disabled"
-  title="SSO Disabled"
-  subheading="true"
-  classList="ApiCategoryList webhook method"
-/>
-<div className="row section">
-  <div className="col col--6">
-    This webhook is triggered when an organization connection is disabled. The event type is{' '}
-    <SimpleCode>organization.sso_disabled</SimpleCode>
-    <ul className="ApiReference-Parameters">
-      <li className="ApiReference-Parameter header">Data Attributes</li>
-      <Parameter attrKey="id" type="string" description="Unique identifier for the connection" />
-      <Parameter attrKey="provider" type="enum" description="Identity provider for the connection">
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="OKTA" />
-        </details>
-      </Parameter>
-      <Parameter
-        attrKey="connection_type"
-        type="enum"
-        description="Type of authentication protocol"
-      >
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="SAML" />
-          <Parameter attrKey="OIDC" />
-        </details>
-      </Parameter>
-      <Parameter
-        attrKey="enabled"
-        type="boolean"
-        description="Indicates whether the connection is currently enabled or disabled"
-      />
-      <Parameter attrKey="status" type="enum" description="Current status of the connection">
-        <details>
-          <summary>Possible values</summary>
-          <Parameter attrKey="COMPLETED" />
-        </details>
-      </Parameter>
-    </ul>
-  </div>
-  <div className="col col--6">
-    <CodeWithHeader title="organization.sso_disabled">
-      <JsonViewer
-        src={{
-          environment_id: 'env_27758032200925221',
-          id: 'evt_55135244717654530',
-          object: 'Connection',
-          occurred_at: '2025-01-15T08:39:26.764447559Z',
-          organization_id: 'org_30682579501843011',
-          spec_version: '1',
-          type: 'organization.sso_disabled',
-          data: {
-            organization_id: 'org_30682579501843011',
-            connection_type: 'OIDC',
-            enabled: false,
-            id: 'conn_30682599886160264',
-            provider: 'OKTA',
-            status: 'COMPLETED',
-          },
-        }}
-      />
-    </CodeWithHeader>
-  </div>
-</div>
-
 <IntersectingHeader title="SCIM Provisioning" subheading="true" />
+
+<IntersectingHeader
+  id="tag/Webhooks/organization.directory_created"
+  title="Directory Created"
+  subheading="true"
+  classList="ApiCategoryList webhook method"
+/>
+<div className="row section">
+  <div className="col col--6">
+    This webhook triggers when a new directory connection is created. The event type is{' '}
+    <SimpleCode>organization.directory_created</SimpleCode>
+    <ul className="ApiReference-Parameters">
+      <li className="ApiReference-Parameter header">Event Data</li>
+      <Parameter
+        attrKey="directory_type"
+        type="string"
+        description="Type of directory protocol used for synchronization"
+      />
+      <Parameter
+        attrKey="id"
+        type="string"
+        description="Unique identifier for the directory connection"
+      />
+      <Parameter
+        attrKey="organization_id"
+        type="string"
+        description="Unique identifier of the organization associated with this directory"
+      />
+      <Parameter
+        attrKey="provider"
+        type="string"
+        description="Identity provider for the directory connection"
+      />
+    </ul>
+  </div>
+  <div className="col col--6">
+    <CodeWithHeader title="organization.directory_created">
+      <JsonViewer
+        src={{
+          spec_version: '1',
+          id: 'evt_66282687144425882',
+          type: 'organization.directory_created',
+          occurred_at: '2025-04-02T06:19:20.224596Z',
+          environment_id: 'env_56456446803671091',
+          organization_id: 'org_63517286769719317',
+          object: 'Directory',
+          data: {
+            directory_type: 'SCIM',
+            id: 'dir_66282687110871450',
+            organization_id: 'org_63517286769719317',
+            provider: 'OKTA'
+          }
+        }}
+      />
+    </CodeWithHeader>
+  </div>
+</div>
+
 <IntersectingHeader
   id="tag/Webhooks/organization.directory_enabled"
   title="Directory Enabled"
