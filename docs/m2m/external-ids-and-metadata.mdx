@@ -13,10 +13,6 @@ Use these features when you need to:
 * Store additional information about organizations like billing details or internal codes
 * Integrate Scalekit organizations with your existing systems
 
-Tip
-
-These features are available through the Scalekit API. Learn how to authenticate API requests before getting started.
-
 ## Add an external ID to an organization
 
 External IDs let you identify organizations using your own identifiers. You can set an external ID when creating or updating an organization.
@@ -25,8 +21,10 @@ External IDs let you identify organizations using your own identifiers. You can 
 
 This example shows how to create an organization with your custom identifier:
 
+<CodeWithHeader title="Create a new organization with an external ID">
+
 ```bash
-curl https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations \
+curl https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations \
   --request POST \
   --header 'Content-Type: application/json' \
   --data '{
@@ -35,12 +33,16 @@ curl https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations \
 }'
 ```
 
+</CodeWithHeader>
+
 ### Update an existing organization's external ID
 
 To change an organization's external ID, use the update endpoint:
 
+<CodeWithHeader title="Update an existing organization's external ID">
+
 ```bash
-curl 'https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations/{id}' \
+curl 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/{id}' \
   --request PATCH \
   --header 'Content-Type: application/json' \
   --data '{
@@ -48,6 +50,8 @@ curl 'https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations/{id}' \
   "external_id": "TENANT-12345-MGSFT",
 }'
 ```
+
+</CodeWithHeader>
 
 ## Add metadata to an organization
 
@@ -57,8 +61,10 @@ Metadata lets you store custom information as key-value pairs. You can add metad
 
 This example shows how to store billing information with a new organization:
 
+<CodeWithHeader title="Create a new organization with metadata">
+
 ```bash
-curl https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations \
+curl https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations \
   --request POST \
   --header 'Content-Type: application/json' \
   --data '{
@@ -69,12 +75,16 @@ curl https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations \
 }'
 ```
 
+</CodeWithHeader>
+
 ### Update an existing organization's metadata
 
 To modify an organization's metadata, use the update endpoint:
 
+<CodeWithHeader title="Update an existing organization's metadata">
+
 ```bash
-curl 'https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations/{id}' \
+curl 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/{id}' \
   --request PATCH \
   --header 'Content-Type: application/json' \
   --data '{
@@ -84,6 +94,8 @@ curl 'https://$SCALEKIT_ENVIRONMENT_URL/api/v1/organizations/{id}' \
   }
 }'
 ```
+
+</CodeWithHeader>
 
 ## View external IDs and metadata
 
