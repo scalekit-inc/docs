@@ -558,14 +558,36 @@ const sidebars: SidebarsConfig = {
   ],
   m2mSidebar: [
     {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
+      defaultStyle: true,
+    },
+    {
       type: 'doc',
-      label: 'Overview',
+      label: 'What is M2M Authentication?',
       id: 'm2m/overview',
     },
     {
       type: 'doc',
       label: 'M2M Quickstart',
       id: 'm2m/quickstart',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>Guides</span>",
+      defaultStyle: true,
     },
     {
       type: 'doc',

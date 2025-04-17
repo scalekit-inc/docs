@@ -20,11 +20,15 @@ Before starting the authentication process, ensure you have set up your Scalekit
 
 Store your API credentials securely as environment variables:
 
+<CodeWithHeader title="Environment variables">
+
 ```sh
 SCALEKIT_ENVIRONMENT_URL=https://<your-subdomain>.scalekit.dev
 SCALEKIT_CLIENT_ID=skc_<your-unique-identifier>
 SCALEKIT_CLIENT_SECRET=test_<your-secret-key>
 ```
+
+</CodeWithHeader>
 
 ## Step 2: Request an access token
 
@@ -32,27 +36,35 @@ To authenticate your API requests, you must first obtain an access token from th
 
 ### Token endpoint URL
 
+<CodeWithHeader title="Token endpoint URL">
+
 ```sh
-https://<your-subdomain>.scalekit.dev/oauth/token
+https://<SCALEKIT_ENVIRONMENT_URL>/oauth/token
 ```
+
+</CodeWithHeader>
 
 ### Send a token request
 
 Choose your preferred method to request an access token:
 
-#### cURL
+<CodeWithHeader title="Token request">
+
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="curl" label="cURL">
 
 ```bash
 curl -X POST \
-  "https://<your-subdomain>.scalekit.dev/oauth/token" \
+  "https://<SCALEKIT_ENVIRONMENT_URL>/oauth/token" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "grant_type=client_credentials" \
-  -d "client_id=<your_client_id>" \
-  -d "client_secret=<your_client_secret>" \
+  -d "client_id=<SCALEKIT_CLIENT_ID>" \
+  -d "client_secret=<SCALEKIT_CLIENT_SECRET>" \
   -d "scope=openid profile email"
 ```
 
-#### Node.js
+</TabItem>
+<TabItem value="nodejs" label="Node.js">
 
 ```javascript
 import axios from 'axios';
@@ -91,6 +103,11 @@ async function getClientCredentialsToken() {
 }
 ```
 
+</TabItem>
+
+</Tabs>
+</CodeWithHeader>
+
 ### Understand the token response
 
 When your request succeeds, the server returns a JSON response with the following fields:
@@ -104,30 +121,33 @@ When your request succeeds, the server returns a JSON response with the followin
 
 Example token response:
 
+<CodeWithHeader title="Token response">
 ```json
 {
-  "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua181ODMyNzQ4MDk4OTEyMjU2NiIsInR5cCI6IkpXVCJ9...",
+  "access_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6InNua181Ok4OTEyMjU2NiIsInR5cCI6IkpXVCJ9...",
   "token_type": "Bearer",
   "expires_in": 86399,
   "scope": "openid"
 }
 ```
-
+</CodeWithHeader>
 ## Step 3: Make authenticated API requests
 
 After obtaining an access token, add it to the `Authorization` header in your API requests.
 
-### API request format
-
-#### cURL
+<CodeWithHeader title="API request format">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="curl" label="cURL">
 
 ```bash
-curl --request GET "https://<your-subdomain>.scalekit.dev/api/v1/organizations" \
+curl --request GET "https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <access_token>"
 ```
 
-#### Node.js
+</TabItem>
+
+<TabItem value="nodejs" label="Node.js">
 
 ```javascript
 async function makeAuthenticatedRequest(endpoint) {
@@ -149,6 +169,11 @@ async function makeAuthenticatedRequest(endpoint) {
   }
 }
 ```
+
+</TabItem>
+
+</Tabs>
+</CodeWithHeader>
 
 ### Example API response
 
@@ -188,11 +213,3 @@ Now that you can authenticate with the Scalekit API, you can:
 * Browse the complete API reference to discover available endpoints
 * Create a token management service to handle token refreshing
 * Implement error handling strategies for production use
-
-## Get help
-
-If you encounter issues with API authentication:
-
-* Review your client credentials in the Scalekit dashboard
-* Check our troubleshooting guide
-* Contact us if you need further assistance
