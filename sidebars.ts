@@ -556,6 +556,33 @@ const sidebars: SidebarsConfig = {
       href: 'https://scalekit.statuspage.io/',
     },
   ],
+  m2mSidebar: [
+    {
+      type: 'doc',
+      label: 'Overview',
+      id: 'm2m/overview',
+    },
+    {
+      type: 'doc',
+      label: 'M2M Quickstart',
+      id: 'm2m/quickstart',
+    },
+    {
+      type: 'doc',
+      label: 'Scalekit API Authentication',
+      id: 'm2m/authenticate-scalekit-api',
+    },
+    {
+      type: 'doc',
+      label: 'API Authentication for M2M Clients',
+      id: 'm2m/api-auth-for-m2m-clients',
+    },
+    {
+      type: 'doc',
+      label: 'External IDs and Metadata',
+      id: 'm2m/external-ids-and-metadata',
+    },
+  ],
 };
 
 export default sidebars;

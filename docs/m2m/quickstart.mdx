@@ -1,0 +1,122 @@
+---
+displayed_sidebar: m2mSidebar
+---
+
+# M2M Quickstart
+
+Implement secure machine-to-machine authentication from registering a 3rd party client, authenticate API requests, and process authenticated requests. This guide provides code samples to help you integrate Scalekit's M2M authentication into your application.
+
+## Before you begin
+
+Get a auth environment by signing up for a [Scalekit account](https://app.scalekit.com/ws/signup) and grab the API credentials. To apply the M2M authentication, you also need to learn [how to authenticate with the Scalekit API](/docs/m2m/authenticate-scalekit-api).
+
+Scalekit represents your customers as Organizations.  When creating an Organization for a customer, you can [map your existing customer identifier](/m2m/external-ids-and-metadata) to it. This mapping enables you to retrieve Organizations using your preferred identifiers. Each Organization supports multiple API consumers (M2M clients).
+
+## Register API consumer as a M2M client
+
+Before your API server can process a request coming from the internet, it needs to identify a client. To make this happen, you need to let your organizations register their API consumers as M2M clients.
+
+Make a POST request to the `/organizations/{organization_id}/clients` endpoint to register a new M2M client. If you have a dashboard that allows your customers to register their API consumers, you can use this endpoint to register the client.
+
+<CodeWithHeader title="Register a M2M client">
+
+```sh
+curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_ID>/clients' \
+-H 'Content-Type: application/json' \
+-H 'Authorization: Bearer <access_token>' \
+-d '{
+    "name": "GitHub Actions Deployment Service",
+    "description": "Service account for GitHub Actions to deploy applications to production",
+    "custom_claims": [
+        {
+            "key": "github_repository",
+            "value": "acmecorp/inventory-service"
+        },
+        {
+            "key": "environment",
+            "value": "production_us"
+        }
+    ],
+    "scopes": [
+        "deploy:applications",
+        "read:deployments"
+    ],
+    "audience": [
+        "deployment-api.acmecorp.com"
+    ],
+    "expiry": 3600
+}'
+```
+</CodeWithHeader>
+
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `name` | string | No | A descriptive name for the M2M client (e.g., "GitHub Actions Deployment Service") |
+| `description` | string | No | A detailed explanation of the client's purpose and usage |
+| `custom_claims` | array | No | Key-value pairs that provide additional context about the client. Each claim must have a `key` and `value` field |
+| `scopes` | array | No | List of permissions the client needs (e.g., ["deploy:applications", "read:deployments"]) |
+| `audience` | array | No | List of API endpoints this client will access (e.g., ["deployment-api.acmecorp.com"]) |
+| `expiry` | number | No | Token expiration time in seconds. Defaults to 3600 (1 hour) |
+
+The response will include more details about the client including the `client_id` and `client_secret`.
+
+<CodeWithHeader title="Register a M2M client response">
+
+```json
+{
+    "client": {
+        "client_id": "m2morg_68315758685323697",
+        "secrets": [
+            {
+                "id": "sks_68315758802764209",
+                "create_time": "2025-04-16T06:56:05.360Z",
+                "update_time": "2025-04-16T06:56:05.367190455Z",
+                "secret_suffix": "UZ0X",
+                "status": "ACTIVE",
+                "last_used_time": "2025-04-16T06:56:05.360Z"
+            }
+        ],
+        "name": "GitHub Actions Deployment Service",
+        "description": "Service account for GitHub Actions to deploy applications to production",
+        "organization_id": "org_59615193906282635",
+        "create_time": "2025-04-16T06:56:05.290Z",
+        "update_time": "2025-04-16T06:56:05.292145150Z",
+        "scopes": [
+            "deploy:applications",
+            "read:deployments"
+        ],
+        "audience": [
+            "deployment-api.acmecorp.com"
+        ],
+        "custom_claims": [
+            {
+                "key": "github_repository",
+                "value": "acmecorp/inventory-service"
+            },
+            {
+                "key": "environment",
+                "value": "production_us"
+            }
+        ]
+    },
+    "plain_secret": "test_ly8G57h0ErRJSObJI6dShkoaq6bigo11Dxcfa6reKG1kKNVbqBKW4H5Ctmb5UZ0X"
+}
+```
+</CodeWithHeader>
+
+Scalekit does not store the `plain_secret`. The `plain_secret` is only returned once when the client is created. Please recommend your M2M client developers to store the `plain_secret` in a secure manner.
+
+
+## 2. Authenticate the client
+
+The client needs to authenticate with your scalekit environment using the client credentials. See [API Authentication for M2M clients](/docs/m2m/api-auth-for-m2m-clients) to learn how your M2M clients can authenticate with your scalekit environment.
+
+Towads the end of the authentication flow, the client will receive an access token which will be used to authenticate the API requests.
+
+### Validate the access tokens
+
+The client will use the access token to authenticate the API requests to your scalekit environment.
+
+
+## 3. Process the request
