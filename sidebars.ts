@@ -558,6 +558,7 @@ const sidebars: SidebarsConfig = {
   ],
   m2mSidebar: [
     {
+<<<<<<< HEAD
       type: 'html',
       value: '<div />', // The link label
       defaultStyle: true,
@@ -571,6 +572,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'What is M2M Authentication?',
+=======
+      type: 'doc',
+      label: 'Overview',
+>>>>>>> 88f8beef (M2m for staging review (#130))
       id: 'm2m/overview',
     },
     {
@@ -579,6 +584,7 @@ const sidebars: SidebarsConfig = {
       id: 'm2m/quickstart',
     },
     {
+<<<<<<< HEAD
       type: 'html',
       value: '<div />', // The link label
       defaultStyle: true,
@@ -590,6 +596,8 @@ const sidebars: SidebarsConfig = {
       defaultStyle: true,
     },
     {
+=======
+>>>>>>> 88f8beef (M2m for staging review (#130))
       type: 'doc',
       label: 'Scalekit API Authentication',
       id: 'm2m/authenticate-scalekit-api',
