@@ -192,7 +192,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'ssoSidebar',
           to: 'sso/quickstart',
-          label: 'Single Sign-on',
+          label: 'SSO',
           position: 'left',
           className: 'sso',
         },
@@ -203,6 +203,14 @@ const config: Config = {
           label: 'SCIM Provisioning',
           position: 'left',
           className: 'scim',
+        },
+        {
+          to: '/m2m/overview',
+          type: 'docSidebar',
+          sidebarId: 'm2mSidebar',
+          label: 'M2M',
+          position: 'left',
+          className: 'm2m',
         },
         {
           to: '/sdks',
