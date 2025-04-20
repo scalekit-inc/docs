@@ -18,11 +18,28 @@ export function Parameter({ children, ...props }) {
   );
 }
 
-export default function Parameters({ header = 'Parameters', endpoint, method }) {
+export default function Parameters({
+  header = 'Parameters',
+  endpoint,
+  method,
+}) {
+  if (
+    !endpoint ||
+    !method ||
+    !data.paths[endpoint] ||
+    !data.paths[endpoint][method]
+  ) {
+    return null;
+  }
+
+  const endpointData = data['paths'][endpoint][method];
+  const parameters = endpointData.parameters || [];
+  const requestBody = endpointData.requestBody;
+
   return (
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">{header}</li>
-      {data['paths'][endpoint][method]['parameters'].map((param, index) => (
+      {parameters.map((param, index) => (
         <Parameter
           key={index}
           attrKey={param.name}
@@ -31,6 +48,24 @@ export default function Parameters({ header = 'Parameters', endpoint, method }) 
           description={param.description}
         />
       ))}
+      {requestBody && (
+        <>
+          <li className="ApiReference-Parameter header">Request Body</li>
+          {Object.entries(
+            requestBody.content['application/json'].schema.properties || {}
+          ).map(([key, value]) => (
+            <Parameter
+              key={key}
+              attrKey={key}
+              type={value.type}
+              required={requestBody.content[
+                'application/json'
+              ].schema.required?.includes(key)}
+              description={value.description}
+            />
+          ))}
+        </>
+      )}
     </ul>
   );
 }

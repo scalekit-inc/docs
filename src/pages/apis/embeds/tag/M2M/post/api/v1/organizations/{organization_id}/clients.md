@@ -35,4 +35,4 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients' \
 </TabItem>
 </Tabs>
 
-</CodeWithHeader
+</CodeWithHeader>
