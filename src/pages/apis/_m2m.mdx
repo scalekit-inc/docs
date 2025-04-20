@@ -1,0 +1,185 @@
+<IntersectingHeader id="tag/M2M" title="Machine-to-Machine (M2M) Clients" />
+
+<div className="row section">
+    <div className="col col--6">
+        The M2M (Machine-to-Machine) API enables secure, automated interactions between software systems without human intervention. Use these endpoints to create and manage M2M clients that can securely access your API on behalf of an organization. Each client is uniquely identified by a `client_id` and can be configured with authentication settings, scopes, and security parameters.
+    </div>
+    <div className="col col--6">
+        <Endpoints tag="M2M" />
+    </div>
+</div>
+
+<IntersectingHeader id="tag/M2M/object" title="The M2M Client Object" subheading="true" classList="ApiCategoryList" />
+
+<div className="row section">
+    <div className="col col--6">
+        <ul className="ApiReference-Parameters">
+            <li className="ApiReference-Parameter header">Attributes</li>
+
+            <Parameter
+                attrKey="client_id"
+                type="string"
+                description="Unique identifier for the M2M client. This ID is used to identify the client in API requests and logs."
+            />
+
+            <Parameter
+                attrKey="name"
+                type="string"
+                description="A descriptive name for the M2M client that helps identify its purpose. This name is displayed in the dashboard and logs."
+            />
+
+            <Parameter
+                attrKey="description"
+                type="string"
+                description="A detailed explanation of the client's purpose and usage. This helps administrators understand what the client is used for."
+            />
+
+            <Parameter
+                attrKey="organization_id"
+                type="string"
+                description="The ID of the organization that owns this M2M client. This ID is used to associate the client with the correct organization."
+            />
+
+            <Parameter
+                attrKey="scopes"
+                type="array"
+                description="The OAuth 2.0 scopes granted to this client. These scopes determine what resources and actions the client can access."
+            />
+
+            <Parameter
+                attrKey="audience"
+                type="array"
+                description="The intended recipients of access tokens issued to this client. Each audience value should be a URI that identifies an API or service."
+            />
+
+            <Parameter
+                attrKey="custom_claims"
+                type="array"
+                description="Additional claims included in access tokens issued to this client. These claims provide context about the client and can be used for authorization decisions.">
+                <details>
+                    <summary>Attributes</summary>
+                    <ul className="ApiReference-Parameters">
+                        <Parameter
+                            attrKey="key"
+                            type="string"
+                            description="The name of the custom claim. Must be between 1 and 128 characters."
+                        />
+                        <Parameter
+                            attrKey="value"
+                            type="string"
+                            description="The value of the custom claim. This value will be included in access tokens issued to the client."
+                        />
+                    </ul>
+                </details>
+            </Parameter>
+
+            <Parameter
+                attrKey="expiry"
+                type="integer"
+                description="The lifetime of access tokens issued to this client, in seconds. This determines how long a token remains valid before it must be refreshed."
+            />
+
+            <Parameter
+                attrKey="secrets"
+                type="array"
+                description="List of client secrets associated with this client. Each secret can be used for authentication, but only the most recently created secret is typically active.">
+                <details>
+                    <summary>Attributes</summary>
+                    <ul className="ApiReference-Parameters">
+                        <Parameter
+                            attrKey="id"
+                            type="string"
+                            description="The unique identifier for this client secret."
+                        />
+                        <Parameter
+                            attrKey="secret_suffix"
+                            type="string"
+                            description="A suffix that helps identify this secret. This is the last few characters of the full secret value."
+                        />
+                        <Parameter
+                            attrKey="status"
+                            type="enum"
+                            description="The current status of this secret.">
+                            <details>
+                                <summary>Possible values</summary>
+                                <Parameter attrKey="ACTIVE" />
+                                <Parameter attrKey="INACTIVE" />
+                            </details>
+                        </Parameter>
+                        <Parameter
+                            attrKey="create_time"
+                            type="string"
+                            description="The timestamp when this secret was created."
+                        />
+                        <Parameter
+                            attrKey="expire_time"
+                            type="string"
+                            description="The timestamp when this secret will expire."
+                        />
+                        <Parameter
+                            attrKey="last_used_time"
+                            type="string"
+                            description="The timestamp when this secret was last used for authentication."
+                        />
+                    </ul>
+                </details>
+            </Parameter>
+
+            <Parameter
+                attrKey="create_time"
+                type="string"
+                description="The timestamp when this M2M client was created."
+            />
+
+            <Parameter
+                attrKey="update_time"
+                type="string"
+                description="The timestamp when this M2M client was last updated."
+            />
+        </ul>
+    </div>
+    <div className="col col--6">
+        <div className="scalar-card-sticky">
+            <CodeWithHeader title="M2M Client Object">
+                <JsonViewer src={{
+                    "client_id": "m2morg_1231234233424344",
+                    "name": "GitHub Actions Deployment Service",
+                    "description": "Service account for GitHub Actions to deploy applications to production",
+                    "organization_id": "org_1231234233424344",
+                    "scopes": ["deploy:applications", "read:deployments"],
+                    "audience": ["https://api.example.com/api/analytics", "https://deployment-api.acmecorp.com"],
+                    "custom_claims": [
+                        {
+                            "key": "environment",
+                            "value": "production"
+                        },
+                        {
+                            "key": "service",
+                            "value": "deployment"
+                        }
+                    ],
+                    "expiry": 3600,
+                    "secrets": [
+                        {
+                            "id": "sec_1234abcd5678efgh",
+                            "secret_suffix": "xyzw",
+                            "status": "ACTIVE",
+                            "create_time": "2024-01-05T14:48:00.000Z",
+                            "expire_time": "2025-01-05T14:48:00.000Z",
+                            "last_used_time": "2024-02-15T10:30:00.000Z"
+                        }
+                    ],
+                    "create_time": "2024-01-05T14:48:00.000Z",
+                    "update_time": "2024-01-05T14:48:00.000Z"
+                }} />
+            </CodeWithHeader>
+        </div>
+    </div>
+</div>
+
+<APIEndpoint tag="M2M" method="post" endpoint="/api/v1/organizations/{organization_id}/clients" />
+<APIEndpoint tag="M2M" method="get" endpoint="/api/v1/organizations/{organization_id}/clients/{client_id}" />
+<APIEndpoint tag="M2M" method="patch" endpoint="/api/v1/organizations/{organization_id}/clients/{client_id}" />
+<APIEndpoint tag="M2M" method="delete" endpoint="/api/v1/organizations/{organization_id}/clients/{client_id}" />
+<APIEndpoint tag="M2M" method="post" endpoint="/api/v1/organizations/{organization_id}/clients/{client_id}/secrets" />
+<APIEndpoint tag="M2M" method="delete" endpoint="/api/v1/organizations/{organization_id}/clients/{client_id}/secrets/{secret_id}" />
