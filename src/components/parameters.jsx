@@ -32,14 +32,34 @@ export default function Parameters({
     return null;
   }
 
-  const endpointData = data['paths'][endpoint][method];
+  const endpointData = data.paths[endpoint][method];
   const parameters = endpointData.parameters || [];
-  const requestBody = endpointData.requestBody;
+
+  // Separate path/query parameters from body parameters
+  const pathQueryParams = parameters.filter((param) => param.in !== 'body');
+  const bodyParam = parameters.find((param) => param.in === 'body');
+
+  // If body parameter references a schema, get the schema definition
+  let bodyProperties = [];
+  if (bodyParam && bodyParam.schema && bodyParam.schema.$ref) {
+    const schemaRef = bodyParam.schema.$ref.split('/').pop();
+    const schema = data.definitions[schemaRef];
+    if (schema && schema.properties) {
+      bodyProperties = Object.entries(schema.properties).map(
+        ([key, value]) => ({
+          name: key,
+          type: value.type || 'object',
+          description: value.description,
+          required: schema.required && schema.required.includes(key),
+        })
+      );
+    }
+  }
 
   return (
     <ul className="ApiReference-Parameters">
       <li className="ApiReference-Parameter header">{header}</li>
-      {parameters.map((param, index) => (
+      {pathQueryParams.map((param, index) => (
         <Parameter
           key={index}
           attrKey={param.name}
@@ -48,20 +68,16 @@ export default function Parameters({
           description={param.description}
         />
       ))}
-      {requestBody && (
+      {bodyProperties.length > 0 && (
         <>
           <li className="ApiReference-Parameter header">Request Body</li>
-          {Object.entries(
-            requestBody.content['application/json'].schema.properties || {}
-          ).map(([key, value]) => (
+          {bodyProperties.map((prop, index) => (
             <Parameter
-              key={key}
-              attrKey={key}
-              type={value.type}
-              required={requestBody.content[
-                'application/json'
-              ].schema.required?.includes(key)}
-              description={value.description}
+              key={index}
+              attrKey={prop.name}
+              type={prop.type}
+              required={prop.required}
+              description={prop.description}
             />
           ))}
         </>
