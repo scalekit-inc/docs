@@ -995,44 +995,13 @@
         "operationId": "OAuth_TokenEndpoint",
         "parameters": [
           {
-            "type": "string",
-            "description": "The code received by the Redirect URI as part of the Authentication Response.",
-            "name": "code",
+            "name": "body",
             "in": "body",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "The redirect URI where this code was received. This will used to validate the code to make the code was infact generated for this redirect_uri.",
-            "name": "redirect_uri",
-            "in": "body",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Unique client ID that represents your application.",
-            "name": "client_id",
-            "in": "body",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "The client secret to authorize the client.",
-            "name": "client_secret",
-            "in": "body",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "Grant Type must be `authorization_code`.",
-            "name": "grant_type",
-            "in": "body"
-          },
-          {
-            "type": "string",
-            "description": "Used in PKCE flow, code_verifier is derived from the `code_challenge` presented at the Authorization Endpoint",
-            "name": "code_verifier",
-            "in": "body"
+            "required": true,
+            "description": "Parameters required to exchange an authorization code for an access token.",
+            "schema": {
+              "$ref": "#/definitions/oauthTokenRequest"
+            }
           }
         ],
         "responses": {
@@ -2516,6 +2485,38 @@
           "example": {
             "industry": "technology"
           }
+        }
+      }
+    },
+    "oauthTokenRequest": {
+      "type": "object",
+      "description": "Request body for exchanging an authorization code for an access token.",
+      "required": ["code", "redirect_uri", "client_id", "client_secret"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "The code received by the Redirect URI as part of the Authentication Response."
+        },
+        "redirect_uri": {
+          "type": "string",
+          "description": "The redirect URI where this code was received. This will used to validate the code to make the code was infact generated for this redirect_uri."
+        },
+        "client_id": {
+          "type": "string",
+          "description": "Unique client ID that represents your application."
+        },
+        "client_secret": {
+          "type": "string",
+          "description": "The client secret to authorize the client."
+        },
+        "grant_type": {
+          "type": "string",
+          "description": "Grant Type must be `authorization_code`.",
+          "default": "authorization_code"
+        },
+        "code_verifier": {
+          "type": "string",
+          "description": "Used in PKCE flow, code_verifier is derived from the `code_challenge` presented at the Authorization Endpoint"
         }
       }
     },
