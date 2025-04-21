@@ -604,6 +604,11 @@ const sidebars: SidebarsConfig = {
       label: 'External IDs and Metadata',
       id: 'm2m/external-ids-and-metadata',
     },
+    {
+      type: 'doc',
+      label: 'M2M Client Scopes',
+      id: 'm2m/scopes',
+    },
   ],
 };
 
