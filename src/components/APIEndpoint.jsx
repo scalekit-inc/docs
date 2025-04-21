@@ -30,6 +30,13 @@ import GetDirectory from '@site/src/pages/apis/embeds/tag/Directory/get/api/v1/o
 import DisableDirectory from '@site/src/pages/apis/embeds/tag/Directory/patch/api/v1/organizations/{organization_id}/directories/{id}:disable.md';
 import EnableDirectory from '@site/src/pages/apis/embeds/tag/Directory/patch/api/v1/organizations/{organization_id}/directories/{id}:enable.md';
 
+import CreateM2MClients from '@site/src/pages/apis/embeds/tag/M2M/post/api/v1/organizations/{organization_id}/clients.md';
+import GetM2MClients from '@site/src/pages/apis/embeds/tag/M2M/get/api/v1/organizations/{organization_id}/clients/{client_id}.md';
+import UpdateM2MClients from '@site/src/pages/apis/embeds/tag/M2M/patch/api/v1/organizations/{organization_id}/clients/{client_id}.md';
+import DeleteM2MClients from '@site/src/pages/apis/embeds/tag/M2M/delete/api/v1/organizations/{organization_id}/clients/{client_id}.md';
+import CreateM2MClientSecret from '@site/src/pages/apis/embeds/tag/M2M/post/api/v1/organizations/{organization_id}/clients/{client_id}/secrets.md';
+import DeleteM2MClientSecret from '@site/src/pages/apis/embeds/tag/M2M/delete/api/v1/organizations/{organization_id}/clients/{client_id}/secrets/{secret_id}.md';
+
 const data = require('../../openapi/scalekit.swagger.json');
 
 const endpointData = {
@@ -51,7 +58,9 @@ const endpointData = {
     return 'Description not available';
   },
   filename: (endpoint, method, tag) => {
-    return '@site/src/pages/apis/embeds/tag/' + tag + '/' + method + endpoint + '.md';
+    return (
+      '@site/src/pages/apis/embeds/tag/' + tag + '/' + method + endpoint + '.md'
+    );
   },
 };
 
@@ -72,7 +81,9 @@ export function APIEndpoint({ endpoint, method, tag }) {
         </div>
         <div className="col col--6">
           <div className="scalar-card-sticky">
-            <APIEndpointCodeSamples filename={endpointData.filename(endpoint, method, tag)} />
+            <APIEndpointCodeSamples
+              filename={endpointData.filename(endpoint, method, tag)}
+            />
           </div>
         </div>
       </div>
@@ -124,6 +135,18 @@ const APIEndpointCodeSamples = ({ filename }) => {
       return <DisableDirectory />;
     case '@site/src/pages/apis/embeds/tag/Directory/patch/api/v1/organizations/{organization_id}/directories/{id}:enable.md':
       return <EnableDirectory />;
+    case '@site/src/pages/apis/embeds/tag/M2M/post/api/v1/organizations/{organization_id}/clients.md':
+      return <CreateM2MClients />;
+    case '@site/src/pages/apis/embeds/tag/M2M/get/api/v1/organizations/{organization_id}/clients/{client_id}.md':
+      return <GetM2MClients />;
+    case '@site/src/pages/apis/embeds/tag/M2M/patch/api/v1/organizations/{organization_id}/clients/{client_id}.md':
+      return <UpdateM2MClients />;
+    case '@site/src/pages/apis/embeds/tag/M2M/delete/api/v1/organizations/{organization_id}/clients/{client_id}.md':
+      return <DeleteM2MClients />;
+    case '@site/src/pages/apis/embeds/tag/M2M/post/api/v1/organizations/{organization_id}/clients/{client_id}/secrets.md':
+      return <CreateM2MClientSecret />;
+    case '@site/src/pages/apis/embeds/tag/M2M/delete/api/v1/organizations/{organization_id}/clients/{client_id}/secrets/{secret_id}.md':
+      return <DeleteM2MClientSecret />;
     default:
       return <></>;
   }
