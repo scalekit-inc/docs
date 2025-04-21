@@ -591,6 +591,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      label: 'M2M Basics',
+      id: 'm2m/m2m-basics',
+    },
+    {
+      type: 'doc',
       label: 'Scalekit API Authentication',
       id: 'm2m/authenticate-scalekit-api',
     },
