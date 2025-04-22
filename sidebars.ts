@@ -575,7 +575,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Get started with M2M',
+      label: 'M2M Quickstart',
       id: 'm2m/quickstart',
     },
     {
