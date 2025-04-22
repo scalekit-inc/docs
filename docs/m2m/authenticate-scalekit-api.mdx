@@ -25,9 +25,9 @@ Store your API credentials securely as environment variables:
 <CodeWithHeader title="Environment variables">
 
 ```sh
-SCALEKIT_ENVIRONMENT_URL=https://<your-subdomain>.scalekit.dev
-SCALEKIT_CLIENT_ID=skc_<your-unique-identifier>
-SCALEKIT_CLIENT_SECRET=test_<your-secret-key>
+SCALEKIT_ENVIRONMENT_URL=<SCALEKIT_ENVIRONMENT_URL>
+SCALEKIT_CLIENT_ID=<SCALEKIT_CLIENT_ID>
+SCALEKIT_CLIENT_SECRET=<SCALEKIT_CLIENT_SECRET>
 ```
 
 </CodeWithHeader>
@@ -116,10 +116,10 @@ When your request succeeds, the server returns a JSON response with the followin
 
 | Field | Description |
 |-------|-------------|
-| access_token | The token you'll use to authenticate API requests |
-| token_type | The token type (always Bearer for this flow) |
-| expires_in | Token validity period in seconds (typically 24 hours) |
-| scope | The authorized scopes for this token |
+| <SimpleCode>access_token</SimpleCode> | The token you'll use to authenticate API requests |
+| <SimpleCode>token_type</SimpleCode> | The token type (always Bearer for this flow) |
+| <SimpleCode>expires_in</SimpleCode> | Token validity period in seconds (typically 24 hours) |
+| <SimpleCode>scope</SimpleCode> | The authorized scopes for this token |
 
 Example token response:
 
@@ -135,7 +135,7 @@ Example token response:
 </CodeWithHeader>
 ## Step 3: Make authenticated API requests
 
-After obtaining an access token, add it to the `Authorization` header in your API requests.
+After obtaining an access token, add it to the <SimpleCode>Authorization</SimpleCode> header in your API requests.
 
 <CodeWithHeader title="API request format">
 <Tabs groupId="tech-stack" queryString>

@@ -28,13 +28,13 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
 ```
 </CodeWithHeader>
 
-The API returns a JSON object [containing comprehensive information](/m2m/quickstart#register-m2m-client) about the newly created M2M client. Your application (acting as the M2M server) should securely provide only the `client_id` and `client_secret` from the response to the M2M client application that needs to authenticate.
+The API returns a JSON object [containing comprehensive information](/m2m/quickstart#register-m2m-client) about the newly created M2M client. Your application (acting as the M2M server) should securely provide only the <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> from the response to the M2M client application that needs to authenticate.
 
-The M2M client then uses its client ID and client secret to [authenticate with your API server](/m2m/api-auth-for-m2m-clients). Successful authentication grants the M2M client an access token, which it includes as a Bearer token in the `Authorization` header for future API requests.
+The M2M client then uses its client ID and client secret to [authenticate with your API server](/m2m/api-auth-for-m2m-clients). Successful authentication grants the M2M client an access token, which it includes as a Bearer token in the <SimpleCode>Authorization</SimpleCode> header for future API requests.
 
 ## Validating M2M client scopes
 
-When your API server receives a request from an M2M client, it must validate the scopes present in the access token provided in the `Authorization` header. The access token is a JSON Web Token (JWT).
+When your API server receives a request from an M2M client, it must validate the scopes present in the access token provided in the <SimpleCode>Authorization</SimpleCode> header. The access token is a JSON Web Token (JWT).
 
 <CodeWithHeader title="Example Decoded Access Token JWT Payload">
 
@@ -56,6 +56,6 @@ When your API server receives a request from an M2M client, it must validate the
 ```
 </CodeWithHeader>
 
-Scalekit encodes the granted permissions in the `scopes` field within the JWT payload. The `oid` field identifies the specific organization (customer/tenant) associated with this M2M client.
+Scalekit encodes the granted permissions in the <SimpleCode>scopes</SimpleCode> field within the JWT payload. The <SimpleCode>oid</SimpleCode> field identifies the specific organization (customer/tenant) associated with this M2M client.
 
-Your API server should inspect the `scopes` array in the received token payload. Use this information to authorize the requested operation, ensuring the client possesses the necessary permissions before processing the API request.
+Your API server should inspect the <SimpleCode>scopes</SimpleCode> array in the received token payload. Use this information to authorize the requested operation, ensuring the client possesses the necessary permissions before processing the API request.
