@@ -69,10 +69,10 @@ The server returns a JSON response containing the access token:
 
 | Field | Description |
 |-------|-------------|
-| access_token | Token for authenticating API requests |
-| token_type | Always "Bearer" for this flow |
-| expires_in | Token validity period in seconds (typically 24 hours) |
-| scope | Authorized scopes for this token |
+| <SimpleCode>access_token</SimpleCode> | Token for authenticating API requests |
+| <SimpleCode>token_type</SimpleCode> | Always "Bearer" for this flow |
+| <SimpleCode>expires_in</SimpleCode> | Token validity period in seconds (typically 24 hours) |
+| <SimpleCode>scope</SimpleCode> | Authorized scopes for this token |
 
 ### Using Access Tokens
 
@@ -144,9 +144,11 @@ curl -s "https://<YOURAPP_ENVIRONMENT_URL>/keys" | jq
 
 </CodeWithHeader>
 
-### Example: Token Validation with Node.js
 
-<CodeWithHeader title="Node.js JWT Verification">
+<CodeWithHeader title="Token Validation with Node.js">
+
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
 
 ```javascript
 const express = require('express');
@@ -206,16 +208,11 @@ app.listen(3000, () => {
 });
 ```
 
-</CodeWithHeader>
-
-<CodeWithHeader title="Express API server setup">
-
-```javascript
-// Install required packages:
-// npm install express jsonwebtoken jwks-rsa
-```
+</TabItem>
+</Tabs>
 
 </CodeWithHeader>
+
 
 ## Security Best Practices
 
@@ -229,4 +226,4 @@ When implementing token validation:
 
 ## SDK Support Status
 
-Our Python SDK currently includes support for M2M authentication. The support to verify tokens is coming soon to Node, Java, and Go SDKs.
+Our [Python SDK](https://github.com/scalekit-inc/scalekit-sdk-python) currently includes support for M2M authentication. The support to verify tokens is coming soon to Node, Java, and Go SDKs.
