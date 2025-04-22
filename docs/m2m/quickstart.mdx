@@ -24,7 +24,7 @@ This guide does not cover installing or configuring Scalekit itself.
 
 To allow an external system (an API consumer) to securely access your API, you first register it as an M2M client within the relevant Scalekit Organization. This step typically occurs when your customer sets up an integration via their dashboard or a setup process you provide.
 
-Register a new M2M client by making a POST request to the `/organizations/{organization_id}/clients` endpoint.
+Register a new M2M client by making a POST request to the <SimpleCode>/organizations/&#123;organization_id&#125;/clients</SimpleCode> endpoint.
 
 <CodeWithHeader title="Register an M2M client">
 
@@ -60,16 +60,16 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `name` | string | Optional | A descriptive name for the M2M client (e.g., "GitHub Actions Deployment Service") |
-| `description` | string | Optional | A detailed explanation of the client's purpose and usage |
-| `custom_claims` | array | Optional | Key-value pairs that provide additional context about the client. Each claim must have a `key` and `value` field |
-| `scopes` | array | Optional | List of permissions the client needs (e.g., ["deploy:applications", "read:deployments"]) |
-| `audience` | array | Optional | List of API endpoints this client will access (e.g., ["deployment-api.acmecorp.com"]) |
-| `expiry` | number | Optional | Token expiration time in seconds. Defaults to 3600 (1 hour) |
+| <SimpleCode>name</SimpleCode> | string | Optional | A descriptive name for the M2M client (e.g., "GitHub Actions Deployment Service") |
+| <SimpleCode>description</SimpleCode> | string | Optional | A detailed explanation of the client's purpose and usage |
+| <SimpleCode>custom_claims</SimpleCode> | array | Optional | Key-value pairs that provide additional context about the client. Each claim must have a <SimpleCode>key</SimpleCode> and <SimpleCode>value</SimpleCode> field |
+| <SimpleCode>scopes</SimpleCode> | array | Optional | List of permissions the client needs (e.g., ["deploy:applications", "read:deployments"]) |
+| <SimpleCode>audience</SimpleCode> | array | Optional | List of API endpoints this client will access (e.g., ["deployment-api.acmecorp.com"]) |
+| <SimpleCode>expiry</SimpleCode> | number | Optional | Token expiration time in seconds. Defaults to 3600 (1 hour) |
 
-The API response contains the client details, including the `client_id` and `client_secret`.
+The API response contains the client details, including the <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode>.
 
-<CodeWithHeader title="Register an M2M client response">
+<CodeWithHeader title="Register an M2M client API response">
 
 ```json
 {
@@ -113,13 +113,13 @@ The API response contains the client details, including the `client_id` and `cli
 ```
 </CodeWithHeader>
 
-Note: Scalekit only returns the `plain_secret` once during client creation and does not store it. Instruct your M2M client developers to store the `plain_secret` securely.
+Note: Scalekit only returns the <SimpleCode>plain_secret</SimpleCode> once during client creation and does not store it. Instruct your M2M client developers to store the <SimpleCode>plain_secret</SimpleCode> securely.
 
 ## Authenticate the M2M Client
 
-After registration, the M2M client authenticates with your Scalekit environment using its `client_id` and `client_secret` (the `plain_secret` obtained earlier) to request an access token. This process uses the OAuth 2.0 client credentials grant type.
+After registration, the M2M client authenticates with your Scalekit environment using its <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> (the <SimpleCode>plain_secret</SimpleCode> obtained earlier) to request an access token. This process uses the OAuth 2.0 client credentials grant type.
 
-The client sends a POST request to the `/oauth/token` endpoint:
+The client sends a POST request to the <SimpleCode>/oauth/token</SimpleCode> endpoint:
 
 <CodeWithHeader title="Authenticate the M2M client">
 ```sh
@@ -145,7 +145,7 @@ Upon successful authentication, Scalekit issues a JWT access token.
 }
 ```
 </CodeWithHeader>
-The client includes this access token in the `Authorization` header of subsequent requests to your API server.
+The client includes this access token in the <SimpleCode>Authorization</SimpleCode> header of subsequent requests to your API server.
 
 ## Validate Access Tokens in Your API Server
 
@@ -153,7 +153,7 @@ Your API server must validate the incoming JWT access token to ensure the reques
 
 Validate the token in two steps:
 
-1.  **Retrieve the Public Key:** Fetch the appropriate public key from your Scalekit environment's JSON Web Key Set (JWKS) endpoint. Use the `kid` (Key ID) from the JWT header to identify the correct key. Cache the key according to standard JWKS practices.
+1.  **Retrieve the Public Key:** Fetch the appropriate public key from your Scalekit environment's JSON Web Key Set (JWKS) endpoint. Use the <SimpleCode>kid</SimpleCode> (Key ID) from the JWT header to identify the correct key. Cache the key according to standard JWKS practices.
 
 <CodeWithHeader title="Retrieve the public key">
 ```js
