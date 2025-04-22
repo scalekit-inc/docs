@@ -579,6 +579,11 @@ const sidebars: SidebarsConfig = {
       id: 'm2m/quickstart',
     },
     {
+      type: 'link',
+      label: 'Code Examples',
+      href: 'https://github.com/scalekit-developers/gists/tree/main/m2m',
+    },
+    {
       type: 'html',
       value: '<div />', // The link label
       defaultStyle: true,
@@ -601,7 +606,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'API Authentication for M2M Clients',
+      label: 'M2M Client API Authentication',
       id: 'm2m/api-auth-for-m2m-clients',
     },
     {

@@ -62,6 +62,11 @@ Scalekit provides a purpose-built M2M auth system based on the OAuth 2.0 flow. T
 - **User-level clients:** Used when a machine client is acting on behalf of a specific user. These tokens include a `uid` (user ID) in addition to `oid` and allow you to enforce user-contextual access. *(Coming soon)*
 - **Internal service clients:** Used for secure service-to-service communication between internal systems. These clients issue tokens with an `aud` (audience) claim to enforce destination-specific access. They are ideal for microservices that need to talk to each other without org or user context. *(Coming soon)*
 
+<figure>
+  ![How M2M authentication works](@site/docs/m2m/assets/seq-hifi.png)
+  <figcaption>M2M authentication secures machine-to-machine interactions with your API</figcaption>
+</figure>
+
 The high-level M2M auth flow looks like:
 
 1. **Register a machine client:** You create an M2M client in Scalekit for the machine that needs access to.
