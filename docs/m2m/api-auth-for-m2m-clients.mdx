@@ -4,16 +4,16 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# API Authentication for M2M Clients
+# API authentication for M2M clients
 
 This guide explains how your application can validate API requests from machine-to-machine (M2M) clients using Scalekit's M2M authentication system.
 This guide explains the authentication flow, from obtaining access tokens to validating requests using JSON Web Key Sets (JWKS).
 
-## How M2M Clients Authenticate with Your API
+## How M2M clients authenticate with your API
 
 Every Scalekit environment functions as an Authorization Server. M2M clients authenticate using client credentials with this server.
 
-### Storing Client Credentials
+### Storing client credentials
 
 M2M clients must securely store their credentials in environment variables:
 
@@ -26,7 +26,7 @@ YOURAPP_CLIENT_SECRET="<YOURAPP_CLIENT_SECRET>"
 ```
 </CodeWithHeader>
 
-### Obtaining Access Tokens
+### Obtaining access tokens
 
 To authenticate API requests, clients must first obtain an access token from your authorization server using the Token endpoint:
 
@@ -74,7 +74,7 @@ The server returns a JSON response containing the access token:
 | <SimpleCode>expires_in</SimpleCode> | Token validity period in seconds (typically 24 hours) |
 | <SimpleCode>scope</SimpleCode> | Authorized scopes for this token |
 
-### Using Access Tokens
+### Using access tokens
 
 After obtaining the access token, clients include it in the Authorization header of their API requests:
 
@@ -88,7 +88,7 @@ curl --request GET "https://<your-api-endpoint>" \
 
 </CodeWithHeader>
 
-## Validating Access Tokens
+## Validating access tokens
 
 Your API server must validate access tokens before processing requests. Scalekit uses JSON Web Tokens (JWTs) signed with RSA keys, which you validate using the JSON Web Key Set (JWKS) endpoint.
 
@@ -123,7 +123,7 @@ https://<YOURAPP_ENVIRONMENT_URL>/.well-known/jwks.json
 
 </CodeWithHeader>
 
-### Token Validation Process
+### Token validation process
 
 When your API receives a request with a JWT, follow these steps:
 
@@ -212,7 +212,7 @@ app.listen(3000, () => {
 </CodeWithHeader>
 
 
-## Security Best Practices
+## Security best practices
 
 When implementing token validation:
 
@@ -222,6 +222,6 @@ When implementing token validation:
 4. Implement token revocation checks for sensitive operations
 5. Use HTTPS for all API endpoints
 
-## SDK Support Status
+## SDK support status
 
 Our [Python SDK](https://github.com/scalekit-inc/scalekit-sdk-python) currently includes support for M2M authentication. The support to verify tokens is coming soon to Node, Java, and Go SDKs.

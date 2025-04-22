@@ -3,7 +3,7 @@ displayed_sidebar: m2mSidebar
 pagination_next: null
 ---
 
-# M2M Quickstart Guide
+# M2M quickstart guide
 
 This guide explains how to implement secure machine-to-machine (M2M) authentication using Scalekit. You will learn how to register a third-party client, authenticate its API requests using client credentials, and validate the received access tokens in your API server.
 
@@ -20,7 +20,7 @@ Before starting, ensure you have the following:
 
 This guide does not cover installing or configuring Scalekit itself.
 
-## Register an M2M Client
+## Register an M2M client
 
 To allow an external system (an API consumer) to securely access your API, you first register it as an M2M client within the relevant Scalekit Organization. This step typically occurs when your customer sets up an integration via their dashboard or a setup process you provide.
 
@@ -115,7 +115,7 @@ The API response contains the client details, including the <SimpleCode>client_i
 
 Note: Scalekit only returns the <SimpleCode>plain_secret</SimpleCode> once during client creation and does not store it. Instruct your M2M client developers to store the <SimpleCode>plain_secret</SimpleCode> securely.
 
-## Authenticate the M2M Client
+## Authenticate the M2M client
 
 After registration, the M2M client authenticates with your Scalekit environment using its <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> (the <SimpleCode>plain_secret</SimpleCode> obtained earlier) to request an access token. This process uses the OAuth 2.0 client credentials grant type.
 
@@ -147,7 +147,7 @@ Upon successful authentication, Scalekit issues a JWT access token.
 </CodeWithHeader>
 The client includes this access token in the <SimpleCode>Authorization</SimpleCode> header of subsequent requests to your API server.
 
-## Validate Access Tokens in Your API Server
+## Validate access tokens in your API server
 
 Your API server must validate the incoming JWT access token to ensure the request originates from a trusted M2M client and that the token is legitimate.
 
