@@ -570,13 +570,18 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'What is M2M Authentication?',
+      label: 'What is M2M authentication?',
       id: 'm2m/overview',
     },
     {
       type: 'doc',
       label: 'M2M Quickstart',
       id: 'm2m/quickstart',
+    },
+    {
+      type: 'link',
+      label: 'View code examples',
+      href: 'https://github.com/scalekit-developers/gists/tree/main/m2m',
     },
     {
       type: 'html',
@@ -591,27 +596,27 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'M2M Basics',
+      label: 'Learn M2M basics',
       id: 'm2m/m2m-basics',
     },
     {
       type: 'doc',
-      label: 'Scalekit API Authentication',
+      label: 'Authenticate with Scalekit API',
       id: 'm2m/authenticate-scalekit-api',
     },
     {
       type: 'doc',
-      label: 'API Authentication for M2M Clients',
+      label: 'Authenticate M2M clients',
       id: 'm2m/api-auth-for-m2m-clients',
     },
     {
       type: 'doc',
-      label: 'External IDs and Metadata',
+      label: 'Manage organization identifiers',
       id: 'm2m/external-ids-and-metadata',
     },
     {
       type: 'doc',
-      label: 'M2M Client Scopes',
+      label: 'Configure client scopes',
       id: 'm2m/scopes',
     },
   ],
