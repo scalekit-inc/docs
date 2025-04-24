@@ -570,7 +570,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'What is M2M authentication?',
+      label: 'Overview',
       id: 'm2m/overview',
     },
     {
