@@ -591,23 +591,34 @@ const sidebars: SidebarsConfig = {
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Guides</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Learn M2M Concepts</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Learn M2M basics',
+      label: 'M2M Authentication Explained',
       id: 'm2m/m2m-basics',
-    },
-    {
-      type: 'doc',
-      label: 'Authenticate with Scalekit API',
-      id: 'm2m/authenticate-scalekit-api',
     },
     {
       type: 'doc',
       label: 'Authenticate M2M clients',
       id: 'm2m/api-auth-for-m2m-clients',
+    },
+    {
+      type: 'html',
+      value: '<div />', // The link label
+      defaultStyle: true,
+    },
+    {
+      type: 'html',
+      value:
+        "<span class='text--uppercase text--light sidenav-category-heading'>How-to Guides</span>",
+      defaultStyle: true,
+    },
+    {
+      type: 'doc',
+      label: 'Authenticate with Scalekit API',
+      id: 'm2m/authenticate-scalekit-api',
     },
     {
       type: 'doc',
