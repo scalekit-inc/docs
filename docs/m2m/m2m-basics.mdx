@@ -7,7 +7,7 @@ hide_table_of_contents: true
 
 Machine-2-Machine (M2M) authentication enables secure access between non-human clients and your APIs, without any traditional human involvement.
 
-These machine clients could be automated clients, or AI agents, third-party integrations, backend jobs, or internal services that need to perform tasks on behalf of organizations.
+These machine clients could be automated clients or AI agents, third-party integrations, backend jobs, or internal services. Depending on the use case, they may act on behalf of an organization, a user, or operate independently to perform system-level tasks.
 
 There are two key benefits to organizations and platforms with a robust M2M authentication system:
 
@@ -47,12 +47,12 @@ Building secure M2M authentication from scratch can be complex, especially when 
 
 Scalekit handles these concerns out of the box with minimal setup. With just a few API calls or dashboard actions, you can:
 
-- Register machine clients scoped to an organization
+- Register machine clients scoped to an organization, user, or a service
 - Generate and manage credentials with safe rotation
-- Issue signed, short-lived JWTs with the right claims based on the  (<SimpleCode>oid</SimpleCode>, <SimpleCode>uid</SimpleCode>, <SimpleCode>aud</SimpleCode>, <SimpleCode>scopes</SimpleCode>, etc.)
+- Issue signed, short-lived JWTs with the right claims (`oid`, `uid`, `aud`, `scopes`, etc.) based on the client type
 - Validate tokens locally in your API without needing to call back to Scalekit
 
-This allows you to enforce least-privilege access for automated clients without having to implement the OAuth flow or token lifecycle yourself.
+This allows you to enforce least-privilege access for machine clients without having to implement the OAuth flow or token lifecycle yourself.
 
 ## How Scalekit supports M2M auth
 
@@ -70,8 +70,8 @@ Scalekit provides a purpose-built M2M auth system based on the OAuth 2.0 flow. T
 The high-level M2M auth flow looks like:
 
 1. **Register a machine client:** You create an M2M client in Scalekit for the machine that needs access to.
-2. **Generate credentials**: Scalekit issues a <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> for that client. These are used to request access tokens.
-3. **Request an access token**: The machine client sends its credentials to Scalekit's <SimpleCode>/oauth/token</SimpleCode> endpoint using the client credentials grant type.
+2. **Generate credentials**: Scalekit issues a `client_id` and `client_secret` for that client. These are used to request access tokens.
+3. **Request an access token**: The client requests an access token from Scalekit’s /oauth/token endpoint, either directly using the client credentials flow for org-level access, or by exchanging an authorization code after user consent in the authorization code flow.
 4. **Receive a signed JWT**: Scalekit validates the request and returns a short-lived, signed JWT that contains claims.
 
     Depending on the type of client, when a token is issued, it contains information like:
@@ -100,3 +100,5 @@ Tokens issued by Scalekit are designed to be secure by default and operationally
 - **Scoped access**: Define fine-grained scopes to limit what a client is allowed to do.
 
 These defaults ensure that tokens are short-lived, constrained in what they can do, and fully verifiable without external dependencies.
+
+To start integrating M2M authentication in your application, head to the [quickstart guide](/docs/m2m/quickstart) for setting up an org-level client.
