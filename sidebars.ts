@@ -509,6 +509,11 @@ const sidebars: SidebarsConfig = {
       href: '/sso/social-login',
     },
     {
+      type: 'link',
+      label: 'Machine-2-Machine',
+      href: '/m2m/quickstart',
+    },
+    {
       type: 'html',
       value: '<div />',
       defaultStyle: true,
