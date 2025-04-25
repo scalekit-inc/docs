@@ -596,7 +596,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'M2M Authentication Explained',
+      label: 'M2M authentication explained',
       id: 'm2m/m2m-basics',
     },
     {
