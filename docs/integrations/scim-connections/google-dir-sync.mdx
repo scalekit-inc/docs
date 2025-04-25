@@ -1,0 +1,150 @@
+---
+description: "Learn how to sync your Google Directory with Scalekit to manage user identities and access control."
+displayed_sidebar: integrationsSidebar
+keywords: ["Google Directory Sync", "Google Directory", "Scalekit", "User Management", "Access Control", "Identity Management"]
+pagination_prev: null
+pagination_next: null
+---
+
+# Google Workspace Directory
+
+<Subtitle>
+  Sync users and groups from Google Workspace to your application
+</Subtitle>
+
+## Overview
+
+This guide helps <TermTip jargon="administrator"/>s synchronize their Google Workspace directory with an application they're onboarding to their organization. By integrating your application with Google Workspace, you can automate user management and ensure access rights remain consistently up-to-date.
+
+The integration enables:
+
+1. **User Synchronization**: Automatically provision users from Google Workspace to your application
+2. **Group Synchronization**: Map Google Workspace groups to roles in your application
+3. **Access Management**: Control who can access your application based on Google Workspace membership
+
+Note that for nested groups, the sync will only process groups at the top level of your Google Workspace hierarchy.
+
+## Prerequisites
+
+- Administrator access to your Google Workspace account
+- Administrator access to the application you're onboarding
+
+## Set Up Google Workspace Directory Sync
+
+### 1. Access the Directory Configuration Screen
+
+Navigate to the Admin Portal of your application and select the "Directory Sync" tab. You'll see a list of available directory providers.
+
+<figure>
+  ![Directory Sync selection screen showing various integration options including Google Workspace](@site/docs/scim/assets/integrations/google-dir-sync/1.png)
+  <figcaption>Directory Sync configuration screen with various provider options.</figcaption>
+</figure>
+
+### 2. Select Google Workspace
+
+From the list of directory providers, locate and click on "Google Workspace".
+
+<figure>
+  ![Google Workspace option selected from directory providers list](@site/docs/scim/assets/integrations/google-dir-sync/2.png)
+  <figcaption>Select Google Workspace from the available directory providers.</figcaption>
+</figure>
+
+### 3. Begin Configuration
+
+Click on the "Configure" button to start setting up the Google Workspace integration.
+
+<figure>
+  ![Configure button for Google Workspace integration](@site/docs/scim/assets/integrations/google-dir-sync/3.png)
+  <figcaption>Click Configure to begin setting up the Google Workspace integration.</figcaption>
+</figure>
+
+### 4. Authorize Google Workspace
+
+To establish the connection, you need to authorize access to your Google Workspace directory. Click on "Authorize Google Workspace".
+
+<figure>
+  ![Admin portal with Authorize Google Workspace button](@site/docs/scim/assets/integrations/google-dir-sync/5.png)
+  <figcaption>Click Authorize Google Workspace to begin the authorization process.</figcaption>
+</figure>
+
+### 5. Sign In with Google Admin Account
+
+You'll be redirected to Google's authentication page. Sign in with your Google Workspace administrator account. If you're already signed in with multiple accounts, select "Use another account" to ensure you're using your administrator account.
+
+<figure>
+  ![Google sign-in screen showing option to use another account](@site/docs/scim/assets/integrations/google-dir-sync/6.png)
+  <figcaption>Select "Use another account" if you need to sign in with a different Google account.</figcaption>
+</figure>
+
+### 6. Enter Administrator Credentials
+
+Enter your Google Workspace administrator email address and password when prompted.
+
+<figure>
+  ![Google sign-in form for entering administrator email](@site/docs/scim/assets/integrations/google-dir-sync/7.png)
+  <figcaption>Enter your Google Workspace administrator email address.</figcaption>
+</figure>
+
+### 7. Grant Required Permissions
+
+When prompted, review and confirm the permissions requested by the application. These permissions allow the application to read user and group information from your Google Workspace directory.
+
+<figure>
+  ![Permission request screen showing required access](@site/docs/scim/assets/integrations/google-dir-sync/16.png)
+  <figcaption>Review the requested permissions for directory access.</figcaption>
+</figure>
+
+Click "Continue" to grant the necessary permissions.
+
+<figure>
+  ![Continue button to grant permissions](@site/docs/scim/assets/integrations/google-dir-sync/19.png)
+  <figcaption>Click Continue to grant directory access permissions.</figcaption>
+</figure>
+
+### 8. Select Groups to Sync
+
+After authorization, you'll see the groups available in your Google Workspace directory. Select the groups you want to synchronize with your application.
+
+<figure>
+  ![Group selection interface showing available Google Workspace groups](@site/docs/scim/assets/integrations/google-dir-sync/21.png)
+  <figcaption>Select which Google Workspace groups you want to sync with your application.</figcaption>
+</figure>
+
+### 9. Enable Directory Sync
+
+After selecting your groups, click "Enable Sync" to activate the integration.
+
+<figure>
+  ![Enable Sync button to activate the integration](@site/docs/scim/assets/integrations/google-dir-sync/26.png)
+  <figcaption>Click Enable Sync to start synchronizing users and groups from Google Workspace.</figcaption>
+</figure>
+
+## Verify Synchronization
+
+### View Synchronized Users
+
+Navigate to the "Users" tab to see all users that have been synchronized from your Google Workspace directory.
+
+<figure>
+  ![Users tab showing synchronized users from Google Workspace](@site/docs/scim/assets/integrations/google-dir-sync/28.png)
+  <figcaption>List of users synchronized from Google Workspace.</figcaption>
+</figure>
+
+### View Synchronized Groups
+
+Navigate to the "Groups" tab to see all groups that have been synchronized from your Google Workspace directory.
+
+<figure>
+  ![Groups tab showing synchronized groups from Google Workspace](@site/docs/scim/assets/integrations/google-dir-sync/30.png)
+  <figcaption>List of groups synchronized from Google Workspace.</figcaption>
+</figure>
+
+## Troubleshooting
+
+If you encounter issues during synchronization:
+
+1. **Authorization Errors**: Ensure your Google Workspace administrator account has sufficient permissions
+2. **Missing Users/Groups**: Verify that the users and groups exist in your Google Workspace directory
+3. **Sync Delays**: Initial synchronization may take up to 40 minutes to complete sync. If needed you can manually trigger a sync from the Admin Portal.
+
+For additional assistance, contact your application administrator or Scalekit support.

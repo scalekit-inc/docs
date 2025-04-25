@@ -1,12 +1,11 @@
 ---
 id: m2m-basics
 title: M2M authentication basics
-sidebar_label: M2M basics
-description: Understand the fundamentals of Machine-to-Machine (M2M) authentication and how it secures API access for non-human clients.
+description: Understand the fundamentals of Machine-2-Machine (M2M) authentication and how it secures API access for non-human clients.
 hide_table_of_contents: true
 ---
 
-Machine-to-machine (M2M) authentication enables secure access between non-human clients and your APIs, without any traditional human involvement.
+Machine-2-Machine (M2M) authentication enables secure access between non-human clients and your APIs, without any traditional human involvement.
 
 These machine clients could be automated clients or AI agents, third-party integrations, backend jobs, or internal services. Depending on the use case, they may act on behalf of an organization, a user, or operate independently to perform system-level tasks.
 
@@ -15,7 +14,7 @@ There are two key benefits to organizations and platforms with a robust M2M auth
 - **Secure, credential-based** (client ID and client secret) **authentication for non-human clients** without exposing hardcoded secrets or using long-lived tokens.
 - **Centralized management of machine identities**, enabling granular permissions, credential rotation across internal and external services.
 
-This structured approach to M2M auth ensures that machine clients can be authenticated with the same rigour as human users. It ensures secure, scoped access to APIs, simplifies integration development, and aligns with enterprise authentication standards.
+This structured approach to M2M auth ensures that machine clients can be authenticated with the same rigour as human users. It ensures secure, scoped access to APIs, simplifies integration development, and aligns with enterprise security standards.
 
 ## When do you need M2M auth?
 
@@ -27,9 +26,9 @@ You'll typically use M2M auth when:
 
 In all these cases, there's no human user session involved, but the system still needs a secure way to authenticate the client and determine what access they should have.
 
-## How machine-to-machine (M2M) auth works
+## How Machine-2-Machine (M2M) auth works
 
-Machine-to-machine (M2M) authentication typically relies on the OAuth 2.0 protocol. Org-level and internal service clients use the client credentials flow, while user-backed clients rely on the authorization code flow.
+M2M authentication typically follows the OAuth 2.0 client credentials flow. This is a standardized way for non-human clients to obtain access tokens without requiring user interaction.
 
 Let's start with how OAuth works:
 
@@ -40,7 +39,7 @@ The protocol defines several grant types, depending on the use case. For example
 - **Client credentials flow** is used when one system (like an automated client or AI agent) wants to access another system's API
 - **Authorization code flow** is used when a user authorizes a machine client to act on their behalf.
 
-In M2M authentication, the client could be a backend service, AI agent, or integration. All clients use a `client_id` and `client_secret`, but the token grant flow depends on the use case: org-level and internal service clients use the client credentials flow, while user-backed clients follow the authorization code flow after the user grants consent.
+In the M2M use case, the client could be a backend service, AI agent, or integration. If it's an org-level or internal service client, it uses a <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> from the response to authenticate. For user-backed clients, a user first authorizes the client via the authorization code flow.
 
 ## How Scalekit helps
 
@@ -65,7 +64,7 @@ Scalekit provides a purpose-built M2M auth system based on the OAuth 2.0 flow. T
 
 <figure>
   ![How M2M authentication works](@site/docs/m2m/assets/seq-hifi.png)
-  <figcaption>M2M authentication secures machine-to-machine interactions with your API</figcaption>
+  <figcaption>M2M authentication secures M2M interactions with your API</figcaption>
 </figure>
 
 The high-level M2M auth flow looks like:

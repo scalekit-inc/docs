@@ -11,3 +11,8 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 </TabItem>
 </Tabs>
 </CodeWithHeader>
+<CodeWithHeader title="Response">
+
+<JsonViewer src={{}} />
+
+</CodeWithHeader>

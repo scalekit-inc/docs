@@ -5,17 +5,16 @@ pagination_next: null
 
 # M2M quickstart guide
 
-This guide explains how to implement secure machine-to-machine (M2M) authentication using Scalekit. You will learn how to register a third-party client, authenticate its API requests using client credentials, and validate the received access tokens in your API server.
+This guide explains how to implement secure Machine-2-Machine (M2M) authentication using Scalekit. You will learn how to register a third-party client, authenticate its API requests using client credentials, and validate the received access tokens in your API server.
 
 This guide provides code samples to help you integrate Scalekit's M2M authentication into your application.
 
 ## Prerequisites
 
-Before starting, ensure you have the following:
+Before you begin, ensure you have:
 
-*   A Scalekit account and environment. If you don't have one, [sign up here](https://app.scalekit.com/ws/signup).
-*   API credentials for your Scalekit environment.
-*   Familiarity with [authenticating requests to the Scalekit API](/docs/m2m/authenticate-scalekit-api).
+*   A Scalekit account with access to the M2M authentication feature.
+*   Familiarity with [authenticating requests to the Scalekit API](/m2m/authenticate-scalekit-api).
 *   (Optional) An understanding of how Scalekit uses [Organizations and external identifiers](/m2m/external-ids-and-metadata) to represent your customers. Each Organization can have multiple M2M clients.
 
 This guide does not cover installing or configuring Scalekit itself.
@@ -194,6 +193,6 @@ async function verifyToken(token: string, publicKey: string) {
 }
 ```
 </CodeWithHeader>
-Find complete code examples in the [Scalekit M2M Gists repository](https://github.dev/scalekit-developers/gists/tree/main/m2m).
+Find complete code examples in the [Scalekit M2M Gists repository](https://github.com/scalekit-developers/gists/tree/main/m2m).
 
 If the token verification succeeds, your API server can trust the request's authenticity and proceed with processing it based on the permissions (scopes) encoded within the token.
