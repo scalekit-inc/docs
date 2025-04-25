@@ -366,6 +366,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
+      label: 'Google Workspace',
+      id: 'integrations/scim-connections/google-dir-sync',
+    },
+    {
+      type: 'doc',
       label: 'JumpCloud',
       id: 'integrations/scim-connections/jumpcloud',
     },
