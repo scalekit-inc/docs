@@ -6,10 +6,10 @@ displayed_sidebar: integrationsSidebar
 # Microsoft AD FS
 
 <Subtitle>
-  Step-by-step guide to configure Single Sign-on with Microsoft Active Directory Federation Services (AD FS) as your Identity Provider.
+  Step-by-step guide to configure Single Sign-on with Microsoft AD FS as your Identity Provider.
 </Subtitle>
 
-### 1. Choose Identity Provider
+## 1. Choose Identity Provider
 
 Choose Microsoft AD FS as your identity provider to begin the configuration in admin portal.
 
@@ -25,13 +25,14 @@ Download Metadata XML file so that you can configure AD FS Server going forward.
   <figcaption>Download Metadata XML</figcaption>
 </figure>
 
-### 2. Open AD FS Management Console
+## 2. Open AD FS Management Console
 
 Search for 'AD FS Management' in the start menu and open it.
 
-### 3. Create Relying Party Trust
+## 3. Create Relying Party Trust
 
 In the left navigation pane, expand 'ADFS'
+
 - Right-click 'Relying Party Trusts'
 - Select 'Add Relying Party Trust'
 
@@ -42,9 +43,10 @@ In the left navigation pane, expand 'ADFS'
 
 - Select 'Claims aware' as the trust type and click 'Next'
 
-### 4. Configure Federation Metadata File
+## 4. Configure Federation Metadata File
 
 Choose 'Import data about the relying party from a file'
+
 - Click 'Browse' and select the Metadata XML file you downloaded earlier
 - Click 'Next' to proceed
 
@@ -53,7 +55,7 @@ Choose 'Import data about the relying party from a file'
   <figcaption>Select Data Source</figcaption>
 </figure>
 
-### 5. Set Display Name
+## 5. Set Display Name
 
 Enter a descriptive name for the application you are integrating with (e.g., "ExampleApp") and click 'Next' to continue
 
@@ -62,15 +64,17 @@ Enter a descriptive name for the application you are integrating with (e.g., "Ex
   <figcaption>Specify Display Name</figcaption>
 </figure>
 
-### 6. Configure Access Control
+## 6. Configure Access Control
 
 Select an appropriate access control policy
+
 - For this guide, select 'Permit everyone'
 - Click 'Next' to proceed
 
-### 7. Review Trust Configuration
+## 7. Review Trust Configuration
 
 Verify the following settings:
+
 - Monitoring configuration
 - Endpoints
 - Encryption settings
@@ -88,9 +92,10 @@ The wizard will complete with the 'Claim Issuance Policy' option automatically s
   <figcaption>Edit Claim Issuance Policy</figcaption>
 </figure>
 
-### 8. Create Claim Rules
+## 8. Create Claim Rules
 
 Click 'Add Rule' to create a new claim rule
+
 - Select 'Send LDAP Attributes as Claims' template
 
 <figure className="limited-width">
@@ -103,9 +108,10 @@ Click 'Add Rule' to create a new claim rule
   <figcaption>Configure LDAP Attribute Mapping</figcaption>
 </figure>
 
-### 9. Map User Attributes
+## 9. Map User Attributes
 
 Enter a descriptive rule name (e.g., "Example App")
+
 - Configure the following attribute mappings:
   - `E-Mail-Addresses` → E-Mail Address
   - `Given-Name` → Given Name
@@ -118,9 +124,10 @@ Enter a descriptive rule name (e.g., "Example App")
   <figcaption>Map User Attributes</figcaption>
 </figure>
 
-### 10. Complete Admin Portal Configuration
+## 10. Complete Admin Portal Configuration
 
 Navigate to Identity Provider Configuration in the Admin Portal
+
 - Select "Configure Manually"
 - Enter these required details:
   - Microsoft AD FS Identifier: `http://<YOUR_AD_FS_SERVER_DOMAIN>/adfs/services/trust`
@@ -138,22 +145,22 @@ Navigate to Identity Provider Configuration in the Admin Portal
 
 The above endpoints are AD FS endpoints. You can find them listed in AD FS Console > Service > Endpoints > Tokens and Metadata sections
 
-### 11. Test the Integration
+## 11. Test Connection
 
-In the Admin Portal, click "Test Connection"
-- You will be redirected to the AD FS login page
-- Enter your AD FS credentials
-- Verify successful redirection back to the Admin Portal with the correct user attributes
+Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
-<figure className="limited-width">
-  ![Test Integration](@site/docs/sso/assets/integrations/microsoft-ad-fs/11.png)
-  <figcaption>Test Integration</figcaption>
+If the connection fails, you'll see an error, the reason for the error, and a way to solve that error right on the screen.
+
+<figure>
+  ![Test SSO configuration](@site/docs/sso/assets/integrations/okta-saml/18.png)
+  <figcaption>Test SSO configuration</figcaption>
 </figure>
 
-## Verification
+## 12. Enable connection
 
-After completing the configuration, test the SSO integration by:
+Click on **Enable Connection.** This will let all your selected users login to the new application via your AD FS SSO.
 
-1. Logging out of your application
-2. Attempting to log in using the SSO option
-3. Verifying you're redirected to AD FS and can authenticate successfully
+<figure>
+  ![Enable SSO Connection](@site/docs/sso/assets/integrations/okta-saml/19.png)
+  <figcaption>Enable SSO Connection</figcaption>
+</figure>

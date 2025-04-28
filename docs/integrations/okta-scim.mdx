@@ -32,15 +32,6 @@ app, request instructions from the app owner.
   <figcaption>Setting up Directory Sync in the admin portal of an app being onboarded: Okta selected as the provider, awaiting configuration.</figcaption>
 </figure>
 
-
-:::note
-
-If the "Directory Sync" tab is not visible, it typically indicates that the feature is not enabled for your
-organization. Contact the app owner to enable it via the Scalekit Dashboard by navigating to Organizations > Your
-Organization > Enable Directory Sync.
-
-:::
-
 <figure>
 ![Okta directory sync setup: Endpoint URL and one-time visible bearer token provided.](@site/docs/scim/assets/integrations/okta-scim/5.png)
 <figcaption>Okta directory sync setup: Endpoint URL and one-time visible bearer token provided.</figcaption>
@@ -90,7 +81,6 @@ Integration."
   <figcaption>Enabling API Integration in Okta for app being onboarded.</figcaption>
 </figure>
 
-
 Copy the Endpoint URL and Bearer Token from your Admin Portal and paste them into the *SCIM 2.0 Base URL* field and *OAuth Bearer Token* field, respectively. Verify the configuration by clicking "Test API Credentials," then save the settings.
 
 <figure>
@@ -105,7 +95,6 @@ complete the provisioning process for your application.
   ![Saving verified SCIM API integration settings for Hero SaaS in Okta](@site/docs/scim/assets/integrations/okta-scim/7.png)
   <figcaption>Saving verified SCIM API integration settings for Hero SaaS in Okta</figcaption>
 </figure>
-
 
 ## Provisioning Options for the App being onboarded
 
@@ -123,8 +112,6 @@ In the "To App" navigation section, enable the following options:
 After enabling these options, click "Save" to apply the changes.These settings allow Okta to perform user provisioning
 actions in your application, including creating new user accounts, updating existing user information, and deactivating
 user accounts when necessary.
-
-
 
 ## User and Group Assignment
 
@@ -166,6 +153,5 @@ To push groups and sync group membership:
 reflection. Without this separation, manual group pushes may be required for membership changes.
 
 :::
-
 
 After completing these steps, verify that the users and groups are successfully synced in the Administrator Portal.

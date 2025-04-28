@@ -26,13 +26,6 @@ Open the <TermTip jargon="Admin Portal" /> from the app being onboarded. Select 
   <figcaption>Setting up Directory Sync in the admin portal of an app being onboarded: Entra ID selected as the provider, awaiting configuration.</figcaption>
 </figure>
 
-
-:::note
-
-If the "Directory Sync" tab is not visible, the feature may not be enabled for your organization. Contact the app owner to enable it via the Scalekit Dashboard: Organizations > Your Organization > Enable Directory Sync.
-
-:::
-
 Click "Configure" after selecting "EntraID" to generate an Endpoint URL and Bearer token for your organization, allowing the app to listen to events and maintain synchronization.
 
 <figure>
@@ -84,6 +77,7 @@ In the "Hero SaaS" app's overview, select "Manage > Provisioning" from the left 
 Set the Provisioning Mode to "Automatic".
 
 In the Admin Credentials section, set:
+
 - Tenant URL: _Endpoint_
 - Secret Token: _Bearer Token generated previously_
 
@@ -133,6 +127,6 @@ Once provisioned, the user should appear in the admin portal, showing how many u
 
 :::note
 
-Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group". Microsoft docs state it takes about 40 minutes to successfully send these events to the Hero SaaS App.
+Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group". It usually takes upto 40 minutes for the changes made in Microsoft Entra ID to propagate to the application.
 
 :::
