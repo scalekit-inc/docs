@@ -27,6 +27,9 @@ Register a new M2M client by making a POST request to the <SimpleCode>/organizat
 
 <CodeWithHeader title="Register an M2M client">
 
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
 ```sh
 curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_ID>/clients' \
 -H 'Content-Type: application/json' \
@@ -54,6 +57,53 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
     "expiry": 3600
 }'
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+from faker import Faker
+
+def create_m2m_client(organization_id: str) -> tuple[OrganizationClient, str]:
+    """
+    Creates a new M2M client for the specified organization.
+
+    Args:
+        organization_id: The ID of the organization to create the client for
+
+    Returns:
+        A tuple containing the created client object and the client secret
+    """
+    # Initialize Faker for generating test data
+    faker = Faker()
+
+    # Create M2M client configuration
+    m2m_client = OrganizationClient(
+        name=faker.company(),
+        description=faker.sentence(),
+        custom_claims=[{
+            "key": "wksp_id",
+            "value": f"wks_{faker.credit_card_number()}"
+        }],
+        scopes=["write", "read"],
+        audience=["my-own-api"],
+        expiry=3600
+    )
+
+    # Create the client and get response
+    response = self.scalekit_client.m2m_client.create_organization_client(
+        organization_id=organization_id,
+        m2m_client=m2m_client
+    )
+
+    # Verify successful creation
+    self.assertEqual(response[1].code().name, "OK")
+    self.assertTrue(response[0].client.client_id is not None)
+
+    return response[0].client, response[0].plain_secret
+```
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 
 
@@ -121,6 +171,10 @@ After registration, the M2M client authenticates with your Scalekit environment 
 The client sends a POST request to the <SimpleCode>/oauth/token</SimpleCode> endpoint:
 
 <CodeWithHeader title="Authenticate the M2M client">
+
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
 ```sh
 curl -X POST \
   "https://<SCALEKIT_ENVIRONMENT_URL>/oauth/token" \
@@ -129,6 +183,36 @@ curl -X POST \
   -d "client_id=<M2M_CLIENT_ID>" \
   -d "client_secret=<M2M_CLIENT_SECRET>" \
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+from faker import Faker
+
+def authenticate_m2m_client(organization_id: str) -> dict:
+    """
+    Creates and authenticates an M2M client, returning the access token.
+
+    Args:
+        organization_id: The ID of the organization to create the client for
+
+    Returns:
+        A dictionary containing the access token and related information
+    """
+    # Create the M2M client
+    client, client_secret = create_m2m_client(organization_id)
+
+    # Generate access token using client credentials
+    token_response = self.scalekit_client.generate_client_token(
+        client_id=client.client_id,
+        client_secret=client_secret
+    )
+
+    return token_response
+```
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 Refer to [API Authentication for M2M clients](/docs/m2m/api-auth-for-m2m-clients) for detailed information on how M2M clients authenticate.
 
