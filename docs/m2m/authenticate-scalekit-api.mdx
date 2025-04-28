@@ -106,6 +106,32 @@ async function getClientCredentialsToken() {
 ```
 
 </TabItem>
+<TabItem value="python" label="Python">
+
+```python
+
+import os
+import json
+import requests
+
+def get_access_token():
+    """ Method to request access token """
+		headers = {"Content-Type": "application/x-www-form-urlencoded"}
+		params = {
+		            "grant_type": "client_credentials",
+		            "client_id": os.environ['SCALEKIT_CLIENT_ID'],
+		            "client_secret": os.environ['SCALEKIT_CLIENT_SECRET']
+		         }
+		oauth_token_url = os.environ['SCALEKIT_ENVIRONMENT_URL']
+
+		response = requests.post(server_url=oauth_token_url, headers=headers, json=params, verify=True)
+
+		access_token = json.loads(response.content)['access_token']
+		return access_token
+
+```
+
+</TabItem>
 
 </Tabs>
 </CodeWithHeader>
@@ -170,6 +196,43 @@ async function makeAuthenticatedRequest(endpoint) {
     throw error;
   }
 }
+```
+
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import os
+import json
+import requests
+
+env_url = os.environ['SCALEKIT_ENVIRONMENT_URL']
+
+def get_access_token():
+    """ Method to request access token """
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    params = {
+        "grant_type": "client_credentials",
+        "client_id": os.environ['SCALEKIT_CLIENT_ID'],
+        "client_secret": os.environ['SCALEKIT_CLIENT_SECRET']
+    }
+
+    response = requests.post(
+        url=f"{env_url}/oauth/token", headers=headers,
+        data=params, verify=True)
+
+    access_token = json.loads(response.content)['access_token']
+    return access_token
+
+def get_organizations(get_orgs_endpoint):
+    """ Method to get all organizations for respective env """
+    access_token = get_access_token()
+    headers = dict(Authorization=f"Bearer {access_token}")
+
+    response = requests.get(
+        url=f"{env_url}/{get_orgs_endpoint}",
+        headers=headers)
+    return response
 ```
 
 </TabItem>
