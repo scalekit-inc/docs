@@ -109,26 +109,23 @@ async function getClientCredentialsToken() {
 <TabItem value="python" label="Python">
 
 ```python
-
 import os
 import json
 import requests
 
 def get_access_token():
-    """ Method to request access token """
-		headers = {"Content-Type": "application/x-www-form-urlencoded"}
-		params = {
-		            "grant_type": "client_credentials",
-		            "client_id": os.environ['SCALEKIT_CLIENT_ID'],
-		            "client_secret": os.environ['SCALEKIT_CLIENT_SECRET']
-		         }
-		oauth_token_url = os.environ['SCALEKIT_ENVIRONMENT_URL']
+    """Request an access token using client credentials."""
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    params = {
+        "grant_type": "client_credentials",
+        "client_id": os.environ['SCALEKIT_CLIENT_ID'],
+        "client_secret": os.environ['SCALEKIT_CLIENT_SECRET']
+    }
+    oauth_token_url = os.environ['SCALEKIT_ENVIRONMENT_URL']
 
-		response = requests.post(server_url=oauth_token_url, headers=headers, json=params, verify=True)
-
-		access_token = json.loads(response.content)['access_token']
-		return access_token
-
+    response = requests.post(oauth_token_url, headers=headers, data=params, verify=True)
+    access_token = response.json().get('access_token')
+    return access_token
 ```
 
 </TabItem>
@@ -209,7 +206,7 @@ import requests
 env_url = os.environ['SCALEKIT_ENVIRONMENT_URL']
 
 def get_access_token():
-    """ Method to request access token """
+    """Request an access token using client credentials."""
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     params = {
         "grant_type": "client_credentials",
@@ -218,16 +215,18 @@ def get_access_token():
     }
 
     response = requests.post(
-        url=f"{env_url}/oauth/token", headers=headers,
-        data=params, verify=True)
+        url=f"{env_url}/oauth/token",
+        headers=headers,
+        data=params,
+        verify=True)
 
-    access_token = json.loads(response.content)['access_token']
+    access_token = response.json().get('access_token')
     return access_token
 
 def get_organizations(get_orgs_endpoint):
-    """ Method to get all organizations for respective env """
+    """Retrieve all organizations for the specified environment."""
     access_token = get_access_token()
-    headers = dict(Authorization=f"Bearer {access_token}")
+    headers = {"Authorization": f"Bearer {access_token}"}
 
     response = requests.get(
         url=f"{env_url}/{get_orgs_endpoint}",
