@@ -62,45 +62,32 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
 
 ```python
 from scalekit.v1.clients.clients_pb2 import OrganizationClient
-from faker import Faker
 
-def create_m2m_client(organization_id: str) -> tuple[OrganizationClient, str]:
-    """
-    Creates a new M2M client for the specified organization.
+m2m_client = OrganizationClient(
+                name="GitHub Actions Deployment Service",
+                description="Service account for GitHub Actions to deploy applications to production",
+                custom_claims=[
+                    {
+                        "key": "github_repository",
+                        "value": "acmecorp/inventory-service"
+                    },
+                    {
+                        "key": "environment",
+                        "value": "production_us"
+                    }
+                ],
+                scopes=["deploy:applications", "read:deployments"],
+                audience=["deployment-api.acmecorp.com"],
+                expiry=3600)
 
-    Args:
-        organization_id: The ID of the organization to create the client for
+response = scalekit_client.m2m_client.create_organization_client(
+            organization_id=org_id, m2m_client=m2m_client)
 
-    Returns:
-        A tuple containing the created client object and the client secret
-    """
-    # Initialize Faker for generating test data
-    faker = Faker()
+# The reponse object received is a tuple, which will have one
+# component with API response code and another with data
 
-    # Create M2M client configuration
-    m2m_client = OrganizationClient(
-        name=faker.company(),
-        description=faker.sentence(),
-        custom_claims=[{
-            "key": "wksp_id",
-            "value": f"wks_{faker.credit_card_number()}"
-        }],
-        scopes=["write", "read"],
-        audience=["my-own-api"],
-        expiry=3600
-    )
-
-    # Create the client and get response
-    response = self.scalekit_client.m2m_client.create_organization_client(
-        organization_id=organization_id,
-        m2m_client=m2m_client
-    )
-
-    # Verify successful creation
-    self.assertEqual(response[1].code().name, "OK")
-    self.assertTrue(response[0].client.client_id is not None)
-
-    return response[0].client, response[0].plain_secret
+self.assertEqual(response[1].code().name, "OK")
+self.assertTrue(response[0].client.client_id is not None)
 ```
 </TabItem>
 </Tabs>
@@ -188,28 +175,32 @@ curl -X POST \
 
 ```python
 from scalekit.v1.clients.clients_pb2 import OrganizationClient
-from faker import Faker
 
-def authenticate_m2m_client(organization_id: str) -> dict:
-    """
-    Creates and authenticates an M2M client, returning the access token.
+m2m_client = OrganizationClient(
+                name="GitHub Actions Deployment Service",
+                description="Service account for GitHub Actions to deploy applications to production",
+                custom_claims=[
+                    {
+                        "key": "github_repository",
+                        "value": "acmecorp/inventory-service"
+                    },
+                    {
+                        "key": "environment",
+                        "value": "production_us"
+                    }
+                ],
+                scopes=["deploy:applications", "read:deployments"],
+                audience=["deployment-api.acmecorp.com"],
+                expiry=3600)
 
-    Args:
-        organization_id: The ID of the organization to create the client for
+response = scalekit_client.m2m_client.create_organization_client(
+            organization_id=org_id, m2m_client=m2m_client)
 
-    Returns:
-        A dictionary containing the access token and related information
-    """
-    # Create the M2M client
-    client, client_secret = create_m2m_client(organization_id)
+client_id = response[0].client.client_id
+client_secret = response[0].plain_secret
 
-    # Generate access token using client credentials
-    token_response = self.scalekit_client.generate_client_token(
-        client_id=client.client_id,
-        client_secret=client_secret
-    )
-
-    return token_response
+token_response = scalekit_client.generate_client_token(
+           client_id=client_id, client_secret=client_secret)
 ```
 </TabItem>
 </Tabs>
@@ -239,6 +230,10 @@ Validate the token in two steps:
 1.  **Retrieve the Public Key:** Fetch the appropriate public key from your Scalekit environment's JSON Web Key Set (JWKS) endpoint. Use the <SimpleCode>kid</SimpleCode> (Key ID) from the JWT header to identify the correct key. Cache the key according to standard JWKS practices.
 
 <CodeWithHeader title="Retrieve the public key">
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
+
 ```js
 import jwksClient from 'jwks-rsa';
 
@@ -256,6 +251,18 @@ async function getPublicKey(header: any): Promise<string> {
   });
 }
 ```
+</TabItem>
+
+<TabItem value="python" label="Python">
+
+```py
+# This is automatically taken care by Scalekit SDK
+```
+
+</TabItem>
+
+</Tabs>
+
 </CodeWithHeader>
 2.  **Verify the Token Signature:** Use the retrieved public key and a JWT library to verify the token's signature and claims (like issuer, audience, and expiration).
 
