@@ -42,6 +42,9 @@ The client sends their credentials to this endpoint:
 
 <CodeWithHeader title="Token request">
 
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="curl" label="cURL">
+
 ```sh
 curl -X POST \
   "https://<YOURAPP_SCALEKIT_ENVIRONMENT_URL>/oauth/token" \
@@ -52,6 +55,39 @@ curl -X POST \
   -d "scope=openid profile email"
 ```
 
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+import os
+import json
+import requests
+
+env_url = os.environ['YOURAPP_SCALEKIT_ENVIRONMENT_URL']
+
+def get_m2m_access_token():
+    """Request an access token for M2M client authentication."""
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    params = {
+        "grant_type": "client_credentials",
+        "client_id": os.environ['YOURAPP_SCALEKIT_CLIENT_ID'],
+        "client_secret": os.environ['YOURAPP_SCALEKIT_CLIENT_SECRET'],
+        "scope": "openid profile email"
+    }
+
+    response = requests.post(
+        url=f"{env_url}/oauth/token",
+        headers=headers,
+        data=params,
+        verify=True
+    )
+
+    access_token = response.json().get('access_token')
+    return access_token
+```
+
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 
 The server returns a JSON response containing the access token:
@@ -143,7 +179,7 @@ curl -s "https://<YOURAPP_ENVIRONMENT_URL>/keys" | jq
 </CodeWithHeader>
 
 
-<CodeWithHeader title="Token Validation with Node.js">
+<CodeWithHeader title="Token Validation">
 
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
@@ -207,6 +243,54 @@ app.listen(3000, () => {
 ```
 
 </TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+
+# Create an M2M client for GitHub Actions deployment
+m2m_client = OrganizationClient(
+    name="GitHub Actions Deployment Service",
+    description="Service account for GitHub Actions to deploy applications to production",
+    custom_claims=[
+        {
+            "key": "github_repository",
+            "value": "acmecorp/inventory-service"
+        },
+        {
+            "key": "environment",
+            "value": "production_us"
+        }
+    ],
+    scopes=["deploy:applications", "read:deployments"],
+    audience=["deployment-api.acmecorp.com"],
+    expiry=3600
+)
+
+# Create the M2M client in Scalekit
+response = scalekit_client.m2m_client.create_organization_client(
+    organization_id=org_id,
+    m2m_client=m2m_client
+)
+
+# Extract client credentials
+client_id = response[0].client.client_id
+client_secret = response[0].plain_secret
+
+# Generate access token
+token_response = scalekit_client.generate_client_token(
+    client_id=client_id,
+    client_secret=client_secret
+)
+
+token = token_response["access_token"]
+
+# Validate token and get claims
+claims = scalekit_client.validate_access_token_and_get_claims(token=token)
+```
+
+</TabItem>
+
 </Tabs>
 
 </CodeWithHeader>
