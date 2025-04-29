@@ -9,12 +9,9 @@ displayed_sidebar: integrationsSidebar
 
 # Okta SAML
 
-<Subtitle>
-  Step-by-step guide to configure Single Sign-on with Okta as the Identity
-  Provider.
-</Subtitle>
+<Subtitle>Step-by-step guide to configure single sign-on with Okta as the identity provider</Subtitle>
 
-### 1. Create Enterprise Application
+### 1. Create enterprise application
 
 Login to your **Okta Admin Console**. Go to **Applications→ Applications.**
 
@@ -46,7 +43,7 @@ Give your app a name, choose your app visibility settings, and click on **Next.*
   <figcaption>General Settings for SAML integration</figcaption>
 </figure>
 
-### 2. SAML Configuration
+### 2. SAML configuration
 
 Copy the **SSO URL** from the **SSO Configuration Portal**. Paste this link in the space for **SSO URL** on the **Okta Admin Console**.
 
@@ -84,7 +81,7 @@ You can leave the Default Relay State as blank. Similarly, select your preferenc
   <figcaption>Selecting preferences on Okta Admin Console</figcaption>
 </figure>
 
-### 3. Attribute Mapping
+### 3. Attribute mapping
 
 Check the **Attribute Mapping** section in the **SSO Configuration Portal**, and carefully map the same attributes on your Okta Admin Console.
 
@@ -100,7 +97,7 @@ Check the **Attribute Mapping** section in the **SSO Configuration Portal**, and
   <figcaption>Attribute mapping on Okta Admin Console</figcaption>
 </figure>
 
-### 4. Assign User/Group
+### 4. Assign user/group
 
 Go to the **Assignments** tab.
 
@@ -125,7 +122,7 @@ Click on **Assign** next to the people you want to assign it to. Click on **Save
   <figcaption>Assign specific individuals or groups to app</figcaption>
 </figure>
 
-### 5. Finalize App
+### 5. Finalize app
 
 Preview your SAML Assertion generated, and click on **Next.**
 
@@ -142,7 +139,7 @@ Fill the feedback form, and click on **Finish** once done.
   <figcaption>Feedback form after configuring SAML</figcaption>
 </figure>
 
-### 6. Upload IdP Metadata URL
+### 6. Upload IdP metadata URL
 
 On the **Sign On** tab copy the **Metadata URL** from the **Metadata Details** section on **Okta Admin Console.**
 
@@ -160,7 +157,7 @@ Under **Identify Provider Configuration,** select **Configure using Metadata URL
   <figcaption>Paste Metadata URL on SSO Configuration Portal</figcaption>
 </figure>
 
-### 7. Test Connection
+### 7. Test connection
 
 Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
