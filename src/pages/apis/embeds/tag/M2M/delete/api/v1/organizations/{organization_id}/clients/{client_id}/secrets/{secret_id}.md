@@ -13,9 +13,9 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 
 ```python showLineNumbers
 # Get client and secret IDs from environment variables
-org_id = 'SCALEKIT_ORGANIZATION_ID'
-client_id = os.environ['SCALEKIT_CLIENT_ID']
-secret_id = os.environ['SCALEKIT_M2M_SECRET_ID']
+org_id = '<SCALEKIT_ORGANIZATION_ID>'
+client_id = os.environ['M2M_CLIENT_ID']
+secret_id = os.environ['M2M_SECRET_ID']
 
 # Remove the specified secret from the client
 response = sc.m2m_client.remove_organization_client_secret(

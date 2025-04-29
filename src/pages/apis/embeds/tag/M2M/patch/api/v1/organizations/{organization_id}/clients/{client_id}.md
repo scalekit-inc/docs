@@ -38,6 +38,9 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 ```python showLineNumbers
 from scalekit.v1.clients.clients_pb2 import OrganizationClient
 
+org_id = '<SCALEKIT_ORGANIZATION_ID>'
+client_id = os.environ['M2M_CLIENT_ID']
+
 update_m2m_client = OrganizationClient(
     description="Service account for GitHub Actions to deploy applications to production_eu",
     custom_claims=[

@@ -13,7 +13,7 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 ```python showLineNumbers
 # Get client ID from environment variables
 org_id = 'SCALEKIT_ORGANIZATION_ID'
-client_id = os.environ['SCALEKIT_CLIENT_ID']
+client_id = os.environ['M2M_CLIENT_ID']
 
 # Add a new secret to the specified client
 response = sc.m2m_client.add_organization_client_secret(
@@ -31,7 +31,7 @@ secret_id = response[0].secret.id
 <CodeWithHeader title="Response">
 
 <JsonViewer src={{
-    "plain_secret": "test_****************************u5y0",
+    "plain_secret": "test_random_secret_u5y0",
     "secret": {
         "id": "sks_68320656441213544",
         "create_time": "2025-04-16T07:44:44.580Z",

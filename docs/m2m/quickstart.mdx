@@ -67,6 +67,8 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
 ```python
 from scalekit.v1.clients.clients_pb2 import OrganizationClient
 
+org_id = "SCALEKIT_ORGANIZATION_ID"
+
 m2m_client = OrganizationClient(
     name="GitHub Actions Deployment Service",
     description="Service account for GitHub Actions to deploy applications to production",
@@ -86,7 +88,7 @@ m2m_client = OrganizationClient(
 )
 
 response = scalekit_client.m2m_client.create_organization_client(
-    organization_id=org_id,
+    organization_id="SCALEKIT_ORGANIZATION_ID",
     m2m_client=m2m_client
 )
 
@@ -178,7 +180,6 @@ curl -X POST \
 <TabItem value="python" label="Python">
 
 ```python
-
 client_id = "M2M_CLIENT_ID"
 client_secret = "M2M_CLIENT_SECRET"
 

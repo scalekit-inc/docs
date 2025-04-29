@@ -11,11 +11,13 @@ When creating an M2M client via the API, your application specifies the required
 
 <CodeWithHeader title="Register an M2M client with specific scopes">
 
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
 ```sh
 curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_ID>/clients' \
 -H 'Content-Type: application/json' \
 -H 'Authorization: Bearer <SCALEKIT_ACCESS_TOKEN>' \
-# Remember to replace placeholders like <SCALEKIT_ACCESS_TOKEN> with actual values.
 -d '{
     "name": "GitHub Actions Deployment Service",
     "description": "Service account for GitHub Actions to deploy applications to production",
@@ -26,6 +28,33 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
     "expiry": 3600 # Token expiry time in seconds
 }'
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+# Import and initialize the Scalekit client as sc
+
+m2m_client = OrganizationClient(
+    name="GitHub Actions Deployment Service",
+    description="Service account for GitHub Actions to deploy to production",
+    custom_claims=[
+        {"key": "github_repository", "value": "acmecorp/inventory-service"},
+        {"key": "environment", "value": "production_us"}
+    ],
+    scopes=["deploy:applications", "read:deployments"],
+    audience=["deployment-api.acmecorp.com"],
+    expiry=3600
+)
+
+response = sc.m2m_client.create_organization_client(
+    organization_id="SCALEKIT_ORGANIZATION_ID",
+    m2m_client=m2m_client
+)
+```
+</TabItem>
+</Tabs>
+
 </CodeWithHeader>
 
 The API returns a JSON object [containing comprehensive information](/m2m/quickstart#register-m2m-client) about the newly created M2M client. Your application (acting as the M2M server) should securely provide only the <SimpleCode>client_id</SimpleCode> and <SimpleCode>client_secret</SimpleCode> from the response to the M2M client application that needs to authenticate.
