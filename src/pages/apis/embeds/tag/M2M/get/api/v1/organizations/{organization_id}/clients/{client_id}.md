@@ -8,6 +8,21 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 ```
 
 </TabItem>
+<TabItem value="python" label="Python">
+
+```python showLineNumbers
+# Get organization and client IDs from environment variables
+org_id = os.environ['SCALEKIT_ORG_ID']
+client_id = os.environ['SCALEKIT_CLIENT_ID']
+
+# Fetch client details for the specified organization
+response = scalekit_client.m2m_client.get_organization_client(
+    organization_id=org_id,
+    client_id=client_id
+)
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">
