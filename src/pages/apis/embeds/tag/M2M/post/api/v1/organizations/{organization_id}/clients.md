@@ -52,7 +52,7 @@ m2m_client = OrganizationClient(
 )
 
 response = sc.m2m_client.create_organization_client(
-    organization_id=org_id,
+    organization_id="SCALEKIT_ORGANIZATION_ID",
     m2m_client=m2m_client
 )
 ```

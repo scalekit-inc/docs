@@ -13,8 +13,8 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 
 ```python showLineNumbers
 # Get client ID from environment variables
-org_id = 'SCALEKIT_ORGANIZATION_ID'
-client_id = os.environ['SCALEKIT_CLIENT_ID']
+org_id = '<SCALEKIT_ORGANIZATION_ID>'
+client_id = os.environ['M2M_CLIENT_ID']
 
 # Delete the specified client from the organization
 response = sc.m2m_client.delete_organization_client(
