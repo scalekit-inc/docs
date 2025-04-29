@@ -2,11 +2,11 @@
 displayed_sidebar: integrationsSidebar
 ---
 
-# Okta Directory
+# Okta directory
 
 <Subtitle>Integrate Okta with the host application for seamless user management</Subtitle>
 
-This guide is designed to help <TermTip jargon="administrator"/>s seamlessly sync their Okta Directory with an
+This guide is designed to help <TermTip jargon="administrator"/>s seamlessly sync their Okta directory with an
 application they want to onboard to their organization. By integrating your application with Okta, you can automate user
 management tasks and ensure that access rights are consistently up-to-date.
 
@@ -19,7 +19,7 @@ This registration sets up the following:
 
 By setting up these components, you enable seamless synchronization between your application and the Okta directory.
 
-## 1. Create an Endpoint and API Token
+## 1. Create an endpoint and API token
 
 Open the <TermTip jargon="Admin Portal" /> from the app being onboarded and select the "Directory Sync" tab. A list of Directory
 Providers will be displayed. Choose "Okta" as your Directory Provider. If the Admin Portal is not accessible from the
@@ -38,7 +38,7 @@ app, request instructions from the app owner.
 After selecting "Okta," click "Configure." This action will generate an Endpoint URL and Bearer token for your
 organization, allowing the app to listen to events and maintain synchronization with your organization.
 
-## 2. Add a New Application in Okta
+## 2. Add a new application in Okta
 
 Log in to the Okta admin dashboard and navigate to "Applications" in the main menu.
 
@@ -69,7 +69,7 @@ The default configuration is typically sufficient for most applications. However
 settings, such as Attribute Statements, configure these on the Sign-On Options page. Complete the application creation
 process by clicking "Done."
 
-## 3. Enable Sending and Receiving Events in Provisioning Settings
+## 3. Enable sending and receiving events in provisioning settings
 
 In your application's Enterprise Okta admin panel, navigate to the "Provisioning" tab and select "Configure API
 Integration."
@@ -94,7 +94,7 @@ complete the provisioning process for your application.
   <figcaption>Saving verified SCIM API integration settings for Hero SaaS in Okta</figcaption>
 </figure>
 
-## 4. Provisioning Options for the App being onboarded
+## 4. Provisioning options for the app being onboarded
 
 In the "To App" navigation section, enable the following options:
 
@@ -111,7 +111,7 @@ After enabling these options, click "Save" to apply the changes.These settings a
 actions in your application, including creating new user accounts, updating existing user information, and deactivating
 user accounts when necessary.
 
-## 5. User and Group Assignment
+## 5. User and group assignment
 
 <figure>
   ![Assigning users to Hero SaaS in Okta: Options to assign to individuals or groups](@site/docs/scim/assets/integrations/okta-scim/10.png)

@@ -6,8 +6,6 @@ displayed_sidebar: integrationsSidebar
 
 <Subtitle>Integrate JumpCloud with the host application for seamless user management</Subtitle>
 
-## Overview
-
 This guide helps <TermTip jargon="administrator"/>s integrate JumpCloud with
 the host application using <TermTip jargon="SCIM"/> provisioning. Following these steps automates
 user management tasks and ensures access rights remain consistently updated.
@@ -21,7 +19,7 @@ This integration sets up:
 
 When configured correctly, these components enable seamless synchronization between JumpCloud and the host application.
 
-## Create an Endpoint and API Token
+## 1. Create an endpoint and API token
 
 Open the <TermTip jargon="Admin Portal" /> and select the "SCIM
 Provisioning" tab. Select "JumpCloud" from the list of Directory Providers. If you can't access the Admin Portal,
@@ -43,7 +41,7 @@ contact the application owner for instructions.
 This generates an Endpoint URL and Bearer token for your organization, allowing the host application
 to listen to events and maintain synchronization with your organization.
 
-## Add a New Application in JumpCloud
+## 2. Add a new application in JumpCloud
 
 1. Go to the JumpCloud Admin Portal > SSO Applications and click on "+ Add New Application."
 
@@ -76,7 +74,7 @@ to listen to events and maintain synchronization with your organization.
   <figcaption>Successfully added the application in JumpCloud</figcaption>
 </figure>
 
-## Configure Provisioning Settings
+## 3. Configure provisioning settings
 
 Click on "Configure Application" and proceed to configure the application settings. This opens a
 modal with "Identity Management" selected. Enter the Endpoint URL and Bearer Token provided in the Admin Portal.
@@ -95,7 +93,7 @@ Explore the logs in the Admin Portal's Events section to troubleshoot any connec
 
 :::
 
-## Group Management
+## 4. Group management
 
 If the host application supports groups, JumpCloud will display a "Group Management" section. JumpCloud uses
 groups as the primary way to provision users to the host application.
@@ -108,7 +106,7 @@ groups as the primary way to provision users to the host application.
 
 Click "Activate" and then "Save".
 
-## User and Group Assignment
+## 5. User and group assignment
 
 To assign users to the host application:
 
@@ -131,7 +129,7 @@ Organize your users into groups for easier management and assignment of permissi
 
 :::
 
-## Verification
+## 6. Verification
 
 After completing these steps, verify that users and groups are successfully synced between the host application
 and JumpCloud. Check for any errors or issues in the connection logs.
