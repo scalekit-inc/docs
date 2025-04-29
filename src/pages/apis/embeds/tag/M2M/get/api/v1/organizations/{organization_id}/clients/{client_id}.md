@@ -16,7 +16,7 @@ org_id = 'SCALEKIT_ORGANIZATION_ID'
 client_id = os.environ['SCALEKIT_CLIENT_ID']
 
 # Fetch client details for the specified organization
-response = scalekit_client.m2m_client.get_organization_client(
+response = sc.m2m_client.get_organization_client(
     organization_id=org_id,
     client_id=client_id
 )

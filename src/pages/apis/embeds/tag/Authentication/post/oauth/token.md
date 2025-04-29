@@ -39,7 +39,7 @@ error_description = request.args.get('error_description')
 if error:
     raise Exception(error_description)
 
-result = scalekit_client.authenticate_with_code(
+result = sc.authenticate_with_code(
   code,
   "<redirect_uri>"
 )

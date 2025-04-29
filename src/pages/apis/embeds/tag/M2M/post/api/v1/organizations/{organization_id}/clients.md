@@ -51,7 +51,7 @@ m2m_client = OrganizationClient(
     expiry=3600
 )
 
-response = scalekit_client.m2m_client.create_organization_client(
+response = sc.m2m_client.create_organization_client(
     organization_id=org_id,
     m2m_client=m2m_client
 )

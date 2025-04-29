@@ -21,7 +21,7 @@ const { directory } = await scalekit.directory.getDirectory(
 <TabItem value="py" label="Python">
 
 ```python
-directory = scalekit_client.directory.get_directory(
+directory = sc.directory.get_directory(
   directory_id='<directory_id>', organization_id='<organization_id>'
 )
 print(f'Directory details: {directory}')
@@ -54,9 +54,8 @@ Directory directory = scalekitClient.directories().getDirectory(directoryId, org
 <TabItem value="nodejs" label="Node.js">
 
 ```js
-const { directory } = await scalekit.directory.getPrimaryDirectoryByOrganizationId(
-  organizationId
-  );
+const { directory } =
+  await scalekit.directory.getPrimaryDirectoryByOrganizationId(organizationId);
 ```
 
 </TabItem>
@@ -64,7 +63,7 @@ const { directory } = await scalekit.directory.getPrimaryDirectoryByOrganization
 <TabItem value="py" label="Python">
 
 ```python
-primary_directory = scalekit_client.directory.get_primary_directory_by_organization_id(
+primary_directory = sc.directory.get_primary_directory_by_organization_id(
   organization_id='<organization_id>'
 )
 ```

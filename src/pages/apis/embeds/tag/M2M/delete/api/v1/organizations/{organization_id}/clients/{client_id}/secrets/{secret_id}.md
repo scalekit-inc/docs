@@ -18,7 +18,7 @@ client_id = os.environ['SCALEKIT_CLIENT_ID']
 secret_id = os.environ['SCALEKIT_M2M_SECRET_ID']
 
 # Remove the specified secret from the client
-response = scalekit_client.m2m_client.remove_organization_client_secret(
+response = sc.m2m_client.remove_organization_client_secret(
     organization_id=org_id,
     client_id=client_id,
     secret_id=secret_id

@@ -26,16 +26,17 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{organiza
 
 ```js
 const settings = {
-  features: [{
-    name: 'sso',
-    enabled: true
-  },
-  {
-    name: 'dir_sync',
-    enabled: true
+  features: [
+    {
+      name: 'sso',
+      enabled: true,
+    },
+    {
+      name: 'dir_sync',
+      enabled: true,
     },
   ],
-}
+};
 
 await sc.organization.updateOrganizationSettings('<organization_id>', settings);
 ```
@@ -55,7 +56,7 @@ settings = [
         }
     ]
 
-scalekit_client.organization.update_organization_settings(
+sc.organization.update_organization_settings(
   organization_id='<organization_id>', settings=settings
 )
 ```

@@ -17,7 +17,7 @@ org_id = 'SCALEKIT_ORGANIZATION_ID'
 client_id = os.environ['SCALEKIT_CLIENT_ID']
 
 # Delete the specified client from the organization
-response = scalekit_client.m2m_client.delete_organization_client(
+response = sc.m2m_client.delete_organization_client(
     organization_id=org_id,
     client_id=client_id
 )

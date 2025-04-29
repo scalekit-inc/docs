@@ -46,7 +46,7 @@ update_m2m_client = OrganizationClient(
     ]
 )
 
-response = scalekit_client.m2m_client.update_organization_client(
+response = sc.m2m_client.update_organization_client(
     organization_id=org_id,
     client_id=client_id,
     m2m_client=update_m2m_client

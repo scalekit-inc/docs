@@ -20,7 +20,11 @@ curl --request GET \
 import { ScalekitClient } from '@scalekit-sdk/node';
 
 // Initialize the SDK client
-const scalekit = new ScalekitClient('<SCALEKIT_ENVIRONMENT_URL>', '<SCALEKIT_CLIENT_ID>', '<SCALEKIT_CLIENT_SECRET>');
+const scalekit = new ScalekitClient(
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
+);
 
 const options = {};
 
@@ -44,7 +48,7 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 from scalekit import ScalekitClient, AuthorizationUrlOptions, CodeAuthenticationOptions
 
 # Initialize the SDK client
-scalekit_client = ScalekitClient(
+sc = ScalekitClient(
   "<SCALEKIT_ENVIRONMENT_URL>",
   "<SCALEKIT_CLIENT_ID>",
   "<SCALEKIT_CLIENT_SECRET>"
@@ -62,7 +66,7 @@ options.login_hint = 'user@example.com'
 # Option 3: Authorization URL with the connection ID
 options.connection_id = 'conn_15696105471768821'
 
-authorization_url = scalekit_client.get_authorization_url(
+authorization_url = sc.get_authorization_url(
   redirect_uri=<redirect_uri>,
   options=options
 )

@@ -16,7 +16,7 @@ org_id = 'SCALEKIT_ORGANIZATION_ID'
 client_id = os.environ['SCALEKIT_CLIENT_ID']
 
 # Add a new secret to the specified client
-response = scalekit_client.m2m_client.add_organization_client_secret(
+response = sc.m2m_client.add_organization_client_secret(
     organization_id=org_id,
     client_id=client_id
 )

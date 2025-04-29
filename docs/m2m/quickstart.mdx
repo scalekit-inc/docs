@@ -178,33 +178,9 @@ curl -X POST \
 <TabItem value="python" label="Python">
 
 ```python
-from scalekit.v1.clients.clients_pb2 import OrganizationClient
 
-m2m_client = OrganizationClient(
-    name="GitHub Actions Deployment Service",
-    description="Service account for GitHub Actions to deploy applications to production",
-    custom_claims=[
-        {
-            "key": "github_repository",
-            "value": "acmecorp/inventory-service"
-        },
-        {
-            "key": "environment",
-            "value": "production_us"
-        }
-    ],
-    scopes=["deploy:applications", "read:deployments"],
-    audience=["deployment-api.acmecorp.com"],
-    expiry=3600
-)
-
-response = scalekit_client.m2m_client.create_organization_client(
-    organization_id=org_id,
-    m2m_client=m2m_client
-)
-
-client_id = response[0].client.client_id
-client_secret = response[0].plain_secret
+client_id = "M2M_CLIENT_ID"
+client_secret = "M2M_CLIENT_SECRET"
 
 token_response = scalekit_client.generate_client_token(
     client_id=client_id,

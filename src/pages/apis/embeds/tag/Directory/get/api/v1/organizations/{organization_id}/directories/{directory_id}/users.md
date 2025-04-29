@@ -11,14 +11,17 @@ curl --location 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<organi
 <TabItem value="nodejs" label="Node.js">
 
 ```js
-const { users } = await scalekit.directory.listDirectoryUsers('<organization_id>', '<directory_id>');
+const { users } = await scalekit.directory.listDirectoryUsers(
+  '<organization_id>',
+  '<directory_id>'
+);
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
 ```python showLineNumbers
-directory_users = scalekit_client.directory.list_directory_users(
+directory_users = sc.directory.list_directory_users(
   directory_id='<directory_id>', organization_id='<organization_id>'
 )
 ```

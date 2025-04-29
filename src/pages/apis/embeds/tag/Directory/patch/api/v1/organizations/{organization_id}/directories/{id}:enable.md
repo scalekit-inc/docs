@@ -11,17 +11,14 @@ curl --location --request PATCH 'https://$ENV_URL/api/v1/organizations/{organiza
 <TabItem value="nodejs" label="Node.js">
 
 ```js
-await sc.directory.enableDirectory(
-  '<organization_id>',
-  '<directory_id>'
-);
+await sc.directory.enableDirectory('<organization_id>', '<directory_id>');
 ```
 
 </TabItem>
 <TabItem value="py" label="Python">
 
 ```python
-directory_response = scalekit_client.directory.enable_directory(
+directory_response = sc.directory.enable_directory(
   directory_id='<directory_id>', organization_id='<organization_id>'
 )
 ```
