@@ -2,7 +2,7 @@
 pagination_next: null
 pagination_prev: null
 displayed_sidebar: integrationsSidebar
-title: "Configuring Single Sign-on using OIDC with any Identity Provider"
+title: "Configuring Single Sign-on using OIDC with any identity provider"
 description: "A step-by-step guide to setting up OIDC-based Single Sign-on with any Identity Provider, including configuration, attributes mapping, and testing."
 keywords: ["OIDC", "Single Sign-on", "SSO", "Identity Provider", "Custom Provider", "OpenID Connect", "Authentication", "Authorization"]
 ---
@@ -14,7 +14,9 @@ keywords: ["OIDC", "Single Sign-on", "SSO", "Identity Provider", "Custom Provide
   Provider.
 </Subtitle>
 
-### 1. OIDC Configuration
+This guide helps administrators configure Single Sign-on using OIDC with any Identity Provider
+
+## 1. OIDC configuration
 
 Sign into the SSO Configuration Portal, select **Custom Provider**, then **OIDC,** and click on **Configure.**
 
@@ -36,7 +38,7 @@ On your Identity Provider portal, select OIDC as the integration method, and Web
 
 Paste this Redirect URI in the sign in redirect URI space on your identity provider portal
 
-### 2. Attributes Mapping
+## 2. Attributes mapping
 
 On your identity provider portal, if attribute mapping is required, map the given attributes exactly as shown below.
 
@@ -52,11 +54,11 @@ Usually, you don't have to configure any attributes and by default - most identi
   <figcaption>Map exact attributes shown</figcaption>
 </figure>
 
-### 3. Assign User/Group
+## 3. Assign user/group
 
 Choose who can access the app by assigning users to your app on your identity provider portal.
 
-### 4. IdP configuration
+## 4. IdP configuration
 
 Find the client ID from your identity provider portal. Paste this in the space for Client ID on your SSO Configuration Portal.
 
@@ -78,7 +80,7 @@ Similarly, generate and copy the Client Secret from your SSO Configuration Porta
   </figcaption>
 </figure>
 
-Find and copy the Issuer URL from your custom provider’s portal.Paste the above URL in the **SSO configuration Portal** under **Issuer URL**. Click on Update.
+Find and copy the Issuer URL from your custom provider's portal.Paste the above URL in the **SSO configuration Portal** under **Issuer URL**. Click on Update.
 
 <figure>
   ![Enter copied Issuer URL, and click
@@ -92,9 +94,9 @@ We support configuring Issuer URL field with Discovery Endpoint also.
 Discovery Endpoints usually end with ./well-known/openid-configuration
 :::
 
-### 6. Finalize App
+### 6. Finalize app
 
-Your IdP configuration section on the SSO Configuration Portal should look something like this once you’re done configuring it.
+Your IdP configuration section on the SSO Configuration Portal should look something like this once you're done configuring it.
 
 <figure>
   ![Completed view of IdP configuration on the SSO Configuration
@@ -104,11 +106,11 @@ Your IdP configuration section on the SSO Configuration Portal should look somet
   </figcaption>
 </figure>
 
-### 7. Test Connection
+### 7. Test connection
 
 Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
-If the connection fails, you’ll see an error, the reason for the error, and a way to solve that error right on the screen.
+If the connection fails, you'll see an error, the reason for the error, and a way to solve that error right on the screen.
 
 <figure>
   ![Test SSO
