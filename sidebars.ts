@@ -324,7 +324,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'PingIdenity - SAML',
+      label: 'PingIdentity - SAML',
       id: 'integrations/pingidentity-saml',
     },
     {
@@ -429,12 +429,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Github',
+      label: 'GitHub',
       id: 'integrations/social-connections/github',
     },
     {
       type: 'doc',
-      label: 'Gitlab',
+      label: 'GitLab',
       id: 'integrations/social-connections/gitlab',
     },
     {
