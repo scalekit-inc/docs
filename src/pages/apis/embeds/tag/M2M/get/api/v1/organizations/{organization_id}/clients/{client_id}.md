@@ -11,8 +11,8 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 <TabItem value="python" label="Python">
 
 ```python showLineNumbers
-# Get organization and client IDs from environment variables
-org_id = os.environ['SCALEKIT_ORG_ID']
+# Get client ID from environment variables
+org_id = 'SCALEKIT_ORGANIZATION_ID'
 client_id = os.environ['SCALEKIT_CLIENT_ID']
 
 # Fetch client details for the specified organization
