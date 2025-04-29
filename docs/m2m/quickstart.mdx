@@ -3,6 +3,8 @@ displayed_sidebar: m2mSidebar
 pagination_next: null
 ---
 
+import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
+
 # M2M quickstart guide
 
 This guide explains how to implement secure Machine-2-Machine (M2M) authentication using Scalekit. You will learn how to register a third-party client, authenticate its API requests using client credentials, and validate the received access tokens in your API server.
@@ -17,7 +19,9 @@ Before you begin, ensure you have:
 *   Familiarity with [authenticating requests to the Scalekit API](/m2m/authenticate-scalekit-api).
 *   (Optional) An understanding of how Scalekit uses [Organizations and external identifiers](/m2m/external-ids-and-metadata) to represent your customers. Each Organization can have multiple M2M clients.
 
-This guide does not cover installing or configuring Scalekit itself.
+You can use the Scalekit SDK for a more streamlined experience, or follow the curl examples if you prefer to work without the SDK.
+
+<InstallSDK />
 
 ## Register an M2M client
 
@@ -26,6 +30,9 @@ To allow an external system (an API consumer) to securely access your API, you f
 Register a new M2M client by making a POST request to the <SimpleCode>/organizations/&#123;organization_id&#125;/clients</SimpleCode> endpoint.
 
 <CodeWithHeader title="Register an M2M client">
+
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
 
 ```sh
 curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_ID>/clients' \
@@ -54,6 +61,40 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
     "expiry": 3600
 }'
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+
+m2m_client = OrganizationClient(
+    name="GitHub Actions Deployment Service",
+    description="Service account for GitHub Actions to deploy applications to production",
+    custom_claims=[
+        {
+            "key": "github_repository",
+            "value": "acmecorp/inventory-service"
+        },
+        {
+            "key": "environment",
+            "value": "production_us"
+        }
+    ],
+    scopes=["deploy:applications", "read:deployments"],
+    audience=["deployment-api.acmecorp.com"],
+    expiry=3600
+)
+
+response = scalekit_client.m2m_client.create_organization_client(
+    organization_id=org_id,
+    m2m_client=m2m_client
+)
+
+self.assertEqual(response[1].code().name, "OK")
+self.assertTrue(response[0].client.client_id is not None)
+```
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 
 
@@ -121,6 +162,10 @@ After registration, the M2M client authenticates with your Scalekit environment 
 The client sends a POST request to the <SimpleCode>/oauth/token</SimpleCode> endpoint:
 
 <CodeWithHeader title="Authenticate the M2M client">
+
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
 ```sh
 curl -X POST \
   "https://<SCALEKIT_ENVIRONMENT_URL>/oauth/token" \
@@ -129,6 +174,45 @@ curl -X POST \
   -d "client_id=<M2M_CLIENT_ID>" \
   -d "client_secret=<M2M_CLIENT_SECRET>" \
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+
+```python
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
+
+m2m_client = OrganizationClient(
+    name="GitHub Actions Deployment Service",
+    description="Service account for GitHub Actions to deploy applications to production",
+    custom_claims=[
+        {
+            "key": "github_repository",
+            "value": "acmecorp/inventory-service"
+        },
+        {
+            "key": "environment",
+            "value": "production_us"
+        }
+    ],
+    scopes=["deploy:applications", "read:deployments"],
+    audience=["deployment-api.acmecorp.com"],
+    expiry=3600
+)
+
+response = scalekit_client.m2m_client.create_organization_client(
+    organization_id=org_id,
+    m2m_client=m2m_client
+)
+
+client_id = response[0].client.client_id
+client_secret = response[0].plain_secret
+
+token_response = scalekit_client.generate_client_token(
+    client_id=client_id,
+    client_secret=client_secret
+)
+```
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 Refer to [API Authentication for M2M clients](/docs/m2m/api-auth-for-m2m-clients) for detailed information on how M2M clients authenticate.
 
@@ -155,6 +239,10 @@ Validate the token in two steps:
 1.  **Retrieve the Public Key:** Fetch the appropriate public key from your Scalekit environment's JSON Web Key Set (JWKS) endpoint. Use the <SimpleCode>kid</SimpleCode> (Key ID) from the JWT header to identify the correct key. Cache the key according to standard JWKS practices.
 
 <CodeWithHeader title="Retrieve the public key">
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
+
+
 ```js
 import jwksClient from 'jwks-rsa';
 
@@ -172,10 +260,23 @@ async function getPublicKey(header: any): Promise<string> {
   });
 }
 ```
+</TabItem>
+
+<TabItem value="python" label="Python">
+
+```py
+# This is automatically taken care by Scalekit SDK
+```
+</TabItem>
+
+</Tabs>
+
 </CodeWithHeader>
 2.  **Verify the Token Signature:** Use the retrieved public key and a JWT library to verify the token's signature and claims (like issuer, audience, and expiration).
 
 <CodeWithHeader title="Verify the token signature">
+<Tabs groupId="tech-stack" querystring>
+<TabItem value="curl" label="cURL">
 ```js
 import jwt from 'jsonwebtoken';
 
@@ -192,6 +293,18 @@ async function verifyToken(token: string, publicKey: string) {
   }
 }
 ```
+</TabItem>
+<TabItem value="python" label="Python">
+```py
+# Token from the incoming API request's authorization header
+token = token_response["<M2M_JWT_ACCESS_TOKEN>"]
+
+claims = scalekit_client.validate_access_token_and_get_claims(
+    token=token
+)
+```
+</TabItem>
+</Tabs>
 </CodeWithHeader>
 Find complete code examples in the [Scalekit M2M Gists repository](https://github.com/scalekit-developers/gists/tree/main/m2m).
 
