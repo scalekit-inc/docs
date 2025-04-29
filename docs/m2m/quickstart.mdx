@@ -67,7 +67,7 @@ curl -L 'https://<SCALEKIT_ENVIRONMENT_URL>/api/v1/organizations/<ORGANIZATION_I
 ```python
 from scalekit.v1.clients.clients_pb2 import OrganizationClient
 
-org_id = "SCALEKIT_ORGANIZATION_ID"
+org_id = "<SCALEKIT_ORGANIZATION_ID>"
 
 m2m_client = OrganizationClient(
     name="GitHub Actions Deployment Service",
@@ -88,12 +88,9 @@ m2m_client = OrganizationClient(
 )
 
 response = scalekit_client.m2m_client.create_organization_client(
-    organization_id="SCALEKIT_ORGANIZATION_ID",
+    organization_id=org_id,
     m2m_client=m2m_client
 )
-
-self.assertEqual(response[1].code().name, "OK")
-self.assertTrue(response[0].client.client_id is not None)
 ```
 </TabItem>
 </Tabs>
