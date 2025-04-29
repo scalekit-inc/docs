@@ -182,7 +182,7 @@ curl -s "https://<YOURAPP_ENVIRONMENT_URL>/keys" | jq
 <CodeWithHeader title="Token Validation">
 
 <Tabs groupId="tech-stack" queryString>
-<TabItem value="nodejs" label="Node.js">
+<TabItem value="nodejs" label="jwksClient (Node.js)">
 
 ```javascript
 const express = require('express');
@@ -246,47 +246,10 @@ app.listen(3000, () => {
 <TabItem value="python" label="Python">
 
 ```python
-from scalekit.v1.clients.clients_pb2 import OrganizationClient
-
-# Create an M2M client for GitHub Actions deployment
-m2m_client = OrganizationClient(
-    name="GitHub Actions Deployment Service",
-    description="Service account for GitHub Actions to deploy applications to production",
-    custom_claims=[
-        {
-            "key": "github_repository",
-            "value": "acmecorp/inventory-service"
-        },
-        {
-            "key": "environment",
-            "value": "production_us"
-        }
-    ],
-    scopes=["deploy:applications", "read:deployments"],
-    audience=["deployment-api.acmecorp.com"],
-    expiry=3600
-)
-
-# Create the M2M client in Scalekit
-response = scalekit_client.m2m_client.create_organization_client(
-    organization_id=org_id,
-    m2m_client=m2m_client
-)
-
-# Extract client credentials
-client_id = response[0].client.client_id
-client_secret = response[0].plain_secret
-
-# Generate access token
-token_response = scalekit_client.generate_client_token(
-    client_id=client_id,
-    client_secret=client_secret
-)
-
-token = token_response["access_token"]
-
-# Validate token and get claims
-claims = scalekit_client.validate_access_token_and_get_claims(token=token)
+# Validate token and get claims using Scalekit SDK
+claims = scalekit_client.validate_access_token_and_get_claims(
+  token="<M2M_CLIENT_ACCESS_TOKEN>"
+  )
 ```
 
 </TabItem>
@@ -294,9 +257,6 @@ claims = scalekit_client.validate_access_token_and_get_claims(token=token)
 </Tabs>
 
 </CodeWithHeader>
-
-
-## Security best practices
 
 When implementing token validation:
 
@@ -306,6 +266,6 @@ When implementing token validation:
 4. Implement token revocation checks for sensitive operations
 5. Use HTTPS for all API endpoints
 
-## SDK support status
+#### SDK support status
 
 Our [Python SDK](https://github.com/scalekit-inc/scalekit-sdk-python) currently includes support for M2M authentication. The support to verify tokens is coming soon to Node, Java, and Go SDKs.

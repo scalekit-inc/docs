@@ -18,7 +18,7 @@ await scalekit.directory.listDirectories('<organization_id>');
 <TabItem value="py" label="Python">
 
 ```python
-directories_list = scalekit_client.directory.list_directories(
+directories_list = sc.directory.list_directories(
 	organization_id='<organization_id>'
 )
 ```

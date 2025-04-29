@@ -11,7 +11,9 @@ keywords: ["JumpCloud SAML", "Single Sign-On", "SSO", "Identity Provider", "Ente
 
 <Subtitle>Step-by-step guide to configure single sign-on with JumpCloud as the identity provider</Subtitle>
 
-### 1. Download metadata XML
+This guide walks you through configuring JumpCloud as your SAML identity provider for the application you are onboarding, enabling secure single sign-on for your users. You'll learn how to set up an enterprise application, configure SAML settings to the host application. By following these steps, your users will be able to seamlessly authenticate using their JumpCloud credentials.
+
+## 1. Download metadata XML
 
 Sign into the SSO Configuration Portal, select **JumpCloud,** then **SAML,** and click on **Configure.**
 
@@ -22,7 +24,7 @@ Under **Service Provider Details,** click on **Download Metadata XML**.
   <figcaption>Download Metadata XML</figcaption>
 </figure>
 
-### 2. Create enterprise application
+## 2. Create enterprise application
 
 Login to your JumpCloud Portal. Go to **SSO Applications**.
 
@@ -57,7 +59,7 @@ Click on **Configure Application.**
   <figcaption>Click on Configure application</figcaption>
 </figure>
 
-### 3. SAML configuration
+## 3. SAML configuration
 
 Go to the **SSO** tab**.** Upload the downloaded Metadata XML (from the SSO Configuration Portal) under **Service Provider Metadata→ Upload Metadata.**
 
@@ -97,7 +99,7 @@ From your **SSO Configuration Portal**, copy the **SP Entity ID**. On your JumpC
   <figcaption>Paste it under Default URL on JumpCloud Portal </figcaption>
 </figure>
 
-### 4. Attribute mapping
+## 4. Attribute mapping
 
 In the SSO tab, scroll to find **Attributes.**
 
@@ -121,7 +123,7 @@ Check the **Attribute Mapping** section in the **SSO Configuration Portal**, and
   <figcaption>Attribute Mapping on JumpCloud Portal</figcaption>
 </figure>
 
-### 5. Assign users
+## 5. Assign users
 
 Go to the **User Groups** tab. Select appropriate users/groups you want to assign to this application, and click on **Save** once done.
 
@@ -131,7 +133,7 @@ Go to the **User Groups** tab. Select appropriate users/groups you want to assig
   <figcaption>Assign individuals or groups to your application</figcaption>
 </figure>
 
-### 6. Upload IdP metadata URL
+## 6. Upload IdP metadata URL
 
 On your JumpCloud Portal, click on **SSO.** Copy the **Copy Metadata URL**.
 
@@ -149,7 +151,7 @@ Under **Identify Provider Configuration,** select **Configure using Metadata URL
   <figcaption>Paste Metadata URL on SSO Configuration Portal</figcaption>
 </figure>
 
-### 7. Test connection
+## 7. Test connection
 
 Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
@@ -160,7 +162,7 @@ If the connection fails, you'll see an error, the reason for the error, and a wa
   <figcaption>Test SSO configuration </figcaption>
 </figure>
 
-### 8. Enable connection
+## 8. Enable connection
 
 Click on **Enable Connection.** This will let all your selected users login to the new application via your JumpCloud SSO.
 

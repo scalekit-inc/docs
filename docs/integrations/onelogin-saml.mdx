@@ -26,7 +26,9 @@ keywords:
 
 <Subtitle>Step-by-step guide to configure single sign-on with OneLogin as the identity provider</Subtitle>
 
-### 1. Creating enterprise application
+This guide walks you through configuring OneLogin as your SAML identity provider for the application you are onboarding, enabling secure single sign-on for your users. You'll learn how to set up an enterprise application, configure SAML settings to the host application. By following these steps, your users will be able to seamlessly authenticate using their OneLogin credentials.
+
+## 1. Creating enterprise application
 
 Login to your **OneLogin Portal**. Go to **Applications→ Applications.**
 
@@ -58,7 +60,7 @@ OneLogin portal., select your icon (optional) and then click on **Save.**
   <figcaption>Click on Save</figcaption>
 </figure>
 
-### 2. SAML configuration
+## 2. SAML configuration
 
 On the Application page click on **Configuration.**
 
@@ -106,7 +108,7 @@ Click on **Save**.
   <figcaption>Locate Save</figcaption>
 </figure>
 
-### 3. Attribute mapping
+## 3. Attribute mapping
 
 Go to the **Parameters** tab on **OneLogin Admin Portal**, and click on the plus (+) sign to add attributes.
 
@@ -128,7 +130,7 @@ attributes** on your **OneLogin Admin Portal**.
   <figcaption>Paste attributes on OneLogin Admin Portal</figcaption>
 </figure>
 
-### 4. Assign user/group
+## 4. Assign user/group
 
 Go to the **Users** tab.
 
@@ -165,7 +167,7 @@ Click on **Save**.
   <figcaption>Save user assignment to application</figcaption>
 </figure>
 
-### 5. Upload IdP metadata URL
+## 5. Upload IdP metadata URL
 
 On **OneLogin Admin Portal**, click on SSO. Copy the **Issuer URL**.
 
@@ -182,7 +184,7 @@ Metadata URL** on the **SSO Configuration Portal.**
   <figcaption>Paste Issuer URL on SSO Configuration Portal </figcaption>
 </figure>
 
-### 6. Test connection
+## 6. Test connection
 
 Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
@@ -194,7 +196,7 @@ screen.
   <figcaption>Test SSO Configuration</figcaption>
 </figure>
 
-### 7. Enable connection
+## 7. Enable connection
 
 Click on **Enable Connection.** This will let all your selected users login to the new application via your **OneLogin
 Admin Portal** SSO.
