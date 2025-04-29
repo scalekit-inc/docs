@@ -266,6 +266,11 @@ async function getPublicKey(header: any): Promise<string> {
 
 ```py
 # This is automatically taken care by Scalekit SDK
+token = token_response["<M2M_JWT_ACCESS_TOKEN>"]
+
+claims = scalekit_client.validate_access_token_and_get_claims(
+    token=token
+)
 ```
 </TabItem>
 

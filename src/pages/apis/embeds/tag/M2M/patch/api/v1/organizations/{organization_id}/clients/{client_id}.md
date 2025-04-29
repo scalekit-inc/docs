@@ -33,39 +33,22 @@ curl 'https://$ENV_URL/api/v1/organizations/{organization_id}/clients/{client_id
 ```
 
 </TabItem>
-</Tabs>
+<TabItem value="python" label="Python">
 
-</CodeWithHeader>
-<CodeWithHeader title="Response">
+```python showLineNumbers
+from scalekit.v1.clients.clients_pb2 import OrganizationClient
 
-<JsonViewer src={{
-    "client": {
-        "client_id": "m2morg_68315758685323697",
-        "secrets": [],
-        "name": "GitHub Actions Deployment Service",
-        "description": "Service account for GitHub Actions to deploy applications to production",
-        "organization_id": "org_59615193906282635",
-        "create_time": "2025-04-16T06:56:05.290Z",
-        "update_time": "2025-04-16T07:47:52.350199763Z",
-        "scopes": [
-            "deploy:applications",
-            "read:deployments"
-        ],
-        "audience": [
-            "https://api.example.com/api/analytics",
-            "https://deployment-api.acmecorp.com"
-        ],
-        "custom_claims": [
-            {
-                "key": "environment",
-                "value": "production"
-            },
-            {
-                "key": "service",
-                "value": "deployment"
-            }
-        ]
-    }
-}} />
+update_m2m_client = OrganizationClient(
+    description="Service account for GitHub Actions to deploy applications to production_eu",
+    custom_claims=[
+        {"key": "github_repository", "value": "acmecorp/inventory"},
+        {"key": "environment", "value": "production_eu"}
+    ]
+)
 
-</CodeWithHeader>
+response = scalekit_client.m2m_client.update_organization_client(
+    organization_id=org_id,
+    client_id=client_id,
+    m2m_client=update_m2m_client
+)
+```
