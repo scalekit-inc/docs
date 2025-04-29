@@ -1,5 +1,5 @@
 ---
-hide_table_of_contents: true
+hide_table_of_contents: false
 pagination_next: null
 pagination_prev: null
 displayed_sidebar: integrationsSidebar
@@ -22,18 +22,16 @@ keywords:
   Configure SAML authentication for your host application with various identity providers.
 </Subtitle>
 
-## Overview
-
 SAML (Security Assertion Markup Language) is an open standard for exchanging authentication and authorization data between parties, specifically between an identity provider (IdP) and a service provider (SP). This guide will help you configure SAML authentication for your host application with various identity providers.
 
-## Prerequisites
+**Prerequisites**
 
 Before configuring SAML, ensure you have:
 - Administrative access to your identity provider
 - Access to configure the host application
 - Basic understanding of SAML concepts
 
-## Configuration Steps
+**Configuration Steps**
 
 1. **Configure Identity Provider**
    - Log in to your identity provider's admin console
@@ -51,32 +49,6 @@ Before configuring SAML, ensure you have:
    - Initiate a test login from your identity provider
    - Verify successful authentication
    - Check attribute mapping and user provisioning
-
-## Common Identity Providers
-
-The host application supports integration with various identity providers including:
-- Azure AD
-- Okta
-- OneLogin
-- Ping Identity
-- Google Workspace
-
-## Troubleshooting
-
-If you encounter issues during SAML configuration:
-1. Verify metadata URLs are correct
-2. Check attribute mapping
-3. Ensure certificates are valid
-4. Review identity provider logs
-5. Check host application logs
-
-## Best Practices
-
-- Keep certificates up to date
-- Regularly review attribute mapping
-- Monitor authentication logs
-- Implement proper error handling
-- Follow security best practices
 
 ## 0. Create a SAML application
 

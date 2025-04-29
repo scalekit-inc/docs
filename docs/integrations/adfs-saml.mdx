@@ -9,7 +9,7 @@ displayed_sidebar: integrationsSidebar
   Step-by-step guide to configure single sign-on with Microsoft ADFS as the identity provider.
 </Subtitle>
 
-## 1. Choose Identity Provider
+## 1. Choose identity provider
 
 Choose Microsoft AD FS as your identity provider to begin the configuration in admin portal.
 
@@ -25,11 +25,11 @@ Download Metadata XML file so that you can configure AD FS Server going forward.
   <figcaption>Download Metadata XML</figcaption>
 </figure>
 
-## 2. Open AD FS Management Console
+## 2. Open AD FS management console
 
 Search for 'AD FS Management' in the start menu and open it.
 
-## 3. Create Relying Party Trust
+## 3. Create relying party trust
 
 In the left navigation pane, expand 'ADFS'
 
@@ -43,7 +43,7 @@ In the left navigation pane, expand 'ADFS'
 
 - Select 'Claims aware' as the trust type and click 'Next'
 
-## 4. Configure Federation Metadata File
+## 4. Configure federation metadata file
 
 Choose 'Import data about the relying party from a file'
 
@@ -55,7 +55,7 @@ Choose 'Import data about the relying party from a file'
   <figcaption>Select Data Source</figcaption>
 </figure>
 
-## 5. Set Display Name
+## 5. Set display name
 
 Enter a descriptive name for the application you are integrating with (e.g., "ExampleApp") and click 'Next' to continue
 
@@ -64,14 +64,14 @@ Enter a descriptive name for the application you are integrating with (e.g., "Ex
   <figcaption>Specify Display Name</figcaption>
 </figure>
 
-## 6. Configure Access Control
+## 6. Configure access control
 
 Select an appropriate access control policy
 
 - For this guide, select 'Permit everyone'
 - Click 'Next' to proceed
 
-## 7. Review Trust Configuration
+## 7. Review trust configuration
 
 Verify the following settings:
 
@@ -92,7 +92,7 @@ The wizard will complete with the 'Claim Issuance Policy' option automatically s
   <figcaption>Edit Claim Issuance Policy</figcaption>
 </figure>
 
-## 8. Create Claim Rules
+## 8. Create claim rules
 
 Click 'Add Rule' to create a new claim rule
 
@@ -108,7 +108,7 @@ Click 'Add Rule' to create a new claim rule
   <figcaption>Configure LDAP Attribute Mapping</figcaption>
 </figure>
 
-## 9. Map User Attributes
+## 9. Map user attributes
 
 Enter a descriptive rule name (e.g., "Example App")
 
@@ -124,7 +124,7 @@ Enter a descriptive rule name (e.g., "Example App")
   <figcaption>Map User Attributes</figcaption>
 </figure>
 
-## 10. Complete Admin Portal Configuration
+## 10. Complete admin portal configuration
 
 Navigate to Identity Provider Configuration in the Admin Portal
 
@@ -145,7 +145,7 @@ Navigate to Identity Provider Configuration in the Admin Portal
 
 The above endpoints are AD FS endpoints. You can find them listed in AD FS Console > Service > Endpoints > Tokens and Metadata sections
 
-## 11. Test Connection
+## 11. Test connection
 
 Click on **Test Connection.** If everything is done correctly, you will see a **Success** response as shown below.
 
