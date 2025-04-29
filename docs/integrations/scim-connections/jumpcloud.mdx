@@ -4,29 +4,28 @@ displayed_sidebar: integrationsSidebar
 
 # JumpCloud Directory
 
-<Subtitle>Integrate JumpCloud with Scalekit for seamless user management</Subtitle>
+<Subtitle>Integrate JumpCloud with the host application for seamless user management</Subtitle>
 
 ## Overview
 
-This guide is designed to assist <TermTip jargon="administrator"/>s in integrating JumpCloud with
-the Scalekit platform using <TermTip jargon="SCIM"/> provisioning. By following these steps, you can
-automate user management tasks and ensure that access rights are consistently updated.
+This guide helps <TermTip jargon="administrator"/>s integrate JumpCloud with
+the host application using <TermTip jargon="SCIM"/> provisioning. Following these steps automates
+user management tasks and ensures access rights remain consistently updated.
 
-This registration sets up the following:
+This integration sets up:
 
-1. **Endpoint**: This is the URL where Scalekit will send requests to JumpCloud. It acts as a
-   communication point between Scalekit and JumpCloud.
-2. **Bearer Token**: This token is used by Scalekit to authenticate its requests to the endpoint,
-   ensuring that requests are secure and authorized.
+1. **Endpoint**: The URL where JumpCloud sends requests to the host application, establishing
+   communication between JumpCloud and the host application.
+2. **Bearer Token**: The token JumpCloud uses to authenticate its requests to the endpoint,
+   ensuring secure and authorized communication.
 
-By setting up these components, you enable seamless synchronization between JumpCloud and Scalekit.
+When configured correctly, these components enable seamless synchronization between JumpCloud and the host application.
 
 ## Create an Endpoint and API Token
 
-Open the <TermTip jargon="Admin Portal" />  and select the "SCIM
-Provisioning" tab. A list of Directory Providers will be displayed. Choose "JumpCloud" as your
-Directory Provider. If the Admin Portal is not accessible from the app, request instructions from
-the app owner.
+Open the <TermTip jargon="Admin Portal" /> and select the "SCIM
+Provisioning" tab. Select "JumpCloud" from the list of Directory Providers. If you can't access the Admin Portal,
+contact the application owner for instructions.
 
 <figure>
   ![SCIM Provisioning
@@ -41,7 +40,7 @@ the app owner.
   </figcaption>
 </figure>
 
-This action will generate an Endpoint URL and Bearer token for your organization, allowing the app
+This generates an Endpoint URL and Bearer token for your organization, allowing the host application
 to listen to events and maintain synchronization with your organization.
 
 ## Add a New Application in JumpCloud
@@ -53,7 +52,7 @@ to listen to events and maintain synchronization with your organization.
   <figcaption>Adding a new application in JumpCloud.</figcaption>
 </figure>
 
-2. Create a custom application by trying to do an non-existent application search.
+2. Create a custom application by searching for a non-existent application.
 
 <figure>
   ![Application
@@ -61,17 +60,15 @@ to listen to events and maintain synchronization with your organization.
   <figcaption>Creating a custom integration in JumpCloud</figcaption>
 </figure>
 
-3. Click "Next" and choose the features you would like to enable. Since your application wants to
-   provision new users and user updates from JumpCloud, select "Export users to this app (Identity
-   Management)"
+3. Click "Next" and select the features you want to enable. To provision new users and user updates from JumpCloud,
+   select "Export users to this app (Identity Management)"
 
 <figure>
   ![Feature Selection](@site/docs/scim/assets/integrations/jumpcloud-scim/4-export-users.png)
-  <figcaption>Enable JumpCloud to notify your app of user changes</figcaption>
+  <figcaption>Enable JumpCloud to notify the host application of user changes</figcaption>
 </figure>
 
-4. Finally, enter the general info such as display name (this example uses "Provisioning via
-   Scalekit") and click "Save Application"
+4. Enter general information such as display name (you can use the application name) and click "Save Application"
 
 <figure>
   ![Successful
@@ -82,8 +79,7 @@ to listen to events and maintain synchronization with your organization.
 ## Configure Provisioning Settings
 
 Click on "Configure Application" and proceed to configure the application settings. This opens a
-modal with "Identity Management" selected. Enter the Endpoint URL and Bearer Token provided by
-Scalekit.
+modal with "Identity Management" selected. Enter the Endpoint URL and Bearer Token provided in the Admin Portal.
 
 <figure>
   ![Configure Application
@@ -91,19 +87,18 @@ Scalekit.
   <figcaption>Configuring application settings in JumpCloud.</figcaption>
 </figure>
 
-"Test Connection" will send the user details to Scalekit (hence your app).
+Clicking "Test Connection" sends user details to the host application.
 
 :::tip
 
-Explore the logs in Scalekit Dashboard > Organizations > Customer > Events. This will help you
-troubleshoot any issues with the connection or inspect the connection for better understanding.
+Explore the logs in the Admin Portal's Events section to troubleshoot any connection issues or inspect the connection for better understanding.
 
 :::
 
 ## Group Management
 
-Jumpcloud verifies if Scalekit supports groups, "Group Management" section appears. JumpCloud uses
-groups as the primary way provision users to your application.
+If the host application supports groups, JumpCloud will display a "Group Management" section. JumpCloud uses
+groups as the primary way to provision users to the host application.
 
 <figure>
   ![Provisioning
@@ -115,41 +110,41 @@ Click "Activate" and then "Save".
 
 ## User and Group Assignment
 
-To assign users to the newly integrated application:
+To assign users to the host application:
 
 <figure>
   ![User Assignment](@site/docs/scim/assets/integrations/jumpcloud-scim/8-group-assigned.png)
   <figcaption>Assigning users to the application in JumpCloud.</figcaption>
 </figure>
 
-1. Go to "SSO Applications" and select the application you created. This opens an Modal. Select the
+1. Go to "SSO Applications" and select the application you created. This opens a modal. Select the
    User Group and click on "Save".
 2. Click on the "User Groups" tab and select the apps you want to assign to this group of users.
-3. If you don't have groups you can create one from "User Groups" tab. In this example, we have
-   created a group called "YourApp Users" and assigned the "Provisioning via Scalekit" app to it.
+3. If you don't have groups, create one from the "User Groups" tab. In this example, we've
+   created a group called "YourApp Users" and assigned the application to it.
 4. Click on "Save Group" to save the changes.
-5. Now try adding a user to the group. If you don't have users, you can create one from "Users" tab.
+5. Try adding a user to the group. If you don't have users, create one from the "Users" tab.
 
 :::tip
 
-Make sure to organize your users into groups for easier management and assignment of permissions.
+Organize your users into groups for easier management and assignment of permissions.
 
 :::
 
 ## Verification
 
-After completing these steps, verify that users and groups are successfully synced between Scalekit
+After completing these steps, verify that users and groups are successfully synced between the host application
 and JumpCloud. Check for any errors or issues in the connection logs.
 
 <figure>
   ![Verification Process](@site/docs/scim/assets/integrations/jumpcloud-scim/9-synced-user.png)
-  <figcaption>Synced user log in Scalekit Dashboard.</figcaption>
+  <figcaption>Synced user log in the Admin Portal.</figcaption>
 </figure>
 
 :::note
 
-When an group is dis-associated from an app in JumpCloud ("Provisioning via Scalekit" app),
-JumpCloud sends an group update event to Scalekit that unassigns all the group users to your app.
-However, the group association is not removed in Scalekit automatically.
+When a group is disassociated from the host application in JumpCloud, JumpCloud sends a group update event
+that unassigns all the group users from the host application. However, the group association may not be removed
+automatically in the host application.
 
 :::

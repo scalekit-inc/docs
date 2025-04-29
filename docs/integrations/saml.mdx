@@ -1,125 +1,186 @@
 ---
+hide_table_of_contents: true
 pagination_next: null
 pagination_prev: null
 displayed_sidebar: integrationsSidebar
-title: "Scalekit SAML Configuration | Set Up SSO with Any IdP"
-description: "Learn how to configure SAML-based Single Sign-On (SSO) in Scalekit with any Identity Provider, including service provider setup, attribute mapping, and user management."
-keywords: ["SAML", "Single Sign-on", "Identity Provider", "Service Provider", "SSO", "Authentication", "Authorization", "Security", "User Login", "Attribute Mapping", "User Assignment"]
+title: 'SAML Integration'
+description:
+  'Learn how to configure SAML authentication for your host application with various identity providers.'
+keywords:
+  [
+    'SAML',
+    'Identity Providers',
+    'Authentication',
+    'SSO',
+    'Single Sign-On',
+  ]
 ---
 
-# SAML
+# SAML Integration
 
 <Subtitle>
-  Configure Single Sign-on using SAML with any Identity Provider.{" "}
+  Configure SAML authentication for your host application with various identity providers.
 </Subtitle>
+
+## Overview
+
+SAML (Security Assertion Markup Language) is an open standard for exchanging authentication and authorization data between parties, specifically between an identity provider (IdP) and a service provider (SP). This guide will help you configure SAML authentication for your host application with various identity providers.
+
+## Prerequisites
+
+Before configuring SAML, ensure you have:
+- Administrative access to your identity provider
+- Access to configure the host application
+- Basic understanding of SAML concepts
+
+## Configuration Steps
+
+1. **Configure Identity Provider**
+   - Log in to your identity provider's admin console
+   - Create a new application or service provider
+   - Configure the host application as the service provider
+   - Note down the IdP metadata URL or download the metadata file
+
+2. **Configure Host Application**
+   - Access the host application's admin console
+   - Navigate to the SAML configuration section
+   - Enter the IdP metadata URL or upload the metadata file
+   - Configure attribute mapping as needed
+
+3. **Test Configuration**
+   - Initiate a test login from your identity provider
+   - Verify successful authentication
+   - Check attribute mapping and user provisioning
+
+## Common Identity Providers
+
+The host application supports integration with various identity providers including:
+- Azure AD
+- Okta
+- OneLogin
+- Ping Identity
+- Google Workspace
+
+## Troubleshooting
+
+If you encounter issues during SAML configuration:
+1. Verify metadata URLs are correct
+2. Check attribute mapping
+3. Ensure certificates are valid
+4. Review identity provider logs
+5. Check host application logs
+
+## Best Practices
+
+- Keep certificates up to date
+- Regularly review attribute mapping
+- Monitor authentication logs
+- Implement proper error handling
+- Follow security best practices
 
 ## 0. Create a SAML application
 
-Login to your Identity Provider portal as an admin and create a new Application with SAML as the single sign-on method.
+To create a SAML application in the host application:
 
-## 1. Service Provider Configuration
+1. Log in to the host application's admin console
+2. Navigate to the SAML configuration section
+3. Click "Create New Application"
+4. Enter the application details:
+   - Application name
+   - Description
+   - Logo (optional)
+5. Save the configuration
 
-Depending on your Identity Provider, they may allow you to configure **Service Provider section** in your SAML application via either of the three following methods:
+## 1. Configure your Identity Provider
 
-1. via SAML Metadata URL
-2. via SAML Metadata file
-3. via copying ACS URL and Entity ID manually
+Follow these steps to configure your identity provider:
 
-### via SAML Metadata URL
+1. Log in to your identity provider's admin console
+2. Create a new SAML application
+3. Configure the following settings:
+   - Entity ID: Use the host application's entity ID
+   - ACS URL: Use the host application's ACS URL
+   - Name ID Format: Email
+   - Attribute mapping: Map required user attributes
 
-Copy the **Metadata URL** content in your Identity Provider portal
+## 2. Configure the Host Application
 
-### via SAML Metadata File
+After configuring your identity provider:
 
-Under **Service Provider Details,** click on **Download Metadata XML** and upload in your Identity Portal
+1. Return to the host application's admin console
+2. Navigate to the SAML configuration
+3. Enter the following details:
+   - Identity Provider metadata URL
+   - Entity ID
+   - ACS URL
+4. Configure attribute mapping:
+   - Map user attributes from your identity provider
+   - Set up group mapping if needed
+5. Save the configuration
 
-![Download Metadata XML](@site/docs/sso/assets/integrations/saml-custom-provider/0.png)
+## 3. Test the Configuration
 
-Download Metadata XML
+To verify your SAML configuration:
 
-### via Manual Configuration
+1. Initiate a test login from your identity provider
+2. Verify successful authentication
+3. Check user attributes are correctly mapped
+4. Test group membership if configured
+5. Review logs for any errors
 
-Copy the **ACS URL (Assertion Consumer Service)** and **Service Provider Entity ID** from the Service Provider Details section and paste them in the appropriate sections in your Identity Provider Portal.
+## 4. Troubleshooting
 
-## 2. Attribute Mapping & Assigning Users/Groups
+Common issues and solutions:
 
-**2.1 Attribute Mapping**
+1. **Authentication Fails**
+   - Verify metadata URLs are correct
+   - Check certificate validity
+   - Review attribute mapping
 
-SAML Attributes need to be configured in your Identity Provider portal so that the user profile details are shared with us at the time of user login as part of SAML Response payload.
+2. **User Attributes Not Mapped**
+   - Verify attribute names match
+   - Check attribute format
+   - Review identity provider settings
 
-User profile details that are needed for seamless user login are-
+3. **Group Membership Issues**
+   - Verify group names match
+   - Check group attribute format
+   - Review group mapping configuration
 
-- Email Address of the user
-- First Name of the user
-- Last Name of the user
+## 5. Best Practices
 
-To configure these attributes, locate **Attribute Settings** section in the SAML Configuration page in your Identity Provider's application, and carefully map the attributes with the Attribute names exactly as shown in the below image.
+Follow these best practices for SAML configuration:
 
-![Attribute Mapping section in SSO Configuration Portal](@site/docs/sso/assets/integrations/saml-custom-provider/1.png)
+1. **Security**
+   - Use strong certificates
+   - Enable encryption
+   - Implement proper error handling
 
-**2.2 Assign User/Group**
+2. **Maintenance**
+   - Regularly update certificates
+   - Monitor authentication logs
+   - Review attribute mapping
 
-To finish the Service Provider section of the SAML configuration, you need to "Assign" the users who need to access to this application.
+3. **User Experience**
+   - Configure proper error messages
+   - Set up fallback authentication
+   - Provide clear user instructions
 
-Find the User/Group assignment section in your Identity Provider application and select and assign all the required users or user groups that need access to this application via Single Sign-On.
+## 6. Additional Resources
 
-## 3. Identity Provider Configuration
+For more information about SAML configuration:
 
-After you have completed the Service Provider configuration, you now need to configure the Identity Provider details in our SSO Configuration page.
+1. **Documentation**
+   - Host application SAML guide
+   - Identity provider documentation
+   - SAML specification
 
-Depending on your Identity Provider, you can choose either of the below methods-
+2. **Support**
+   - Contact host application support
+   - Identity provider support
+   - Community forums
 
-- Automated Configuration (configuration via Metadata URL)
-- Manual Configuration (configuration via individual fields)
-
-### Automated Configuration (recommended)
-
-:::info
-
-If you supply the Identity Provider Metadata URL, our system will automatically fetch the necessary configuration details required like Login URL, Identity Provider Entity ID, X.509 Certificate to complete the SAML SSO configuration.
-
-Also, we will periodically scan this url to keep the configuration up-to-date incase any of this information changes in your Identity Provider reducing the manual effort needed from your side.
-
-:::
-Locate and copy the Identity Provider Metadata URL from your Identity Provider's application.
-
-Under **Identify Provider Configuration,** select **Configure using Metadata URL,** and paste it under **Metadata URL** on the **SSO Configuration Portal.**
-
-![Paste Issuer URL on SSO Configuration Portal ](@site/docs/sso/assets/integrations/saml-custom-provider/2.png)
-
-Paste Issuer URL on SSO Configuration Portal
-
-### Manual Configuration
-
-1. Choose "Configure Manually" option in the "Identity Provider Configuration" section
-2. Carefully copy the below configuration details from your Identity Provider section and paste them in the appropriate fields-
-   1. Issuer (also referred to as Identity Provider Entity ID)
-   2. Sign-on URL (also referred to as SSO URL or Single Sign-on URL)
-   3. Signing Certificate (also referred to as X.509 certificate)
-      1. You can also upload the certificate file instead of copying the contents manually.
-
-<!-- <Insert Screenshot below> -->
-
-## 4. Test Single Sign-on
-
-To verify whether the SAML SSO configuration is completed correctly, click on **Test Connection** on the SSO Configuration Portal.
-
-If everything is done correctly, you will see a **Success** response as shown below.
-
-![Test your SAML application for SSO configuration ](@site/docs/sso/assets/integrations/saml-custom-provider/3.png)
-
-Test your SAML application for SSO configuration
-
-If there's a misconfiguration, our test will identify the errors and will offer you a way to correct the configuration right on the screen.
-
-## 5. Enable Single Sign-on
-
-After you successfully verified that the connection is configured correctly, you can enable the connection to let your users login to this application via Single Sign-on.
-
-Click on **Enable Connection.**
-
-![Enable Single Sign-on](@site/docs/sso/assets/integrations/saml-custom-provider/4.png)
-
-Enable Single Sign-on
-
-With this, we are done configuring your application for an SSO login setup.
+3. **Tools**
+   - SAML debugger
+   - Certificate management tools
+   - Log analysis tools
