@@ -1,10 +1,8 @@
-# OneLogin SCIM
+# OneLogin Directory
 
-<Subtitle>Sync user lists with apps during onboarding</Subtitle>
+<Subtitle>Integrate OneLogin with the host application for seamless user management</Subtitle>
 
-## Overview
-
-This guide helps administrators sync their OneLogin Directory with an application they want to onboard. Integrating your
+This guide helps administrators sync their OneLogin directory with an application they want to onboard. Integrating your
 application with OneLogin automates user management tasks and keeps access rights up-to-date.
 
 Setting up the integration involves:
@@ -15,7 +13,7 @@ Setting up the integration involves:
 
 By setting up these components, you enable seamless synchronization between your application and the OneLogin directory.
 
-## Setting Up the Endpoint and API Token
+## 1. Setting up the endpoint and API token
 
 Open the Admin Portal from the app being onboarded and select the "Directory Sync" tab.
 
@@ -45,7 +43,7 @@ If the "Directory Sync" tab is not visible, contact the app owner to enable it v
 
 :::
 
-## Add New Application in OneLogin
+## 2. Add new application in OneLogin
 
 In OneLogin, click "Administration" and then "Applications" from the top navigation pane.
 
@@ -90,7 +88,7 @@ Go to the "Provisioning" tab, enable provisioning, and click "Save".
   </figcaption>
 </figure>
 
-## Provisioning Users
+## 3. Provisioning users
 
 Go to "Users" and click on a user you want to provision.
 
@@ -116,7 +114,7 @@ Go to the "Applications" tab, click "+", and assign "Hero SaaS App". Click "Cont
   <figcaption>Assigning a new login to a user in OneLogin</figcaption>
 </figure>
 
-Click “Pending” to approve provisioning.
+Click "Pending" to approve provisioning.
 
 <figure>
   ![OneLogin user provisioning dialog for creating Kitty Flake in Hero SaaS App, with options to approve or skip the
@@ -152,7 +150,7 @@ You can see the new user added to the "Hero SaaS App" in the portal.
 
 Congratulations! You have successfully provisioned a user with the Hero SaaS Application.
 
-## Provisioning Groups
+## 4. Provisioning groups
 
 Applications being onboarded may have roles that scope access, such as "admin" roles allowing users to perform
 administrator actions like deleting logs. You can choose which users in your organization get administrator access while
@@ -174,9 +172,9 @@ To map users to groups in the app being onboarded:
 4. Assign the role to the user.
 5. Assign the user to the app.
 
-### Configuring Provisioning for Groups
+### Configuring provisioning for groups
 
-Navigate to the list of Applications and select "Hero SaaS App”. Ensure the provisioning workflow is enabled in the
+Navigate to the list of Applications and select "Hero SaaS App". Ensure the provisioning workflow is enabled in the
 "Provisioning" tab.
 
 <figure>
@@ -188,7 +186,7 @@ Navigate to the list of Applications and select "Hero SaaS App”. Ensure the pr
   </figcaption>
 </figure>
 
-Switch to “Rules” Tab and Click “Add Rule” button.
+Switch to "Rules" Tab and Click "Add Rule" button.
 
 Name the rule (e.g., "Assign Group in Hero SaaS") and set the action to "Set Groups in Hero SaaS App" for each "role"
 with any value.
@@ -213,7 +211,7 @@ Select the "Parameters" tab, click on the "Groups" row, and check "Include in Us
 
 Configuring field groups in OneLogin for SCIM provisioning, including SAML assertion and user provisioning options.
 
-### Creating a Role in OneLogin
+### Creating a role in OneLogin
 
 Click on the user and navigate to "Applications".
 

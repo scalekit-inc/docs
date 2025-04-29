@@ -304,7 +304,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Azure AD - SAML',
+      label: 'Entra ID (Azure AD) - SAML',
       id: 'integrations/azure-ad-saml',
     },
     {
@@ -361,7 +361,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Azure AD',
+      label: 'Entra ID (Azure AD)',
       id: 'integrations/azure-scim',
     },
     {

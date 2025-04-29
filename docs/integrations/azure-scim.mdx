@@ -2,11 +2,9 @@
 displayed_sidebar: integrationsSidebar
 ---
 
-# Microsoft Entra ID
+# Microsoft Entra ID (Azure AD)
 
-<Subtitle>Sync user lists with apps during onboarding</Subtitle>
-
-## Overview
+<Subtitle>Integrate Microsoft Entra ID with the host application for seamless user management</Subtitle>
 
 This guide helps administrators sync their EntraID directory with an application they want to onboard to their organization. Integrating your application with Entra ID automates user management tasks and ensures access rights stay up-to-date.
 
@@ -17,7 +15,7 @@ This registration sets up the following:
 
 These components enable seamless synchronization between your application and the EntraID directory.
 
-## Create an Endpoint and API Token
+## 1.Create an endpoint and API token
 
 Open the <TermTip jargon="Admin Portal" /> from the app being onboarded. Select the "Directory Sync" tab to display a list of Directory Providers. Choose "Entra ID" as your Directory Provider. If the Admin Portal is not accessible from the app, request instructions from the app owner.
 
@@ -26,13 +24,6 @@ Open the <TermTip jargon="Admin Portal" /> from the app being onboarded. Select 
   <figcaption>Setting up Directory Sync in the admin portal of an app being onboarded: Entra ID selected as the provider, awaiting configuration.</figcaption>
 </figure>
 
-
-:::note
-
-If the "Directory Sync" tab is not visible, the feature may not be enabled for your organization. Contact the app owner to enable it via the Scalekit Dashboard: Organizations > Your Organization > Enable Directory Sync.
-
-:::
-
 Click "Configure" after selecting "EntraID" to generate an Endpoint URL and Bearer token for your organization, allowing the app to listen to events and maintain synchronization.
 
 <figure>
@@ -40,7 +31,7 @@ Click "Configure" after selecting "EntraID" to generate an Endpoint URL and Bear
   <figcaption>Endpoint URL and Bearer token for your organization.</figcaption>
 </figure>
 
-## Adding a New Application in Entra ID
+## 2. Adding a new application in Entra ID
 
 To send user-related updates to the app you want to onboard, create a new app in Microsoft Entra ID
 
@@ -72,7 +63,7 @@ Name the app you want to onboard (e.g., "Hero SaaS") and click "Create", leaving
   <figcaption>Creating a new application in Microsoft Entra ID.</figcaption>
 </figure>
 
-## Configure Provisioning
+## 3. Configure provisioning
 
 In the "Hero SaaS" app's overview, select "Manage > Provisioning" from the left sidebar.
 
@@ -84,6 +75,7 @@ In the "Hero SaaS" app's overview, select "Manage > Provisioning" from the left 
 Set the Provisioning Mode to "Automatic".
 
 In the Admin Credentials section, set:
+
 - Tenant URL: _Endpoint_
 - Secret Token: _Bearer Token generated previously_
 
@@ -115,7 +107,7 @@ Go to "Overview > Manage > Provisioning" and ensure "Provisioning Status" is tog
 
 Entra ID is now set up to send events to Hero SaaS when users are added or removed.
 
-## Testing User/Group Provisioning
+## 4. Testing user/group provisioning
 
 In the Hero SaaS Application, go to "Provision on demand". Input a user name from your user list and click "Provision".
 
@@ -133,6 +125,6 @@ Once provisioned, the user should appear in the admin portal, showing how many u
 
 :::note
 
-Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group". Microsoft docs state it takes about 40 minutes to successfully send these events to the Hero SaaS App.
+Provisioning or deprovisioning users can be done from "Manage > User and groups > Add user/group". It usually takes upto 40 minutes for the changes made in Microsoft Entra ID to propagate to the application.
 
 :::
