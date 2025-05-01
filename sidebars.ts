@@ -461,7 +461,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Machine-to-machine quickstart',
+      label: 'Machine-2-machine quickstart',
       href: '/m2m/quickstart',
     },
     {
