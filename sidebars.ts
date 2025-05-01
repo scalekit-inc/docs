@@ -4,105 +4,95 @@ const sidebars: SidebarsConfig = {
   ssoSidebar: [
     {
       type: 'link',
-      label: 'Back to Overview',
+      label: 'Back to overview',
       href: '/',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Getting started</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Learn SSO Basics',
+      label: 'Understand SSO basics',
       id: 'sso/overview',
     },
     {
       type: 'doc',
-      label: 'SSO Quickstart', // The link label
-      id: 'sso/quickstart', // The internal path
+      label: 'SSO quickstart',
+      id: 'sso/quickstart',
     },
     {
       type: 'doc',
-      label: 'Admin Portal',
+      label: 'Configure admin portal',
       id: 'sso/quickstart-admin-portal',
     },
     {
       type: 'doc',
-      label: 'Test SSO',
+      label: 'Test SSO integration',
       id: 'sso/test-sso',
     },
     {
       type: 'doc',
-      label: 'Launch Checklist',
+      label: 'Complete launch checklist',
       id: 'sso/launch-checklist',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Login with Social</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Social authentication</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Social Logins Quickstart',
+      label: 'Set up social logins',
       id: 'sso/social-login',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>How-to Guides</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Implementation guides</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Add SSO to your Login Page',
+      label: 'Add SSO to login page',
       id: 'sso/guides/setup-sso/build-login-page',
     },
-    // {
-    //   type: 'doc',
-    //   label: 'Fetch User Attributes from IdP',
-    //   id: 'sso/guides/setup-sso/handle-user-profile',
-    // },
-    // {
-    //   type: "doc",
-    //   label: "Handle Raw Attributes from IdP",
-    //   id: "sso/guides/setup-sso/handle-raw-idp-attributes",
-    // },
     {
       type: 'doc',
-      label: 'Customize Admin Portal',
+      label: 'Customize admin portal',
       id: 'sso/domain-and-theme-customization',
     },
     {
       type: 'doc',
-      label: 'Implement IdP Initiated SSO',
+      label: 'Implement IdP-initiated SSO',
       id: 'sso/guides/setup-sso/implement-idp-initiated-sso',
     },
     {
       type: 'doc',
-      label: 'Handle SSO Errors',
+      label: 'Handle SSO errors',
       id: 'sso/guides/setup-sso/error-handling',
     },
     {
       type: 'doc',
-      label: 'Customize User Attributes',
+      label: 'Customize user attributes',
       id: 'sso/guides/setup-sso/customize-user-attributes',
     },
     {
@@ -110,20 +100,15 @@ const sidebars: SidebarsConfig = {
       label: 'Test SSO with Okta',
       id: 'sso/guides/test-your-integration/using-okta',
     },
-    // {
-    //   type: "doc",
-    //   label: "Configure SAML Settings",
-    //   id: "sso/guides/setup-sso/support-advanced-saml-settings",
-    // },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Integration Resources</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Integration resources</span>",
       defaultStyle: true,
     },
     {
@@ -141,147 +126,125 @@ const sidebars: SidebarsConfig = {
       label: 'Integrate with AWS Cognito',
       id: 'sso/guides/integrate-with-your-auth-system/cognito',
     },
-    // {
-    //   type: "doc",
-    //   label: "Test your Integration using Okta",
-    //   id: "sso/guides/test-your-integration/using-okta",
-    // },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Learning Guides</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Key concepts</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Authorization URL',
+      label: 'Understand authorization URL',
       id: 'sso/guides/key-concepts/authorization-url',
     },
     {
       type: 'doc',
-      label: 'Redirect URI',
+      label: 'Configure redirect URI',
       id: 'sso/guides/key-concepts/redirect-uri',
     },
     {
       type: 'doc',
-      label: 'ID Token Claims',
+      label: 'Manage ID token claims',
       id: 'sso/guides/key-concepts/idtoken-claims',
     },
     {
       type: 'doc',
-      label: 'Normalized User Profile',
+      label: 'Work with user profiles',
       id: 'sso/guides/key-concepts/user-profile',
     },
     {
       type: 'doc',
-      label: 'Manage Client Secrets',
+      label: 'Manage client secrets',
       id: 'sso/guides/key-concepts/manage-client-secrets',
     },
   ],
   scimSidebar: [
     {
       type: 'link',
-      label: 'Back to Overview',
+      label: 'Back to overview',
       href: '/',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Getting started</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'SCIM Quickstart',
+      label: 'SCIM quickstart',
       id: 'scim/quickstart',
     },
     {
       type: 'doc',
-      label: 'Sample Apps',
+      label: 'Explore sample apps',
       id: 'scim/explore-sample-apps',
     },
     {
       type: 'doc',
-      label: 'Admin Portal',
+      label: 'Configure admin portal',
       id: 'scim/admin-portal',
     },
     {
       type: 'doc',
-      label: 'Launch Checklist',
+      label: 'Complete launch checklist',
       id: 'scim/checklist',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Implementation Guides</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Implementation guides</span>",
       defaultStyle: true,
     },
-    // {
-    //   type: 'doc',
-    //   label: 'Setup Webhooks',
-    //   id: 'scim/setup-directory-events',
-    // },
-    // {
-    //   type: 'doc',
-    //   label: 'Directory User Object',
-    //   id: 'scim/directory-user-object',
-    // },
     {
       type: 'doc',
-      label: 'Automated Role Assignment',
+      label: 'Set up automated role assignment',
       id: 'scim/automatically-assign-roles',
     },
-
-    // {
-    //   type: 'doc',
-    //   label: 'Attribute Mapping',
-    //   id: 'scim/map-user-attributes',
-    // },
     {
       type: 'doc',
-      label: 'Customize Admin Portal',
+      label: 'Customize admin portal',
       id: 'scim/domain-and-theme-customization',
     },
-
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Learning Resources</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Learning resources</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'SCIM Provisioning: Overview',
+      label: 'Understand SCIM provisioning',
       id: 'scim/basics',
     },
     {
       type: 'doc',
-      label: 'SCIM Protocol: Technical Details',
+      label: 'Learn SCIM protocol details',
       id: 'scim/scim-protocol',
     },
     {
       type: 'doc',
-      label: 'Webhook Best Practices',
+      label: 'Follow webhook best practices',
       id: 'scim/webhooks',
     },
   ],
@@ -294,174 +257,162 @@ const sidebars: SidebarsConfig = {
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>SSO Integrations</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>SSO integrations</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Okta - SAML',
+      label: 'Set up Okta SAML',
       id: 'integrations/okta-saml',
     },
     {
       type: 'doc',
-      label: 'Microsoft Entra ID - SAML',
+      label: 'Set up Microsoft Entra ID SAML',
       id: 'integrations/azure-ad-saml',
     },
     {
       type: 'doc',
-      label: 'OneLogin - SAML',
+      label: 'Set up OneLogin SAML',
       id: 'integrations/onelogin-saml',
     },
     {
       type: 'doc',
-      label: 'JumpCloud - SAML',
+      label: 'Set up JumpCloud SAML',
       id: 'integrations/jumpcloud-saml',
     },
     {
       type: 'doc',
-      label: 'Google Workspace - SAML',
+      label: 'Set up Google Workspace SAML',
       id: 'integrations/google-saml',
     },
     {
       type: 'doc',
-      label: 'PingIdentity - SAML',
+      label: 'Set up PingIdentity SAML',
       id: 'integrations/pingidentity-saml',
     },
     {
       type: 'doc',
-      label: 'Microsoft AD FS - SAML',
+      label: 'Set up Microsoft AD FS SAML',
       id: 'integrations/adfs-saml',
     },
     {
       type: 'doc',
-      label: 'Generic Provider - SAML',
+      label: 'Set up generic SAML provider',
       id: 'integrations/saml',
     },
     {
       type: 'doc',
-      label: 'Generic Provider - OIDC',
+      label: 'Set up generic OIDC provider',
       id: 'integrations/oidc',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
-
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>SCIM Integrations</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>SCIM integrations</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Okta',
+      label: 'Set up Okta SCIM',
       id: 'integrations/okta-scim',
     },
     {
       type: 'doc',
-      label: 'Microsoft Entra ID',
+      label: 'Set up Microsoft Entra ID SCIM',
       id: 'integrations/azure-scim',
     },
     {
       type: 'doc',
-      label: 'Google Workspace',
+      label: 'Set up Google Workspace SCIM',
       id: 'integrations/scim-connections/google-dir-sync',
     },
     {
       type: 'doc',
-      label: 'JumpCloud',
+      label: 'Set up JumpCloud SCIM',
       id: 'integrations/scim-connections/jumpcloud',
     },
     {
       type: 'doc',
-      label: 'OneLogin',
+      label: 'Set up OneLogin SCIM',
       id: 'integrations/onelogin-scim',
     },
-    // {
-    //   type: 'doc',
-    //   label: 'SCIM',
-    //   id: 'integrations/scim',
-    // },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Auth Systems</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Auth systems</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Auth0',
+      label: 'Set up Auth0',
       id: 'integrations/auth0',
     },
     {
       type: 'doc',
-      label: 'Firebase',
+      label: 'Set up Firebase',
       id: 'integrations/firebase',
     },
     {
       type: 'doc',
-      label: 'AWS Cognito',
+      label: 'Set up AWS Cognito',
       id: 'integrations/cognito',
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
-
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Social Connections</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Social connections</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'Google',
+      label: 'Set up Google',
       id: 'integrations/social-connections/google',
     },
     {
       type: 'doc',
-      label: 'GitHub',
+      label: 'Set up GitHub',
       id: 'integrations/social-connections/github',
     },
     {
       type: 'doc',
-      label: 'GitLab',
+      label: 'Set up GitLab',
       id: 'integrations/social-connections/gitlab',
     },
     {
       type: 'doc',
-      label: 'Microsoft',
+      label: 'Set up Microsoft',
       id: 'integrations/social-connections/microsoft',
     },
     {
       type: 'doc',
-      label: 'Salesforce',
+      label: 'Set up Salesforce',
       id: 'integrations/social-connections/salesforce',
     },
     {
       type: 'doc',
-      label: 'LinkedIn',
+      label: 'Set up LinkedIn',
       id: 'integrations/social-connections/linkedin',
-    },
-    {
-      type: 'html',
-      value: '<div />', // The link label
-      defaultStyle: true,
     },
   ],
   guidesSidebar: [
     {
       type: 'link',
-      label: 'Back to Home',
+      label: 'Back to home',
       href: '/',
     },
     {
@@ -495,22 +446,22 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Single Sign-On',
+      label: 'SSO quickstart',
       href: '/sso/quickstart',
     },
     {
       type: 'link',
-      label: 'SCIM Provisioning',
+      label: 'SCIM quickstart',
       href: '/scim/quickstart',
     },
     {
       type: 'link',
-      label: 'Social Logins',
+      label: 'Social logins quickstart',
       href: '/sso/social-login',
     },
     {
       type: 'link',
-      label: 'Machine-2-Machine',
+      label: 'Machine-to-machine quickstart',
       href: '/m2m/quickstart',
     },
     {
@@ -521,22 +472,22 @@ const sidebars: SidebarsConfig = {
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Config and Admin</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Config and admin</span>",
       defaultStyle: true,
     },
     {
       type: 'link',
-      label: 'Admin Portal',
+      label: 'Configure admin portal',
       href: '/sso/quickstart-admin-portal',
     },
     {
       type: 'link',
-      label: 'Auth Integrations',
+      label: 'Set up auth integrations',
       href: '/integrations',
     },
     {
       type: 'link',
-      label: 'Custom Domains',
+      label: 'Set up custom domains',
       href: '/sso/domain-and-theme-customization#custom-domain',
     },
     {
@@ -552,7 +503,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Glossary',
+      label: 'View glossary',
       href: 'manage-scalekit/glossary',
     },
     {
@@ -562,20 +513,20 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Status page',
+      label: 'View status page',
       href: 'https://scalekit.statuspage.io/',
     },
   ],
   m2mSidebar: [
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Getting Started</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Getting started</span>",
       defaultStyle: true,
     },
     {
@@ -585,7 +536,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'M2M Quickstart',
+      label: 'M2M quickstart',
       id: 'm2m/quickstart',
     },
     {
@@ -595,18 +546,18 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>Learn M2M Concepts</span>",
+        "<span class='text--uppercase text--light sidenav-category-heading'>Learn M2M concepts</span>",
       defaultStyle: true,
     },
     {
       type: 'doc',
-      label: 'M2M authentication explained',
+      label: 'Understand M2M authentication',
       id: 'm2m/m2m-basics',
     },
     {
@@ -616,13 +567,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'html',
-      value: '<div />', // The link label
+      value: '<div />',
       defaultStyle: true,
     },
     {
       type: 'html',
       value:
-        "<span class='text--uppercase text--light sidenav-category-heading'>How-to Guides</span>",
+        "<span class='text uppercasetext--light sidenav-category-heading'>How-to guides</span>",
       defaultStyle: true,
     },
     {

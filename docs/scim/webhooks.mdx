@@ -1,26 +1,26 @@
 ---
-title: 'Webhook Implementation Guide: Best Practices for SCIM Integration'
+title: 'Webhook implementation guide: Best practices for SCIM integration'
 description: 'Learn best practices for implementing webhooks in your SCIM integration. Covers security measures, event handling, signature verification, and performance optimization techniques for real-time directory updates.'
 keywords: [
     'Webhooks',
-    'Event Handling',
-    'Webhook Security',
-    'Signature Verification',
-    'Directory Events',
-    'Real-time Updates',
-    'SCIM Integration',
-    'Webhook Best Practices',
-    'Event Processing',
-    'API Integration',
-    'Webhook Endpoints',
-    'Asynchronous Processing',
-    'Enterprise Integration',
-    'Directory Synchronization',
-    'Event Types',
+    'Event handling',
+    'Webhook security',
+    'Signature verification',
+    'Directory events',
+    'Real-time updates',
+    'SCIM integration',
+    'Webhook best practices',
+    'Event processing',
+    'API integration',
+    'Webhook endpoints',
+    'Asynchronous processing',
+    'Enterprise integration',
+    'Directory synchronization',
+    'Event types',
   ]
 ---
 
-# Best Practices for Webhooks
+# Best practices for webhooks
 
 Webhooks are HTTP endpoints that you register with a system, allowing that system to inform your
 application about events by sending HTTP POST requests with event information in the body.
@@ -29,7 +29,7 @@ Developers register their applications' webhook endpoints with Scalekit to liste
 directory providers of their enterprise customers. Here are some common best practices developers
 follow to ensure their apps are secure and performant:
 
-## Subscribe Only to Relevant Events
+## Subscribe only to relevant events
 
 While you can listen to all events from Scalekit, it's best to subscribe only to the events your app
 needs. This approach has several benefits:
@@ -37,15 +37,15 @@ needs. This approach has several benefits:
 - Your app doesn't have to process every event
 - You can avoid overloading a single execution context by handling every event type
 
-## Verify Webhook Signatures
+## Verify webhook signatures
 
 Scalekit sends POST requests to your registered webhook endpoint. To ensure the request is coming
-from Scalekit and not a malicious actor, you should verify the request using the Signing Secret
-found in the Scalekit Dashboard > Webhook > _Any Endpoint_.
+from Scalekit and not a malicious actor, you should verify the request using the signing secret
+found in the Scalekit dashboard > Webhook > _Any Endpoint_.
 
 Here's an example of how to verify webhooks using the Svix library:
 
-<CodeWithHeader title="Webhook Signature Verification">
+<CodeWithHeader title="Webhook signature verification">
 <Tabs>
 
 <TabItem label="Node.js" value="Node">
@@ -58,7 +58,7 @@ app.post('/webhook', async (req, res) => {
   // Get headers from the request
   const headers = req.headers;
 
-  // Secret from Scalekit Dashboard > Webhooks
+  // Secret from Scalekit dashboard > Webhooks
   const secret = process.env.SCALEKIT_WEBHOOK_SECRET;
 
   try {
@@ -191,13 +191,13 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 </Tabs>
 </CodeWithHeader>
 
-## Check the Event Type Before Processing
+## Check the event type before processing
 
 Make sure to check the event.type before consuming the data received by the webhook endpoint. This
 ensures that your application relies on accurate information, even if more events are added in the
 future.
 
-<CodeWithHeader title="Event Type Handling">
+<CodeWithHeader title="Event type handling">
 
 <Tabs>
 
@@ -344,7 +344,7 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 </Tabs>
 </CodeWithHeader>
 
-## Avoid Webhook Timeouts
+## Avoid webhook timeouts
 
 To avoid unnecessary timeouts, respond to the webhook trigger with a response code of 201 and
 process the event asynchronously.

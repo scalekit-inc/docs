@@ -1,73 +1,73 @@
 ---
-title: 'SCIM Service Launch Checklist: Essential Steps for Production Deployment'
+title: 'SCIM service launch checklist: Essential steps for production deployment'
 description: 'Comprehensive guide for deploying SCIM provisioning in production environments. Learn crucial steps to ensure optimal security, seamless user experience, and robust configuration for your SCIM implementation.'
 keywords: [
-  'SCIM Production Deployment',
-  'SCIM Launch Checklist',
-  'User Provisioning Setup',
-  'Directory Integration',
-  'SCIM Security',
-  'Webhook Configuration',
-  'Environment Setup',
-  'Client Secret Management',
-  'Admin Portal Setup',
-  'Error Handling',
-  'User Lifecycle Management',
-  'SCIM Best Practices',
-  'Production Configuration',
-  'Enterprise Integration',
-  'Directory Synchronization'
+  'SCIM production deployment',
+  'SCIM launch checklist',
+  'User provisioning setup',
+  'Directory integration',
+  'SCIM security',
+  'Webhook configuration',
+  'Environment setup',
+  'Client secret management',
+  'Admin portal setup',
+  'Error handling',
+  'User lifecycle management',
+  'SCIM best practices',
+  'Production configuration',
+  'Enterprise integration',
+  'Directory synchronization'
 ]
 ---
 
-# Launch Checklist
+# Launch checklist
 
 <Subtitle>
   Ensure these steps are completed before moving automated user provisioning to production
 </Subtitle>
 
-As you prepare to deploy SCIM Provisioning, verify that all configurations are optimized for
+As you prepare to deploy SCIM provisioning, verify that all configurations are optimized for
 security and user experience. The following checklist helps ensure your implementation is
 production-ready and efficient.
 
-<LabeledCheckbox id="1"> Use appropriate environment variables </LabeledCheckbox>
+<LabeledCheckbox id="1"> **Use appropriate environment variables** </LabeledCheckbox>
 
-Switch from development to production credentials, including the Client ID, Client Secret, and
-Environment URL.
+Switch from development to production credentials, including the client ID, client secret, and
+environment URL.
 
-<LabeledCheckbox id="2"> Secure the Client Secret </LabeledCheckbox>
+<LabeledCheckbox id="2"> **Secure the client secret** </LabeledCheckbox>
 
 Your client secret is akin to a key to your application. Secure it with the utmost care. Go through
 our [best practices guide](/sso/guides/key-concepts/manage-client-secrets) to learn how to manage
 the client secrets safely and securely.
 
-<LabeledCheckbox id="3"> Configure Webhooks </LabeledCheckbox>
+<LabeledCheckbox id="3"> **Configure webhooks** </LabeledCheckbox>
 
 Setup webhooks for receiving real-time updates on user and group changes. Follow our
 [webhook security guide](/scim/webhooks) to learn how to secure your webhooks.
 
-<LabeledCheckbox id="4"> Test Provisioning Flows </LabeledCheckbox>
+<LabeledCheckbox id="4"> **Test provisioning flows** </LabeledCheckbox>
 
 Ensure that you have implemented and tested all possible SCIM provisioning workflows such as:
 
-- User Provisioning
-- User De-provisioning
-- User Profile Update
-- Group Membership Changes
-- Role Assignments
+- User provisioning
+- User de-provisioning
+- User profile update
+- Group membership changes
+- Role assignments
 
-<LabeledCheckbox id="5"> Finalize Branding & Theming </LabeledCheckbox>
+<LabeledCheckbox id="5"> **Finalize branding & theming** </LabeledCheckbox>
 
-For a consistent user experience, ensure your branding (logo, colors) are added to the Admin Portal
+For a consistent user experience, ensure your branding (logo, colors) are added to the admin portal
 
-<LabeledCheckbox id="6"> Review Admin Portal URL </LabeledCheckbox>
+<LabeledCheckbox id="6"> **Review admin portal URL** </LabeledCheckbox>
 
 Customize the admin portal URL to match your domain (for
 example,<SimpleCode>https:<span></span>//admin.hero-saas.app</SimpleCode>) for a seamless brand
-experience. Also, Remember to update <SimpleCode>.env</SimpleCode> file post CNAME configuration.
+experience. Also, remember to update <SimpleCode>.env</SimpleCode> file post CNAME configuration.
 Read [customizing the admin portal](/scim/domain-and-theme-customization) on how to match your
 brand.
 
-<LabeledCheckbox id="7"> Graceful Error Handling </LabeledCheckbox>
+<LabeledCheckbox id="7"> **Graceful error handling** </LabeledCheckbox>
 
 Test thoroughly across all possible edge cases, including incomplete, invalid, or duplicate data.

@@ -1,17 +1,17 @@
 ---
 slug: authorization-url
-title: 'Scalekit Authorization URL Guide | Configure SSO Authentication Flow'
-description: 'Learn how to construct and implement authorization URLs in Scalekit to initiate secure Single Sign-On (SSO) flows with your identity provider.'
+title: 'Scalekit authorization URL guide | Configure SSO authentication flow'
+description: 'Learn how to construct and implement authorization URLs in Scalekit to initiate secure single sign-on (SSO) flows with your identity provider.'
 keywords:
   [
     'Scalekit',
     'Authorization URL',
-    'Single Sign-On',
+    'Single sign-on',
     'SSO',
     'OAuth',
     'OpenID Connect',
     'OIDC',
-    'Identity Provider',
+    'Identity provider',
     'IdP',
     'Authentication',
     'SDK',
@@ -24,8 +24,8 @@ keywords:
 
 # Authorization URL
 
-Authorization URL is the first step in the Single Sign-on flow where you will redirect the user to Scalekit to
-authenticate the user with the appropriate Identity Provider.
+Authorization URL is the first step in the single sign-on flow where you will redirect the user to Scalekit to
+authenticate the user with the appropriate identity provider.
 
 Your application constructs a URL with specific parameters that tell the authorization server(in this case: Scalekit)
 what the app is requesting. This URL looks like:
@@ -48,12 +48,12 @@ https://b2b-app.scalekit.dev/oauth/authorize?
 
 | Parameter                                                           | Requirement | Description                                                                                                                                                     |
 | ------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <SimpleCode className="text--semibold">client_id</SimpleCode>       | Required    | Unique identifier obtained from the API Credentials page                                                                                                        |
+| <SimpleCode className="text--semibold">client_id</SimpleCode>       | Required    | Unique identifier obtained from the API credentials page                                                                                                        |
 | <SimpleCode className="text--semibold">nonce</SimpleCode>           | Optional    | Random value for replay protection                                                                                                                              |
 | <SimpleCode className="text--semibold">organization_id</SimpleCode> | Required\*  | Identifier for the organization initiating SSO                                                                                                                  |
 | <SimpleCode className="text--semibold">connection_id</SimpleCode>   | Required\*  | Identifier for the specific SSO connection                                                                                                                      |
 | <SimpleCode className="text--semibold">domain</SimpleCode>          | Required\*  | Domain part of the email address configured for an organization                                                                                                 |
-| <SimpleCode className="text--semibold">provider</SimpleCode>        | Required\*  | Unique provider name for Social Login. <br />Currently, we support the following providers: `google`, `microsoft`, `github`, `gitlab`, `linkedin`, `salesforce` |
+| <SimpleCode className="text--semibold">provider</SimpleCode>        | Required\*  | Unique provider name for social login. <br />Currently, we support the following providers: `google`, `microsoft`, `github`, `gitlab`, `linkedin`, `salesforce` |
 | <SimpleCode className="text--semibold">response_type</SimpleCode>   | Required    | Must be set to `code`                                                                                                                                           |
 | <SimpleCode className="text--semibold">redirect_uri</SimpleCode>    | Required    | URL where the response is sent, must match an authorized value                                                                                                  |
 | <SimpleCode className="text--semibold">scope</SimpleCode>           | Required    | Must be set to `openid email profile`                                                                                                                           |
@@ -64,17 +64,17 @@ https://b2b-app.scalekit.dev/oauth/authorize?
 
 <SimpleCode>domain</SimpleCode>, or <SimpleCode>provider</SimpleCode> must be provided.
 
-## Usage Notes
+## Usage notes
 
 1. The <SimpleCode>redirect_uri</SimpleCode> must exactly match one of the authorized redirect values set in the API
-   Credentials page.
+   credentials page.
 2. The <SimpleCode>state</SimpleCode> parameter is recommended for security purposes, including protection against
    cross-site request forgery.
 3. The <SimpleCode>login_hint</SimpleCode> can be used to prefill login information at the identity provider.
 
-## SDK Usage
+## SDK usage
 
-<CodeWithHeader title="SDK Usage">
+<CodeWithHeader title="SDK usage">
 
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="node" label="Node.js">

@@ -1,92 +1,92 @@
 ---
 displayed_sidebar: scimSidebar
 draft: true
-title: 'Setting Up Directory Events: SCIM Webhook Integration Guide'
+title: 'Setting up directory events: SCIM webhook integration guide'
 description: 'Learn how to configure and test webhook endpoints for handling SCIM directory events. Implement real-time user provisioning and management through directory event notifications.'
 keywords: [
-    'Directory Events',
-    'Webhook Setup',
-    'SCIM Integration',
-    'Event Handling',
-    'User Provisioning',
-    'Directory Sync',
-    'Webhook Testing',
-    'Event Notifications',
-    'User Management',
-    'Directory Updates',
-    'Event Payloads',
-    'Integration Testing',
-    'Real-time Updates',
-    'Event Configuration',
-    'Directory Integration',
+    'Directory events',
+    'Webhook setup',
+    'SCIM integration',
+    'Event handling',
+    'User provisioning',
+    'Directory sync',
+    'Webhook testing',
+    'Event notifications',
+    'User management',
+    'Directory updates',
+    'Event payloads',
+    'Integration testing',
+    'Real-time updates',
+    'Event configuration',
+    'Directory integration',
   ]
 ---
 
-# Setup Directory Events
+# Setup directory events
 
-<Subtitle>Experimenting with Event Handling using the Webhook Endpoints</Subtitle>
+<Subtitle>Experimenting with event handling using the webhook endpoints</Subtitle>
 
-To listen to events from directory providers, register a Webhook endpoint in the Scalekit dashboard.
+To listen to events from directory providers, register a webhook endpoint in the Scalekit dashboard.
 Scalekit sends payloads to the registered endpoint as events occur. B2B applications can use the
 information in these payloads to:
 
-- **Create** a user account in your app
-- **Remove** or **deactivate** a user account in your app
-- **Update** user's information
+- **Create** a user account in your app
+- **Remove** or **deactivate** a user account in your app
+- **Update** user's information
 - **Assign** a role to the user
 
-## Setting Up Your Webhook
+## Setting up your webhook
 
-Open the Scalekit dashboard and navigate to **Webhooks** on the left sidebar.
+Open the Scalekit dashboard and navigate to **Webhooks** on the left sidebar.
 
 <figure>
-  ![Webhook Setup](@site/docs/scim/assets/setup-dir-events-1.png)
-  <figcaption>Scalekit's Interface for Building and Monitoring Endpoint Connections</figcaption>
+  ![Webhook setup](@site/docs/scim/assets/setup-dir-events-1.png)
+  <figcaption>Scalekit's interface for building and monitoring endpoint connections</figcaption>
 </figure>
 
-Select **Add Endpoint** to proceed to the endpoint setup screen.
+Select **Add endpoint** to proceed to the endpoint setup screen.
 
 - **Endpoint URL**: This is the URL you create in your app to listen to events from Scalekit.
-- **Event Subscription**: Subscribe to the events you want to receive from the event catalog. For
+- **Event subscription**: Subscribe to the events you want to receive from the event catalog. For
   directory events, select all options under the directory category.
-- Click **Create** to set up the Webhook.
+- Click **Create** to set up the webhook.
 
 <figure>
-  ![Webhook Setup](@site/docs/scim/assets/setup-dir-events-2.png)
+  ![Webhook setup](@site/docs/scim/assets/setup-dir-events-2.png)
   <figcaption>
-    Set Up Your Endpoint to Listen User and Group Events from your Customer’s Directory Providers.
+    Set up your endpoint to listen user and group events from your customer's directory providers.
   </figcaption>
 </figure>
 
-The Webhook is now successfully set up. Refer to the **Events Documentation** to understand the
+The webhook is now successfully set up. Refer to the **Events documentation** to understand the
 properties your app receives in the event payload for each event.
 
-### Play with Test Webhook Endpoints
+### Play with test webhook endpoints
 
-If you haven't started building a Webhook endpoint yet and are still exploring, Scalekit offers a
-convenient way to set up an endpoint for testing. Simply click on **"With Svix Play,"** and the
+If you haven't started building a webhook endpoint yet and are still exploring, Scalekit offers a
+convenient way to set up an endpoint for testing. Simply click on **"With Svix Play,"** and the
 input field will automatically populate with a test endpoint. This endpoint receives the same
 information as any endpoint in your B2B app, allowing you to proceed with testing seamlessly.
 
 <figure>
-  ![Setting Up a Sandbox Endpoint](@site/docs/scim/assets/setup-dir-events-3.png)
-  <figcaption>Setting Up a Sandbox Endpoint</figcaption>
+  ![Setting up a sandbox endpoint](@site/docs/scim/assets/setup-dir-events-3.png)
+  <figcaption>Setting up a sandbox endpoint</figcaption>
 </figure>
 
-## Testing Your Webhook
+## Testing your webhook
 
 To test how your app handles events, you can manually trigger an example payload from Scalekit.
-Access the list of registered endpoints by navigating to **Webhooks > Endpoints Tab**. Select the
+Access the list of registered endpoints by navigating to **Webhooks > Endpoints tab**. Select the
 event you want to trigger and send an example payload.
 
 <figure>
-  ![List of registered Webhook endpoints in Scalekit
+  ![List of registered webhook endpoints in Scalekit
   ](@site/docs/scim/assets/setup-dir-events-4.png)
-  <figcaption>List of registered Webhook endpoints in Scalekit </figcaption>
+  <figcaption>List of registered webhook endpoints in Scalekit </figcaption>
 </figure>
 
-Next, go to the **Testing Tab** to explore options for testing your integration. Choose an event
-from the available list. For instance, select <SimpleCode>organization.directory.user_created</SimpleCode> to view the JSON payload that will be sent as a test.
+Next, go to the **Testing tab** to explore options for testing your integration. Choose an event
+from the available list. For instance, select <SimpleCode>organization.directory.user_created</SimpleCode> to view the JSON payload that will be sent as a test.
 
 <figure>
   ![Simulate events using the dropdown menu to trigger example
@@ -94,10 +94,10 @@ from the available list. For instance, select <SimpleCode>organization.director
   <figcaption>Simulate events using the dropdown menu to trigger example payloads</figcaption>
 </figure>
 
-Click **"Send Example"** to trigger the registered endpoint with the payload. Verify the payload to
+Click **"Send example"** to trigger the registered endpoint with the payload. Verify the payload to
 ensure the simulation is successful, and then proceed to build the features based on this test.
 
-## Next Steps
+## Next steps
 
 With your B2B app now set up to listen to directory events, consider how to utilize the payloads to
 fulfill the business logic of your application(s) effectively.

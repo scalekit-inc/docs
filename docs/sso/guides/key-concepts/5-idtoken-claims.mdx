@@ -1,17 +1,17 @@
 ---
 slug: idtoken-claims
-title: "Scalekit ID Token Claims | Understand User Authentication Details"
+title: "Scalekit ID token claims | Understand user authentication details"
 description: "Explore the structure and claims of ID tokens in Scalekit, including essential fields like 'iss', 'sub', 'aud', and 'exp', to enhance your authentication processes."
-keywords: ["ID Token", "JWT", "Scalekit", "User Authentication", "Claims", "JSON Web Token", "Profile Information", "Secure Authentication", "Token Validation", "OAuth"]
+keywords: ["ID token", "JWT", "Scalekit", "User authentication", "Claims", "JSON Web Token", "Profile information", "Secure authentication", "Token validation", "OAuth"]
 ---
 
-# Inspect Claims in ID Token
+# Inspect claims in ID token
 
-An ID Token is a JSON Web Token (JWT) containing cryptographically signed claims about a user's profile information. This is issued by Scalekit after successful authentication. The ID Token is a Base64-encoded JSON object with three parts: header, payload, and signature.
+An ID token is a JSON Web Token (JWT) containing cryptographically signed claims about a user's profile information. This is issued by Scalekit after successful authentication. The ID token is a Base64-encoded JSON object with three parts: header, payload, and signature.
 
 Here's an example of the payload. Note this is formatted for readability and the header and signature fields are skipped.
 
-## Sample Payload
+## Sample payload
 
 <CodeWithHeader>
 <JsonViewer
@@ -37,12 +37,12 @@ Here's an example of the payload. Note this is formatted for readability and the
 
 </CodeWithHeader>
 
-## Full list of ID Token Claims
+## Full list of ID token claims
 
 | Claim                                                              | Presence | Description                                  |
 | ------------------------------------------------------------------ | -------- | -------------------------------------------- |
 | <SimpleCode className="text--semibold">aud</SimpleCode>            | Always   | Intended audience (client ID)                |
-| <SimpleCode className="text--semibold">amr</SimpleCode>            | Always   | Authentication Method Reference values       |
+| <SimpleCode className="text--semibold">amr</SimpleCode>            | Always   | Authentication method reference values       |
 | <SimpleCode className="text--semibold">exp</SimpleCode>            | Always   | Expiration time (Unix timestamp)             |
 | <SimpleCode className="text--semibold">iat</SimpleCode>            | Always   | Issuance time (Unix timestamp)               |
 | <SimpleCode className="text--semibold">iss</SimpleCode>            | Always   | Issuer identifier (Scalekit environment URL) |
@@ -59,16 +59,16 @@ Here's an example of the payload. Note this is formatted for readability and the
 | <SimpleCode className="text--semibold">locale</SimpleCode>         | Optional | User's locale (BCP 47 language tag)          |
 | <SimpleCode className="text--semibold">picture</SimpleCode>        | Optional | URL of user's profile picture                |
 
-## Usage Notes
+## Usage notes
 
-1. The ID Token is received over a secure HTTPS channel using the client secret.
-2. Validation of the ID Token is handled automatically when using the Scalekit SDK.
+1. The ID token is received over a secure HTTPS channel using the client secret.
+2. Validation of the ID token is handled automatically when using the Scalekit SDK.
 3. The <SimpleCode>sub</SimpleCode> claim combines the <SimpleCode>connection_id</SimpleCode> and the provider's unique identifier.
 4. The <SimpleCode>iss</SimpleCode> claim must match your Scalekit environment URL.
 5. The <SimpleCode>amr</SimpleCode> claim typically contains the <SimpleCode>connection_id</SimpleCode> used for authentication.
 
-This structure provides a neutral, factual reference for ID Token Claims in Scalekit, organized according to the data structure itself.
+This structure provides a neutral, factual reference for ID token claims in Scalekit, organized according to the data structure itself.
 
-An ID Token is nothing but a cryptographically signed Base64-encoded JSON object containing a set of name/value pairs about the user's profile information. Essentially, it is a JWT token. Ideally, it is advised that you validate an ID token before you use it, but since you are communicating directly with Scalekit over an intermediary-free HTTPS channel and using your client secret to exchange the <SimpleCode>code</SimpleCode> for the ID Token, you can be confident that the token you receive really comes from Scalekit and is valid.
+An ID token is nothing but a cryptographically signed Base64-encoded JSON object containing a set of name/value pairs about the user's profile information. Essentially, it is a JWT token. Ideally, it is advised that you validate an ID token before you use it, but since you are communicating directly with Scalekit over an intermediary-free HTTPS channel and using your client secret to exchange the <SimpleCode>code</SimpleCode> for the ID token, you can be confident that the token you receive really comes from Scalekit and is valid.
 
-If you are using our Scalekit SDK to exchange the code for the ID Token, the work of decoding the base64url-encoded values and parsing the JSON within, validating the JWT and accessing the claims within the ID token is automatically taken care of.
+If you are using our Scalekit SDK to exchange the code for the ID token, the work of decoding the base64url-encoded values and parsing the JSON within, validating the JWT and accessing the claims within the ID token is automatically taken care of.

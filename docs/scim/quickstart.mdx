@@ -1,22 +1,22 @@
 ---
-title: 'Scalekit SCIM Quickstart | Automate User Provisioning Seamlessly'
+title: 'Scalekit SCIM quickstart | Automate user provisioning seamlessly'
 description: 'Implement SCIM with Scalekit to automate user provisioning and deprovisioning, ensuring secure and efficient user lifecycle management.'
 keywords: [
-  'SCIM Integration',
-  'User Provisioning',
+  'SCIM integration',
+  'User provisioning',
   'Directory API',
   'Scalekit SDK',
-  'User Management',
-  'API Integration',
-  'Directory Provider',
-  'User Synchronization',
-  'Enterprise Integration',
-  'User Deprovisioning',
-  'Webhook Integration',
+  'User management',
+  'API integration',
+  'Directory provider',
+  'User synchronization',
+  'Enterprise integration',
+  'User deprovisioning',
+  'Webhook integration',
   'REST API',
-  'User Directory',
-  'Employee Onboarding',
-  'Access Management'
+  'User directory',
+  'Employee onboarding',
+  'Access management'
 ]
 
 ---
@@ -25,15 +25,15 @@ import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
 
 # Getting started with SCIM
 
-<Subtitle>Automate User Provisioning and Deprovisioning</Subtitle>
+<Subtitle>Automate user provisioning and deprovisioning</Subtitle>
 
 Enterprises need to automatically provision and de-provision employee access to applications to
 ensure security. Scalekit simplifies this process by providing a single interface to your app,
 abstracting the complexities of various directory providers.
 
-With [SCIM Provisioning](/scim/basics) from Scalekit, you can:
+With [SCIM provisioning](/scim/basics) from Scalekit, you can:
 
-- Use **Webhooks** to listen for events from your customers' directory providers (e.g., user
+- Use **webhooks** to listen for events from your customers' directory providers (e.g., user
   updates, group changes)
 - Use **REST APIs** to list users, groups, and directories on demand
 
@@ -49,11 +49,11 @@ allows you to:
 - Deactivate accounts when employees depart
 - Adjust access levels as employees change roles
 
-## User Provisioning with Scalekit's Directory API
+## User provisioning with Scalekit's directory API
 
-Scalekit's Directory API allows you to fetch information about users, groups, and directories
+Scalekit's directory API allows you to fetch information about users, groups, and directories
 associated with an organization on-demand. This is useful for scenarios like running cron jobs to
-sync user and group data. In this guide, we'll demonstrate how to use the List Users in a Directory
+sync user and group data. In this guide, we'll demonstrate how to use the list users in a directory
 API to retrieve a list of users in a specific directory.
 
 Before you begin, ensure that your organization has a directory set up in Scalekit.
@@ -62,16 +62,16 @@ Before diving in, ensure you have:
 
 1. A Scalekit account
 2. An organization with a configured directory
-3. Access to the Scalekit Dashboard
+3. Access to the Scalekit dashboard
 
-#### Setting Up the SDK
+#### Setting up the SDK
 
 Scalekit offers language-specific SDKs for fast SSO integration. Use the installation instructions
 below for your technology stack:
 
 <InstallSDK />
 
-Navigate to the API Config tab in the Scalekit Dashboard to obtain your credentials. Store your
+Navigate to the API config tab in the Scalekit dashboard to obtain your credentials. Store your
 credentials securely in a <SimpleCode>.env</SimpleCode> file:
 
 <CodeWithHeader title=".env">
@@ -174,22 +174,22 @@ ListOrganizationsResponse organizations = scalekitClient.organizations().listOrg
 </Tabs>
 </CodeWithHeader>
 
-## Working with Directories
+## Working with directories
 
-### Retrieving a Directory
+### Retrieving a directory
 
 To begin syncing user and group data, first retrieve the directory associated with your
 organization:
 
-<CodeWithHeader title="Retrieve a Directory">
+<CodeWithHeader title="Retrieve a directory">
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
 ```javascript
-// Get Directory using Organization ID and Directory ID
+// Get directory using organization ID and directory ID
 const { directory } = await scalekit.directory.getDirectory('<organization_id>', '<directory_id>');
 
-// Get Directory using Organization ID
+// Get directory using organization ID
 const { directory } =
   await scalekit.directory.getPrimaryDirectoryByOrganizationId('<organization_id>');
 ```
@@ -199,12 +199,12 @@ const { directory } =
 <TabItem value="python" label="Python">
 
 ```python
-# Get Directory using Organization ID and Directory ID
+# Get directory using organization ID and directory ID
 directory = scalekit_client.directory.get_directory(
   organization_id='<organization_id>', directory_id='<directory_id>'
 )
 
-# Get Directory using Organization ID
+# Get directory using organization ID
 primary_directory = scalekit_client.directory.get_primary_directory_by_organization_id(
   organization_id='<organization_id>'
 )
@@ -215,10 +215,10 @@ primary_directory = scalekit_client.directory.get_primary_directory_by_organizat
  <TabItem value="go" label="Go">
 
 ```go
-// Get Directory using Organization ID and Directory ID
+// Get directory using organization ID and directory ID
 directory, err := sc.Directory().GetDirectory(ctx, organizationId, directoryId)
 
-// Get Directory using Organization ID
+// Get directory using organization ID
 directory, err := sc.Directory().GetPrimaryDirectoryByOrganizationId(ctx, organizationId)
 ```
 
@@ -227,10 +227,10 @@ directory, err := sc.Directory().GetPrimaryDirectoryByOrganizationId(ctx, organi
 <TabItem value="java" label="Java">
 
 ```java
-// Get Directory using Organization ID and Directory ID
+// Get directory using organization ID and directory ID
 Directory directory = scalekitClient.directories().getDirectory("<directoryId>", "<organizationId>");
 
-// Get Directory using Organization ID
+// Get directory using organization ID
 Directory directory = scalekitClient.directories().getPrimaryDirectoryByOrganizationId("<organizationId>");
 ```
 
@@ -238,11 +238,11 @@ Directory directory = scalekitClient.directories().getPrimaryDirectoryByOrganiza
 </Tabs>
 </CodeWithHeader>
 
-### Listing Users in a Directory
+### Listing users in a directory
 
 Fetch users within a specific directory:
 
-<CodeWithHeader title="List Users in a Directory">
+<CodeWithHeader title="List users in a directory">
 <Tabs groupId="tech-stack" queryString>
 <TabItem value="nodejs" label="Node.js">
 
@@ -299,7 +299,7 @@ automatically connect to their directory and start syncing user data.
 
 See [Directory User Object](/apis#tag/DirectoryUser/object)
 
-### Listing Groups
+### Listing groups
 
 Retrieve groups within a directory:
 
@@ -364,9 +364,9 @@ Scalekit's Directory API provides a simple way to fetch user and group informati
 to our [API reference](/apis) and [examples](/scim/explore-sample-apps) to explore more
 capabilities.
 
-## Realtime User Provisioning with Webhooks
+## Realtime user provisioning with webhooks
 
-### Create a Webhook Endpoint
+### Create a webhook endpoint
 
 To receive realtime events from directory providers, create a webhook endpoint and register it in
 the Scalekit dashboard.
@@ -494,7 +494,7 @@ When the endpoint receives an HTTP POST request with event data, it extracts the
 the payload and calls <SimpleCode>createUserAccount()</SimpleCode> to perform the necessary business
 logic — in this case, creating a user account.
 
-### Register Webhook Endpoint
+### Register webhook endpoint
 
 First, navigate to the "Webhooks" tab in the Scalekit Dashboard. Click on the "+Add Endpoint" button and enter the endpoint URL along with a meaningful description. Finally, select the desired event types, for example <SimpleCode>organization.directory.user_created</SimpleCode>, to subscribe to the relevant events.
 
@@ -505,7 +505,7 @@ Refer to the [API reference](/apis#tag/Webhooks) for the list of all available e
 
 
 
-### Receive Event Payloads
+### Receive event payloads
 
 Scalekit sends event payloads to your app for consumption and standardizes the payload structure
 across different directory providers your customers may use.Since we subscribed to user events,

@@ -1,16 +1,16 @@
 ---
-title: "Scalekit SSO Error Handling | Manage Single Sign-On Issues Effectively"
-description: "Learn how to identify and resolve common Single Sign-On errors in Scalekit, ensuring a seamless authentication experience for your users."
-keywords: ["Single Sign-on", "SSO", "Scalekit", "Error Handling", "SSO Integration", "OAuth Errors", "Identity Provider", "SSO Configuration", "Error Codes", "User Experience"]
+title: "Scalekit SSO error handling | Manage single sign-on issues effectively"
+description: "Learn how to identify and resolve common single sign-on errors in Scalekit, ensuring a seamless authentication experience for your users."
+keywords: ["Single sign-on", "SSO", "Scalekit", "Error handling", "SSO integration", "OAuth errors", "Identity provider", "SSO configuration", "Error codes", "User experience"]
 ---
 
-# Error Handling during Single Sign-on
+# Error handling during single sign-on
 
 <Subtitle>
     Reference of error codes and how to handle them
 </Subtitle>
 
-When users attempt to log in via Single Sign-on (SSO) using Scalekit, any issues encountered will result in error details being sent to your application's redirect URI via the <SimpleCode>error</SimpleCode> and <SimpleCode>error_description</SimpleCode> query parameters. Proper error handling ensures a better user experience.
+When users attempt to log in via single sign-on (SSO) using Scalekit, any issues encountered will result in error details being sent to your application's redirect URI via the <SimpleCode>error</SimpleCode> and <SimpleCode>error_description</SimpleCode> query parameters. Proper error handling ensures a better user experience.
 
 ## Integration related errors
 
@@ -20,30 +20,30 @@ If there is any issue between Scalekit and your application, the following error
 Ideally, you would want to catch these errors in the development environments. These errors are not meant to be exposed to your customers in the production environments.
 :::
 
-| Error                                                | Error Description                                                                                      | Possible Resolution Strategy                                                                                                     |
+| Error                                                | Error description                                                                                      | Possible resolution strategy                                                                                                     |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| <SimpleCode>invalid_redirect_uri</SimpleCode>        | Redirect URI is not part of the pre-approved list of Redirect URIs.                                    | Add the valid URL in the Scalekit Dashboard before using it                                                                      |
-| <SimpleCode>invalid_connection_selector</SimpleCode> | Missing `organization_id` (or) `connection_id` (or) `domain` (or) `provider` in the Authorization URL. | Include at least one of these parameters in the request.                                                                         |
-| <SimpleCode>no_active_connections</SimpleCode>       | There are no active SSO Connections configured to process the Single Sign-on request                   | Ensure active SSO connections are set up.                                                                                        |
-| <SimpleCode>connection_not_active</SimpleCode>       | The configured connection is not active                                                                | Enable the SSO connection in the Scalekit Dashboard.                                                                             |
+| <SimpleCode>invalid_redirect_uri</SimpleCode>        | Redirect URI is not part of the pre-approved list of redirect URIs.                                    | Add the valid URL in the Scalekit dashboard before using it                                                                      |
+| <SimpleCode>invalid_connection_selector</SimpleCode> | Missing `organization_id` (or) `connection_id` (or) `domain` (or) `provider` in the authorization URL. | Include at least one of these parameters in the request.                                                                         |
+| <SimpleCode>no_active_connections</SimpleCode>       | There are no active SSO connections configured to process the single sign-on request                   | Ensure active SSO connections are set up.                                                                                        |
+| <SimpleCode>connection_not_active</SimpleCode>       | The configured connection is not active                                                                | Enable the SSO connection in the Scalekit dashboard.                                                                             |
 | <SimpleCode>no_configured_connections</SimpleCode>   | No active SSO connections configured                                                                   | Ensure active SSO connections are set up                                                                                         |
 | <SimpleCode>invalid_organization_id</SimpleCode>     | Invalid organization ID                                                                                | Verify and use a valid organization ID                                                                                           |
 | <SimpleCode>invalid_connection_id</SimpleCode>       | Invalid connection ID                                                                                  | Verify and use a valid connection ID                                                                                             |
-| <SimpleCode>domain_not_found</SimpleCode>            | No domain specified for the SSO connection(s)                                                          | Check domain configuration in Scalekit Dashboard                                                                                 |
+| <SimpleCode>domain_not_found</SimpleCode>            | No domain specified for the SSO connection(s)                                                          | Check domain configuration in Scalekit dashboard                                                                                 |
 | <SimpleCode>invalid_user_domain</SimpleCode>         | User's domain not allowed for this SSO connection                                                      | Ensure user domain is part of the allowed domains list                                                                           |
-| <SimpleCode>server_error</SimpleCode>                | _actual error description from the server_                                                             | This must be a rare occurence. Please reach out to us via your private slack channel or [via email](mailto:support@scalekit.com) |
+| <SimpleCode>server_error</SimpleCode>                | _actual error description from the server_                                                             | This must be a rare occurrence. Please reach out to us via your private slack channel or [via email](mailto:support@scalekit.com) |
 
-## SSO Configuration related errors
+## SSO configuration related errors
 
 If SSO configuration issues arise, you will encounter the following errors:
 
 :::tip
-Ideally, these errors should have been caught and handled by your customer's IT admin at the time of SSO configuration. If your customers encounter problems with the Single Sign-On (SSO) setup, they will have the opportunity to review and correct the configuration during the "Test Connection" step.
+Ideally, these errors should have been caught and handled by your customer's IT admin at the time of SSO configuration. If your customers encounter problems with the single sign-on (SSO) setup, they will have the opportunity to review and correct the configuration during the "Test connection" step.
 
-Once your customer configures the SSO settings properly, tests the configuration and enables it - you shouldn't receive these errors unless something has been modified, tampered or changed with Identity Provider.
+Once your customer configures the SSO settings properly, tests the configuration and enables it - you shouldn't receive these errors unless something has been modified, tampered or changed with identity provider.
 :::
 
-| Error Code                                           | Error Description                                                                         | Possible Resolution Strategy                                                                                                                                                                                                         |
+| Error code                                           | Error description                                                                         | Possible resolution strategy                                                                                                                                                                                                         |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | <SimpleCode>mandatory_attribute_missing</SimpleCode> | Missing mandatory user attributes                                                         | Ensure all the mandatory user attributes are configured properly                                                                                                                                                                     |
 | <SimpleCode>invalid_id_token</SimpleCode>            | Invalid ID token                                                                          | Check the identity provider's functioning                                                                                                                                                                                            |
@@ -53,7 +53,7 @@ Once your customer configures the SSO settings properly, tests the configuration
 | <SimpleCode>invalid_saml_response</SimpleCode>       | Invalid SAML response                                                                     | Review and fix SAML configuration settings                                                                                                                                                                                           |
 | <SimpleCode>signature_validation_failed</SimpleCode> | Failed signature validation                                                               | Review and update the ACS URL in the identity provider's settings                                                                                                                                                                    |
 | <SimpleCode>invalid_acs_url</SimpleCode>             | Invalid ACS URL                                                                           | Review and update the ACS URL in the identity provider's settings                                                                                                                                                                    |
-| <SimpleCode>invalid_status</SimpleCode>              | Invalid Status                                                                            | Review and update the SAML configuration settings in the identity provider                                                                                                                                                           |
-| <SimpleCode>malformed_saml_response</SimpleCode>     | marshalling error                                                                         | Ensure SAML response is properly formatted                                                                                                                                                                                           |
+| <SimpleCode>invalid_status</SimpleCode>              | Invalid status                                                                            | Review and update the SAML configuration settings in the identity provider                                                                                                                                                           |
+| <SimpleCode>malformed_saml_response</SimpleCode>     | Marshalling error                                                                         | Ensure SAML response is properly formatted                                                                                                                                                                                           |
 | <SimpleCode>assertion_expired</SimpleCode>           | Expired SAML assertion                                                                    | We received an expired SAML assertion. This could be because of clock skew between the identity provider's server and our servers. Please reach out to us via your private slack channel or [via email](mailto:support@scalekit.com) |
 | <SimpleCode>response_expired</SimpleCode>            | Expired SAML response                                                                     | We received an expired SAML response. This could be because of clock skew between the identity provider's server and our servers. Please reach out to us via your private slack channel or [via email](mailto:support@scalekit.com)  |
