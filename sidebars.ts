@@ -30,7 +30,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Configure admin portal',
+      label: 'Admin portal',
       id: 'sso/quickstart-admin-portal',
     },
     {
@@ -40,7 +40,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Complete launch checklist',
+      label: 'Launch checklist',
       id: 'sso/launch-checklist',
     },
     {
@@ -192,12 +192,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Configure admin portal',
+      label: 'Admin portal',
       id: 'scim/admin-portal',
     },
     {
       type: 'doc',
-      label: 'Complete launch checklist',
+      label: 'Launch checklist',
       id: 'scim/checklist',
     },
     {
@@ -213,7 +213,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up automated role assignment',
+      label: 'Automate role assignment',
       id: 'scim/automatically-assign-roles',
     },
     {
