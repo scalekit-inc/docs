@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up social logins',
+      label: 'Social logins quickstart',
       id: 'sso/social-login',
     },
     {
