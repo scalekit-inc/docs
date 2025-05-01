@@ -477,17 +477,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Configure admin portal',
+      label: 'Admin portal',
       href: '/sso/quickstart-admin-portal',
     },
     {
       type: 'link',
-      label: 'Set up auth integrations',
+      label: 'Auth integrations',
       href: '/integrations',
     },
     {
       type: 'link',
-      label: 'Set up custom domains',
+      label: 'Custom domains',
       href: '/sso/domain-and-theme-customization#custom-domain',
     },
     {
