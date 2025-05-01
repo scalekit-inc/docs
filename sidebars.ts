@@ -262,47 +262,47 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up Okta SAML',
+      label: 'Okta SAML',
       id: 'integrations/okta-saml',
     },
     {
       type: 'doc',
-      label: 'Set up Microsoft Entra ID SAML',
+      label: 'Microsoft Entra ID SAML',
       id: 'integrations/azure-ad-saml',
     },
     {
       type: 'doc',
-      label: 'Set up OneLogin SAML',
+      label: 'OneLogin SAML',
       id: 'integrations/onelogin-saml',
     },
     {
       type: 'doc',
-      label: 'Set up JumpCloud SAML',
+      label: 'JumpCloud SAML',
       id: 'integrations/jumpcloud-saml',
     },
     {
       type: 'doc',
-      label: 'Set up Google Workspace SAML',
+      label: 'Google Workspace SAML',
       id: 'integrations/google-saml',
     },
     {
       type: 'doc',
-      label: 'Set up PingIdentity SAML',
+      label: 'PingIdentity SAML',
       id: 'integrations/pingidentity-saml',
     },
     {
       type: 'doc',
-      label: 'Set up Microsoft AD FS SAML',
+      label: 'Microsoft AD FS SAML',
       id: 'integrations/adfs-saml',
     },
     {
       type: 'doc',
-      label: 'Set up generic SAML provider',
+      label: 'Generic SAML provider',
       id: 'integrations/saml',
     },
     {
       type: 'doc',
-      label: 'Set up generic OIDC provider',
+      label: 'Generic OIDC provider',
       id: 'integrations/oidc',
     },
     {
@@ -318,27 +318,27 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up Okta SCIM',
+      label: 'Okta SCIM',
       id: 'integrations/okta-scim',
     },
     {
       type: 'doc',
-      label: 'Set up Microsoft Entra ID SCIM',
+      label: 'Microsoft Entra ID SCIM',
       id: 'integrations/azure-scim',
     },
     {
       type: 'doc',
-      label: 'Set up Google Workspace SCIM',
+      label: 'Google Workspace SCIM',
       id: 'integrations/scim-connections/google-dir-sync',
     },
     {
       type: 'doc',
-      label: 'Set up JumpCloud SCIM',
+      label: 'JumpCloud SCIM',
       id: 'integrations/scim-connections/jumpcloud',
     },
     {
       type: 'doc',
-      label: 'Set up OneLogin SCIM',
+      label: 'OneLogin SCIM',
       id: 'integrations/onelogin-scim',
     },
     {
@@ -354,17 +354,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up Auth0',
+      label: 'Auth0',
       id: 'integrations/auth0',
     },
     {
       type: 'doc',
-      label: 'Set up Firebase',
+      label: 'Firebase',
       id: 'integrations/firebase',
     },
     {
       type: 'doc',
-      label: 'Set up AWS Cognito',
+      label: 'AWS Cognito',
       id: 'integrations/cognito',
     },
     {
@@ -380,32 +380,32 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Set up Google',
+      label: 'Google',
       id: 'integrations/social-connections/google',
     },
     {
       type: 'doc',
-      label: 'Set up GitHub',
+      label: 'GitHub',
       id: 'integrations/social-connections/github',
     },
     {
       type: 'doc',
-      label: 'Set up GitLab',
+      label: 'GitLab',
       id: 'integrations/social-connections/gitlab',
     },
     {
       type: 'doc',
-      label: 'Set up Microsoft',
+      label: 'Microsoft',
       id: 'integrations/social-connections/microsoft',
     },
     {
       type: 'doc',
-      label: 'Set up Salesforce',
+      label: 'Salesforce',
       id: 'integrations/social-connections/salesforce',
     },
     {
       type: 'doc',
-      label: 'Set up LinkedIn',
+      label: 'LinkedIn',
       id: 'integrations/social-connections/linkedin',
     },
   ],
