@@ -328,7 +328,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Google Workspace SCIM',
+      label: 'Google Workspace',
       id: 'integrations/scim-connections/google-dir-sync',
     },
     {
