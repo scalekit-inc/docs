@@ -234,7 +234,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Understand SCIM provisioning',
+      label: 'Understand SCIM Provisioning',
       id: 'scim/basics',
     },
     {
