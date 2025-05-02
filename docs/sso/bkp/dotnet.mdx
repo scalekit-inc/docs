@@ -1,0 +1,165 @@
+---
+title: .NET SDK
+draft: true
+hide_table_of_contents: true
+hide_title: true
+---
+
+### .NET SDK Code Examples
+
+<CodeWithHeader title="Installing Scalekit SDK">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```bash showLineNumbers
+npm install @scalekit-sdk/node
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```bash showLineNumbers
+# Coming soon
+```
+
+</TabItem>
+
+</Tabs>
+
+</CodeWithHeader>
+
+<CodeWithHeader title="Construct Authorization URL">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js showLineNumbers
+import { ScalekitClient } from '@scalekit-sdk/node';
+// Initialize the SDK client
+const scalekit = new ScalekitClient(
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>',
+);
+
+const options = {};
+
+// Option 1: Authorization URL with the organization ID
+options['organizationId'] = 'org_15421144869927830';
+
+// Option 2: Authorization URL with login hint
+options['connectionId'] = 'conn_15696105471768821';
+
+// Option 3: Authorization URL with login hint
+options['loginHint'] = 'user@example.com';
+
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+
+</Tabs>
+
+</CodeWithHeader>
+
+<CodeWithHeader title="Fetch User Profile (sso/quickstart)">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+// Handle oauth redirect_url, fetch code and error_description from request params
+const { code, error, error_description, idp_initiated_login, connection_id, relay_state } =
+  req.query;
+
+if (error) {
+  // Handle errors
+}
+
+// Recommended: Handle idp initiated login
+
+const result = await scalekit.authenticateWithCode(code, redirectUri);
+const userEmail = result.user.email;
+
+// Next step: create a session for this user and allow access
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Quickstart admin portal
+
+<CodeWithHeader title="Fetch User Profile (sso/quickstart)">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+import { Scalekit } from '@scalekit-sdk/node';
+
+const scalekit = new Scalekit(
+  process.env.ENVIRONMENT_URL,
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+);
+
+async function generatePortalLink(orgID) {
+  const link = await scalekit.organization.generatePortalLink(orgID);
+  console.log(JSON.stringify(link, null, 2));
+}
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Test SSO integration
+
+<CodeWithHeader title="Generate an Authorization URL using an Organization ID">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+const options = {};
+options['organizationId'] = 'org_32656XXXXXX0438';
+
+// Generate Authorization Url
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
+
+res.redirect(authorizationUrl);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
