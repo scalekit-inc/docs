@@ -163,3 +163,817 @@ res.redirect(authorizationUrl);
 </TabItem>
 </Tabs>
 </CodeWithHeader>
+
+### Social login integration
+
+<CodeWithHeader title="Social Connection Authorization">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+import { Scalekit } from '@scalekit-sdk/node';
+
+const scalekit = new Scalekit('<SCALEKIT_ENVIRONMENT_URL>', '<SCALEKIT_CLIENT_ID>', '<SCALEKIT_CLIENT_SECRET>');
+
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
+  provider: 'microsoft',
+  state: state, // optional
+});
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+<CodeWithHeader title="Fetch Social Login User Details">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+const { code, state } = req.query;
+
+if (error) {
+  // Handle errors
+}
+
+const res = await scalekit.authenticateWithCode(code, redirectUri);
+const userEmail = res.user.email;
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Build Login Page
+
+<CodeWithHeader title="Build Login Page">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+import { Scalekit } from '@scalekit-sdk/node';
+
+// Initialize the SDK client
+const scalekit = new Scalekit(
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>',
+);
+
+options = {};
+
+// Option 1: Authorization URL with the organization ID
+options['organizationId'] = 'org_15421144869927830';
+
+// Option 2: Authorization URL with login hint
+options['loginHint'] = 'user@example.com';
+
+authorizationURL = scalekit.getAuthorizationUrl(
+  redirect_uri,
+  options,
+);
+
+// Next step is to redirect the user to this authorization URL
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Implement IdP-initiated SSO
+
+<CodeWithHeader title="Implement IdP-initiated SSO">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+// 1. Default redirect URL is callback with JWT
+const { code, error_description, idp_initiated_login } = req.query;
+
+  if (error_description) {
+    return res.status(400).json({ message: error_description });
+  }
+
+
+// 2. Decode the JWT
+if (idp_initiated_login) {
+
+  const {
+    connection_id,
+    organization_id,
+    login_hint,
+    relay_state
+  } = await scalekit.getIdpInitiatedLoginClaims(idp_initiated_login);
+
+  let options = {};
+  // Either ONE of the following properties
+    options["connectionId"] = connection_id
+    options["organizationId"] = organization_id
+    options["loginHint"] = login_hint
+
+    // 3. Generate Authorization URL
+    const url = scalekit.getAuthorizationUrl(
+      <redirect_uri>,
+      options
+    )
+    return res.redirect(url);
+  }
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Understanding authorization URL
+
+<CodeWithHeader title="Understanding authorization URL">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+import { ScalekitClient } from '@scalekit-sdk/node';
+
+const scalekit = new ScalekitClient('<SCALEKIT_ENVIRONMENT_URL>', '<SCALEKIT_CLIENT_ID>', '<SCALEKIT_CLIENT_SECRET>');
+
+const options = {
+  loginHint: 'user@example.com',
+  organizationId: 'org_123235245',
+};
+
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, options);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### SCIM Provisioning > Admin portal
+
+<CodeWithHeader title="Understanding authorization URL">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+//Install and Import Scalekit SDK
+
+async function generatePortalLink(orgID) {
+  const link = await scalekit.organization.generatePortalLink(orgID);
+  console.log(JSON.stringify(link, null, 2));
+}
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### SCIM Provisioning > Automate role assignment
+
+<CodeWithHeader title="Webhook to automate role assignment">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+// Webhook endpoint
+app.post('/webhook', async (req, res) => {
+  // Extract event data
+  const event = req.body;
+  const { email, name, roles } = event.data;
+  console.log('Admin added user to Viewer Group -> Scalekit informs Your App\n');
+
+  // Destructure role_name from roles array
+  const roleName = roles.length > 0 ? roles[0].role_name : null;
+  console.log('Role name received:', roleName);
+
+  // Logic to update user role and permissions
+  await assignRole(roleName, email);
+  console.log('App updated access for user:', email);
+
+  res.status(201).json({
+    message: 'Role assigned',
+  });
+});
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Best Practices for webhooks
+
+<CodeWithHeader title="Best Practices for webhooks">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+app.post('/webhook', async (req, res) => {
+  // Parse the JSON body of the request
+  const event = await req.json();
+
+  // Get headers from the request
+  const headers = req.headers;
+
+  // Secret from Scalekit dashboard > Webhooks
+  const secret = process.env.SCALEKIT_WEBHOOK_SECRET;
+
+  try {
+    // Verify the webhook payload
+    await scalekit.verifyWebhookPayload(secret, headers, event);
+  } catch (error) {
+    return res.status(400).json({
+      error: 'Invalid signature',
+    });
+  }
+});
+
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+<CodeWithHeader title="Handling different event types">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+app.post('/webhook', async (req, res) => {
+  const event = req.body;
+
+  // Handle different event types
+  switch (event.type) {
+    case 'organization.directory.user_created':
+      const { email, name } = event.data;
+      await createUserAccount(email, name);
+      break;
+
+    case 'organization.directory.user_updated':
+      await updateUserAccount(event.data);
+      break;
+
+    default:
+      console.log('Unhandled event type:', event.type);
+  }
+
+  return res.status(201).json({
+    status: 'success',
+  });
+});
+
+async function createUserAccount(email, name) {
+  // Implement your user creation logic
+}
+
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+# API Reference
+
+
+## Single Sign-On
+
+
+<CodeWithHeader title="Get Authorization URL">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+import { ScalekitClient } from '@scalekit-sdk/node';
+
+// Initialize the SDK client
+const scalekit = new ScalekitClient(
+  '<SCALEKIT_ENVIRONMENT_URL>',
+  '<SCALEKIT_CLIENT_ID>',
+  '<SCALEKIT_CLIENT_SECRET>'
+);
+
+const options = {};
+
+// Option 1: Authorization URL with the organization ID
+options['organizationId'] = 'org_15421144869927830';
+
+// Option 2: Authorization URL with login hint
+options.connectionId = 'conn_15696105471768821';
+
+// Option 3: Authorization URL with login hint
+options.loginHint = 'user@example.com';
+
+const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
+
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Token URL">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+// Handle the oauth redirect
+const { code, error, error_description } = req.query;
+if (error) {
+  // Handle error
+  return throw new Error(error_description);
+}
+
+// Fetch user details by exchanding the code received in the request params
+const { user } = await scalekit.authenticateWithCode(code, '<redirectUri>');
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="List Organizations">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+const organizations = await scalekit.organization.listOrganization({
+  pageSize: 10,
+});
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Create an Organization">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```javascript showLineNumbers
+const organization = await sc.organization.createOrganization(name, {
+  externalId: 'externalId',
+});
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Get Organization Details">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const sc = new ScalekitClient(
+  <SCALEKIT_ENVIRONMENT_URL>,
+  <SCALEKIT_CLIENT_ID>,
+  <SCALEKIT_CLIENT_SECRET>
+);
+
+const organization = await sc.organization.getOrganization(organization_id);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+<CodeWithHeader title="Update Organization Details">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const organization = await sc.organization.updateOrganization(organization_id, {
+  displayName: 'displayName',
+  externalId: 'externalId',
+});
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Toggle Organization Settings">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const settings = {
+  features: [
+    {
+      name: 'sso',
+      enabled: true,
+    },
+    {
+      name: 'dir_sync',
+      enabled: true,
+    },
+  ],
+};
+
+await sc.organization.updateOrganizationSettings('<organization_id>', settings);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Delete an Organization">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await sc.organization.deleteOrganization(organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Admin Portal
+
+
+<CodeWithHeader title="Generate Admin Portal Link">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const link = await sc.organization.generatePortalLink(organization_id);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+## SSO Connection
+
+<CodeWithHeader title="List Connections">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const connections = await sc.connection.listConnections(organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Get Connection Details">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const connection = await sc.connection.getConnection(
+  organizationId,
+  connectionId
+);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Enable a Connection">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await sc.connection.enableConnection(organizationId, connectionId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Disable a Connection">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await sc.connection.disableConnection(organizationId, connectionId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+### Directory Sync
+
+<CodeWithHeader title="Enable a Directory">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await sc.directory.enableDirectory('<organization_id>', '<directory_id>');
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Get Directory Details">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const { directory } = await scalekit.directory.getDirectory(
+  organizationId,
+  directoryId
+);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="List Directory Users">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const { users } = await scalekit.directory.listDirectoryUsers(
+  '<organization_id>',
+  '<directory_id>'
+);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="List Directory Groups">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+const { groups } = await scalekit.directory.listDirectoryGroups(
+  '<organization_id>',
+  '<directory_id>'
+);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="List Organization Directories">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await scalekit.directory.listDirectories('<organization_id>');
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
+
+
+<CodeWithHeader title="Disable a Directory">
+<Tabs groupId="tech-stack" queryString>
+<TabItem value="nodejs" label="Node.js">
+
+```js
+await scalekit.directory.disableDirectory(
+  '<organization_id>',
+  '<directory_id>'
+);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```cs showLineNumbers
+// Coming soon
+```
+
+</TabItem>
+</Tabs>
+</CodeWithHeader>
