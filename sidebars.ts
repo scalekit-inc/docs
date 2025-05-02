@@ -30,7 +30,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Admin portal',
+      label: 'Admin Portal',
       id: 'sso/quickstart-admin-portal',
     },
     {
@@ -192,7 +192,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Admin portal',
+      label: 'Admin Portal',
       id: 'scim/admin-portal',
     },
     {
@@ -477,7 +477,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'link',
-      label: 'Admin portal',
+      label: 'Admin Portal',
       href: '/sso/quickstart-admin-portal',
     },
     {
