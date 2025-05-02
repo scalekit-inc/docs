@@ -117,14 +117,14 @@ https://[domain].auth.[region].amazoncognito.com/oauth2/authorize
 
 </CodeWithHeader>
 
-For ease of development, Scalekit supports testing with <SimpleCode>@example.org</SimpleCode> and <SimpleCode>@example.com</SimpleCode> domains. Authorization endpoints generated using these domains as <SimpleCode>login_hint</SimpleCode> will redirect enterprise users to Scalekit's built-in IdP simulator.
+For ease of development, Scalekit supports testing with <SimpleCode>@example.org</SimpleCode> and <SimpleCode>@example.com</SimpleCode> domains. Authorization endpoints generated using these domains as <SimpleCode>login_hint</SimpleCode> will redirect enterprise users to Scalekit's built-in IdP Simulator.
 
 <figure>
   ![Scalekit - AWS Cognito integration](@site/docs/sso/assets/integrations/cognito/5.png)
-  <figcaption>Scalekit - IdP simulator</figcaption>
+  <figcaption>Scalekit - IdP Simulator</figcaption>
 </figure>
 
-Treat the IdP simulator as equivalent to an actual organization's IdP authentication step. For instance, if John belongs to Megasoft (using Okta as their IdP), logging in with `john@megasoft.org` would redirect him to Okta's authentication process (including MFA or other organizational policies).
+Treat the IdP Simulator as equivalent to an actual organization's IdP authentication step. For instance, if John belongs to Megasoft (using Okta as their IdP), logging in with `john@megasoft.org` would redirect him to Okta's authentication process (including MFA or other organizational policies).
 
 Scalekit integrates seamlessly with [major identity providers](/integrations). Use Scalekit's [admin portal](/sso/quickstart-admin-portal) to onboard enterprise customers, enabling them to set up connections between their identity providers and your application.
 
