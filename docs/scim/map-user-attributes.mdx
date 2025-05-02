@@ -1,26 +1,26 @@
 ---
-title: 'SCIM Attribute Mapping: Customize User Data Synchronization'
+title: 'SCIM attribute mapping: Customize user data synchronization'
 description: 'Learn how to map and customize SCIM user attributes between directory providers and your application. Enable personalized user experiences through custom attribute mapping and synchronization.'
 keywords: [
-  'SCIM Attributes',
-  'User Attribute Mapping',
-  'Custom Attributes',
-  'Directory Sync',
-  'User Data Mapping',
-  'SCIM Configuration',
-  'Directory Integration',
-  'User Provisioning',
-  'Data Synchronization',
-  'Enterprise Integration',
-  'User Management',
-  'Directory Provider',
-  'Attribute Configuration',
-  'User Profile Mapping',
-  'Data Customization'
+  'SCIM attributes',
+  'User attribute mapping',
+  'Custom attributes',
+  'Directory sync',
+  'User data mapping',
+  'SCIM configuration',
+  'Directory integration',
+  'User provisioning',
+  'Data synchronization',
+  'Enterprise integration',
+  'User management',
+  'Directory provider',
+  'Attribute configuration',
+  'User profile mapping',
+  'Data customization'
 ]
 ---
 
-# Map User Attributes
+# Map user attributes
 
 Custom attributes are admin-defined data properties that can tailor and enhance user experiences in
 your application. They allow you to personalize content, features, and functionalities based on
@@ -36,11 +36,11 @@ Scalekit solves this problem by letting customers map their attribute names to t
 expects.
 
 <figure className="width-75">
-  ![Custom attribute mapping workflow: Your App creates department attribute, customers map
-  employee_department in Admin Portal](@site/docs/scim/assets/map-user-attributes-1.png)
+  ![Custom attribute mapping workflow: Your app creates department attribute, customers map
+  employee_department in admin portal](@site/docs/scim/assets/map-user-attributes-1.png)
   <figcaption>
-    Custom attribute mapping workflow: Your App creates department attribute, customers map
-    employee_department in Admin Portal
+    Custom attribute mapping workflow: Your app creates department attribute, customers map
+    employee_department in admin portal
   </figcaption>
 </figure>
 
@@ -49,33 +49,33 @@ customers:
 
 1. Select "Organizations" from the left sidebar
 2. Choose the organization
-3. Go to the "Directory Sync" tab
-4. Enable Directory Sync
+3. Go to the "Directory sync" tab
+4. Enable directory sync
 
-## Enable Attribute Mapping
+## Enable attribute mapping
 
-Declare the attributes your B2B SaaS app expects in the Scalekit Dashboard. Scalekit will then
+Declare the attributes your B2B SaaS app expects in the Scalekit dashboard. Scalekit will then
 collect these attributes from the customer's directory provider and send them to your app.
 
-1. In the Scalekit Dashboard, select "User Attributes" from the left sidebar
-2. Choose "Directory Sync" attributes
-3. Click "Add Attribute" to create a new attribute
+1. In the Scalekit dashboard, select "User attributes" from the left sidebar
+2. Choose "Directory sync" attributes
+3. Click "Add attribute" to create a new attribute
 
 <figure className="width-50">
-  ![Custom attribute mapping workflow: Your App creates department attribute, customers map
-  employee_department in Admin Portal](@site/docs/scim/assets/map-user-attributes-2.png)
+  ![Custom attribute mapping workflow: Your app creates department attribute, customers map
+  employee_department in admin portal](@site/docs/scim/assets/map-user-attributes-2.png)
   <figcaption>
-    Custom attribute mapping workflow: Your App creates department attribute, customers map
-    employee_department in Admin Portal
+    Custom attribute mapping workflow: Your app creates department attribute, customers map
+    employee_department in admin portal
   </figcaption>
 </figure>
 
 Once saved, this attribute will be available for your customers to map to their directory provider
 attributes.
 
-## Map Custom Attributes
+## Map custom attributes
 
-After declaring the expected attributes in the Scalekit Dashboard,your customers can map them to the
+After declaring the expected attributes in the Scalekit dashboard, your customers can map them to the
 directory provider attributes.
 
 <figure className="width-75">
@@ -83,14 +83,14 @@ directory provider attributes.
   <figcaption>Placeholder</figcaption>
 </figure>
 
-Refer to the [Admin Portal](./admin-portal.mdx) section to learn more about the Admin Portal and how
+Refer to the [Admin Portal](./admin-portal.mdx) section to learn more about the admin portal and how
 to share a link to it with your customers.
 
-## Verify Attribute Mapping
+## Verify attribute mapping
 
 After creating custom attributes and mapping them, verify that everything works as expected:
 
-1. Go to the "Events" tab in the Scalekit Dashboard
+1. Go to the "Events" tab in the Scalekit dashboard
 2. Send a test event to confirm the new attributes are sent to your app
 
 By following these steps, you can ensure that your <TermTip jargon="B2B app" /> receives the custom

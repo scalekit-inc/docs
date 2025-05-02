@@ -1,29 +1,29 @@
 ---
 displayed_sidebar: 'scimSidebar'
-title: 'Automated Role Assignment: Directory-Based Access Control'
+title: 'Automated role assignment: Directory-based access control'
 description: 'Implement automated role assignment in your application using directory group memberships. Learn how to synchronize user roles with directory groups for efficient access management.'
 keywords: [
-    'Automated Role Assignment',
-    'Directory Groups',
-    'Access Control',
-    'Role Management',
-    'User Permissions',
-    'Group Synchronization',
-    'Role Mapping',
-    'Directory Integration',
-    'Enterprise Access',
-    'User Authorization',
-    'Role Automation',
-    'Access Management',
-    'SCIM Integration',
-    'Directory Events',
-    'Role Configuration',
+    'Automated role assignment',
+    'Directory groups',
+    'Access control',
+    'Role management',
+    'User permissions',
+    'Group synchronization',
+    'Role mapping',
+    'Directory integration',
+    'Enterprise access',
+    'User authorization',
+    'Role automation',
+    'Access management',
+    'SCIM integration',
+    'Directory events',
+    'Role configuration',
   ]
 ---
 
-# Automatic Role Assignment
+# Automatic role assignment
 
-<Subtitle>Assign App Roles from Directory Group Memberships</Subtitle>
+<Subtitle>Assign app roles from directory group memberships</Subtitle>
 
 Manually assigning roles to users in your application, such as viewer, member, editor, or admin, can
 be a time-consuming task for administrators, particularly in large enterprises where access needs
@@ -38,24 +38,24 @@ like maintainer, writer, and viewer, customer administrators can create user gro
 within their directory provider.
 
 <figure>
-  ![SCIM User Provisioning Flow Directory to Scalekit to Your B2B
-  App](@site/docs/scim/assets/gbra-1.png)
-  <figcaption>SCIM User Provisioning Flow Directory to Scalekit to Your App</figcaption>
+  ![SCIM user provisioning flow directory to Scalekit to your B2B
+  app](@site/docs/scim/assets/gbra-1.png)
+  <figcaption>SCIM user provisioning flow directory to Scalekit to your app</figcaption>
 </figure>
 
 Scalekit notifies your application when administrators create groups or add users to them, enabling
 you to take necessary actions such as creating or modifying user roles as directed by the
-organization’s administrator. Regardless of the directory provider your customers use, Scalekit
+organization's administrator. Regardless of the directory provider your customers use, Scalekit
 delivers normalized information, eliminating the need for data transformation across different
 providers.
 
-## Enabling Group-Based Role Assignment
+## Enabling group-based role assignment
 
 To enable administrators to map groups to roles in your app:
 
-1. Go to the Scalekit Dashboard
+1. Go to the Scalekit dashboard
 2. Select "SCIM Provisioning"
-3. Switch to the "Role Assignment" tab
+3. Switch to the "Role assignment" tab
 4. Create your app's roles
 
 <figure className="width-75">
@@ -70,22 +70,22 @@ default role, navigate to the role settings, click the "..." menu next to the de
 
 :::tip
 
-Choose clear Display Names and Descriptions for your roles to help customers understand and align
-with the access levels in the Admin Portal.
+Choose clear display names and descriptions for your roles to help customers understand and align
+with the access levels in the admin portal.
 
 :::
 
-## Listening to Events
+## Listening to events
 
-Scalekit continuously monitors updates from your customers’ directory providers and sends event
+Scalekit continuously monitors updates from your customers' directory providers and sends event
 payloads to your application via a registered webhook endpoint. To set up these endpoints and manage
-subscriptions, refer to the Scalekit Dashboard documentation.
+subscriptions, refer to the Scalekit dashboard documentation.
 
 In this scenario, you will listen for the <SimpleCode>organization.directory.user_updated</SimpleCode> event to determine a user's role from
 the payload. Scalekit automatically includes a role property relevant to your app, based on the role
-information configured in the Scalekit Dashboard.
+information configured in the Scalekit dashboard.
 
-<CodeWithHeader title="Webhook Endpoint for Role Updates">
+<CodeWithHeader title="Webhook endpoint for role updates">
 
 <Tabs groupId="tech-stack" queryString>
 
@@ -211,7 +211,7 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 </Tabs>
 </CodeWithHeader>
 
-See the [User Event Payload Reference](/apis#tag/Webhooks/organization.directory.user_updated) for
+See the [User event payload reference](/apis#tag/Webhooks/organization.directory.user_updated) for
 more information about the payload structure.
 
 By utilizing Scalekit's group-based role assignment feature, you can simplify access management for

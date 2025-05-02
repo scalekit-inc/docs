@@ -1,63 +1,63 @@
 ---
-title: 'Group-Based Access Control (GBAC): Automated Role Management with SCIM'
-description: 'Implement automated role assignment using Group-Based Access Control (GBAC) with SCIM directory integration. Learn how to map directory groups to application roles for efficient access management.'
+title: 'Group-based access control (GBAC): Automated role management with SCIM'
+description: 'Implement automated role assignment using group-based access control (GBAC) with SCIM directory integration. Learn how to map directory groups to application roles for efficient access management.'
 keywords: [
-  'Group-Based Access Control',
+  'Group-based access control',
   'GBAC',
-  'Role Management',
-  'Directory Groups',
-  'Access Control',
-  'Role Assignment',
-  'User Permissions',
-  'Directory Integration',
-  'SCIM Groups',
-  'Role Mapping',
-  'Access Management',
-  'User Authorization',
-  'Enterprise Roles',
-  'Group Synchronization',
-  'Permission Management'
+  'Role management',
+  'Directory groups',
+  'Access control',
+  'Role assignment',
+  'User permissions',
+  'Directory integration',
+  'SCIM groups',
+  'Role mapping',
+  'Access management',
+  'User authorization',
+  'Enterprise roles',
+  'Group synchronization',
+  'Permission management'
 ]
 ---
 
-# Automated Role Assignment (Group Based Access Control)
+# Automated role assignment (group based access control)
 
 <Subtitle>
     Learn how to assign roles to users in your B2B application based on their group memberships in their directory.
 </Subtitle>
 
-Group Based Access Control (GBAC) allows you to automatically assign roles to
+Group based access control (GBAC) allows you to automatically assign roles to
 users based on their group memberships in the directory provider. This
 functionality streamlines the process of managing user permissions and access
 rights within your application based on their group memberships in their
 directory.
 
-## How GBAC Works
+## How GBAC works
 
-1. **Group Synchronization**: When a user is synchronized from the directory
+1. **Group synchronization**: When a user is synchronized from the directory
    provider (e.g., Azure AD, Okta) to Scalekit, their group memberships are also
    synchronized.
 
-2. **Role Mapping**: In Scalekit, you can define mappings between directory
+2. **Role mapping**: In Scalekit, you can define mappings between directory
    groups and roles in your application.
 
-3. **Automatic Role Assignment**: Based on these mappings, Scalekit
+3. **Automatic role assignment**: Based on these mappings, Scalekit
    automatically assigns the corresponding roles to users when they are created
    or updated in the system.
 
 ## Implementing GBAC with Scalekit APIs
 
-To implement Group Based Access Control using Scalekit APIs, follow these steps:
+To implement group based access control using Scalekit APIs, follow these steps:
 
-### 1. Configure GBAC in Scalekit Dashboard
+### 1. Configure GBAC in Scalekit dashboard
 
-Before implementing GBAC, you need to configure it in the Scalekit Dashboard:
+Before implementing GBAC, you need to configure it in the Scalekit dashboard:
 
-1. **Enable GBAC**: As a B2B App Developer, enable GBAC for your application in
-   the Scalekit Dashboard. This determines whether GBAC configurations will be
-   available to IT Admins.
+1. **Enable GBAC**: As a B2B app developer, enable GBAC for your application in
+   the Scalekit dashboard. This determines whether GBAC configurations will be
+   available to IT admins.
 
-2. **Configure Roles**: Define all the roles applicable in your B2B application
+2. **Configure roles**: Define all the roles applicable in your B2B application
    at the environment level. These roles will be available for all organizations
    within that environment.
 
@@ -73,17 +73,17 @@ Before implementing GBAC, you need to configure it in the Scalekit Dashboard:
      format (e.g., `billing_admin`).
    - `role_display_name`: A human-readable display name for the role.
 
-3. **Set Default Role**: Choose a default role that will be assigned to users
+3. **Set default role**: Choose a default role that will be assigned to users
    when no group-role mappings match their group memberships.
 
-### 2. IT Admin Configuration
+### 2. IT admin configuration
 
-IT Admins can configure GBAC settings for their organization:
+IT admins can configure GBAC settings for their organization:
 
-1. **Enable GBAC**: While setting up Directory Sync, IT Admins can choose to
+1. **Enable GBAC**: While setting up directory sync, IT admins can choose to
    enable automatic role assignment based on group memberships.
 
-2. **Group-Role Mapping**: IT Admins manually map directory groups to roles in
+2. **Group-role mapping**: IT admins manually map directory groups to roles in
    your B2B application. Use the Scalekit API to create these mappings:
 
    ```json
@@ -94,7 +94,7 @@ IT Admins can configure GBAC settings for their organization:
    }
    ```
 
-### 3. Handling Role Assignments
+### 3. Handling role assignments
 
 When users are synchronized from the directory provider, Scalekit will
 automatically assign roles based on the configured mappings. You can retrieve
