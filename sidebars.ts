@@ -154,7 +154,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Work with user profiles',
+      label: 'User profile object',
       id: 'sso/guides/key-concepts/user-profile',
     },
     {
