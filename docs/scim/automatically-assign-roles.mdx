@@ -19,6 +19,8 @@ keywords: [
     'Directory events',
     'Role configuration',
   ]
+pagination_next: null
+pagination_prev: null
 ---
 
 # Automatic role assignment
@@ -202,9 +204,8 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 </Tabs>
 </CodeWithHeader>
 
-See the [User event payload reference](/apis#tag/Webhooks/organization.directory.user_updated) for
-more information about the payload structure.
+See the [User event payload reference](/apis#tag/Webhooks/organization.directory.user_updated) for more information about the payload structure.
 
-By utilizing Scalekit's group-based role assignment feature, you can simplify access management for
-your enterprise customers and ensure that user roles remain synchronized with their directory
-provider.
+## Next steps
+
+Set up [webhook endpoints](/apis#tag/Webhooks) to receive the Directory events and assign roles to users in your applications.
