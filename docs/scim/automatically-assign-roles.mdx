@@ -25,17 +25,11 @@ keywords: [
 
 <Subtitle>Assign app roles from directory group memberships</Subtitle>
 
-Manually assigning roles to users in your application, such as viewer, member, editor, or admin, can
-be a time-consuming task for administrators, particularly in large enterprises where access needs
-frequently change. Scalekit streamlines this process by allowing administrators to establish
-workflows that automatically update your app about the roles to assign to users.
+Manually assigning roles to users in your application, such as viewer, member, editor, or admin, can be a time-consuming task for administrators, particularly in large enterprises where access needs frequently change. Scalekit streamlines this process by allowing administrators to establish workflows that automatically update your app about the roles to assign to users.
 
 ## Introduction
 
-A common strategy for managing varying access levels is to group users based on their specific
-access requirements. For example, if you are developing an application similar to GitHub with roles
-like maintainer, writer, and viewer, customer administrators can create user groups for each role
-within their directory provider.
+A common strategy that organization administrators use for managing varying access levels is to group users based on their specific access requirements. For example, if you are developing an application similar to GitHub with roles like maintainer, writer, and viewer, customer administrators can create user groups for each role within their directory provider.
 
 <figure>
   ![SCIM user provisioning flow directory to Scalekit to your B2B
@@ -43,11 +37,8 @@ within their directory provider.
   <figcaption>SCIM user provisioning flow directory to Scalekit to your app</figcaption>
 </figure>
 
-Scalekit notifies your application when administrators create groups or add users to them, enabling
-you to take necessary actions such as creating or modifying user roles as directed by the
-organization's administrator. Regardless of the directory provider your customers use, Scalekit
-delivers normalized information, eliminating the need for data transformation across different
-providers.
+Scalekit notifies your application when administrators create groups or add users to them, enabling you to take necessary actions such as creating or modifying user roles as directed by the organization's administrator. Regardless of the directory provider your customers use, Scalekit
+delivers normalized information, eliminating the need for data transformation across different providers. A user can belong to multiple groups and, as a result, may be assigned multiple roles in your application, depending on your role-mapping logic.
 
 ## Enabling group-based role assignment
 
@@ -56,9 +47,9 @@ To enable administrators to map groups to roles in your app:
 1. Go to the Scalekit dashboard
 2. Select "SCIM Provisioning"
 3. Switch to the "Role assignment" tab
-4. Create your app's roles
+4. Register your app's roles
 
-<figure className="width-75">
+<figure>
   ![How Scalekit works](@site/docs/scim/assets/automatically-assign-roles-4.png)
   <figcaption>Registering roles in Scalekit dashboard.</figcaption>
 </figure>
