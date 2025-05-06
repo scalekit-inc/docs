@@ -20,7 +20,7 @@ npm install @scalekit-sdk/node
 <TabItem value="dotnet" label=".NET">
 
 ```bash showLineNumbers
-# Coming soon
+dotnet add package Scalekit.SDK
 ```
 
 </TabItem>
@@ -61,7 +61,29 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+  Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new AuthorizationUrlOptions{};
+
+// Option 1: Authorization URL with the Organization ID
+options.OrganizationId = "org_68485184474841862";
+
+// Option 2: Authorization URL with Connection ID
+options.ConnectionId = "conn_69058956353339702";
+
+// Option 3: Authorization URL with login hint
+options.LoginHint = "user@example.com";
+
+string redirectUrl = "https://yourapp.com/auth/callback";
+string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
 ```
 
 </TabItem>
@@ -96,7 +118,29 @@ const userEmail = result.user.email;
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+string code = HttpContext.Request.Query["code"].ToString();
+string error = HttpContext.Request.Query["error"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+string idpInitiatedLogin = HttpContext.Request.Query["idp_initiated_login"].ToString();
+string connectionId = HttpContext.Request.Query["connection_id"].ToString();
+string relayState = HttpContext.Request.Query["relay_state"].ToString();
+
+if (!string.IsNullOrEmpty(error)) {
+    //Handle error
+}
+    
+try
+{
+    // Exchange the code for tokens and user info
+    var result = await scalekitClient.AuthenticateWithCode(code, redirectUrl);
+    var userEmail = result.User.Email;
+    
+    // Next step: create a session for this user and allow access
+}
+catch (Exception ex)
+{
+    // Handle exception
+}
 ```
 
 </TabItem>
@@ -129,7 +173,20 @@ async function generatePortalLink(orgID) {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+string orgId = "org_68xxxxxxxxxxxxx62";
+var link = await scalekitClient.Organization.GeneratePortalLink(orgId);
+
+Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions { WriteIndented = true }));
+
 ```
 
 </TabItem>
@@ -157,7 +214,13 @@ res.redirect(authorizationUrl);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+var options = new AuthorizationUrlOptions{};
+options.OrganizationId = "org_684xxxxxxxxxx1862";
+
+//Generate the authorization URL
+string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+
+//Redirect the user to the authorization URL
 ```
 
 </TabItem>
@@ -186,7 +249,21 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new AuthorizationUrlOptions{};
+options.Provider = "microsoft";
+
+string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+
+//Redirect the user to the authorization URL
 ```
 
 </TabItem>
@@ -213,7 +290,28 @@ const userEmail = res.user.email;
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+string code = HttpContext.Request.Query["code"].ToString();
+string error = HttpContext.Request.Query["error"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+
+if (!string.IsNullOrEmpty(error)) {
+    //Handle error
+}
+
+try
+{
+    // Exchange the code for tokens and user info
+    var result = await scalekitClient.AuthenticateWithCode(code, redirectUrl);
+
+    // Extract user info
+    var userEmail = result.User.Email;
+    
+    // Next step: create a session for this user and allow access
+}
+catch (Exception ex)
+{
+    // Handle exception
+}
 ```
 
 </TabItem>
@@ -257,7 +355,33 @@ authorizationURL = scalekit.getAuthorizationUrl(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+//Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new AuthorizationUrlOptions{};
+
+// Option 1: Authorization URL with the organization ID
+options.OrganizationId = "org_68485XXXXXX1862";
+
+// Option 2: Authorization URL with login hint
+options.LoginHint = "user@example.com";
+
+try 
+{
+    string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+}
+catch (Exception ex) {
+    // Handle exception
+}
+
+//Redirect the user to the authorization URL
 ```
 
 </TabItem>
@@ -309,7 +433,46 @@ if (idp_initiated_login) {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+// 1. Default redirect URL is callback with JWT
+var code = HttpContext.Request.Query["code"].ToString();
+var errorDescription = HttpContext.Request.Query["error_description"].ToString();
+var idpInitiatedLogin = HttpContext.Request.Query["idp_initiated_login"].ToString();
+
+if (!string.IsNullOrEmpty(errorDescription))
+    // Handle error
+
+// 2. Decode JWT claims
+if (!string.IsNullOrEmpty(idpInitiatedLogin))
+{
+    try
+    {
+        var claims = await scalekitClient.GetIdpInitiatedLoginClaims(idpInitiatedLogin);
+
+        // Assign claims to authorization options if available
+        var options = new AuthorizationUrlOptions();
+
+        if (!string.IsNullOrEmpty(claims.ConnectionId))
+            options.ConnectionId = claims.ConnectionId;
+
+        if (!string.IsNullOrEmpty(claims.OrganizationId))
+            options.OrganizationId = claims.OrganizationId;
+
+        if (!string.IsNullOrEmpty(claims.LoginHint))
+            options.LoginHint = claims.LoginHint;
+
+        if (!string.IsNullOrEmpty(claims.RelayState))
+            options.State = claims.RelayState;
+
+        // 3. Generate Authorization URL
+        string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+
+        return Redirect(authorizationUrl);
+    }
+    catch (Exception ex)
+    {
+        //Handle exception
+    }
+}
 ```
 
 </TabItem>
@@ -340,7 +503,28 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, options);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
+);
+
+var options = new AuthorizationUrlOptions
+{   
+    OrganizationId = "org_68485XXXXXX1862",
+    LoginHint="user@example.com",
+};
+
+try 
+{
+    string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+}
+catch (Exception ex) {
+    // Handle exception
+}
 ```
 
 </TabItem>
@@ -367,7 +551,7 @@ async function generatePortalLink(orgID) {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+var link = await scalekitClient.Organization.GeneratePortalLink(OrganizationId);
 ```
 
 </TabItem>
@@ -407,7 +591,35 @@ app.post('/webhook', async (req, res) => {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        // Read the request body
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+
+        // Parse JSON payload
+        var payload = JObject.Parse(body);
+        var userRoles = payload["data"]?["roles"] as JArray;
+        var userEmail = payload["data"]?["email"]?.ToString();
+
+        if (userRoles != null && userRoles.Count > 0)
+        {
+            var roleName = userRoles[0]?["role_name"]?.ToString();
+
+            // Assign role to user
+            await AssignRole(roleName, userEmail);
+        }
+
+        return StatusCode(201);
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
 ```
 
 </TabItem>
@@ -448,7 +660,35 @@ app.post('/webhook', async (req, res) => {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try 
+    {
+        // Read headers from the request
+        var headers = Request.Headers;
+        var headersDict = Request.Headers
+            .ToDictionary(kvp => kvp.Key.ToLowerInvariant(), kvp => kvp.Value.ToString());
+
+        // Parse the body of the request    
+        var body = await new StreamReader(Request.Body).ReadToEndAsync(); 
+
+        // Secret from Scalekit dashboard - Webhooks
+        string secret = "<WEBHOOK SECRET>";
+
+        bool result = scalekitClient.VerifyWebhookPayload(secret, headersDict, body);
+
+        if (!result)
+        {
+            return Unauthorized("Invalid webhook signature");
+        }        
+        return Ok("Webhook received");
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }   
+}
 ```
 
 </TabItem>
@@ -494,7 +734,40 @@ async function createUserAccount(email, name) {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        var eventData = JObject.Parse(body);
+
+        var eventType = eventData["type"]?.ToString();
+        var data = eventData["data"];
+        
+        switch (eventType)
+        {
+            case "organization.directory.user_created":
+                await HandleUserCreate(data);
+                break;
+
+            case "organization.directory.user_updated":
+                await HandleUserUpdate(data);
+                break;
+
+            default:
+                Console.WriteLine("Unhandled event type: " + eventType);
+                break;
+        }
+
+        return StatusCode(201, new { status = "success" });
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
 ```
 
 </TabItem>
@@ -541,7 +814,33 @@ const authorizationURL = scalekit.getAuthorizationUrl(redirectUrl, options);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
+);
+
+var options = new AuthorizationUrlOptions();
+
+// Option 1: Authorization URL with the organization ID
+options.OrganizationId = "org_68485184474841862";
+
+// Option 2: Authorization URL with connection ID
+options.ConnectionId = "conn_69058956353339702";
+
+// Option 3: Authorization URL with login hint
+options.LoginHint = "user@example.com";
+
+try 
+{
+    string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+}
+catch (Exception ex) {
+    // Handle exception
+}
 ```
 
 </TabItem>
@@ -570,7 +869,27 @@ const { user } = await scalekit.authenticateWithCode(code, '<redirectUri>');
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+string code = HttpContext.Request.Query["code"].ToString();
+string error = HttpContext.Request.Query["error"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+
+if (!string.IsNullOrEmpty(error)) 
+    throw new Exception(errorDescription);
+
+try
+{
+    // Exchange the code for tokens and user info
+    var result = await scalekitClient.AuthenticateWithCode(code, redirectUrl);
+
+    // Extract user info
+    var userEmail = result.User.Email;
+    
+    // Next step: create a session for this user and allow access
+}
+catch (Exception ex)
+{
+    // Handle exception
+}
 ```
 
 </TabItem>
@@ -593,7 +912,7 @@ const organizations = await scalekit.organization.listOrganization({
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ListOrganizationsResponse organizations = await scalekitClient.Organization.ListOrganizations(10);
 ```
 
 </TabItem>
@@ -616,7 +935,13 @@ const organization = await sc.organization.createOrganization(name, {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+CreateOrganizationResponse createOrganization = await scalekitClient.Organization.CreateOrganization(
+    organizationName,
+    new CreateOrganizationOptions
+    {
+        ExternalId = "externalId"
+    }
+);
 ```
 
 </TabItem>
@@ -643,7 +968,13 @@ const organization = await sc.organization.getOrganization(organization_id);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ScalekitClient scalekitClient = new ScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
+);
+
+GetOrganizationResponse organization = await scalekitClient.Organization.GetOrganization(organizationId);
 ```
 
 </TabItem>
@@ -666,7 +997,11 @@ const organization = await sc.organization.updateOrganization(organization_id, {
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+UpdateOrganizationResponse updateOrganization = await scalekitClient.Organization.UpdateOrganization(organizationId, new UpdateOrganization 
+{
+    DisplayName = "displayName",
+    ExternalId = "externalId",
+});
 ```
 
 </TabItem>
@@ -700,7 +1035,11 @@ await sc.organization.updateOrganizationSettings('<organization_id>', settings);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+var settings = new OrganizationSettings();
+settings.Features.Add(new OrganizationSettingsFeature { Name = "sso", Enabled = true });
+settings.Features.Add(new OrganizationSettingsFeature { Name = "dir_sync", Enabled = true });
+
+GetOrganizationResponse updateOrgSettings = await scalekitClient.Organization.UpdateOrganizationSettings(organizationId, settings);
 ```
 
 </TabItem>
@@ -721,7 +1060,7 @@ await sc.organization.deleteOrganization(organizationId);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+await scalekitClient.Organization.DeleteOrganization(organizationId);
 ```
 
 </TabItem>
@@ -744,7 +1083,7 @@ const link = await sc.organization.generatePortalLink(organization_id);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+Link link = await scalekitClient.Organization.GeneratePortalLink(organizationId);
 ```
 
 </TabItem>
@@ -766,7 +1105,7 @@ const connections = await sc.connection.listConnections(organizationId);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ListConnectionsResponse connections = await scalekitClient.Connection.ListConnections(organizationId);
 ```
 
 </TabItem>
@@ -790,7 +1129,7 @@ const connection = await sc.connection.getConnection(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+GetConnectionResponse connection = await scalekitClient.Connection.GetConnection(organizationId, connectionId);
 ```
 
 </TabItem>
@@ -811,7 +1150,7 @@ await sc.connection.enableConnection(organizationId, connectionId);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ToggleConnectionResponse connectionResponse = await scalekitClient.Connection.EnableConnection(organizationId, connectionId);
 ```
 
 </TabItem>
@@ -832,7 +1171,7 @@ await sc.connection.disableConnection(organizationId, connectionId);
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ToggleConnectionResponse connectionResponse = await scalekitClient.Connection.DisableConnection(organizationId, connectionId);
 ```
 
 </TabItem>
@@ -854,7 +1193,7 @@ await sc.directory.enableDirectory('<organization_id>', '<directory_id>');
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ToggleDirectoryResponse directoryResponse = await scalekitClient.Directory.EnableDirectory(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -878,7 +1217,7 @@ const { directory } = await scalekit.directory.getDirectory(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+GetDirectoryResponse directory = await scalekitClient.Directory.GetDirectory(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -902,7 +1241,7 @@ const { users } = await scalekit.directory.listDirectoryUsers(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ListDirectoryUsersResponse directoryUsers = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -926,7 +1265,7 @@ const { groups } = await scalekit.directory.listDirectoryGroups(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ListDirectoryGroupsResponse directoryGroups = await scalekitClient.Directory.ListDirectoryGroups(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -947,7 +1286,7 @@ await scalekit.directory.listDirectories('<organization_id>');
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ListDirectoriesResponse directories = await scalekitClient.Directory.ListDirectories(organizationId);
 ```
 
 </TabItem>
@@ -971,7 +1310,7 @@ await scalekit.directory.disableDirectory(
 <TabItem value="dotnet" label=".NET">
 
 ```cs showLineNumbers
-// Coming soon
+ToggleDirectoryResponse directoryResponse = await scalekitClient.Directory.DisableDirectory(organizationId, directoryId);
 ```
 
 </TabItem>
