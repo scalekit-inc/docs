@@ -94,6 +94,27 @@ async function generatePortalLink(orgID) {
 ```
 
 </TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+  Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+string orgId = "org_68xxxxxxxxxxxxx62";
+var link = await scalekitClient.Organization.GeneratePortalLink(orgId);
+Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions {
+  WriteIndented = true
+}));
+```
+
+</TabItem>
 </Tabs>
 
 </CodeWithHeader>
