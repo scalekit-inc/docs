@@ -56,6 +56,30 @@ ListDirectoryGroupsResponse groupsResponse = scalekitClient
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new ListDirectoryGroupsOptions
+{
+    PageSize = 10,
+    PageToken = "",
+    IncludeDetail = true
+};
+
+ListDirectoryGroupsResponse directoryGroups = await scalekitClient.Directory.ListDirectoryGroups(organizationId, directoryId, options);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

@@ -55,6 +55,30 @@ ListDirectoryUsersResponse usersResponse = scalekitClient
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new ListDirectoryUsersOptions
+{
+    PageSize = 10,
+    PageToken = "",
+    IncludeDetail = true
+};
+
+ListDirectoryUsersResponse directoryUsers = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId, options);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

@@ -39,8 +39,25 @@ err := sc.Connection.EnableConnection(
 
 <TabItem value="java" label="Java">
 
-```java
-ToggleConnectionResponse response = scalekitClient.connections().enableConnection(connectionId, organizationId);
+```java showLineNumbers
+scalekitClient.connections().enable(connectionId, organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+ToggleConnectionResponse connectionResponse = await scalekitClient.Connection.EnableConnection(organizationId, connectionId);
 ```
 
 </TabItem>

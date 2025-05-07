@@ -45,6 +45,23 @@ Directory directory = scalekitClient.directories().getDirectory(directoryId, org
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+GetDirectoryResponse directory = await scalekitClient.Directory.GetDirectory(organizationId, directoryId);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 
@@ -82,6 +99,23 @@ directory,err := sc.Directory().GetPrimaryDirectoryByOrganizationId(ctx, organiz
 
 ```java
 Directory directory = client.directories().getPrimaryDirectoryByOrganizationId(organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+GetDirectoryResponse primaryDirectory = await scalekitClient.Directory.GetPrimaryDirectoryByOrganizationId(organizationId);
 ```
 
 </TabItem>

@@ -153,6 +153,40 @@ public class Main {
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+  Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new AuthorizationUrlOptions();
+
+// Option 1: Authorization URL with the organization ID
+options.OrganizationId = "org_68485184474841862";
+
+// Option 2: Authorization URL with connection ID
+options.ConnectionId = "conn_69058956353339702";
+
+// Option 3: Authorization URL with login hint
+options.LoginHint = "user@example.com";
+
+try {
+  string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+  // Next step is to redirect the user to this authorization URL
+} catch (Exception ex) {
+  // Handle exception
+}
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

@@ -95,6 +95,37 @@ try {
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+// Handle oauth redirect_url, fetch code and error_description from request params
+string code = HttpContext.Request.Query["code"].ToString();
+string error = HttpContext.Request.Query["error"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+string idpInitiatedLogin = HttpContext.Request.Query["idp_initiated_login"].ToString();
+string connectionId = HttpContext.Request.Query["connection_id"].ToString();
+string relayState = HttpContext.Request.Query["relay_state"].ToString();
+
+if (!string.IsNullOrEmpty(error)) {
+  // Handle error
+  return;
+}
+
+try {
+  // Exchange the code for tokens and user info
+  var result = await scalekitClient.AuthenticateWithCode(code, redirectUrl);
+
+  // Extract user info
+  var userEmail = result.User.Email;
+
+  // Next step: create a session for this user and allow access
+} catch (Exception ex) {
+  // Handle exception
+}
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

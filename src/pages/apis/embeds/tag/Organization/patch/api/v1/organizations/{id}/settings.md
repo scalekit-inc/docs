@@ -102,6 +102,27 @@ updatedOrganization = scalekitClient.organizations()
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var settings = new OrganizationSettings();
+settings.Features.Add(new OrganizationSettingsFeature { Name = "sso", Enabled = true });
+settings.Features.Add(new OrganizationSettingsFeature { Name = "dir_sync", Enabled = true });
+
+GetOrganizationResponse updateOrgSettings = await scalekitClient.Organization.UpdateOrganizationSettings(organizationId, settings);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">
