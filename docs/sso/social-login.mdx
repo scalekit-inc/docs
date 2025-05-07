@@ -210,6 +210,32 @@ public class Main {
 ```
 
 </TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+  Environment.GetEnvironmentVariable("SCALEKIT_ENV_URL"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var options = new AuthorizationUrlOptions();
+options.Provider = "google";
+
+try {
+  // Generate authorization URL with social login provider
+  string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+  // Redirect the user to this authorization URL
+} catch (Exception ex) {
+  // Handle exception
+}
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 
@@ -311,6 +337,33 @@ try {
 }
 
 // Next step: create a session for this user and allow access
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+// Get code and error parameters from request
+string code = HttpContext.Request.Query["code"].ToString();
+string error = HttpContext.Request.Query["error"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+
+if (!string.IsNullOrEmpty(error)) {
+  // Handle error
+  return;
+}
+
+try {
+  // Exchange code for user details
+  var result = await scalekitClient.AuthenticateWithCode(code, redirectUrl);
+
+  // Extract user info
+  var userEmail = result.User.Email;
+
+  // Next step: create a session for this user and allow access
+} catch (Exception ex) {
+  // Handle exception
+}
 ```
 
 </TabItem>
