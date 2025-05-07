@@ -109,9 +109,7 @@ ScalekitClient scalekitClient = new ScalekitClient(
 
 string orgId = "org_68xxxxxxxxxxxxx62";
 var link = await scalekitClient.Organization.GeneratePortalLink(orgId);
-Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions {
-  WriteIndented = true
-}));
+Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions { WriteIndented = true }));
 ```
 
 </TabItem>
