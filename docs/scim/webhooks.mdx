@@ -188,6 +188,44 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 
 </TabItem>
 
+<TabItem label=".NET" value="dotnet">
+
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        var eventData = JObject.Parse(body);
+        var eventType = eventData["type"]?.ToString();
+        var data = eventData["data"];
+
+        switch (eventType)
+        {
+            case "organization.directory.user_created":
+                await HandleUserCreate(data);
+                break;
+            case "organization.directory.user_updated":
+                await HandleUserUpdate(data);
+                break;
+            default:
+                Console.WriteLine("Unhandled event type: " + eventType);
+                break;
+        }
+
+        return StatusCode(201, new { status = "success" });
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 
@@ -337,6 +375,44 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
   return "ok";
 }
 
+```
+
+</TabItem>
+
+<TabItem label=".NET" value="dotnet">
+
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        var eventData = JObject.Parse(body);
+        var eventType = eventData["type"]?.ToString();
+        var data = eventData["data"];
+
+        switch (eventType)
+        {
+            case "organization.directory.user_created":
+                await HandleUserCreate(data);
+                break;
+            case "organization.directory.user_updated":
+                await HandleUserUpdate(data);
+                break;
+            default:
+                Console.WriteLine("Unhandled event type: " + eventType);
+                break;
+        }
+
+        return StatusCode(201, new { status = "success" });
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
 ```
 
 </TabItem>
