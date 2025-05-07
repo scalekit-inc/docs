@@ -102,7 +102,7 @@ Construct the authorization URL using the following query parameters:
 https://auth.scalekit.com/authorize?
   client_id=skc_122056050118122349527&
   redirect_uri=https://yourapp.com/auth/callback&
-  provider=microsoft
+  provider=google
 ```
 
 </CodeWithHeader>
@@ -145,7 +145,7 @@ scalekit_client = ScalekitClient(
 
 options = AuthorizationUrlOptions()
 
-options.provider = 'microsoft'
+options.provider = 'google'
 
 authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
@@ -172,7 +172,7 @@ func main() {
 
   options := scalekitClient.AuthorizationUrlOptions{}
   // Pass the social login provider details while constructing the authorization URL.
-  options.Provider = "microsoft"
+  options.Provider = "google"
 
   authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
@@ -199,7 +199,7 @@ public class Main {
       "<SCALEKIT_CLIENT_SECRET>"
     );
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-    options.setProvider("microsoft");
+    options.setProvider("google");
     try {
       // Pass the social login provider details while constructing the authorization URL.
       String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
