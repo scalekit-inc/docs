@@ -102,9 +102,6 @@ try {
 string code = HttpContext.Request.Query["code"].ToString();
 string error = HttpContext.Request.Query["error"].ToString();
 string errorDescription = HttpContext.Request.Query["error_description"].ToString();
-string idpInitiatedLogin = HttpContext.Request.Query["idp_initiated_login"].ToString();
-string connectionId = HttpContext.Request.Query["connection_id"].ToString();
-string relayState = HttpContext.Request.Query["relay_state"].ToString();
 
 if (!string.IsNullOrEmpty(error)) {
   // Handle error
