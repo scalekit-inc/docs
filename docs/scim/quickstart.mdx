@@ -511,26 +511,24 @@ public async Task<IActionResult> HandleWebhook()
 {
     try
     {
-        using var reader = new StreamReader(Request.Body);
-        var body = await reader.ReadToEndAsync();
-        var eventData = JObject.Parse(body);
-        var eventType = eventData["type"]?.ToString();
-        var data = eventData["data"];
+        // Read headers from the request
+        var headers = Request.Headers;
+        var headersDict = Request.Headers
+            .ToDictionary(kvp => kvp.Key.ToLowerInvariant(), kvp => kvp.Value.ToString());
 
-        switch (eventType)
+        // Parse the body of the request
+        var body = await new StreamReader(Request.Body).ReadToEndAsync();
+
+        // Secret from Scalekit dashboard - Webhooks
+        string secret = "<WEBHOOK SECRET>";
+
+        bool result = scalekitClient.VerifyWebhookPayload(secret, headersDict, body);
+
+        if (!result)
         {
-            case "organization.directory.user_created":
-                await HandleUserCreate(data);
-                break;
-            case "organization.directory.user_updated":
-                await HandleUserUpdate(data);
-                break;
-            default:
-                Console.WriteLine("Unhandled event type: " + eventType);
-                break;
+            return Unauthorized("Invalid webhook signature");
         }
-
-        return StatusCode(201, new { status = "success" });
+        return Ok("Webhook received");
     }
     catch (Exception)
     {
