@@ -326,15 +326,7 @@ ListDirectoryUsersResponse usersResponse = scalekitClient
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-var options = new ListDirectoryUsersOptions
-{
-    PageSize = 10,
-    PageToken = "",
-    IncludeDetail = true
-};
-
-var usersResponse = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId, options);
-// usersResponse.Users[0].Email has the email of the first user in the directory
+ListDirectoryUsersResponse directoryUsers = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -405,14 +397,7 @@ ListDirectoryGroupsResponse groupsResponse = scalekitClient
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-var options = new ListDirectoryGroupsOptions
-{
-    PageSize = 10,
-    PageToken = "",
-    IncludeDetail = true
-};
-
-var groupsResponse = await scalekitClient.Directory.ListDirectoryGroups(organizationId, directoryId, options);
+ListDirectoryGroupsResponse directoryGroups = await scalekitClient.Directory.ListDirectoryGroups(organizationId, directoryId);
 ```
 
 </TabItem>
