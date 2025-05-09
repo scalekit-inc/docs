@@ -118,6 +118,19 @@ String url = scalekitClient
 ```
 
 </TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+var options = new AuthorizationUrlOptions();
+options.OrganizationId = "org_32656XXXXXX0438";
+
+// Generate the authorization URL
+string authorizationUrl = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+
+// Redirect the user to the authorization URL
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 The user will be redirected to the Identity Provider (IdP) Simulator, where they can select a scenario to simulate as a

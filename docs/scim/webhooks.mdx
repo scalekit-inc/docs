@@ -190,6 +190,42 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
 
 </TabItem>
 
+<TabItem label=".NET" value="dotnet">
+
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        // Read headers from the request
+        var headers = Request.Headers;
+        var headersDict = Request.Headers
+            .ToDictionary(kvp => kvp.Key.ToLowerInvariant(), kvp => kvp.Value.ToString());
+
+        // Parse the body of the request
+        var body = await new StreamReader(Request.Body).ReadToEndAsync();
+
+        // Secret from Scalekit dashboard - Webhooks
+        string secret = "<WEBHOOK SECRET>";
+
+        bool result = scalekitClient.VerifyWebhookPayload(secret, headersDict, body);
+
+        if (!result)
+        {
+            return Unauthorized("Invalid webhook signature");
+        }
+        return Ok("Webhook received");
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 
@@ -339,6 +375,44 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
   return "ok";
 }
 
+```
+
+</TabItem>
+
+<TabItem label=".NET" value="dotnet">
+
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+        var eventData = JObject.Parse(body);
+        var eventType = eventData["type"]?.ToString();
+        var data = eventData["data"];
+
+        switch (eventType)
+        {
+            case "organization.directory.user_created":
+                await HandleUserCreate(data);
+                break;
+            case "organization.directory.user_updated":
+                await HandleUserUpdate(data);
+                break;
+            default:
+                Console.WriteLine("Unhandled event type: " + eventType);
+                break;
+        }
+
+        return StatusCode(201, new { status = "success" });
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
 ```
 
 </TabItem>

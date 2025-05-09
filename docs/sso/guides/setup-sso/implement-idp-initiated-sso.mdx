@@ -251,6 +251,46 @@ public RedirectView callbackHandler(
 ```
 
 </TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+// 1. Default redirect URL is callback with JWT
+string code = HttpContext.Request.Query["code"].ToString();
+string errorDescription = HttpContext.Request.Query["error_description"].ToString();
+string idpInitiatedLogin = HttpContext.Request.Query["idp_initiated_login"].ToString();
+
+if (!string.IsNullOrEmpty(errorDescription))
+{
+  // Handle error
+  return BadRequest(new { message = errorDescription });
+}
+
+// 2. Decode the JWT
+if (!string.IsNullOrEmpty(idpInitiatedLogin))
+{
+  try
+  {
+    var claims = await scalekitClient.GetIdpInitiatedLoginClaims(idpInitiatedLogin);
+
+    var options = new AuthorizationUrlOptions();
+    // Either ONE of the following properties
+    options.ConnectionId = claims.ConnectionId;
+    options.OrganizationId = claims.OrganizationId;
+    options.LoginHint = claims.LoginHint;
+
+    // 3. Generate Authorization URL
+    string url = scalekitClient.GetAuthorizationUrl(redirectUrl, options);
+    return Redirect(url);
+  }
+  catch (Exception ex)
+  {
+    // Handle exception
+    return StatusCode(500, new { message = ex.Message });
+  }
+}
+```
+
+</TabItem>
 </Tabs>
 
 </CodeWithHeader>

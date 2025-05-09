@@ -67,7 +67,6 @@ https://yourcompany.scalekit.com
 
 # or, if you have enabled CNAME, you can use that too
 https://auth.yoursaas.com
-
 ```
 
 </CodeWithHeader>
@@ -165,6 +164,20 @@ public class Main {
       "<SCALEKIT_CLIENT_SECRET>"
     );
   }
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    "<SCALEKIT_ENVIRONMENT_URL>",
+    "<SCALEKIT_CLIENT_ID>",
+    "<SCALEKIT_CLIENT_SECRET>"
+);
 ```
 
 </TabItem>
