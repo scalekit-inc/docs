@@ -94,6 +94,87 @@ async function generatePortalLink(orgID) {
 ```
 
 </TabItem>
+
+<TabItem value="py" label="Python">
+
+```python showLineNumbers
+from scalekit import Scalekit
+
+scalekit = Scalekit(
+    environment_url=os.environ.get("ENVIRONMENT_URL"),
+    client_id=os.environ.get("CLIENT_ID"),
+    client_secret=os.environ.get("CLIENT_SECRET")
+)
+
+def generate_portal_link(org_id):
+    link = scalekit.organization.generate_portal_link(org_id)
+    print(json.dumps(link, indent=2))
+```
+
+</TabItem>
+
+<TabItem value="golang" label="Go">
+
+```go showLineNumbers
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/scalekit/sdk-go"
+)
+
+func generatePortalLink(orgID string) {
+	sc := scalekit.New(
+		os.Getenv("ENVIRONMENT_URL"),
+		os.Getenv("CLIENT_ID"),
+		os.Getenv("CLIENT_SECRET"),
+	)
+
+	ctx := context.Background()
+	link, err := sc.Organization.GeneratePortalLink(ctx, orgID)
+	if err != nil {
+		panic(err)
+	}
+
+	jsonData, _ := json.MarshalIndent(link, "", "  ")
+	fmt.Println(string(jsonData))
+}
+```
+
+</TabItem>
+
+<TabItem value="java" label="Java">
+
+```java showLineNumbers
+import com.scalekit.client.Scalekit;
+import com.scalekit.client.models.Link;
+import com.scalekit.client.models.Feature;
+
+import java.util.Arrays;
+
+public class PortalLinkGenerator {
+    public static void main(String[] args) {
+        Scalekit client = new Scalekit(
+            System.getenv("ENVIRONMENT_URL"),
+            System.getenv("CLIENT_ID"),
+            System.getenv("CLIENT_SECRET")
+        );
+
+        Link portalLink = client
+            .organizations()
+            .generatePortalLink(
+                "org_12345",
+                Arrays.asList(Feature.sso, Feature.dir_sync)
+            );
+
+        System.out.println(portalLink.getLocation());
+    }
+}
+```
+
+</TabItem>
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
