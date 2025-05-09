@@ -82,9 +82,9 @@ Use the **Generate Portal Link API** to create a unique, embeddable Admin Portal
 import { Scalekit } from '@scalekit-sdk/node';
 
 const scalekit = new Scalekit(
-  process.env.ENVIRONMENT_URL,
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
+  "SCALEKIT_ENVIRONMENT_URL",
+  "SCALEKIT_CLIENT_ID",
+  "SCALEKIT_CLIENT_SECRET",
 );
 
 async function generatePortalLink(orgID) {
