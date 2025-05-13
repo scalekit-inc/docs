@@ -36,12 +36,6 @@ err := sc.Organization.DeleteOrganization(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 scalekitClient.organizations().deleteById(organizationId);
 ```
 
@@ -50,15 +44,6 @@ scalekitClient.organizations().deleteById(organizationId);
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-using Scalekit.SDK;
-using Scalekit.SDK.Models;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
-);
-
 await scalekitClient.Organization.DeleteOrganization(organizationId);
 ```
 
@@ -68,6 +53,8 @@ await scalekitClient.Organization.DeleteOrganization(organizationId);
 </CodeWithHeader>
 <CodeWithHeader title="Response">
 
-<JsonViewer src={ {} } />
+```md
+{}
+```
 
 </CodeWithHeader>

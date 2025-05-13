@@ -48,15 +48,6 @@ Directory directory = scalekitClient.directories().getDirectory(directoryId, org
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-using Scalekit.SDK;
-using Scalekit.SDK.Models;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
-);
-
 GetDirectoryResponse directory = await scalekitClient.Directory.GetDirectory(organizationId, directoryId);
 ```
 

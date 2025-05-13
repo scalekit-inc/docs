@@ -64,15 +64,6 @@ Organization createdOrganization = scalekitClient.organizations().create(createO
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-using Scalekit.SDK;
-using Scalekit.SDK.Models;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
-);
-
 CreateOrganizationResponse createOrganization = await scalekitClient.Organization.CreateOrganization(
     organizationName,
     new CreateOrganizationOptions {

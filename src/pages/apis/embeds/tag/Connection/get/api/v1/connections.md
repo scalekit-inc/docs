@@ -46,15 +46,6 @@ ListConnectionsResponse response = scalekitClient.connections().listConnectionsB
 <TabItem value="dotnet" label=".NET">
 
 ```csharp showLineNumbers
-using Scalekit.SDK;
-using Scalekit.SDK.Models;
-
-ScalekitClient scalekitClient = new ScalekitClient(
-    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
-    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
-);
-
 ListConnectionsResponse connections = await scalekitClient.Connection.ListConnections(organizationId);
 ```
 
