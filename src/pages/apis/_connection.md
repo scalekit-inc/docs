@@ -3,7 +3,7 @@
     <div className="col col--6">
     </div>
     <div className="col col--6">
-        <Endpoints tag="Connection" excludeEndpoints={[
+        <Endpoints tag="Connections" excludeEndpoints={[
             { method: "get", label: "/api/v1/providers" }
         ]} />
     </div>

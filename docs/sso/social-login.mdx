@@ -14,6 +14,8 @@ keywords:
     'B2B SaaS security',
     'Identity provider',
   ]
+pagination_next: integrations/social-connections/google
+pagination_prev: null
 ---
 
 import InstallSDK from '@site/docs/sso/templates/_install-sdk.md';
@@ -32,7 +34,7 @@ just a few lines of code.
 
 <figure>
   ![How Scalekit works](@site/docs/sso/assets/single-sign-on/quickstart/scalekit_social.png)
-  <figcaption>Login with social providers via Scalekit</figcaption>
+  <figcaption>Login with social connectors via Scalekit</figcaption>
 </figure>
 
 ## 1. Environment setup
@@ -100,7 +102,7 @@ Construct the authorization URL using the following query parameters:
 https://auth.scalekit.com/authorize?
   client_id=skc_122056050118122349527&
   redirect_uri=https://yourapp.com/auth/callback&
-  provider=microsoft
+  provider=google
 ```
 
 </CodeWithHeader>
@@ -121,7 +123,7 @@ import { Scalekit } from '@scalekit-sdk/node';
 const scalekit = new Scalekit('<SCALEKIT_ENVIRONMENT_URL>', '<SCALEKIT_CLIENT_ID>', '<SCALEKIT_CLIENT_SECRET>');
 
 const authorizationURL = scalekit.getAuthorizationUrl(redirectUri, {
-  provider: 'microsoft',
+  provider: 'google',
   state: state, // optional
 });
 
@@ -143,7 +145,7 @@ scalekit_client = ScalekitClient(
 
 options = AuthorizationUrlOptions()
 
-options.provider = 'microsoft'
+options.provider = 'google'
 
 authorization_url = scalekit_client.get_authorization_url(
   redirect_uri=<redirect_uri>,
@@ -170,7 +172,7 @@ func main() {
 
   options := scalekitClient.AuthorizationUrlOptions{}
   // Pass the social login provider details while constructing the authorization URL.
-  options.Provider = "microsoft"
+  options.Provider = "google"
 
   authorizationURL := scalekitClient.GetAuthorizationUrl(
     redirectUrl,
@@ -197,7 +199,7 @@ public class Main {
       "<SCALEKIT_CLIENT_SECRET>"
     );
     AuthorizationUrlOptions options = new AuthorizationUrlOptions();
-    options.setProvider("microsoft");
+    options.setProvider("google");
     try {
       // Pass the social login provider details while constructing the authorization URL.
       String url = scalekitClient.authentication().getAuthorizationUrl(redirectUrl, options).toString();
