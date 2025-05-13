@@ -50,6 +50,14 @@ Connection connection = client.connections().getConnectionById(connectionId, org
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+GetConnectionResponse connection = await scalekitClient.Connection.GetConnection(organizationId, connectionId);
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

@@ -63,6 +63,20 @@ Organization updatedOrganizationById = scalekitClient.organizations().updateById
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+UpdateOrganizationResponse updateOrganization = await scalekitClient.Organization.UpdateOrganization(
+    organizationId,
+    new UpdateOrganization {
+        DisplayName = "displayName",
+        ExternalId = "externalId"
+    }
+);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

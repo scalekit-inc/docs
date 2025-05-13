@@ -40,6 +40,14 @@ ListDirectoriesResponse response = scalekitClient.directories().listDirectories(
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ListDirectoriesResponse directories = await scalekitClient.Directory.ListDirectories(organizationId);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

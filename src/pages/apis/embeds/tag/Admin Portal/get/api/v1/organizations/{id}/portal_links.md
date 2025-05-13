@@ -45,6 +45,23 @@ Link portalLink = client
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+Link link = await scalekitClient.Organization.GeneratePortalLink(organizationId);
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

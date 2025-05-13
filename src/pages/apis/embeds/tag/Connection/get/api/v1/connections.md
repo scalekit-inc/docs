@@ -42,6 +42,14 @@ ListConnectionsResponse response = scalekitClient.connections().listConnectionsB
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ListConnectionsResponse connections = await scalekitClient.Connection.ListConnections(organizationId);
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

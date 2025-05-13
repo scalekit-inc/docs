@@ -35,9 +35,15 @@ enable,err := sc.Directory().EnableDirectory(ctx, organizationId, directoryId)
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ToggleDirectoryResponse enableResponse = client
-  .directories()
-  .enableDirectory(directoryId, organizationId);
+ToggleDirectoryResponse directoryResponse = scalekitClient.directories().enable(directoryId, organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ToggleDirectoryResponse directoryResponse = await scalekitClient.Directory.EnableDirectory(organizationId, directoryId);
 ```
 
 </TabItem>

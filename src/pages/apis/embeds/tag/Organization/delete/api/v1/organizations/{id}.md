@@ -36,13 +36,15 @@ err := sc.Organization.DeleteOrganization(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ScalekitClient scalekitClient = new ScalekitClient(
-  "<SCALEKIT_ENVIRONMENT_URL>",
-  "<SCALEKIT_CLIENT_ID>",
-  "<SCALEKIT_CLIENT_SECRET>"
-);
-
 scalekitClient.organizations().deleteById(organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+await scalekitClient.Organization.DeleteOrganization(organizationId);
 ```
 
 </TabItem>
@@ -51,6 +53,8 @@ scalekitClient.organizations().deleteById(organizationId);
 </CodeWithHeader>
 <CodeWithHeader title="Response">
 
-<JsonViewer src={ {} } />
+```md
+{}
+```
 
 </CodeWithHeader>

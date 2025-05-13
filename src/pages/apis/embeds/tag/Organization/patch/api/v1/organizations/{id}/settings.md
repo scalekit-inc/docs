@@ -102,6 +102,18 @@ updatedOrganization = scalekitClient.organizations()
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+var settings = new OrganizationSettings();
+settings.Features.Add(new OrganizationSettingsFeature { Name = "sso", Enabled = true });
+settings.Features.Add(new OrganizationSettingsFeature { Name = "dir_sync", Enabled = true });
+
+GetOrganizationResponse updateOrgSettings = await scalekitClient.Organization.UpdateOrganizationSettings(organizationId, settings);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

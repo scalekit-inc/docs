@@ -51,6 +51,14 @@ ListOrganizationsResponse organizations = scalekitClient.organizations().listOrg
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ListOrganizationsResponse organizations = await scalekitClient.Organization.ListOrganizations(10);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

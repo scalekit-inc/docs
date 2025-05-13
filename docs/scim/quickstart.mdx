@@ -171,6 +171,25 @@ ListOrganizationsResponse organizations = scalekitClient.organizations().listOrg
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+    Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+    Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+var organizations = await scalekitClient.Organization.ListOrganizations(10);
+Console.WriteLine($"Name of the organization: {organizations.Organizations[0].DisplayName}");
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 
@@ -235,6 +254,18 @@ Directory directory = scalekitClient.directories().getPrimaryDirectoryByOrganiza
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+// Get directory using organization ID and directory ID
+var directory = await scalekitClient.Directory.GetDirectory(organizationId, directoryId);
+
+// Get directory using organization ID
+var primaryDirectory = await scalekitClient.Directory.GetPrimaryDirectoryByOrganizationId(organizationId);
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 
@@ -288,6 +319,14 @@ var options = ListDirectoryResourceOptions.builder()
 ListDirectoryUsersResponse usersResponse = scalekitClient
   .directories()
   .listDirectoryUsers(directory.getId(), organizationId, options);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ListDirectoryUsersResponse directoryUsers = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -351,6 +390,14 @@ var options = ListDirectoryResourceOptions.builder()
 ListDirectoryGroupsResponse groupsResponse = scalekitClient
   .directories()
   .listDirectoryGroups(directory.getId(), organizationId, options);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ListDirectoryGroupsResponse directoryGroups = await scalekitClient.Directory.ListDirectoryGroups(organizationId, directoryId);
 ```
 
 </TabItem>
@@ -452,34 +499,42 @@ public String webhook(@RequestBody String body, @RequestHeader Map<String, Strin
   }
   return "ok";
 }
-
 ```
 
 </TabItem>
 
-<TabItem value="go" label="Go">
+<TabItem value="dotnet" label=".NET">
 
-```go
-webhookSecret := os.Getenv("SCALEKIT_WEBHOOK_SECRET")
-mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-	headers := map[string]string{
-		"webhook-id":        r.Header.Get("webhook-id"),
-		"webhook-signature": r.Header.Get("webhook-signature"),
-		"webhook-timestamp": r.Header.Get("webhook-timestamp"),
-	}
-	_, err = sc.VerifyWebhookPayload(webhookSecret, headers, body)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusUnauthorized)
-		return
-	}
-	w.WriteHeader(http.StatusOK)
-})
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        // Read headers from the request
+        var headers = Request.Headers;
+        var headersDict = Request.Headers
+            .ToDictionary(kvp => kvp.Key.ToLowerInvariant(), kvp => kvp.Value.ToString());
 
+        // Parse the body of the request
+        var body = await new StreamReader(Request.Body).ReadToEndAsync();
+
+        // Secret from Scalekit dashboard - Webhooks
+        string secret = "<WEBHOOK SECRET>";
+
+        bool result = scalekitClient.VerifyWebhookPayload(secret, headersDict, body);
+
+        if (!result)
+        {
+            return Unauthorized("Invalid webhook signature");
+        }
+        return Ok("Webhook received");
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
 ```
 
 </TabItem>

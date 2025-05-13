@@ -201,6 +201,42 @@ mux.HandleFunc("POST /webhook", func(w http.ResponseWriter, r *http.Request) {
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+[HttpPost("webhook")]
+public async Task<IActionResult> HandleWebhook()
+{
+    try
+    {
+        // Read the request body
+        using var reader = new StreamReader(Request.Body);
+        var body = await reader.ReadToEndAsync();
+
+        // Parse JSON payload
+        var payload = JObject.Parse(body);
+        var userRoles = payload["data"]?["roles"] as JArray;
+        var userEmail = payload["data"]?["email"]?.ToString();
+
+        if (userRoles != null && userRoles.Count > 0)
+        {
+            var roleName = userRoles[0]?["role_name"]?.ToString();
+
+            // Assign role to user
+            await AssignRole(roleName, userEmail);
+        }
+
+        return StatusCode(201);
+    }
+    catch (Exception)
+    {
+        return StatusCode(500, "An error occurred");
+    }
+}
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 

@@ -60,6 +60,19 @@ Organization createdOrganization = scalekitClient.organizations().create(createO
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+CreateOrganizationResponse createOrganization = await scalekitClient.Organization.CreateOrganization(
+    organizationName,
+    new CreateOrganizationOptions {
+        ExternalId = "externalId"
+    }
+);
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

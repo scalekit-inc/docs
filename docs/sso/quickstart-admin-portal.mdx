@@ -82,9 +82,9 @@ Use the **Generate Portal Link API** to create a unique, embeddable Admin Portal
 import { Scalekit } from '@scalekit-sdk/node';
 
 const scalekit = new Scalekit(
-  process.env.ENVIRONMENT_URL,
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
+  "SCALEKIT_ENVIRONMENT_URL",
+  "SCALEKIT_CLIENT_ID",
+  "SCALEKIT_CLIENT_SECRET",
 );
 
 async function generatePortalLink(orgID) {
@@ -172,6 +172,26 @@ public class PortalLinkGenerator {
         System.out.println(portalLink.getLocation());
     }
 }
+```
+
+</TabItem>
+  
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+using Scalekit.SDK;
+using Scalekit.SDK.Models;
+
+// Initialize the SDK client
+ScalekitClient scalekitClient = new ScalekitClient(
+  Environment.GetEnvironmentVariable("SCALEKIT_ENVIRONMENT_URL"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_ID"),
+  Environment.GetEnvironmentVariable("SCALEKIT_CLIENT_SECRET")
+);
+
+string orgId = "org_68xxxxxxxxxxxxx62";
+var link = await scalekitClient.Organization.GeneratePortalLink(orgId);
+Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions { WriteIndented = true }));
 ```
 
 </TabItem>

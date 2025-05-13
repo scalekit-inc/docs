@@ -39,5 +39,20 @@ implementation "com.scalekit:scalekit-sdk-java:1.1.2"
 ```
 
 </TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```sh
+# Use the .NET CLI to install the package
+dotnet add package Scalekit.SDK --version 1.0.0
+```
+
+```xml
+<!-- Alternative: Add the following to your .csproj file -->
+<ItemGroup>
+    <PackageReference Include="Scalekit.SDK" Version="1.0.0" />
+</ItemGroup>
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>

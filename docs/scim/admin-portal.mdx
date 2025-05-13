@@ -122,6 +122,15 @@ Link portalLink = client
 ```
 
 </TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+var link = await scalekitClient.Organization.GeneratePortalLink("<organization_id>");
+Console.WriteLine(JsonSerializer.Serialize(link, new JsonSerializerOptions { WriteIndented = true }));
+```
+
+</TabItem>
 </Tabs>
 </CodeWithHeader>
 

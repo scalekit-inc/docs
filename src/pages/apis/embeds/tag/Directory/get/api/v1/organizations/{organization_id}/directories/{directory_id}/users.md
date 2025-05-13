@@ -55,6 +55,21 @@ ListDirectoryUsersResponse usersResponse = scalekitClient
 
 </TabItem>
 
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+var options = new ListDirectoryUsersOptions
+{
+    PageSize = 10,
+    PageToken = "",
+    IncludeDetail = true
+};
+
+ListDirectoryUsersResponse directoryUsers = await scalekitClient.Directory.ListDirectoryUsers(organizationId, directoryId, options);
+```
+
+</TabItem>
+
 </Tabs>
 </CodeWithHeader>
 <CodeWithHeader title="Response">

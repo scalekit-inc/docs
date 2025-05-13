@@ -39,7 +39,14 @@ err := sc.Connection.DisableConnection(
 <TabItem value="java" label="Java">
 
 ```java showLineNumbers
-ToggleConnectionResponse response = scalekitClient.connections().disableConnection(connectionId, organizationId);
+scalekitClient.connections().disable(connectionId, organizationId);
+```
+
+</TabItem>
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ToggleConnectionResponse connectionResponse = await scalekitClient.Connection.DisableConnection(organizationId, connectionId);
 ```
 
 </TabItem>

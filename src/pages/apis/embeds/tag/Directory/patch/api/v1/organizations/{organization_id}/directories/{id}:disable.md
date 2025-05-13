@@ -37,10 +37,16 @@ disable,err := sc.Directory().DisableDirectory(ctx, organizationId, directoryId)
 
 <TabItem value="java" label="Java">
 
-```java
-ToggleDirectoryResponse disableResponse = scalekitClient
-  .directories()
-  .disableDirectory(directoryId, organizationId);
+```java showLineNumbers
+ToggleDirectoryResponse disableResponse = scalekitClient.directories().disable(directoryId, organizationId);
+```
+
+</TabItem>
+
+<TabItem value="dotnet" label=".NET">
+
+```csharp showLineNumbers
+ToggleDirectoryResponse directoryResponse = await scalekitClient.Directory.DisableDirectory(organizationId, directoryId);
 ```
 
 </TabItem>
