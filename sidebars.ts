@@ -504,7 +504,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'link',
       label: 'View glossary',
-      href: 'manage-scalekit/glossary',
+      href: '/manage-scalekit/glossary',
     },
     {
       type: 'link',
